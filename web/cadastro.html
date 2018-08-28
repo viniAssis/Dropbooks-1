@@ -1,0 +1,210 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Formulario</title>
+  <link rel="stylesheet" href="res/css/cadastro.css">
+    <script src="res/js/Cadastro.js"></script>
+    
+</head>
+
+<body >
+<form method="post" action="CadastroServlet">
+
+
+        <div id="block1">
+                <h2>Cadastro de Usuário</h2>
+
+
+
+                <p class="textos1" >Email :</p>
+                <input type="email" name="email" size="40" maxlength="50" class="cxs1" required/>
+
+
+                <p class="textos1">Repita Email :</p> 
+                <input type="email" name="repemail" size="40" maxlength="50" class="cxs1" required/>
+
+
+                <p class="textos1" class="cxs1">Senha :</p>
+                <input type="password" name="senha" size="40" maxlength="30" class="cxs1" required/>
+
+                <p class="textos1">Repita Senha :</p>
+                <input type="password" name="repsenha" size="40"  maxlength="30" class="cxs1" required/>
+
+
+                 <p class="textos1">Telefone:</p>
+                 <div id="telcx">
+                    <input name="ddd" type="number" id="ddd" size="4" maxlength="2" required/>
+                    <input type="tel" name="telefone"  size="31" id="telefone" required />       
+                 </div>
+
+
+                <div id="tipo">
+                    <p class="texto">Tipo :</p>
+                
+                    
+                    <div id="radioCadastro">
+                        <p class="cte">Físico</p>
+                        <INPUT TYPE="RADIO" NAME="tipoPessoa" id="idFisico" VALUE="1" required/> 
+
+                        <p class="cte"> Jurídico </p>
+                        <INPUT TYPE="RADIO" NAME="tipoPessoa" id="idJuridico" VALUE="2" required/>
+                    </div>
+                </div>
+                
+
+        </div>
+
+        <div id="fisico" class="fj">
+            <div>
+                <p>CPF:</p>
+                <input type="number" name="cpf" id="cpf" required maxlength="11" pattern="[0-9]+$">
+            </div>
+            <div>
+                <p>Nome Completo:</p>
+                <input type="text" name="nome" id="nome">
+            </div>
+            <div>
+                <p>Data de Nascimento:</p>
+                <input type="date" name="aa">
+            </div>
+            <div>
+                <p>Sexo:</p>
+                <div>
+                    Masculino:<input type="radio" name="sexo" id="masculino" value="m">
+                    Feminino:<input type="radio" name="sexo" id="feminino" value="f">
+                </div>
+            </div>
+        </div>
+        <div id="juridico" class="fj">
+                <div>
+                    <p>CNPJ:</p>
+                    <input type="number" name="cnpj" id="cnpj" maxlength="11" pattern="[0-9]+$">
+                </div>
+                <div>
+                    <p>Razão Social:</p>
+                    <input type="text" name="nomeRazao" id="nomeRazao">
+                </div>
+        </div>
+    
+    
+     <hr />
+    
+    
+   
+     
+        <!--Endereço-->
+       <div>
+        <h3>Endereço</h3>
+           <div id="end_deta">
+              
+                   
+                   <div>
+                        <p>Cep :<input type="text" name="cep"  maxlength="30" required/></p>
+                        
+                       <p>Endereço: <input type="text" name="logradouro"  maxlength="30" required/>
+                        </p>
+                   </div><!--bloco 1*/-->
+                    
+                    
+
+
+                    <div>
+                        <p>Número:<input name="numero" type="text" id="numero" required /></p>
+                        <p >Complemento: 
+                        <input type="text" name="complemento"  id="comp" required /> </p>
+                   </div><!--bloco 2*/-->
+                   
+
+                    <div>
+                        <p>Estado:<input type="text" name="estado" id="estado"  maxlength="70" required /></p>
+                        <p>
+                            Cidade:
+                            <input type="text" name="cidade" id="cidade" maxlength="20" required />
+                            
+                        </p>
+                        <p>
+                            Bairro :
+                           
+                            <input type="text" name="bairro" id="bairro"  maxlength="70" required />
+                            
+                        </p>
+                   </div><!--bloco 3*/-->
+                   
+               
+
+
+            
+           </div>
+            <div id="end_submit">
+                 <input type="checkbox" name="rec_novidades" id="rec_novidades" value="ATIVO" checked="checked" required/>
+                Você Concorda com os termos de uso Ler <a href="#">Termos de Uso</a>
+                
+                <p>
+                    <input type="submit" name="cadastrar" id="cadastrar" value="Cadastrar" />
+
+                    <input type="reset" name="limpar" id="limpar" value="Limpar" />
+
+                    <span class="style1">Já Tem Cadastro ? <a href="#">Entrar</a></span>
+                </p>   
+                
+                
+                
+            </div> 
+     
+  
+           
+    </div>
+     
+     
+   
+</form>
+      
+       <footer>
+            <div>
+                    <div>
+                        <div id="pagamento">
+                           <h4> Contato : </h4>  
+                           <p>(xx) xxxx-xxxx </p>
+
+                           <a href="#">Fale Conosco</a>
+
+                        
+                        </div>
+
+                        <div id="serviços">
+                               <h4> Serviços : </h4>  
+                               <a href="#">Venda seu Livro</a>
+                               <a href="#">FAQ</a>
+                        
+                        
+                        </div>
+
+                        <div id="mpagamentos">
+                            <h4> Meios de Pagamento : </h4>  
+                            <img src="res/img/pagamento.jpg"height="100" width="200" >
+                        
+                        
+                        </div>
+
+                        <div id="institucional">
+                            <h4> Institucional : </h4>  
+                            <a href="#">Sobre a DropBooks</a>
+                            <a href="#">Termos de Uso</a>
+                            <a href="#">Segurança e Privacidade</a>
+
+                        </div>
+
+                   </div>
+            </div>
+
+    
+        </footer>
+       
+              
+
+
+
+
+
+</body>
+</html>
