@@ -1,0 +1,294 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 27/08/2018, 19:44:14
+    Author     : vinim
+*/
+
+* {
+    
+    /*margin: 0 auto;*/
+    font-family: Arial;
+    text-align: center;
+}
+input[type=text], input[type=password], input[type=email], input[type=tel],
+input[type=number]{
+    border-radius: 10px;
+    box-shadow: 4px 4px 4px gray;
+    
+}
+
+body{
+    margin:0;
+}
+
+/**/
+
+h2{
+    text-align: center
+}
+#block1{
+    margin:auto;
+    width:400px;
+    
+}
+
+.textos1{
+    float:left;
+    clear:both;
+    
+    margin:0;
+    height:21px;
+    width:25%;
+    margin-top:10px;
+    text-align: left;
+}
+#block1 .cxs1{
+    float:right;
+    
+    margin:0;
+    width: 75%;
+    margin-top:10px;
+}
+
+
+/**/
+#telcx{
+    margin-top:10px;
+    width:75%;
+    float:right;
+}
+
+#ddd{
+  width:18%;
+    margin:0;
+}
+
+#telefone{
+    width:80%;
+    margin:0;
+}
+
+/**/
+
+#tipo{
+    position:relative;
+   width:100%;
+    height:30px;
+    margin-top:185px;
+    clear:both;
+    
+}
+#tipo .texto{
+    margin:0;
+
+    text-align: left;
+    width:25%;
+    display:inline;
+    float:left;
+}
+
+#tipo div{
+    float:right;
+    width:75%
+}
+
+#tipo .cte{
+    display:inline
+   
+}
+
+#radioCadastro p:nth-last-of-type(1){
+    margin-left:20%
+}
+
+
+
+
+
+/*Endereço*/
+
+
+
+h3{
+    text-align: center;
+}
+#end_deta{
+    margin:auto;
+    width:1200px;
+    padding:0;
+    display:block;
+    
+}
+
+#end_deta div{
+    width:100%;  
+    display:inline-block;
+
+}
+
+#end_deta > div{
+    margin-top:10px;
+}
+
+#end_deta div p{
+    display:inline-block;
+    margin:0;
+    margin-right:10px
+}
+
+
+
+#end_deta div p:nth-of-type(1){
+    
+    width:calc((100%/3) - 10px);
+    
+}
+#end_deta div p:nth-of-type(2){
+    
+    width:calc(66% - 10px);
+}
+
+#end_deta div:nth-of-type(3) p:nth-of-type(2){
+    
+    width:calc(33% - 10px )
+    
+}
+
+#end_deta div p:nth-of-type(3){
+    
+    width:calc(32% - 10px)
+    
+}
+
+#end_deta div p > input{
+    float:right;
+    width:70%;
+    margin:0;    
+    padding: 0;
+    
+    
+}
+#end_deta div:nth-of-type(1) > p:nth-of-type(2) > input,
+#end_deta div:nth-of-type(2) > p:nth-of-type(2) > input
+{
+    width:85%;
+}
+
+
+
+#end_deta > div:nth-of-type(1){
+    margin:0;
+    padding: 0;
+
+    
+}
+
+/*Endereço submit*/
+#end_submit{
+    
+    width:400px;
+        margin:auto;
+    margin-top:20px;
+}
+
+#end_submit p > input{
+    margin-right:5px;
+}
+
+
+footer{
+    width:100%;
+    margin:0;
+    background-color:lightgray;
+}
+
+footer > div{
+    width:90%;
+    margin:auto;
+}
+
+footer > div> div{
+    width:100%;
+    display:inline-flex;
+    margin: auto;
+}
+
+footer > div > div > div{
+    margin-right:10px;
+    width:25%;
+}
+
+
+
+
+#institucional > a{
+    display:block;
+}
+
+#institucional > a:nth-of-type(2), #institucional > a:nth-of-type(3){
+    margin-top:10px;
+}
+
+#juridico{
+    display:none;
+
+}
+
+#fisico{
+    display:none;
+}
+
+.fj{
+    border:3px solid black;
+    box-shadow: 5px 5px 5px gray;
+    width:500px;
+    margin:auto;
+    transition: all 10s linear;
+ }
+.fj > div > p, .fj > div > input, .fj > div > div{
+    display:inline-block;
+}
+
+.fj > div{
+    display:inline-block;
+    width:100%;
+    margin-top:10px;
+    
+}
+
+.fj > div > p{
+    margin-left:20px;
+    float:left;
+    width:40%;
+    margin:0;
+    margin-left:10px;
+
+    text-align: left;
+}
+.fj > div > input{
+    float:left;
+   
+}
+.fj > div > input[type=date]{
+    float:left;
+    
+    margin:0;
+}
+
+.fj > div > div{
+    float:left;
+ 
+    margin:0;
+}
+
+.fj > div:nth-last-of-type(1){
+    margin-bottom: 10px;
+}
+
+
+
+
