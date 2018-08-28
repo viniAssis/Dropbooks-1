@@ -54,7 +54,9 @@
                     <form action="Login" method="post">
                         <div class="form-group">
                             <label for="labelLogin">Email</label>
-                            <input type="text" class="form-control" name="email" aria-describedby="email" placeholder="email@email.com">
+                            <input type="text" class="form-control" name="email" aria-describedby="email"
+                                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"  required="required"                                  
+                                   placeholder="email@email.com"/>
                         </div>
                         <div class="form-group">
                             <label for="labelSenha">Senha</label>

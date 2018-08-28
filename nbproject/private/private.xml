@@ -2,17 +2,5 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/Elaine/Documents/Projeto/Dropbooks/web/res/js/Cadastro.js</file>
-            <file>file:/C:/Users/Elaine/Documents/Projeto/Dropbooks/src/java/modelDAO/CadastroDAO.java</file>
-            <file>file:/C:/Users/Elaine/Documents/Projeto/Dropbooks/web/home.jsp</file>
-            <file>file:/C:/Users/Elaine/Documents/Projeto/Dropbooks/src/java/modelDAO/Conecta.java</file>
-            <file>file:/C:/Users/Elaine/Documents/Projeto/Dropbooks/web/cadastro.html</file>
-            <file>file:/C:/Users/Elaine/Documents/Projeto/Dropbooks/src/java/controller/CadastroServlet.java</file>
-            <file>file:/C:/Users/Elaine/Documents/Projeto/Dropbooks/web/alterarCadastro.jsp</file>
-            <file>file:/C:/Users/Elaine/Documents/Projeto/Dropbooks/web/Senha.html</file>
-            <file>file:/C:/Users/Elaine/Documents/Projeto/Dropbooks/web/res/css/cadastro.css</file>
-            <file>file:/C:/Users/Elaine/Documents/Projeto/Dropbooks/src/java/model/Usuario.java</file>
-        </group>
     </open-files>
 </project-private>
