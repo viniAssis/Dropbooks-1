@@ -126,7 +126,7 @@ public class CadastroServlet extends HttpServlet {
             */
             
             // Redireciona para outra página
-            response.sendRedirect("../Dropbooks/login.jsp");
+            response.sendRedirect("login.jsp");
             
             out.println("</body>");
             out.println("</html>");

@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import modelDAO.Conecta;
 
 public class LoginServlet extends HttpServlet {
@@ -46,11 +47,13 @@ public class LoginServlet extends HttpServlet {
                 dbSenha=rs.getString("senha");
             }
              if(email.equals(dbEmail)&&senha.equals(dbSenha)){
+                 HttpSession session = request.getSession();
+                 session.setAttribute("email", email);
                  response.sendRedirect("home.jsp");
              }
              else{
                 // response.sendRedirect("login.jsp");
-                 RequestDispatcher rd = request.getRequestDispatcher("login,jsp");
+                 RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
                  rd.include(request, response);
              }           
             

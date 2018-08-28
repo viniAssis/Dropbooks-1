@@ -52,4 +52,33 @@ public class CadastroDAO {
         return user;
     }
     
+    public static Usuario getCpfCnpj(String cpfcnpj) {
+        
+        Usuario usuario = new Usuario();
+        
+        try {
+            Connection con = Conecta.getConexao();
+            String sql = "SELECT * FROM usuario WHERE cpf_cnpj=?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, cpfcnpj);
+            ResultSet rs = ps.executeQuery();
+            
+            if(rs.next()){
+                usuario.setCpf_cnpj(rs.getString("cpf_cnpj"));
+
+            }else{
+                usuario = null;
+            }
+            
+            rs.close();
+            ps.close();
+            con.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return usuario;
+    }
+       
 }

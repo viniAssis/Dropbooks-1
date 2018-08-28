@@ -67,4 +67,44 @@ public class UsuarioDAO {
         }
         return resp;
     }
+    
+    
+    
+    //ALTERA OS DADOS DO USUARIO
+    public String alterarUsuario(Usuario usuario) {
+
+        String resp = "";
+
+        try {
+            Connection con = Conecta.getConexao();
+            String sql = "UPDATE usuario SET dataNascimento=?, sexo=?, NomeRazao=?, telefone=?, cep=?, logradouro=?, numero=?, complemento=?, estado=?, cidade=?, bairro=?, senha=? WHERE id=?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, usuario.getDataNascimento().toString());
+            ps.setString(2, usuario.getSexo());
+            ps.setString(3, usuario.getNomeRazao());
+            ps.setString(4, usuario.getTelefone());
+            ps.setString(5, usuario.getCep());
+            ps.setString(6, usuario.getLogradouro());
+            ps.setString(7, usuario.getNumero());
+            ps.setString(8, usuario.getComplemento());
+            ps.setString(9, usuario.getEstado());
+            ps.setString(10, usuario.getCidade());
+            ps.setString(11, usuario.getBairro());
+            ps.setString(12, usuario.getSenha());
+            
+            ps.setString(13, Integer.toString(usuario.getId()));
+
+            ps.execute();
+
+            ps.close();
+            con.close();
+
+            resp = "OK";
+
+        } catch (Exception e) {
+            resp = e.toString();
+        }
+
+        return resp;
+    } 
 }
