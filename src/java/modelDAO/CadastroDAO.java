@@ -1,10 +1,8 @@
 package modelDAO;
 
-import static java.lang.System.out;
 import model.Usuario;
 import java.sql.*;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+
 
 public class CadastroDAO {
 

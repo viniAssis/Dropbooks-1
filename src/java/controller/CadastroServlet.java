@@ -8,7 +8,6 @@ package controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
@@ -21,12 +20,19 @@ import javax.servlet.http.HttpServletResponse;
 import model.Usuario;
 import modelDAO.CadastroDAO;
 
+
 /**
  *
  * @author Cristiano
  */
 @WebServlet(name = "CadastroServlet", urlPatterns = {"/CadastroServlet"})
 public class CadastroServlet extends HttpServlet {
+
+
+
+    public CadastroServlet() {
+
+    }
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -66,7 +72,7 @@ public class CadastroServlet extends HttpServlet {
             user.setTipoPessoa(Integer.parseInt(request.getParameter("tipoPessoa")));
             
             /*
-            String dataEmTexto = request.getParameter("aa");
+            String dataEmTexto = request.getParameter("dataNascimento");
             
             try {
             Date date = (Date) new SimpleDateFormat("dd/MM/yyyy").parse(dataEmTexto);
@@ -79,9 +85,9 @@ public class CadastroServlet extends HttpServlet {
             return; //para a execução do método
             }   
 
-            //user.setDataNascimento((request.getParameter("aa")));
+            //user.setDataNascimento((request.getParameter("dataNascimento")));
             */
-           
+            
             user.setSexo(request.getParameter("sexo"));
             user.setEmail(request.getParameter("email"));
             user.setTelefone(request.getParameter("telefone"));
@@ -97,7 +103,7 @@ public class CadastroServlet extends HttpServlet {
             
             Usuario usuario = CadastroDAO.cadastrar(user);
             
-            //ut.println("<h1>Meu parametro foi " + user.getDataNascimento() + " </h1>");
+            
             /* TESTE
             out.println("<h1>Meu parametro foi " + user.getBairro() + " </h1>");
             out.println("<h1>Meu parametro foi " + user.getCep() + " </h1>");
@@ -120,7 +126,7 @@ public class CadastroServlet extends HttpServlet {
             */
             
             // Redireciona para outra página
-            response.sendRedirect("cadastro.html");
+            response.sendRedirect("../Dropbooks/login.jsp");
             
             out.println("</body>");
             out.println("</html>");
