@@ -8,9 +8,9 @@ public class Conecta {
         Connection con = null;
         try {
             String serverName = "localhost";
-            String mydatabase = "Dropbooks";
+            String mydatabase = "dropbooks";
             String username = "root";
-            String password = "root";
+            String password = "password";
             String driverName = "com.mysql.jdbc.Driver";
             Class.forName(driverName);
             String url = "jdbc:mysql://" + serverName + "/" + mydatabase + "?allowPublicKeyRetrieval=true&useSSL=false";

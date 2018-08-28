@@ -41,11 +41,7 @@
     </head>
     <body>
 
-        <%--
-            if(session.getAttribute("email")==null){
-                response.sendRedirect("login.jsp");
-            }
-        --%>
+ 
 
         <div class="container col-lg-6">
             <div class="row">
@@ -56,12 +52,12 @@
                             <label for="labelLogin">Email</label>
                             <input type="text" class="form-control" name="email" aria-describedby="email"
                                   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"  required="required"                                  
-                                   placeholder="email@email.com"/>
+                                   placeholder="email@dominio.com"/>
                         </div>
                         <div class="form-group">
                             <label for="labelSenha">Senha</label>
                             <input type="password" class="form-control" name="senha" aria-describedby="senha" placeholder="*******">
-                            <small class="text-left novaSenha "><a href="#">Esqueceu sua senha?</a></small>
+                            <small class="text-left novaSenha "><a href="Senha.html">Esqueceu sua senha?</a></small>
                         </div>
                         <button type="submit" value="login" class="btn btn-primary btn-block">Enviar</button>
                     </form><hr>
@@ -69,7 +65,9 @@
                     <!--Adicionar link chamando um novo registro-->
                     <div class="goRegistro">
                         <label for="labelNovoReg">Primeira vez no Dropbooks?</label><br>
-                        <button type="submit" class="btn btn-outline-primary btn-md btn-block">Cadastre-se</button>
+                         <a href="cadastro.html">
+                        <button type="submit" class="btn btn-outline-primary btn-md btn-block">
+                           Cadastre-se</button></a>
                     </div>
                 </div><br>
             </div>

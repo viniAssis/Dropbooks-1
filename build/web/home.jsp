@@ -9,10 +9,19 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Usuáiro conectado</title>
     </head>
     <body>
-        <h1>HEY!</h1>
+        <%
+           /*validando se a pessao possui sessão, caso o parametro de null você é redirecionado para 
+            a tela de login*/
+            if (session.getAttribute("email") == null) {
+                response.sendRedirect("login.jsp");
+            }
+
+        %>
+        <h1>Usuário conectado!</h1>
+      
         <a href="alterarCadastro.jsp">Alterar Cadastro</a>
     </body>
 </html>
