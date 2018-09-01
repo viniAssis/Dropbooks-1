@@ -7,9 +7,7 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Date;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -67,27 +65,12 @@ public class CadastroServlet extends HttpServlet {
             } else {
                 user.setCpf_cnpj(request.getParameter("cpf"));
             }
-                
-                       
+                                       
             user.setTipoPessoa(Integer.parseInt(request.getParameter("tipoPessoa")));
             
-            /*
-            String dataEmTexto = request.getParameter("dataNascimento");
-            
-            try {
-            Date date = (Date) new SimpleDateFormat("dd/MM/yyyy").parse(dataEmTexto);
-            
-            user.setDataNascimento(date);
-            
-            
-            } catch (ParseException e) {
-            out.println("Erro de conversão da data");
-            return; //para a execução do método
-            }   
-
-            //user.setDataNascimento((request.getParameter("dataNascimento")));
-            */
-            
+            //TODO Converter para Date
+            user.setDataNascimento(request.getParameter("dataNascimento"));
+                     
             user.setSexo(request.getParameter("sexo"));
             user.setEmail(request.getParameter("email"));
             user.setTelefone(request.getParameter("telefone"));
@@ -101,29 +84,7 @@ public class CadastroServlet extends HttpServlet {
             user.setBairro(request.getParameter("bairro"));
             user.setSenha(request.getParameter("senha"));
             
-            Usuario usuario = CadastroDAO.cadastrar(user);
-            
-            
-            /* TESTE
-            out.println("<h1>Meu parametro foi " + user.getBairro() + " </h1>");
-            out.println("<h1>Meu parametro foi " + user.getCep() + " </h1>");
-            out.println("<h1>Meu parametro foi " + user.getCidade() + " </h1>");
-            out.println("<h1>Meu parametro foi " + user.getComplemento() + " </h1>");
-            out.println("<h1>Meu parametro foi " + user.getCpf_cnpj() + " </h1>");
-            out.println("<h1>Meu parametro foi " + user.getEmail() + " </h1>");
-            out.println("<h1>Meu parametro foi " + user.getEstado() + " </h1>");
-            out.println("<h1>Meu parametro foi " + user.getLogradouro() + " </h1>");
-            out.println("<h1>Meu parametro foi " + user.getNomeRazao() + " </h1>");
-            out.println("<h1>Meu parametro foi " + user.getNumero() + " </h1>");
-            out.println("<h1>Meu parametro foi " + user.getSenha() + " </h1>");
-            out.println("<h1>Meu parametro foi " + user.getSexo() + " </h1>");
-            out.println("<h1>Meu parametro foi " + user.getTelefone() + " </h1>");
-            out.println("<h1>Meu parametro foi " + user.getDataNascimento() + " </h1>");
-            out.println("<h1>Meu parametro foi " + user.getId() + " </h1>");
-            out.println("<h1>Meu parametro foi " + usuario.getEmail() + " </h1>");
-            out.println("<h1>Meu parametro foi " + usuario.getId() + " </h1>");
-            out.println("<h1>Meu parametro foi " + usuario.getCpf_cnpj() + " </h1>");
-            */
+            Usuario usuario = CadastroDAO.cadastrar(user);        
             
             // Redireciona para outra página
             response.sendRedirect("../Dropbooks/login.jsp");
@@ -132,6 +93,7 @@ public class CadastroServlet extends HttpServlet {
             out.println("</html>");
         }
     }
+
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

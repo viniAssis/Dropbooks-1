@@ -18,7 +18,7 @@ public class UsuarioDAO {
             
             if(rs.next()){
                 usuario.setSexo(rs.getString("sexo"));
-                usuario.setDataNascimento(rs.getDate("dataNascimento"));
+                usuario.setDataNascimento(rs.getString("dataNascimento"));
                 usuario.setId(rs.getInt("id"));
                 usuario.setTipoPessoa(rs.getInt("tipoPessoa"));
                 usuario.setComplemento(rs.getString("complemento"));

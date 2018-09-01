@@ -1,12 +1,9 @@
 package model;
 
-import java.sql.Date;
-
 public class Usuario {
 
-    private Date dataNascimento;
     private int tipoPessoa, id;
-    private String sexo, complemento, cpf_cnpj, nomeRazao, estado, telefone, email, numero, cidade, bairro, cep, logradouro, senha;
+    private String dataNascimento, sexo, complemento, cpf_cnpj, nomeRazao, estado, telefone, email, numero, cidade, bairro, cep, logradouro, senha;
 
     /**
      * @return the sexo
@@ -25,14 +22,14 @@ public class Usuario {
     /**
      * @return the dataNascimento
      */
-    public Date getDataNascimento() {
+    public String getDataNascimento() {
         return dataNascimento;
     }
 
     /**
      * @param dataNascimento the dataNascimento to set
      */
-    public void setDataNascimento(Date dataNascimento) {
+    public void setDataNascimento(String dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 

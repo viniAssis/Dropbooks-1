@@ -8,7 +8,7 @@ public class Conecta {
         Connection con = null;
         try {
             String serverName = "localhost";
-            String mydatabase = "Dropbooks";
+            String mydatabase = "dropbooks";
             String username = "root";
             String password = "root";
             String driverName = "com.mysql.jdbc.Driver";

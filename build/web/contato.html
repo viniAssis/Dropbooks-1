@@ -1,0 +1,210 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <!-- Meta tags Obrigatórias -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+ 	<style>
+         #cabelho{
+			margin-left: 30%;
+			margin-bottom: 5%;
+		}
+        #caixa1{
+			display: inline-block;
+			float: right;
+			margin-right: 2%;
+		}
+        #caixa2{
+			margin-left: 25%;
+			margin-bottom: 3%;
+		}
+        #menu1{
+			margin-bottom: 5%;
+		}
+            	
+	footer{
+			text-align: center;
+			font-size: 20px;
+			font-weight:  bold;
+		}
+	titulo2{
+			color: black;
+		}
+        .container{
+			width: 60%;
+            		margin-left: 30%;
+			margin-bottom: 5%;
+			margin-top: 5%;	
+			
+		}
+        #texto{
+			font-size: 20px;
+		}
+        #infor{
+			width: 20%;
+			float: left;
+			margin-bottom: 2%;
+		}
+        #links{
+			padding: 3%;
+			font-size: 14px;
+			margin-top: 2%;
+			width: 120%;
+		}
+        .titulo{
+			
+			margin-bottom: 3%;
+			font-size: 16px;
+		}
+		#pesquisa{
+			
+			width: 50%;
+		}	
+		#drop{
+			margin-left: 5%;
+		}	
+		h3{
+			text-align: center;	
+			margin-bottom: 2%;
+			color: #A57F60;
+		}
+			
+	
+	  </style>
+  </head>
+  <body>
+	  <div class="container-fluid">
+		  
+		<div id="cabelho">
+		  	
+		</div>
+		  
+		<section id="caixa1">
+		 	<label id="nome"></label>
+	  		
+		</section>
+		  
+		<form method="post" id="caixa2" action="JavaMailApp">
+  			<div class="form-row align-items-center">
+    			<div class="col-auto my-1">
+      					<select class="custom-select mr-sm-2" id="tipoPesquisa">
+        						<option>Titulo</option>
+  							<option>Autor</option>
+  							<option>Editora</option>
+  							<option>Genêro</option>
+      					</select>
+    			</div>
+ 
+				<div class="col-auto my-1">
+					<input class="form-control col-md-10" type="text" size="60"placeholder="Search">		
+				</div>
+					<button class="btn btn-outline-success col-md-2" type="submit"  id="pesquisa">Pesquisar</button>
+  				</div>
+        	</form>
+    
+		<ul class="nav nav-pills nav-fill" id="menu1">
+  			<li class="nav-item"> <a class="nav-link" href="contato.html">Home</a></li>
+ 			<li class="nav-item"> <a class="nav-link" href="#">Livros</a></li>
+  			<li class="nav-item"> <a class="nav-link" href="#">FAQ</a> </li>
+  			<li class="nav-item"> <a class="nav-link" href="#">Contato</a> </li>
+		</ul>
+		
+        <h3 class="titulo2">Contate-se</h3>
+
+        <form id="form1" class="container">
+
+                <div class="form-row">
+                        <div class="form-group col-md-10">
+                              <label id="texto">Nome *</label>
+                            <input type="text" class="form-control col-md-10" id="nome">
+                        </div>
+                </div>
+
+                <div class="form-row">
+                        <div class="form-group col-md-10">
+                              <label id="texto">Email *</label>
+                            <input type="email" class="form-control col-md-10" id="email">
+                        </div>
+                </div>
+
+                <div class="form-row">
+                        <div class="form-group col-md-10">
+                              <label id="texto">Assunto *</label>
+                                  <select id="assunto" class="form-control col-md-10">
+                                    <option selected>Dúvidas</option>
+                                    <option selected>Reclamações</option>
+                                    <option selected>Cancelamento</option>
+                                    <option selected>Outros Assuntos</option>
+                                    <option selected> </option>
+                                </select>
+                        </div> 
+                </div> 
+
+                    <div class="form-group">
+                            <label id="texto">Mensagem *</label>
+                            <textarea class="form-control col-md-8" id="mensagem" rows="7"></textarea>
+                    </div>
+			
+		<button type="submit" class="btn btn-primary" id="botao" >Enviar</button>
+
+        </form>   
+		
+		<div id="caixa3">
+				<div id="infor">
+						<div class="form-group col-md-8">
+							<label class="titulo">Contato</label><br/>
+							<label id="texto">(11) 32585-9685</label>
+							<a href="#" class="badge badge-info" id="links">Fale Conosco</a>
+						</div>
+					</div>
+						  
+					<div id="infor">
+						<div class="form-group col-md-6">
+							<label class="titulo">Serviços</label><br/>
+							<a href="#" class="badge badge-info" id="links">Venda seu livro</a><br/>
+							<a href="#" class="badge badge-info" id="links">FAQ</a>
+						</div>
+					</div>		
+							  
+					<div id="infor">
+						<div class="form-group col-md-10">
+							<label class="titulo">Meio de Pagamento</label><br/>
+							 <!--<img src="" class="img-fluid" alt="Imagem responsiva">-->
+						</div>
+					</div>	
+							  
+					<div id="infor">
+						<div class="form-group col-md-8">
+							<label class="titulo">Certificação</label><br/>
+							<!--<img src="" class="img-fluid" alt="Imagem responsiva">-->
+						</div>
+					</div>	  
+							
+					<div id="infor">
+						<div class="form-group col-md-8">
+							<label 	class="titulo">Instituição</label><br/>
+							<a href="#" class="badge badge-info" id="links">Sobre o DropBooks</a><br/>
+							<a href="#" class="badge badge-info" id="links">Termos de Uso</a>
+							<a href="#" class="badge badge-info" id="links">Segurança e Privacidade</a>
+						</div>
+					</div> 
+
+		</div>
+        
+  
+        <footer>Copyrigth&copy; - 2018 www.dropbooks.com, todos os direiro reservados</footer>
+		
+	  </div> 
+	  
+	 
+    <!-- JavaScript (Opcional) -->
+    <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </body>
+</html>
