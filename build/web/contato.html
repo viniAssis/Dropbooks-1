@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-br">
   <head>
     <!-- Meta tags Obrigatórias -->
@@ -9,150 +9,161 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
  	<style>
-         #cabelho{
-			margin-left: 30%;
-			margin-bottom: 5%;
+		
+		#form1{
+			margin-top: 5%;
+			margin-left: 15%;
+			margin-bottom: 9%;	
 		}
-        #caixa1{
-			display: inline-block;
+		
+		.cabecalho{
+				height: 40px;	
+				width: 100%; 
+				margin-bottom: 5%;
+				margin: auto;
+		}
+		
+		.login,.nome{
 			float: right;
-			margin-right: 2%;
+			font-size: 18px;
+			color: white;
 		}
-        #caixa2{
+		
+		.nome{margin-right: 25%;}
+		
+		#caixa2{
+			margin-top: 5%;
 			margin-left: 25%;
 			margin-bottom: 3%;
+			clear: both;
 		}
-        #menu1{
-			margin-bottom: 5%;
+	
+		.container{
+			width: 40%;
+			margin-left: 30%;
+			margin-bottom:7%;
+			margin-top: 5%;	
+			background: #CFCFCF;
+			border-radius: 15px 15px 15px 15px;
 		}
-            	
-	footer{
+		
+		#texto{font-size: 20px;}
+		
+		.titulo1{
+			color: black;
+			padding: 3%;	
+			text-align: center;	
+			margin-bottom: 2%;
+			
+		}
+
+		body{background-image: url(img/bgPadrao.jpg);}
+		
+		#botao1{;
+			background: #008B8B;
+		}
+		
+		#botao2{
+			margin-bottom: 3%;
+			width: 75%;
+			background: #008B8B;
+		}
+		
+		.alerta{color: #C1839F;}
+		
+		/*
+		footer{
 			text-align: center;
 			font-size: 20px;
 			font-weight:  bold;
 		}
-	titulo2{
-			color: black;
-		}
-        .container{
-			width: 60%;
-            		margin-left: 30%;
-			margin-bottom: 5%;
-			margin-top: 5%;	
-			
-		}
-        #texto{
-			font-size: 20px;
-		}
-        #infor{
+		#infor{
 			width: 20%;
 			float: left;
 			margin-bottom: 2%;
 		}
-        #links{
+		
+		#links{
 			padding: 3%;
 			font-size: 14px;
 			margin-top: 2%;
 			width: 120%;
 		}
-        .titulo{
-			
+		
+		.titulo{
 			margin-bottom: 3%;
 			font-size: 16px;
-		}
-		#pesquisa{
-			
-			width: 50%;
-		}	
-		#drop{
-			margin-left: 5%;
-		}	
-		h3{
-			text-align: center;	
-			margin-bottom: 2%;
-			color: #A57F60;
-		}
-			
-	
+		}*/
 	  </style>
   </head>
   <body>
 	  <div class="container-fluid">
 		  
-		<div id="cabelho">
-		  	
-		</div>
+		  <div class="cabecalho">
+			  <a href="#" class="login">Login/Registra-se</a>
+			  <span class="nome">Droopboks</span>
+		  </div>
 		  
-		<section id="caixa1">
-		 	<label id="nome"></label>
-	  		
-		</section>
-		  
-		<form id="caixa2">
+		  <form id="caixa2">
   			<div class="form-row align-items-center">
     			<div class="col-auto my-1">
       					<select class="custom-select mr-sm-2" id="tipoPesquisa">
-        						<option>Titulo</option>
+        					<option>Titulo</option>
   							<option>Autor</option>
   							<option>Editora</option>
   							<option>Genêro</option>
       					</select>
     			</div>
  
-				<div class="col-auto my-1">
-					<input class="form-control col-md-10" type="text" size="60"placeholder="Search">		
+				<div class="col-auto col-md-8">
+					<input class="form-control col-md-10" type="text" placeholder="Search">		
 				</div>
-					<button class="btn btn-outline-success col-md-2" type="submit"  id="pesquisa">Pesquisar</button>
+					<button type="submit" class="btn btn-primary" id="botao1">Pesquisa</button>
   				</div>
         	</form>
-    
-		<ul class="nav nav-pills nav-fill" id="menu1">
-  			<li class="nav-item"> <a class="nav-link" href="contato.html">Home</a></li>
- 			<li class="nav-item"> <a class="nav-link" href="#">Livros</a></li>
-  			<li class="nav-item"> <a class="nav-link" href="#">FAQ</a> </li>
-  			<li class="nav-item"> <a class="nav-link" href="#">Contato</a> </li>
-		</ul>
-		
-        <h3 class="titulo2">Contate-se</h3>
+		  
+		  <div  class="container">
+			  
+  			<h3 class="titulo1">Contate-se</h3>
+			  
+                        <form id="form1" method="post" action="EnviaEmailServlet">		
+				<div class="form-row">
+					<div class="form-group col-md-10">
+						  <label id="texto">Nome <span class="alerta">*</span></label>
+						<input type="text" class="form-control col-md-10" id="nome" name="nome">
+					</div>
+</div>
 
-        <form method="post" action="ContatoServlet" id="form1" class="container">
+				<div class="form-row">
+					<div class="form-group col-md-10">
+						<label id="texto">Email <span class="alerta">*</span></label>
+						<input type="email" class="form-control col-md-10" id="email" name="email">
+					</div>
+				</div>
 
-                <div class="form-row">
-                        <div class="form-group col-md-10">
-                              <label id="texto">Nome *</label>
-                            <input type="text" class="form-control col-md-10" id="nome">
-                        </div>
-                </div>
+				<div class="form-row">
+					<div class="form-group col-md-10">
+					  <label id="texto">Assunto <span class="alerta">*</span></label>
+						  <select id="assunto" class="form-control col-md-10" name="assunto">
+							<option selected>Dúvidas</option>
+							<option selected>Reclamações</option>
+							<option selected>Cancelamento</option>
+							<option selected>Outros Assuntos</option>
+							<option selected> </option>
+						</select>
+					</div> 
+				</div> 
 
-                <div class="form-row">
-                        <div class="form-group col-md-10">
-                              <label id="texto">Email *</label>
-                            <input type="email" class="form-control col-md-10" id="email" name="email">
-                        </div>
-                </div>
+				<div class="form-group">
+					<label id="texto">Mensagem <span class="alerta">*</span></label>
+					<textarea class="form-control col-md-8" id="mensagem" rows="7" name="mensagem"></textarea>
+</div>
 
-                <div class="form-row">
-                        <div class="form-group col-md-10">
-                              <label id="texto">Assunto *</label>
-                                  <select id="assunto" class="form-control col-md-10">
-                                    <option selected>Dúvidas</option>
-                                    <option selected>Reclamações</option>
-                                    <option selected>Cancelamento</option>
-                                    <option selected>Outros Assuntos</option>
-                                    <option selected> </option>
-                                </select>
-                        </div> 
-                </div> 
+				<button type="submit" class="btn btn-primary" id="botao2" onClick="alert('Mensagem enviada !')">Enviar</button>
 
-                    <div class="form-group">
-                            <label id="texto">Mensagem *</label>
-                            <textarea class="form-control col-md-8" id="mensagem" rows="7"></textarea>
-                    </div>
-			
-		<button type="submit" class="btn btn-primary" id="botao" >Enviar</button>
-
-        </form>   
-		
+        	</form>    
+		  </div>
+		<!--
 		<div id="caixa3">
 				<div id="infor">
 						<div class="form-group col-md-8">
@@ -173,14 +184,14 @@
 					<div id="infor">
 						<div class="form-group col-md-10">
 							<label class="titulo">Meio de Pagamento</label><br/>
-							 <!--<img src="" class="img-fluid" alt="Imagem responsiva">-->
+							 <!--<img src="" class="img-fluid" alt="Imagem responsiva">
 						</div>
 					</div>	
 							  
 					<div id="infor">
 						<div class="form-group col-md-8">
 							<label class="titulo">Certificação</label><br/>
-							<!--<img src="" class="img-fluid" alt="Imagem responsiva">-->
+							<!--<img src="" class="img-fluid" alt="Imagem responsiva">
 						</div>
 					</div>	  
 							
@@ -197,7 +208,7 @@
         
   
         <footer>Copyrigth&copy; - 2018 www.dropbooks.com, todos os direiro reservados</footer>
-		
+		-->
 	  </div> 
 	  
 	 

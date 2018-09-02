@@ -87,7 +87,7 @@ public class CadastroServlet extends HttpServlet {
             Usuario usuario = CadastroDAO.cadastrar(user);        
             
             // Redireciona para outra página
-            response.sendRedirect("../Dropbooks/login.jsp");
+            response.sendRedirect("./login.jsp");
             
             out.println("</body>");
             out.println("</html>");
