@@ -13,6 +13,9 @@ import javax.mail.internet.MimeMessage;
 public class JavaMailApp
 {
       public static void main(String[] args) {
+          
+         
+         
             Properties props = new Properties();
             /** Parâmetros de conexão com servidor Gmail */
             props.put("mail.smtp.host", "smtp.gmail.com");
@@ -21,11 +24,12 @@ public class JavaMailApp
             props.put("mail.smtp.auth", "true");
             props.put("mail.smtp.port", "465");
  
-            Session session = Session.getDefaultInstance(props,
+            
+            Session session = Session.getInstance(props,
                         new javax.mail.Authenticator() {
                              protected PasswordAuthentication getPasswordAuthentication() 
                              {
-                                   return new PasswordAuthentication("contato@dropbook.com", "tutuzinhoAmorDoRicardo");
+                                   return new PasswordAuthentication("contatodropbooks@gmail.com", "Mudar123");
                              }
                         });
  
@@ -35,14 +39,14 @@ public class JavaMailApp
             try {
  
                   Message message = new MimeMessage(session);
-                  message.setFrom(new InternetAddress("devcristianomorais@gmail.com")); //Remetente
+                  message.setFrom(new InternetAddress("contato@dropbooks.com.br")); //Remetente
  
                   Address[] toUser = InternetAddress //Destinatário(s)
                              .parse("traceurcristiano@gmail.com");  
  
                   message.setRecipients(Message.RecipientType.TO, toUser);
-                  message.setSubject("Enviando email com JavaMail");//Assunto
-                  message.setText("Enviei este email utilizando JavaMail com minha conta GMail!");
+                  message.setSubject("Dropbooks");//Assunto
+                  message.setText("Obrigado por entrar em contato!");
                   /**Método para enviar a mensagem criada*/
                   Transport.send(message);
  
@@ -51,9 +55,7 @@ public class JavaMailApp
              } catch (MessagingException e) {
                   throw new RuntimeException(e);
             }
-            
-
       }
       
-
+    
 }

@@ -23,7 +23,6 @@ public class CadastroDAO {
             //ps.setInt(1, user.getId());
             ps.setString(1, user.getCpf_cnpj());
             ps.setInt(2, user.getTipoPessoa());
-            //ps.setDate(3, user.getDataNascimento());
             ps.setString(3, user.getDataNascimento());
             ps.setString(4, user.getSexo());
             ps.setString(5, user.getEmail());

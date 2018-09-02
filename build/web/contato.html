@@ -88,7 +88,7 @@
 	  		
 		</section>
 		  
-		<form method="post" id="caixa2" action="JavaMailApp">
+		<form id="caixa2">
   			<div class="form-row align-items-center">
     			<div class="col-auto my-1">
       					<select class="custom-select mr-sm-2" id="tipoPesquisa">
@@ -115,7 +115,7 @@
 		
         <h3 class="titulo2">Contate-se</h3>
 
-        <form id="form1" class="container">
+        <form method="post" action="ContatoServlet" id="form1" class="container">
 
                 <div class="form-row">
                         <div class="form-group col-md-10">
@@ -127,7 +127,7 @@
                 <div class="form-row">
                         <div class="form-group col-md-10">
                               <label id="texto">Email *</label>
-                            <input type="email" class="form-control col-md-10" id="email">
+                            <input type="email" class="form-control col-md-10" id="email" name="email">
                         </div>
                 </div>
 
