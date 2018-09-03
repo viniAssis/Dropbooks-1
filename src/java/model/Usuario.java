@@ -2,7 +2,7 @@ package model;
 
 import java.sql.Date;
 
-public class Usuario {
+public class Usuario extends Utilitarios{
 
     private Date dataNascimento;
     private int tipoPessoa, id;
