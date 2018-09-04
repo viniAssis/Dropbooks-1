@@ -48,7 +48,7 @@ public class UsuarioDAO {
         return usuario;
     }
     
-    public String setSenha(Usuario usuario) {
+    public static String setSenha(Usuario usuario) {
         String resp = "";
         try {
             Connection con = Conecta.getConexao();
@@ -71,7 +71,7 @@ public class UsuarioDAO {
     
     
     //ALTERA OS DADOS DO USUARIO
-    public String alterarUsuario(Usuario usuario) {
+    public static String alterarUsuario(Usuario usuario) {
 
         String resp = "";
 

@@ -170,7 +170,7 @@
           
           <% 
             //Usuario user = new Usuario();
-            String email = request.getSession().getAttribute("email").toString();
+            String email = "teste@teste.com";//request.getSession().getAttribute("email").toString();
             
             Usuario user = new UsuarioDAO().getUsuario(email);
 
@@ -191,13 +191,13 @@
 	  <div class="container-fluid">
 		  
 		<div id="cabelho">
-		  	<img src="imgs/logo.png">
-		  	<img src="imgs/nome.png" id="drop">
+		  	<img src="res/img/logo.png">
+		  	<img src="res/img/nome.png" id="drop">
 		  </div>
 		  
 		<section id="caixa1">
 		 	<label id="nome"></label>
-	  		<img src="imgs/carrinho.jpg" id="imagens">
+	  		<img src="res/img/carrinho.jpg" id="imagens">
 		  </section>
 		  
 		<form id="caixa2">
