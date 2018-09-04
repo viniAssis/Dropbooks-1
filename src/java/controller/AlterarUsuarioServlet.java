@@ -24,7 +24,7 @@ public class AlterarUsuarioServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-         String _email = request.getSession().getAttribute("email").toString();
+         String _email = "teste@bixo.com";//request.getSession().getAttribute("email").toString();
          
          Usuario user = new UsuarioDAO().getUsuario(_email);
 
@@ -38,7 +38,7 @@ public class AlterarUsuarioServlet extends HttpServlet {
          user.setComplemento(request.getParameter("hComplemento"));
          user.setBairro(request.getParameter("hBairro")); 
          user.setCep(request.getParameter("hCEP"));
-         //user.setDataNascimento(request.getParameter("hData"));
+         user.setDataNascimento(Usuario.toSqlDate(request.getParameter("hData")));
          
          UsuarioDAO.alterarUsuario(user);
          

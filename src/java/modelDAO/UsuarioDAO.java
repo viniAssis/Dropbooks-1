@@ -68,9 +68,6 @@ public class UsuarioDAO {
         return resp;
     }
     
-    
-    
-    //ALTERA OS DADOS DO USUARIO
     public static String alterarUsuario(Usuario usuario) {
 
         String resp = "";
