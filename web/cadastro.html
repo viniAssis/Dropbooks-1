@@ -1,14 +1,20 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta charset="utf-8">
 <title>Formulario</title>
   <link rel="stylesheet" href="res/css/cadastro.css">
     <script src="res/js/Cadastro.js"></script>
+    <script src="res/jquery-3.3.1.js"></script>
+    <script>
+
+      
+    </script>
     
 </head>
 
 <body >
-<form method="post" id="form" action="CadastroServlet">
+<form method="post" id="form" name="form" action="CadastroServlet" onsubmit="teste()">
 
 
         <div id="block1">
@@ -17,24 +23,24 @@
 
 
                 <p class="textos1" >Email :</p>
-                <input type="email" name="email" size="40" maxlength="50" class="cxs1" required/>
+                <input type="email" name="email" id="email"  maxlength="45" class="cxs1" required/>
 
 
                 <p class="textos1">Repita Email :</p> 
-                <input type="email" name="repemail" size="40" maxlength="50" class="cxs1" required/>
+                <input type="email" name="repemail" id="reemail"  maxlength="45" class="cxs1" required/>
 
 
-                <p class="textos1" class="cxs1">Senha :</p>
-                <input type="password" name="senha" size="40" maxlength="30" class="cxs1" required/>
+                <p class="textos1" >Senha :</p>
+                <input type="password" name="senha" id="senha" maxlength="20" class="cxs1" required/>
 
                 <p class="textos1">Repita Senha :</p>
-                <input type="password" name="repsenha" size="40"  maxlength="30" class="cxs1" required/>
+                <input type="password" name="repsenha" id="repsenha" maxlength="20" class="cxs1" required/>
 
 
                  <p class="textos1">Telefone:</p>
                  <div id="telcx">
-                    <input name="ddd" type="number" id="ddd" size="4" maxlength="2" required/>
-                    <input type="tel" name="telefone"  size="31" id="telefone" required />       
+                    <input name="ddd" type="number" id="ddd"  maxlength="2" required/>
+                    <input type="tel" name="telefone" maxlength="9" id="telefone" required />       
                  </div>
 
 
@@ -57,15 +63,15 @@
         <div id="fisico" class="fj">
             <div>
                 <p>CPF:</p>
-                <input type="number" name="cpf" id="cpf" required maxlength="11" pattern="[0-9]+$">
+                <input type="text" name="cpf" id="cpf"  maxlength="11" placeholder="Insira os 11 digitos" />
             </div>
             <div>
                 <p>Nome Completo:</p>
-                <input type="text" name="nome" id="nome">
+                <input type="text" name="nomeRazao" id="nome">
             </div>
             <div>
                 <p>Data de Nascimento:</p>
-                <input type="date" name="dataNascimento">
+                <input type="date" name="data" id="data">
             </div>
             <div>
                 <p>Sexo:</p>
@@ -78,7 +84,7 @@
         <div id="juridico" class="fj">
                 <div>
                     <p>CNPJ:</p>
-                    <input type="number" name="cnpj" id="cnpj" maxlength="11" pattern="[0-9]+$">
+                    <input type="text" name="cnpj" id="cnpj" placeholder="Insira os 14 caracteres" maxlength="14" />
                 </div>
                 <div>
                     <p>Razão Social:</p>
@@ -181,7 +187,7 @@
 
                         <div id="mpagamentos">
                             <h4> Meios de Pagamento : </h4>  
-                            <img src="res/img/pagamento.jpg"height="100" width="200" >
+                            <img src="res/img/pagamento.jpg" height="100" width="200" >
                         
                         
                         </div>

@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    
+    <title>Cadastrar Produtos</title>
+
+    <!-- Principal CSS do Bootstrap -->
+    <link href="res/css/bootstrap.min.css" rel="stylesheet">
+      <link href="res/js/dist/dropdown.js" rel="stylesheet">
+ <style>
+        .navbar{
+            background-color: #C1839F !important;
+        }
+        .navbar .navbar-nav li a{
+            color: #FFF;
+        }
+        .navbar .nav-item .nav-link .active{
+            color:#FFF;
+            
+        }
+        body{
+             background-color: #C1839F;
+        }
+         #container1{
+            height: 800px;
+            width: 100%;
+            background-color: white;
+            margin-top: 30px;
+            border-radius: 100px 100px 0 0 ;
+   
+        }
+        h4{
+         text-align: center;
+        
+             
+            
+        }
+       .form-signin {
+                width: 450px;
+                padding: 25px;
+                margin: 0 auto;
+                margin-top: 30px;
+                margin-left: 400px;
+                /**background-color: #FF5A5F;**/
+                
+             
+        }
+        .form-signin .form-control {
+              position: relative;
+              box-sizing: border-box;
+              height: auto;
+              padding: 5px;
+              font-size: 15px;
+        }
+        .form-signin .form-control:focus {
+                  z-index: 2;
+        }
+        .form-signin input[type="text"] {
+                  margin-bottom: 3px;
+                  border-bottom-right-radius: 0;
+                  border-bottom-left-radius: 0;
+        }
+        .form-group{
+             text-align: left;
+            }
+        .form-control{
+                     width: 350px;
+                     box-shadow: 2px 2px 2px grey;
+                }
+     
+        #dropdown{
+                padding-top: 30px;
+                padding-right: 60px;
+                margin: 0 auto;
+                
+            }
+        #dropdownMenuButton{
+                background-color: #FF5A5F;
+                color: white;
+                width: 100px;
+            
+         
+        }
+        .container{
+             display: block;
+             float: left;
+             width: 350px;
+             
+         }
+         .container2{
+             display: block;
+             float: left;
+             margin-left: 30px;
+             padding-left: 60px;
+        
+         }
+        #btnCad{
+                background-color: #FF5A5F;
+                width: 150px;
+                margin-top: 15px;
+                color: white;
+              
+            }
+        #btnCanc{
+                background-color: #FF5A5F;
+                width: 150px;
+                margin-top: 15px;
+                margin-left: 30px;
+                color: white;
+            }
+        #radio1{
+            background-color: #FF5A5F;
+            width: 300px;
+            padding: 10px;
+            padding-top: 5px;
+            color: white;
+         }
+        #radio2{
+            background-color: #FF5A5F;
+            width: 300px;
+            padding: 10px;
+            margin-top: 5px;
+            color: white;
+         }
+         footer{
+            width: 100%;
+            height: 100px;
+            background-color: black;
+        }
+        #anoLancamento{
+                width: 200px;
+                }
+     
+     
+      
+      
+</style> 
+</head>
+ <body>
+      <nav class="navbar navbar-expand-md navbar-dark bg-light">	
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+			<div class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <a class="nav-item nav-link active" href="https://google.com">Dropbooks</a>
+				<a class="nav-item nav-link" href="#">Login ou Registrar-se</a>
+				
+			</div><!-- fim da class que ajusta o nav  -->
+		</div><!-- Fim do nav collapse-->
+	</nav> <!--fim do nav-->
+     
+</body>     
+    
+     <div id= "container1">
+          <div><h4>Cadastro de Livro</h4></div>
+          <div class="container">
+            <form method="post" action" " class="form-signin"> 
+                 <div class="form-group">
+                    <label for="exampleFormControlInput1">Titulo do Livro</label>
+                    <input type="text" class="form-control" id="nameLivro">
+                  </div>    
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Autor</label>
+                    <input type="text" class="form-control" id="nameAutor">
+                  </div>
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Editora</label>
+                    <input type="text" class="form-control" id="nameEditora">
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col">
+                         <label for="exampleFormControlInput1">Ano de Lançamento</label>
+                          <input type="date" class="form-control" id="anoLancamento">
+                        </div>
+                        <div id="dropdown">
+                        <div class="dropdown">
+                         <button class="btn  dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Gênero</button>
+                              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="#">Romântico</a>
+                                <a class="dropdown-item" href="#">Literatura</a>
+                                <a class="dropdown-item" href="#">Suspense</a>
+                              </div>
+                        </div>
+                        </div>    
+                      </div>
+                    </div>
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Fale um pouco sobre o conteúdo</label>
+                    <textarea class="form-control" id="descricao" placeholder="Descrição do produto" rows="3"></textarea>
+                </div>
+                <button id="btnCad" type="button" class="btn btn-sm">Cadastrar Livro</button>
+                <button id="btnCanc" type="button" class="btn btn-sm">Cancelar</button>
+               </form>
+              
+           </div>
+            <div class="container2">
+                <form method="post" action" " class="form-signin"> 
+                 <div class="form-group">
+                    <label for="exampleFormControlInput1">Valor do Livro</label>
+                    <input type="text" class="form-control" id="valorLivro">
+                  </div>
+                    <label for="exampleFormControlTextarea1">Opções de frete</label>
+                 <div id="radio1">
+                    <div class="custom-control custom-radio">   
+                      <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
+                      <label class="custom-control-label" for="customRadio1">Frete grátis</label>
+                    </div>
+                </div>
+                <div id="radio2">
+                    <div class="custom-control custom-radio">
+                      <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
+                      <label class="custom-control-label" for="customRadio2">Frete por conta do comprador</label>
+                    </div>
+                </div>
+                 </form>
+            </div>
+    </div>
+<footer>
+    
+    </footer>
+     
+      <!-- Principal JavaScript do Bootstrap
+    ================================================== -->
+    <!-- Foi colocado no final para a página carregar mais rápido -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/popper.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="res/js/bootstrap.min.js"></script>
+    <!-- Só faz o nossos placeholders de imagens funcionarem. Não precisar copiar a próxima linha! -->
+    <script src="res/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

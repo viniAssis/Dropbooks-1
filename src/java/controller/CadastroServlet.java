@@ -7,9 +7,7 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Date;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -67,27 +65,9 @@ public class CadastroServlet extends HttpServlet {
             } else {
                 user.setCpf_cnpj(request.getParameter("cpf"));
             }
-                
-                       
+                    
             user.setTipoPessoa(Integer.parseInt(request.getParameter("tipoPessoa")));
-            
-            /*
-            String dataEmTexto = request.getParameter("dataNascimento");
-            
-            try {
-            Date date = (Date) new SimpleDateFormat("dd/MM/yyyy").parse(dataEmTexto);
-            
-            user.setDataNascimento(date);
-            
-            
-            } catch (ParseException e) {
-            out.println("Erro de conversão da data");
-            return; //para a execução do método
-            }   
-
-            //user.setDataNascimento((request.getParameter("dataNascimento")));
-            */
-            
+            user.setDataNascimento(Usuario.toSqlDate(request.getParameter("data")));
             user.setSexo(request.getParameter("sexo"));
             user.setEmail(request.getParameter("email"));
             user.setTelefone(request.getParameter("telefone"));

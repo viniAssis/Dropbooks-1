@@ -4,6 +4,7 @@
     Author     : Ricardo
 --%>
 
+<%@page import="java.util.Calendar"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.sql.*"%>
@@ -29,6 +30,8 @@
             out.println(teste.getDescricao());
             out.println(teste.getDataPublicacao());
             
+            
+            
         //TESTE PARA CADASTRAR UM PRODUTO
             
             Produto teste2 = new Produto();
@@ -38,7 +41,7 @@
             // Povo, criei o método toSqlDate() pra ajudar na conversão de Strings pra SQL Date 
             
             teste2.setDataPublicacao(Produto.toSqlDate("21/06/2018"));
-            teste2.setDataRegistro(Produto.toSqlDate("01/09/2018"));
+            teste2.setDataRegistro(Produto.toSqlDate("2018-06-01"));
             
             //TODAS AS CLASSES MODELO DEVERÃO IMPLEMENTAR (extends) A CLASSE UTILITÁRIO                     -- Ricardo
             
