@@ -159,4 +159,84 @@ public class ProdutoDAO {
 
         return produtos;
     }
+    
+    public static String ativadoDesativado(Produto produto) {
+
+     String resp = "";
+
+     try {
+         Connection con = Conecta.getConexao();
+         String sql = "UPDATE produto SET ativo=? WHERE id=?";
+         PreparedStatement ps = con.prepareStatement(sql);
+         ps.setInt(1, produto.getAtivo());
+
+         ps.setString(2, Integer.toString(produto.getId()));
+
+         ps.execute();
+
+         ps.close();
+         con.close();
+
+         resp = "OK";
+
+        } catch (Exception e) {
+            resp = e.toString();
+        }
+
+        return resp;
+    } 
+    
+    public static String alterarProduto(Produto produto) {
+
+     String resp = "";
+
+     try {
+         Connection con = Conecta.getConexao();
+         String sql = "UPDATE produto SET quantidade=?, titulo=?, autor=?, editora=?, dataPublicacao=?, descricao=?, idioma=?, genero=?, preco=? WHERE id=?";
+         PreparedStatement ps = con.prepareStatement(sql);
+         ps.setInt(1, produto.getQuantidade());
+         ps.setString(2, produto.getTitulo());
+         ps.setString(4, produto.getAutor());
+         ps.setString(5, produto.getEditora());
+         ps.setString(6, produto.getDataPublicacao().toString());
+         ps.setString(7, produto.getDescricao());
+         ps.setString(8, produto.getIdioma());
+         ps.setString(9, produto.getGenero());
+
+         ps.setString(10, Integer.toString(produto.getId()));
+
+         ps.execute();
+
+         ps.close();
+         con.close();
+
+         resp = "OK";
+
+        } catch (Exception e) {
+            resp = e.toString();
+        }
+
+        return resp;
+    } 
+    
+    public static String excluirProduto(String idProduto) {
+    String resp = "";
+    try {
+        Connection con = Conecta.getConexao();
+        String sql = "DELETE FROM produto WHERE id = ?";
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setString(1, idProduto);
+
+        ps.execute();
+
+        ps.close();
+        con.close();
+
+        resp="ok";
+        }catch (Exception e){
+            resp = e.toString();
+        }
+        return resp;
+    }
+        
 }
