@@ -39,8 +39,10 @@ public class StatusProdutoServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
+        // ID do produto
         prod.setId(1);
         
+        // altera para o número oposto
         if(prod.getAtivo() == 1){
             prod.setAtivo(0);
         } else if (prod.getAtivo() == 0) {
@@ -49,19 +51,9 @@ public class StatusProdutoServlet extends HttpServlet {
                  
         new ProdutoDAO().ativadoDesativado(prod);
         
-        /*
-        String status = request.getParameter("statusCheckbox");
-        //Usuario usuario = UsuarioDAO.getUsuario(email);  
-           
-            if(status == "1"){
-                response.getWriter().write("1");
-            }else {
-                
-            }
-        */
         
-            // Redireciona para outra página
-            response.sendRedirect("./catalogoLivro.jsp");
+        // Recarregar a página
+        response.sendRedirect("./catalogoLivro.jsp");
         
     }
 

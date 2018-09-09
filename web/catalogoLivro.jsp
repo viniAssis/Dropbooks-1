@@ -240,12 +240,15 @@
 
           <% 
                 
+                // ID do produto
                 int id = 1;
-
+                
+                // Está criando um produto, passado pelo ID
                 Produto prod = new ProdutoDAO().getProduto(id);
 
                 String status = null;
 
+                // Retorna o status do produto
                 if(prod.getAtivo() == 1){
                     status = "checked";
                 }if(prod.getAtivo() == 0){
@@ -280,9 +283,9 @@
 					<tr>
 						<td class="caixa">
 							<img src="https://images.livrariasaraiva.com.br/imagemnet/imagem.aspx/?pro_id=2870760&qld=90&l=430&a=-1" width="200" height = "200"  alt="">
-							<p> Titulo: <span name="titulo" id="texto"> </span></p>
-                            <p> Autor:  <span name="autor" id="autor"></span></p>
-                            <p> Valor: R&#36;: <span name="valor" id="valor"></span></p>
+							<p> Titulo: <span name="titulo" id="texto"><%= prod.getTitulo()%></span></p>
+                            <p> Autor:  <span name="autor" id="autor"><%= prod.getAutor()%></span></p>
+                            <p> Valor: R&#36;: <span name="valor" id="valor"><%= prod.getPreco()%></span></p>
                             
 							<!-- Botão para acionar modal BOTAO EDITAR -->
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ExemploModalCentralizado" name="editar" id="idEditar">
@@ -306,48 +309,48 @@
                                             <tr>
                                               <td class="formLivro">Titulo do Livro:</td>
                                               <td style="color:black">
-                                                <input type="text" class="input" name="namelivro" id="namelivro" placeholder="">
+                                                <input type="text" class="input" name="namelivro" id="namelivro" placeholder="" value="<%= prod.getTitulo()%>">
                                               </td>
                                             </tr>
                                             <tr>
                                               <td class="formLivro">Nome do Autor: </td>
                                               <td style="color:black">
-                                                <input type="text" class="input" name="nameAutor" id="nameAutor" placeholder="">
+                                                <input type="text" class="input" name="nameAutor" id="nameAutor" placeholder="" value="<%= prod.getAutor()%>">
                                               </td>
                                             </tr>
                                             <tr>
                                                 <td class="formLivro">Nome da Editora: </td>
                                                 <td style="color:black">
-                                                   <input type="text" class="input" name="nameEditora" id="nameEditora" placeholder="">
+                                                   <input type="text" class="input" name="nameEditora" id="nameEditora" placeholder="" value="<%= prod.getEditora()%>">
                                                 </td>
                                             </tr>
                                             <tr>
                                               <td class="formLivro">Ano de Lançamento: </td>
                                               <td style="color:black">
-                                                <input type="date" class="input" name="anoLancamento" id="anoLancamento" placeholder="">
+                                                <input type="date" class="input" name="anoLancamento" id="anoLancamento" placeholder=""  value="<%= prod.getDataPublicacao()%>">
                                               </td>
                                             </tr>
                                             <tr>
                                               <td class="formLivro">Valor do Livro: </td>
                                               <td style="color:black">
-                                                <input type="text"  class="input" name="valor" id="idValor" placeholder="">
+                                                <input type="text"  class="input" name="valor" id="idValor" placeholder="" value="<%= prod.getPreco()%>">
                                               </td>
                                             </tr>
                                             <tr>
                                               <td class="formLivro">Descrição: </td>
                                                 <td style="color:black">
-                                                  <textarea class="form-control input" id="descricao" name="descricaoProduto" placeholder="Descrição do produto" rows="3"></textarea>
+                                                  <textarea class="form-control input" id="descricao" name="descricaoProduto" placeholder="" rows="3" value="<%= prod.getDescricao()%>"></textarea>
                                                 </td>
                                              </tr>
                                               <tr>
                                                  <td class="formLivro">Estado de conservação: </td>
                                                   <td style="color:black">
-                                                    <textarea class="form-control input" id="descricao" name="estadoProduto" placeholder="Estado do Produto" rows="3"></textarea>
+                                                    <textarea class="form-control input" id="descricao" name="estadoProduto" placeholder="" rows="3"></textarea>
                                                   </td>    
                                               </tr> 
                                         </table>
                                    <div class="dropdown" id="dropdown1">
-                                            <button class="btn  dropdown-toggle" type="button" id="idGenero" name="menuGenero" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Gênero</button>
+                                            <button class="btn  dropdown-toggle" type="button" id="idGenero" name="menuGenero" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" value="<%= prod.getGenero()%>">Gênero</button>
                                              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                                 <a class="dropdown-item" href="#" name="drama" id="drama">Drama</a>
                                                 <a class="dropdown-item" href="#" name="acao" id="acao">Ação</a>
@@ -357,7 +360,7 @@
                                              </div>
                                     </div>
                                         <div class="dropdown" id="dropdown2">    
-                                            <button class="btn  dropdown-toggle" type="button" id="idIdioma" name="menuIdioma" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Idioma</button>
+                                            <button class="btn  dropdown-toggle" type="button" id="idIdioma" name="menuIdioma" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" value="<%= prod.getIdioma()%>">Idioma</button>
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                                     <a class="dropdown-item" href="#" name="idiomaPortugues" id="idiomaPortugues">Português</a>
                                                     <a class="dropdown-item" href="#" name="idiomaIngles" id="idiomaIngles">Inglês</a>
@@ -374,7 +377,7 @@
                                           </div>
                                     </div>
                                     <br>
-                                            <button type="button" class="btn btn-primary" name="editar_catalogo" id="edcatalogo">Editar Catálogo</button>
+                                    <button type="submit" class="btn btn-primary" name="editar_catalogo" id="edcatalogo">Editar Catálogo</button>
                                         </form>
                                       </center>
                                     </div>
@@ -548,7 +551,7 @@
 				
 							<div class="sliderCheck">
 								<label class="switch">
-									<input type="checkbox" name="statusCheckbox2" <%= status %>>
+									<input type="checkbox" name="statusCheckbox2">
 									<span class="slider round"></span>
 								</label>
 							</div>
@@ -687,7 +690,7 @@
 				
 							<div class="sliderCheck">
 								<label class="switch">
-									<input type="checkbox" name="statusCheckbox3" <%= status %>>
+									<input type="checkbox" name="statusCheckbox3">
 									<span class="slider round"></span>
 								</label>
 							</div>
@@ -826,7 +829,7 @@
 				
 							<div class="sliderCheck">
 								<label class="switch">
-									<input type="checkbox" name="statusCheckbox4" <%= status %>>
+									<input type="checkbox" name="statusCheckbox4">
 									<span class="slider round"></span>
 								</label>
 							</div>

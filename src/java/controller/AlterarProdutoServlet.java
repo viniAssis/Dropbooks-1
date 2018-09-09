@@ -13,7 +13,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Produto;
+import model.Usuario;
 import modelDAO.ProdutoDAO;
+import modelDAO.UsuarioDAO;
 
 /**
  *
@@ -34,16 +36,28 @@ public class AlterarProdutoServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        String id = "1";
+        //String _email = request.getSession().getAttribute("email").toString();
+         
+         //Usuario user = new UsuarioDAO().getUsuario(_email);
+         
+         Produto prod = new ProdutoDAO().getProduto(1);
          
 
+         prod.setTitulo(request.getParameter("namelivro")); 
+         prod.setAutor(request.getParameter("nameAutor"));
+         prod.setEditora(request.getParameter("nameEditora"));
+         prod.setPreco(Float.parseFloat(request.getParameter("valor")));
+         prod.setDescricao(request.getParameter("descricaoProduto")); 
+         //prod.setNumero(request.getParameter("estadoProduto")); 
+         prod.setGenero(request.getParameter("menuGenero"));
+         prod.setIdioma(request.getParameter("menuIdioma"));
+         //prod.setBairro(request.getParameter("inputFoto")); 
+         prod.setDataPublicacao(Usuario.toSqlDate(request.getParameter("anoLancamento")));
          
-         /*
-         user.setCep(request.getParameter("hCEP"));
-         user.setDataNascimento(Usuario.toSqlDate(request.getParameter("hData")));
-         */
+         ProdutoDAO.alterarProduto(prod);
          
-         new ProdutoDAO().excluirProduto(id);
+        // Recarregar a página
+        response.sendRedirect("./catalogoLivro.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
