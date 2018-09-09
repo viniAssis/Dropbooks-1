@@ -1,6 +1,13 @@
 <html>
 <head>
 <title> Teste - Excluindo Livros</title>
+
+<script>
+function redireciona(param){
+     location.href=param;
+}
+</script>
+
 </head>
 <body>
 
@@ -8,6 +15,10 @@
 
 <button type="submit">Excluir</button>
 </form>
-
+    <br><br><br>
+    
+        <button type="button" onClick="redireciona('ExcluirProdutoServlet');">
+      Excluir
+    </button>
 </body>
 </html>
