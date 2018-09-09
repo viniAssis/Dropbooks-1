@@ -61,7 +61,7 @@ public class StatusProdutoServlet extends HttpServlet {
         */
         
             // Redireciona para outra página
-            response.sendRedirect("./catalogo (2).html");
+            response.sendRedirect("./catalogoLivro.jsp");
         
     }
 

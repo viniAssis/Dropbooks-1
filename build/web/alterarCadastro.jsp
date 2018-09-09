@@ -170,7 +170,8 @@
           
           <% 
             //Usuario user = new Usuario();
-            String email = request.getSession().getAttribute("email").toString();
+            //String email = request.getSession().getAttribute("email").toString();
+            String email = "teste@teste.com.br";
             
             Usuario user = new UsuarioDAO().getUsuario(email);
 

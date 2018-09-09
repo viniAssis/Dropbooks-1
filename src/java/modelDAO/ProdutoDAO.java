@@ -4,10 +4,9 @@ import model.Produto;
 import java.sql.*;
 import java.util.ArrayList;
 
-
 public class ProdutoDAO {
     
-    public static Produto getProduto(String id) {
+    public static Produto getProduto(int id) {
         
         Produto produto = new Produto();
         
@@ -15,7 +14,7 @@ public class ProdutoDAO {
             Connection con = Conecta.getConexao();
             String sql = "SELECT * FROM produto WHERE id=?";
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setString(1, id);
+            ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             
             if(rs.next()){

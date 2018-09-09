@@ -1,3 +1,5 @@
+<%@page import="modelDAO.ProdutoDAO"%>
+<%@page import="model.Produto"%>
 <!doctype html>
 <html>
 	<head>
@@ -230,12 +232,28 @@
             }
 
 		</style> 
-<script>
-function redireciona(param){
-    location.href=param;
-}
+<script type="text/javascript">
+    function redireciona(param){
+        location.href=param;
+    }
 </script>
 
+          <% 
+                
+                int id = 1;
+
+                Produto prod = new ProdutoDAO().getProduto(id);
+
+                String status = null;
+
+                if(prod.getAtivo() == 1){
+                    status = "checked";
+                }if(prod.getAtivo() == 0){
+                    status = null;
+                }
+
+          %>
+          
 	</head>
 	<body>   
 		<div class="container-fluid">
@@ -256,7 +274,7 @@ function redireciona(param){
 
             <div id= "container1">
 				
-				<h4 class="titulo">CatÃ¡logo do Livro</h4>
+				<h4 class="titulo">Catálogo do Livro</h4>
 				<div id="container" >	
 				<table>
 					<tr>
@@ -266,7 +284,7 @@ function redireciona(param){
                             <p> Autor:  <span name="autor" id="autor"></span></p>
                             <p> Valor: R&#36;: <span name="valor" id="valor"></span></p>
                             
-							<!-- BotÃ£o para acionar modal BOTAO EDITAR -->
+							<!-- Botão para acionar modal BOTAO EDITAR -->
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ExemploModalCentralizado" name="editar" id="idEditar">
                               Editar
                             </button>
@@ -276,7 +294,7 @@ function redireciona(param){
                               <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
                                   <div class="modal-header">
-                                    <h5 class="modal-title" id="TituloModalCentralizado">Editar CatÃ¡logo</h5>
+                                    <h5 class="modal-title" id="TituloModalCentralizado">Editar Catálogo</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
                                       <span aria-hidden="true">&times;</span>
                                     </button>
@@ -304,7 +322,7 @@ function redireciona(param){
                                                 </td>
                                             </tr>
                                             <tr>
-                                              <td class="formLivro">Ano de LanÃ§amento: </td>
+                                              <td class="formLivro">Ano de Lançamento: </td>
                                               <td style="color:black">
                                                 <input type="date" class="input" name="anoLancamento" id="anoLancamento" placeholder="">
                                               </td>
@@ -316,33 +334,33 @@ function redireciona(param){
                                               </td>
                                             </tr>
                                             <tr>
-                                              <td class="formLivro">DescriÃ§Ã£o: </td>
+                                              <td class="formLivro">Descrição: </td>
                                                 <td style="color:black">
-                                                  <textarea class="form-control input" id="descricao" name="descricaoProduto" placeholder="DescriÃ§Ã£o do produto" rows="3"></textarea>
+                                                  <textarea class="form-control input" id="descricao" name="descricaoProduto" placeholder="Descrição do produto" rows="3"></textarea>
                                                 </td>
                                              </tr>
                                               <tr>
-                                                 <td class="formLivro">Estado de conservaÃ§Ã£o: </td>
+                                                 <td class="formLivro">Estado de conservação: </td>
                                                   <td style="color:black">
                                                     <textarea class="form-control input" id="descricao" name="estadoProduto" placeholder="Estado do Produto" rows="3"></textarea>
                                                   </td>    
                                               </tr> 
                                         </table>
                                    <div class="dropdown" id="dropdown1">
-                                            <button class="btn  dropdown-toggle" type="button" id="idGenero" name="menuGenero" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">GÃªnero</button>
+                                            <button class="btn  dropdown-toggle" type="button" id="idGenero" name="menuGenero" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Gênero</button>
                                              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                                 <a class="dropdown-item" href="#" name="drama" id="drama">Drama</a>
-                                                <a class="dropdown-item" href="#" name="acao" id="acao">AÃ§Ã£o</a>
+                                                <a class="dropdown-item" href="#" name="acao" id="acao">Ação</a>
                                                 <a class="dropdown-item" href="#" name="aventura" id="aventura">Aventura</a>
-                                                <a class="dropdown-item" href="#" name="comedia" id="comedia">ComÃ©dia</a>
+                                                <a class="dropdown-item" href="#" name="comedia" id="comedia">Comédia</a>
                                                 <a class="dropdown-item" href="#" name="fantasia" id="fantasia">Fantasia</a>
                                              </div>
                                     </div>
                                         <div class="dropdown" id="dropdown2">    
                                             <button class="btn  dropdown-toggle" type="button" id="idIdioma" name="menuIdioma" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Idioma</button>
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                    <a class="dropdown-item" href="#" name="idiomaPortugues" id="idiomaPortugues">PortuguÃªs</a>
-                                                    <a class="dropdown-item" href="#" name="idiomaIngles" id="idiomaIngles">InglÃªs</a>
+                                                    <a class="dropdown-item" href="#" name="idiomaPortugues" id="idiomaPortugues">Português</a>
+                                                    <a class="dropdown-item" href="#" name="idiomaIngles" id="idiomaIngles">Inglês</a>
                                                 </div>
                                             </div>
                                    
@@ -356,7 +374,7 @@ function redireciona(param){
                                           </div>
                                     </div>
                                     <br>
-                                            <button type="button" class="btn btn-primary" name="editar_catalogo" id="edcatalogo">Editar CatÃ¡logo</button>
+                                            <button type="button" class="btn btn-primary" name="editar_catalogo" id="edcatalogo">Editar Catálogo</button>
                                         </form>
                                       </center>
                                     </div>
@@ -364,7 +382,7 @@ function redireciona(param){
                               </div>
                             </div>
                             
-                             <!-- BotÃ£o para acionar modal BOTAO EXCLUIR -->
+                             <!-- Botão para acionar modal BOTAO EXCLUIR -->
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalExemplo" name="excluir" id="idExcluir">
                               Excluir
                             </button>
@@ -374,13 +392,13 @@ function redireciona(param){
                               <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                   <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">AtenÃ§Ã£o !!!</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">Atenção !!!</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
                                       <span aria-hidden="true">&times;</span>
                                     </button>
                                   </div>
                                   <div class="modal-body">
-                                    VocÃª tem certeza que quer excluir esse livro do seu catÃ¡logo? 
+                                    Você tem certeza que quer excluir esse livro do seu catálogo? 
                                   </div>
                                   <div class="modal-footer">
                                     <button type="button" class="btn btn-primary" name="confirmar" id="idConfirmar" onClick="redireciona('ExcluirProdutoServlet');">Sim</button>
@@ -392,7 +410,7 @@ function redireciona(param){
 				
 							<div class="sliderCheck">
 								<label class="switch">
-									<input type="checkbox" name="statusCheckbox" checked onClick="redireciona('StatusProdutoServlet');">
+                                                                    <input type="checkbox" name="statusCheckbox1" <%= status %> onClick="redireciona('StatusProdutoServlet');">
 									<span class="slider round"></span>
 								</label>
 							</div>
@@ -404,7 +422,7 @@ function redireciona(param){
                             <p> Autor:  <span name="autor" id="autor"></span></p>
                             <p> Valor: R&#36;: <span name="valor" id="valor"></span></p>
                             
-							<!-- BotÃ£o para acionar modal BOTAO EDITAR -->
+							<!-- Botão para acionar modal BOTAO EDITAR -->
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ExemploModalCentralizado" name="editar" id="idEditar">
                               Editar
                             </button>
@@ -414,7 +432,7 @@ function redireciona(param){
                               <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
                                   <div class="modal-header">
-                                    <h5 class="modal-title" id="TituloModalCentralizado">Editar CatÃ¡logo</h5>
+                                    <h5 class="modal-title" id="TituloModalCentralizado">Editar Catálogo</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
                                       <span aria-hidden="true">&times;</span>
                                     </button>
@@ -442,7 +460,7 @@ function redireciona(param){
                                                 </td>
                                             </tr>
                                             <tr>
-                                              <td class="formLivro">Ano de LanÃ§amento: </td>
+                                              <td class="formLivro">Ano de Lançamento: </td>
                                               <td style="color:black">
                                                 <input type="date" class="input" name="anoLancamento" id="anoLancamento" placeholder="">
                                               </td>
@@ -454,33 +472,33 @@ function redireciona(param){
                                               </td>
                                             </tr>
                                             <tr>
-                                              <td class="formLivro">DescriÃ§Ã£o: </td>
+                                              <td class="formLivro">Descrição: </td>
                                                 <td style="color:black">
-                                                  <textarea class="form-control input" id="descricao" name="descricaoProduto" placeholder="DescriÃ§Ã£o do produto" rows="3"></textarea>
+                                                  <textarea class="form-control input" id="descricao" name="descricaoProduto" placeholder="Descrição do produto" rows="3"></textarea>
                                                 </td>
                                              </tr>
                                               <tr>
-                                                 <td class="formLivro">Estado de conservaÃ§Ã£o: </td>
+                                                 <td class="formLivro">Estado de conservação: </td>
                                                   <td style="color:black">
                                                     <textarea class="form-control input" id="descricao" name="estadoProduto" placeholder="Estado do Produto" rows="3"></textarea>
                                                   </td>    
                                               </tr> 
                                         </table>
                                    <div class="dropdown" id="dropdown1">
-                                            <button class="btn  dropdown-toggle" type="button" id="idGenero" name="menuGenero" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">GÃªnero</button>
+                                            <button class="btn  dropdown-toggle" type="button" id="idGenero" name="menuGenero" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Gênero</button>
                                              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                                 <a class="dropdown-item" href="#" name="drama" id="drama">Drama</a>
-                                                <a class="dropdown-item" href="#" name="acao" id="acao">AÃ§Ã£o</a>
+                                                <a class="dropdown-item" href="#" name="acao" id="acao">Ação</a>
                                                 <a class="dropdown-item" href="#" name="aventura" id="aventura">Aventura</a>
-                                                <a class="dropdown-item" href="#" name="comedia" id="comedia">ComÃ©dia</a>
+                                                <a class="dropdown-item" href="#" name="comedia" id="comedia">Comédia</a>
                                                 <a class="dropdown-item" href="#" name="fantasia" id="fantasia">Fantasia</a>
                                              </div>
                                     </div>
                                         <div class="dropdown" id="dropdown2">    
                                             <button class="btn  dropdown-toggle" type="button" id="idIdioma" name="menuIdioma" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Idioma</button>
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                    <a class="dropdown-item" href="#" name="idiomaPortugues" id="idiomaPortugues">PortuguÃªs</a>
-                                                    <a class="dropdown-item" href="#" name="idiomaIngles" id="idiomaIngles">InglÃªs</a>
+                                                    <a class="dropdown-item" href="#" name="idiomaPortugues" id="idiomaPortugues">Português</a>
+                                                    <a class="dropdown-item" href="#" name="idiomaIngles" id="idiomaIngles">Inglês</a>
                                                 </div>
                                             </div>
                                    
@@ -494,7 +512,7 @@ function redireciona(param){
                                           </div>
                                     </div>
                                     <br>
-                                            <button type="button" class="btn btn-primary" name="editar_catalogo" id="edcatalogo">Editar CatÃ¡logo</button>
+                                            <button type="button" class="btn btn-primary" name="editar_catalogo" id="edcatalogo">Editar Catálogo</button>
                                         </form>
                                       </center>
                                     </div>
@@ -502,7 +520,7 @@ function redireciona(param){
                               </div>
                             </div>
                             
-                             <!-- BotÃ£o para acionar modal BOTAO EXCLUIR -->
+                             <!-- Botão para acionar modal BOTAO EXCLUIR -->
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalExemplo" name="excluir" id="idExcluir">
                               Excluir
                             </button>
@@ -512,13 +530,13 @@ function redireciona(param){
                               <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                   <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">AtenÃ§Ã£o !!!</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">Atenção !!!</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
                                       <span aria-hidden="true">&times;</span>
                                     </button>
                                   </div>
                                   <div class="modal-body">
-                                    VocÃª tem certeza que quer excluir esse livro do seu catÃ¡logo? 
+                                    Você tem certeza que quer excluir esse livro do seu catálogo? 
                                   </div>
                                   <div class="modal-footer">
                                     <button type="button" class="btn btn-primary" name="confirmar" id="idConfirmar">Sim</button>
@@ -530,7 +548,7 @@ function redireciona(param){
 				
 							<div class="sliderCheck">
 								<label class="switch">
-									<input type="checkbox" name="statusCheckbox" checked>
+									<input type="checkbox" name="statusCheckbox2" <%= status %>>
 									<span class="slider round"></span>
 								</label>
 							</div>
@@ -543,7 +561,7 @@ function redireciona(param){
                             <p> Autor:  <span name="autor" id="autor"></span></p>
                             <p> Valor: R&#36;: <span name="valor" id="valor"></span></p>
                             
-							<!-- BotÃ£o para acionar modal BOTAO EDITAR -->
+							<!-- Botão para acionar modal BOTAO EDITAR -->
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ExemploModalCentralizado" name="editar" id="idEditar">
                               Editar
                             </button>
@@ -553,7 +571,7 @@ function redireciona(param){
                               <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
                                   <div class="modal-header">
-                                    <h5 class="modal-title" id="TituloModalCentralizado">Editar CatÃ¡logo</h5>
+                                    <h5 class="modal-title" id="TituloModalCentralizado">Editar Catálogo</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
                                       <span aria-hidden="true">&times;</span>
                                     </button>
@@ -581,7 +599,7 @@ function redireciona(param){
                                                 </td>
                                             </tr>
                                             <tr>
-                                              <td class="formLivro">Ano de LanÃ§amento: </td>
+                                              <td class="formLivro">Ano de Lançamento: </td>
                                               <td style="color:black">
                                                 <input type="date" class="input" name="anoLancamento" id="anoLancamento" placeholder="">
                                               </td>
@@ -593,33 +611,33 @@ function redireciona(param){
                                               </td>
                                             </tr>
                                             <tr>
-                                              <td class="formLivro">DescriÃ§Ã£o: </td>
+                                              <td class="formLivro">Descrição: </td>
                                                 <td style="color:black">
-                                                  <textarea class="form-control input" id="descricao" name="descricaoProduto" placeholder="DescriÃ§Ã£o do produto" rows="3"></textarea>
+                                                  <textarea class="form-control input" id="descricao" name="descricaoProduto" placeholder="Descrição do produto" rows="3"></textarea>
                                                 </td>
                                              </tr>
                                               <tr>
-                                                 <td class="formLivro">Estado de conservaÃ§Ã£o: </td>
+                                                 <td class="formLivro">Estado de conservação: </td>
                                                   <td style="color:black">
                                                     <textarea class="form-control input" id="descricao" name="estadoProduto" placeholder="Estado do Produto" rows="3"></textarea>
                                                   </td>    
                                               </tr> 
                                         </table>
                                    <div class="dropdown" id="dropdown1">
-                                            <button class="btn  dropdown-toggle" type="button" id="idGenero" name="menuGenero" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">GÃªnero</button>
+                                            <button class="btn  dropdown-toggle" type="button" id="idGenero" name="menuGenero" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Gênero</button>
                                              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                                 <a class="dropdown-item" href="#" name="drama" id="drama">Drama</a>
-                                                <a class="dropdown-item" href="#" name="acao" id="acao">AÃ§Ã£o</a>
+                                                <a class="dropdown-item" href="#" name="acao" id="acao">Ação</a>
                                                 <a class="dropdown-item" href="#" name="aventura" id="aventura">Aventura</a>
-                                                <a class="dropdown-item" href="#" name="comedia" id="comedia">ComÃ©dia</a>
+                                                <a class="dropdown-item" href="#" name="comedia" id="comedia">Comédia</a>
                                                 <a class="dropdown-item" href="#" name="fantasia" id="fantasia">Fantasia</a>
                                              </div>
                                     </div>
                                         <div class="dropdown" id="dropdown2">    
                                             <button class="btn  dropdown-toggle" type="button" id="idIdioma" name="menuIdioma" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Idioma</button>
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                    <a class="dropdown-item" href="#" name="idiomaPortugues" id="idiomaPortugues">PortuguÃªs</a>
-                                                    <a class="dropdown-item" href="#" name="idiomaIngles" id="idiomaIngles">InglÃªs</a>
+                                                    <a class="dropdown-item" href="#" name="idiomaPortugues" id="idiomaPortugues">Português</a>
+                                                    <a class="dropdown-item" href="#" name="idiomaIngles" id="idiomaIngles">Inglês</a>
                                                 </div>
                                             </div>
                                    
@@ -633,7 +651,7 @@ function redireciona(param){
                                           </div>
                                     </div>
                                     <br>
-                                            <button type="button" class="btn btn-primary" name="editar_catalogo" id="edcatalogo">Editar CatÃ¡logo</button>
+                                            <button type="button" class="btn btn-primary" name="editar_catalogo" id="edcatalogo">Editar Catálogo</button>
                                         </form>
                                       </center>
                                     </div>
@@ -641,7 +659,7 @@ function redireciona(param){
                               </div>
                             </div>
                             
-                             <!-- BotÃ£o para acionar modal BOTAO EXCLUIR -->
+                             <!-- Botão para acionar modal BOTAO EXCLUIR -->
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalExemplo" name="excluir" id="idExcluir">
                               Excluir
                             </button>
@@ -651,13 +669,13 @@ function redireciona(param){
                               <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                   <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">AtenÃ§Ã£o !!!</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">Atenção !!!</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
                                       <span aria-hidden="true">&times;</span>
                                     </button>
                                   </div>
                                   <div class="modal-body">
-                                    VocÃª tem certeza que quer excluir esse livro do seu catÃ¡logo? 
+                                    Você tem certeza que quer excluir esse livro do seu catálogo? 
                                   </div>
                                   <div class="modal-footer">
                                     <button type="button" class="btn btn-primary" name="confirmar" id="idConfirmar">Sim</button>
@@ -669,7 +687,7 @@ function redireciona(param){
 				
 							<div class="sliderCheck">
 								<label class="switch">
-									<input type="checkbox" name="statusCheckbox" checked>
+									<input type="checkbox" name="statusCheckbox3" <%= status %>>
 									<span class="slider round"></span>
 								</label>
 							</div>
@@ -682,7 +700,7 @@ function redireciona(param){
                             <p> Autor:  <span name="autor" id="autor"></span></p>
                             <p> Valor: R&#36;: <span name="valor" id="valor"></span></p>
                             
-							<!-- BotÃ£o para acionar modal BOTAO EDITAR -->
+							<!-- Botão para acionar modal BOTAO EDITAR -->
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ExemploModalCentralizado" name="editar" id="idEditar">
                               Editar
                             </button>
@@ -692,7 +710,7 @@ function redireciona(param){
                               <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
                                   <div class="modal-header">
-                                    <h5 class="modal-title" id="TituloModalCentralizado">Editar CatÃ¡logo</h5>
+                                    <h5 class="modal-title" id="TituloModalCentralizado">Editar Catálogo</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
                                       <span aria-hidden="true">&times;</span>
                                     </button>
@@ -720,7 +738,7 @@ function redireciona(param){
                                                 </td>
                                             </tr>
                                             <tr>
-                                              <td class="formLivro">Ano de LanÃ§amento: </td>
+                                              <td class="formLivro">Ano de Lançamento: </td>
                                               <td style="color:black">
                                                 <input type="date" class="input" name="anoLancamento" id="anoLancamento" placeholder="">
                                               </td>
@@ -732,33 +750,33 @@ function redireciona(param){
                                               </td>
                                             </tr>
                                             <tr>
-                                              <td class="formLivro">DescriÃ§Ã£o: </td>
+                                              <td class="formLivro">Descrição: </td>
                                                 <td style="color:black">
-                                                  <textarea class="form-control input" id="descricao" name="descricaoProduto" placeholder="DescriÃ§Ã£o do produto" rows="3"></textarea>
+                                                  <textarea class="form-control input" id="descricao" name="descricaoProduto" placeholder="Descrição do produto" rows="3"></textarea>
                                                 </td>
                                              </tr>
                                               <tr>
-                                                 <td class="formLivro">Estado de conservaÃ§Ã£o: </td>
+                                                 <td class="formLivro">Estado de conservação: </td>
                                                   <td style="color:black">
                                                     <textarea class="form-control input" id="descricao" name="estadoProduto" placeholder="Estado do Produto" rows="3"></textarea>
                                                   </td>    
                                               </tr> 
                                         </table>
                                    <div class="dropdown" id="dropdown1">
-                                            <button class="btn  dropdown-toggle" type="button" id="idGenero" name="menuGenero" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">GÃªnero</button>
+                                            <button class="btn  dropdown-toggle" type="button" id="idGenero" name="menuGenero" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Gênero</button>
                                              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                                 <a class="dropdown-item" href="#" name="drama" id="drama">Drama</a>
-                                                <a class="dropdown-item" href="#" name="acao" id="acao">AÃ§Ã£o</a>
+                                                <a class="dropdown-item" href="#" name="acao" id="acao">Ação</a>
                                                 <a class="dropdown-item" href="#" name="aventura" id="aventura">Aventura</a>
-                                                <a class="dropdown-item" href="#" name="comedia" id="comedia">ComÃ©dia</a>
+                                                <a class="dropdown-item" href="#" name="comedia" id="comedia">Comédia</a>
                                                 <a class="dropdown-item" href="#" name="fantasia" id="fantasia">Fantasia</a>
                                              </div>
                                     </div>
                                         <div class="dropdown" id="dropdown2">    
                                             <button class="btn  dropdown-toggle" type="button" id="idIdioma" name="menuIdioma" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Idioma</button>
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                    <a class="dropdown-item" href="#" name="idiomaPortugues" id="idiomaPortugues">PortuguÃªs</a>
-                                                    <a class="dropdown-item" href="#" name="idiomaIngles" id="idiomaIngles">InglÃªs</a>
+                                                    <a class="dropdown-item" href="#" name="idiomaPortugues" id="idiomaPortugues">Português</a>
+                                                    <a class="dropdown-item" href="#" name="idiomaIngles" id="idiomaIngles">Inglês</a>
                                                 </div>
                                             </div>
                                    
@@ -772,7 +790,7 @@ function redireciona(param){
                                           </div>
                                     </div>
                                     <br>
-                                            <button type="button" class="btn btn-primary" name="editar_catalogo" id="edcatalogo">Editar CatÃ¡logo</button>
+                                            <button type="button" class="btn btn-primary" name="editar_catalogo" id="edcatalogo">Editar Catálogo</button>
                                         </form>
                                       </center>
                                     </div>
@@ -780,7 +798,7 @@ function redireciona(param){
                               </div>
                             </div>
                             
-                             <!-- BotÃ£o para acionar modal BOTAO EXCLUIR -->
+                             <!-- Botão para acionar modal BOTAO EXCLUIR -->
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalExemplo" name="excluir" id="idExcluir">
                               Excluir
                             </button>
@@ -790,13 +808,13 @@ function redireciona(param){
                               <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                   <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">AtenÃ§Ã£o !!!</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">Atenção !!!</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
                                       <span aria-hidden="true">&times;</span>
                                     </button>
                                   </div>
                                   <div class="modal-body">
-                                    VocÃª tem certeza que quer excluir esse livro do seu catÃ¡logo? 
+                                    Você tem certeza que quer excluir esse livro do seu catálogo? 
                                   </div>
                                   <div class="modal-footer">
                                     <button type="button" class="btn btn-primary" name="confirmar" id="idConfirmar">Sim</button>
@@ -808,7 +826,7 @@ function redireciona(param){
 				
 							<div class="sliderCheck">
 								<label class="switch">
-									<input type="checkbox" name="statusCheckbox" checked>
+									<input type="checkbox" name="statusCheckbox4" <%= status %>>
 									<span class="slider round"></span>
 								</label>
 							</div>
@@ -827,12 +845,12 @@ function redireciona(param){
 	
 	   <!-- Principal JavaScript do Bootstrap
             ================================================== -->
-            <!-- Foi colocado no final para a pÃ¡gina carregar mais rÃ¡pido -->
+            <!-- Foi colocado no final para a página carregar mais rápido -->
             <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
             <script src="https://unpkg.com/popper.js"></script>
             <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
             <script src="res/js/bootstrap.min.js"></script>
-            <!-- SÃ³ faz o nossos placeholders de imagens funcionarem. NÃ£o precisar copiar a prÃ³xima linha! -->
+            <!-- Só faz o nossos placeholders de imagens funcionarem. Não precisar copiar a próxima linha! -->
             <script src="res/js/bootstrap.bundle.min.js"></script>
 
         </div>
