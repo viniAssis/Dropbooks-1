@@ -37,6 +37,9 @@ public class ExcluirProdutoServlet extends HttpServlet {
         String id = "1";
                   
         new ProdutoDAO().excluirProduto(id);
+        
+        // Recarregar a página
+        response.sendRedirect("./catalogoLivro.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

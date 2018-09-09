@@ -48,7 +48,6 @@ public class AlterarProdutoServlet extends HttpServlet {
          prod.setEditora(request.getParameter("nameEditora"));
          prod.setPreco(Float.parseFloat(request.getParameter("valor")));
          prod.setDescricao(request.getParameter("descricaoProduto")); 
-         //prod.setNumero(request.getParameter("estadoProduto")); 
          prod.setGenero(request.getParameter("menuGenero"));
          prod.setIdioma(request.getParameter("menuIdioma"));
          //prod.setBairro(request.getParameter("inputFoto")); 

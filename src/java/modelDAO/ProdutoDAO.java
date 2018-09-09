@@ -119,7 +119,7 @@ public class ProdutoDAO {
         return produtos;
     }
     
-    public static ArrayList<Produto> getProdutos(String id_usuario) {
+    public static ArrayList<Produto> getProdutos(int id_usuario) {
         
         ArrayList <Produto> produtos = new ArrayList();
         
@@ -127,7 +127,7 @@ public class ProdutoDAO {
             Connection con = Conecta.getConexao();
             String sql = "SELECT * FROM produto WHERE id_usuario=?";
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setString(1, id_usuario);
+            ps.setInt(1, id_usuario);
             ResultSet rs = ps.executeQuery();
             
             while(rs.next()){
