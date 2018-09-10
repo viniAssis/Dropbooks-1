@@ -19,6 +19,14 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <style>
+        
+        h1{
+            font-size: 2.5rem;
+            color: #FFF0F5;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
         body {
             background-image: url(res/img/bgPadrao.jpg)
         }
@@ -31,11 +39,67 @@
             background: #4169E1;
 
         }
+        
+        #caixa2{
+			margin-top: 5%;
+			margin-left: 25%;
+			margin-bottom: 3%;
+			clear: both;
+		}
     </style>
+    
+        <%ArrayList<Produto> produtos = (ArrayList<Produto>)session.getAttribute("produtos");%>
+        
     </head>
     <body>
         
+        <form id="caixa2" method="post" action="PesquisarLivrosServlet">
+  			<div class="form-row align-items-center">
+    			<div class="col-auto my-1">
+      					<select class="custom-select mr-sm-2" id="tipoPesquisa" name="opcaoPesquisa">
+                                                        <option>Titulo</option>
+  							<option>Autor</option>
+  							<option>Editora</option>
+  							<option>Genêro</option>
+      					</select>
+    			</div>
+ 
+				<div class="col-auto col-md-8">
+					<input class="form-control col-md-10" type="text" placeholder="Search" name="palavraChave">		
+				</div>
+					<button type="submit" class="btn btn-primary" id="botao1">Pesquisa</button>
+  				</div>
+       </form>
+        
+        <h1><%      
+                    
+                    
+                    if(produtos.size() > 0){
+                        
+                            String opcao = String.valueOf(session.getAttribute("opcao"));
+                            
+                            if(opcao.equals("Titulo"))
+                               out.println("Resultados por titulos: "+produtos.size()+" livros!"); 
+                                
+                            else if(opcao.equals("Autor"))
+                                out.println("Resultados por Autor: "+produtos.size()+" livros!");
+                                
+                            else if(opcao.equals("Editora"))
+                                out.println("Resultados por Editora: "+produtos.size()+" livros!");
+                            
+                            else if(opcao.equals("Genero"))
+                                out.println("Resultados por Genero: "+produtos.size()+" livros!");
+ 
+                    }
+                    else
+                        out.println("Nenhum livro encontrado");
+            
+            
+            %></h1>
+        
+        
         <table class="table table-striped table table-hover">
+            
             <tr>
                 <th scope="col"> id</th>
                 <th scope="col"> dataRegistro </th>
@@ -53,7 +117,7 @@
             </tr>
         
         <% 
-           ArrayList<Produto> produtos = (ArrayList<Produto>)session.getAttribute("produtos");
+           
         
            for(int i = 0; i < produtos.size();i++){
                

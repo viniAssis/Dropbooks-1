@@ -35,34 +35,47 @@ public class PesquisarLivrosServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet PesquisarLivrosServlet</title>");            
-            out.println("<meta charset=utf-8>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet PesquisarLivrosServlet at " + request.getContextPath() + "</h1>");
+
             
             
-            ArrayList<Produto> produtos = ProdutoDAO.getProdutosPorTermo("%"+request.getParameter("palavraChave"));
-            out.println("<h1>Senha"+request.getParameter("palavraChave")+"</h1>");
-            for(int i = 0; i < produtos.size();i++)
-            {
             
-                 out.println("<p>"+produtos.get(i).getAutor()+"</p>");
+            ArrayList<Produto> produtos = new ArrayList();
+            HttpSession session = request.getSession();
+               
+            if(null != request.getParameter("opcaoPesquisa")) {
             
+                switch (request.getParameter("opcaoPesquisa")) {
+                    case "Titulo":
+                        produtos = ProdutoDAO.getProdutosPorTermo("%"+request.getParameter("palavraChave"));
+                        session.setAttribute("produtos", produtos);
+                        session.setAttribute("opcao","Titulo");
+                        break;
+                    case "Autor":
+                        produtos = ProdutoDAO.getProdutosPorAutor("%"+request.getParameter("palavraChave"));
+                        session.setAttribute("produtos", produtos);
+                        session.setAttribute("opcao","Autor");
+                        break;
+                    case "Editora":
+                        produtos = ProdutoDAO.getProdutosPorEditora("%"+request.getParameter("palavraChave"));
+                        session.setAttribute("produtos", produtos);
+                        session.setAttribute("opcao","Editora");
+                        break;
+                    case "Genero":
+                        produtos = ProdutoDAO.getProdutosPorGenero("%"+request.getParameter("palavraChave"));
+                        session.setAttribute("produtos", produtos);
+                        session.setAttribute("opcao","Genero");
+                        break;
+                    default:
+                        break;
+                }
             }
+            
             
            
             
-            HttpSession session = request.getSession();
-                 session.setAttribute("produtos", produtos);
+            
                  response.sendRedirect("pesquisa.jsp");
             
-            out.println("</body>");
-            out.println("</html>");
         }
     }
 
