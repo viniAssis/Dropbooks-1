@@ -3,14 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Ricardo/Documents/Faculdade/Quarto%20Semestre/Artur/Dropbooks/src/java/modelDAO/Conecta.java</file>
-            <file>file:/C:/Users/Ricardo/Documents/Faculdade/Quarto%20Semestre/Artur/Dropbooks/src/java/modelDAO/ProdutoDAO.java</file>
-            <file>file:/C:/Users/Ricardo/Documents/Faculdade/Quarto%20Semestre/Artur/Dropbooks/web/testeCadastro.jsp</file>
-            <file>file:/C:/Users/Ricardo/Documents/Faculdade/Quarto%20Semestre/Artur/Dropbooks/src/java/controller/BuscaServlet.java</file>
-            <file>file:/C:/Users/Ricardo/Documents/Faculdade/Quarto%20Semestre/Artur/Dropbooks/src/java/controller/RecupSenhaServlet.java</file>
-            <file>file:/C:/Users/Ricardo/Documents/Faculdade/Quarto%20Semestre/Artur/Dropbooks/src/java/model/Utilitarios.java</file>
-            <file>file:/C:/Users/Ricardo/Documents/Faculdade/Quarto%20Semestre/Artur/Dropbooks/web/testeBusca.html</file>
-            <file>file:/C:/Users/Ricardo/Documents/Faculdade/Quarto%20Semestre/Artur/Dropbooks/src/java/model/Produto.java</file>
+            <file>file:/C:/Users/vinim/Documents/NetBeansProjects/Dropbooks-1-master/src/java/controller/AlterarUsuarioServlet.java</file>
+            <file>file:/C:/Users/vinim/Documents/NetBeansProjects/Dropbooks-1-master/src/java/controller/PesquisarLivrosServlet.java</file>
+            <file>file:/C:/Users/vinim/Documents/NetBeansProjects/Dropbooks-1-master/web/res/css/bootstrap.css</file>
+            <file>file:/C:/Users/vinim/Documents/NetBeansProjects/Dropbooks-1-master/src/java/controller/CadastroProdutoServlet.java</file>
+            <file>file:/C:/Users/vinim/Documents/NetBeansProjects/Dropbooks-1-master/web/testeBusca.html</file>
+            <file>file:/C:/Users/vinim/Documents/NetBeansProjects/Dropbooks-1-master/src/java/controller/CadastroServlet.java</file>
+            <file>file:/C:/Users/vinim/Documents/NetBeansProjects/Dropbooks-1-master/web/cadastroProduto.html</file>
+            <file>file:/C:/Users/vinim/Documents/NetBeansProjects/Dropbooks-1-master/web/contato.html</file>
+            <file>file:/C:/Users/vinim/Documents/NetBeansProjects/Dropbooks-1-master/src/java/modelDAO/ProdutoDAO.java</file>
+            <file>file:/C:/Users/vinim/Documents/NetBeansProjects/Dropbooks-1-master/src/java/modelDAO/Conecta.java</file>
         </group>
     </open-files>
 </project-private>
