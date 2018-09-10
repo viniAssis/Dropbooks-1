@@ -12,6 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.Produto;
 import modelDAO.ProdutoDAO;
 
@@ -45,8 +46,7 @@ public class PesquisarLivrosServlet extends HttpServlet {
             out.println("<h1>Servlet PesquisarLivrosServlet at " + request.getContextPath() + "</h1>");
             
             
-            ArrayList<Produto> produtos = ProdutoDAO.getProdutosPorTermo(request.getParameter("palavraChave"));
-            String teste = request.getParameter("palavraChave");
+            ArrayList<Produto> produtos = ProdutoDAO.getProdutosPorTermo("%"+request.getParameter("palavraChave"));
             out.println("<h1>Senha"+request.getParameter("palavraChave")+"</h1>");
             for(int i = 0; i < produtos.size();i++)
             {
@@ -54,6 +54,12 @@ public class PesquisarLivrosServlet extends HttpServlet {
                  out.println("<p>"+produtos.get(i).getAutor()+"</p>");
             
             }
+            
+           
+            
+            HttpSession session = request.getSession();
+                 session.setAttribute("produtos", produtos);
+                 response.sendRedirect("pesquisa.jsp");
             
             out.println("</body>");
             out.println("</html>");
