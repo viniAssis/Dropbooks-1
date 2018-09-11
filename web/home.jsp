@@ -58,7 +58,7 @@
 
     <nav class="nav nav-pills flex-column flex-sm-row" id="menu">
 			<a class="flex-sm-fill text-sm-center nav-link" href="#">Home</a>
-			<a class="flex-sm-fill text-sm-center nav-link" href="#">Livro</a>
+			<a class="flex-sm-fill text-sm-center nav-link" href="catalogoLivro.jsp">Livro</a>
 			<a class="flex-sm-fill text-sm-center nav-link" href="#">FAQ</a>
 			<a class="flex-sm-fill text-sm-center nav-link" href="Contato.jsp">Contato</a>
     </nav>
@@ -96,16 +96,17 @@
 <!-- Formulário de busca-->
 <div class="container col-md-8 col-lg-offset-6 wrapBusca">
     <div class="row">
-        <form action="#" method="get" id="Pesquisar" class="input-group">
+        <form action="PesquisarLivrosServlet" method="post" id="Pesquisar" class="input-group" name="">
 
             <div class="input-group-btn search-panel">
-                <select name="param_busca" id="param_busca" class="barra_busca btn btn-default dropdown-toggle" data-toggle="dropdown">
-                    <option class="itemBusca" value="buscaTitulo">Título</option>
-                    <option class="itemBusca" value="buscaAutor">Autor</option>
-                    <option class="itemBusca" value="buscaEditora">Editora</option>
+                <select name="opcaoPesquisa" id="param_busca" class="barra_busca btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    <option class="itemBusca" value="Titulo">Título</option>
+                    <option class="itemBusca" value="Autor">Autor</option>
+                    <option class="itemBusca" value="Editora">Editora</option>
+                    <option class="itemBusca" value="Genero">Editora</option>
                 </select>
             </div>
-            <input type="text" class="form-control" name="form" placeholder="Buscar por">
+            <input type="text" class="form-control" name="palavraChave" placeholder="Buscar por">
             <span class="input-group-btn">
             </span>
         </form>     

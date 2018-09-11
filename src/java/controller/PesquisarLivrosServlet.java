@@ -38,32 +38,37 @@ public class PesquisarLivrosServlet extends HttpServlet {
 
             
             
-            
+            String palavraChave  = request.getParameter("palavraChave");
             ArrayList<Produto> produtos = new ArrayList();
             HttpSession session = request.getSession();
-               
+            
+            
             if(null != request.getParameter("opcaoPesquisa")) {
             
                 switch (request.getParameter("opcaoPesquisa")) {
                     case "Titulo":
-                        produtos = ProdutoDAO.getProdutosPorTermo("%"+request.getParameter("palavraChave"));
+                        produtos = ProdutoDAO.getProdutosPorTermo("%"+palavraChave);
                         session.setAttribute("produtos", produtos);
                         session.setAttribute("opcao","Titulo");
+                        session.setAttribute("palavraChave",palavraChave);
                         break;
                     case "Autor":
-                        produtos = ProdutoDAO.getProdutosPorAutor("%"+request.getParameter("palavraChave"));
+                        produtos = ProdutoDAO.getProdutosPorAutor("%"+palavraChave);
                         session.setAttribute("produtos", produtos);
                         session.setAttribute("opcao","Autor");
+                        session.setAttribute("palavraChave",palavraChave);
                         break;
                     case "Editora":
-                        produtos = ProdutoDAO.getProdutosPorEditora("%"+request.getParameter("palavraChave"));
+                        produtos = ProdutoDAO.getProdutosPorEditora("%"+palavraChave);
                         session.setAttribute("produtos", produtos);
                         session.setAttribute("opcao","Editora");
+                        session.setAttribute("palavraChave",palavraChave);
                         break;
                     case "Genero":
-                        produtos = ProdutoDAO.getProdutosPorGenero("%"+request.getParameter("palavraChave"));
+                        produtos = ProdutoDAO.getProdutosPorGenero("%"+palavraChave);
                         session.setAttribute("produtos", produtos);
                         session.setAttribute("opcao","Genero");
+                        session.setAttribute("palavraChave",palavraChave);
                         break;
                     default:
                         break;

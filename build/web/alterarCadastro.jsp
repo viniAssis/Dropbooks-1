@@ -179,26 +179,26 @@
 
 
 		<form id="caixa2">
-			<div class="form-row align-items-center">
+			<div class="form-row align-items-center" method="post" action="PesquisarLivrosServlet">
 				<div class="col-auto my-1">
-					<select class="custom-select mr-sm-2" id="tipoPesquisa">
-					<option>Titulo</option>
-					<option>Autor</option>
-					<option>Editora</option>
-					<option>Genêro</option>
+					<select class="custom-select mr-sm-2" id="tipoPesquisa" name="opcaoPesquisa">
+                                            <option  value="Titulo">Título</option>
+                                            <option  value="Autor">Autor</option>
+                                            <option  value="Editora">Editora</option>
+                                            <option  value="Genero">Genero</option>
 					</select>
 				</div>
 
 				<div class="col-auto col-md-5">
-					<input class="form-control mr-sm-2" type="search" placeholder="Pesquisar" aria-label="Pesquisar" name="pesquisa">
+					<input class="form-control mr-sm-2" type="search" placeholder="Pesquisar" aria-label="Pesquisar" name="palavraChave">
 				</div>
 				<button type="submit" class="btn btn-primary" id="botao1" name="botao1">Pesquisa</button>
 			</div>
 		</form>
 
 		<nav class="nav nav-pills flex-column flex-sm-row" id="menu">
-			<a class="flex-sm-fill text-sm-center nav-link" href="#">Home</a>
-			<a class="flex-sm-fill text-sm-center nav-link" href="#">Livro</a>
+			<a class="flex-sm-fill text-sm-center nav-link" href="home.jsp">Home</a>
+			<a class="flex-sm-fill text-sm-center nav-link" href="catalogoLivro.jsp">Livro</a>
 			<a class="flex-sm-fill text-sm-center nav-link" href="#">FAQ</a>
 			<a class="flex-sm-fill text-sm-center nav-link" href="Contato.jsp">Contato</a>
 		</nav>

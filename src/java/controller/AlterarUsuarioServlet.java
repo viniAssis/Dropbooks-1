@@ -42,6 +42,8 @@ public class AlterarUsuarioServlet extends HttpServlet {
          
          UsuarioDAO.alterarUsuario(user);
          
+         response.sendRedirect("home.jsp");
+         
 
     }
 

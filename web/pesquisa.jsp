@@ -11,7 +11,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Pesquisa</title>
         
           <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -57,10 +57,10 @@
   			<div class="form-row align-items-center">
     			<div class="col-auto my-1">
       					<select class="custom-select mr-sm-2" id="tipoPesquisa" name="opcaoPesquisa">
-                                                        <option>Titulo</option>
-  							<option>Autor</option>
-  							<option>Editora</option>
-  							<option>Genêro</option>
+                                                        <option  value="Titulo">Título</option>
+                                                        <option  value="Autor">Autor</option>
+                                                        <option  value="Editora">Editora</option>
+                                                        <option  value="Genero">Genero</option>
       					</select>
     			</div>
  
@@ -77,18 +77,18 @@
                     if(produtos.size() > 0){
                         
                             String opcao = String.valueOf(session.getAttribute("opcao"));
-                            
+                            String palavraChave = String.valueOf(session.getAttribute("palavraChave"));
                             if(opcao.equals("Titulo"))
-                               out.println("Resultados por titulos: "+produtos.size()+" livros!"); 
+                               out.println("Resultados por titulos com o termo '"+ palavraChave +"' : "+produtos.size()+" livros!"); 
                                 
                             else if(opcao.equals("Autor"))
-                                out.println("Resultados por Autor: "+produtos.size()+" livros!");
+                                out.println("Resultados por Autor com o termo '"+ palavraChave +"' : "+produtos.size()+" livros!");
                                 
                             else if(opcao.equals("Editora"))
-                                out.println("Resultados por Editora: "+produtos.size()+" livros!");
+                                out.println("Resultados por Editora com o termo '"+ palavraChave +"' : "+produtos.size()+" livros!");
                             
                             else if(opcao.equals("Genero"))
-                                out.println("Resultados por Genero: "+produtos.size()+" livros!");
+                                out.println("Resultados por Genero com o termo '"+ palavraChave +"' : "+produtos.size()+" livros!");
  
                     }
                     else

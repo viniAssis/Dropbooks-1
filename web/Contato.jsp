@@ -113,19 +113,19 @@
                 <span class="nome">Droopboks</span>
             </div>
 
-            <form id="caixa2">
+            <form id="caixa2" method="post" action="PesquisarLivrosServlet">
                 <div class="form-row align-items-center">
                     <div class="col-auto my-1">
-                        <select class="custom-select mr-sm-2" id="tipoPesquisa">
-                            <option>Titulo</option>
-                            <option>Autor</option>
-                            <option>Editora</option>
-                            <option>Genêro</option>
+                        <select class="custom-select mr-sm-2" id="tipoPesquisa" name="opcaoPesquisa">
+                            <option  value="Titulo">Título</option>
+                            <option  value="Autor">Autor</option>
+                            <option  value="Editora">Editora</option>
+                            <option  value="Genero">Genero</option>
                         </select>
                     </div>
 
                     <div class="col-auto col-md-8">
-                        <input class="form-control col-md-10" type="text" placeholder="Search">		
+                        <input class="form-control col-md-10" type="text" placeholder="Search" name="palavraChave">		
                     </div>
                     <button type="submit" class="btn btn-primary" id="botao1">Pesquisa</button>
                 </div>
@@ -134,7 +134,7 @@
 
             <nav class="nav nav-pills flex-column flex-sm-row" id="menu">
                 <a class="flex-sm-fill text-sm-center nav-link" href="home.jsp">Home</a>
-                <a class="flex-sm-fill text-sm-center nav-link" href="#">Livro</a>
+                <a class="flex-sm-fill text-sm-center nav-link" href="catalogoLivro.jsp">Livro</a>
                 <a class="flex-sm-fill text-sm-center nav-link" href="#">FAQ</a>
                 <a class="flex-sm-fill text-sm-center nav-link" href="contato.jsp">Contato</a>
             </nav>

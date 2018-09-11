@@ -1,4 +1,6 @@
 
+<%@page import="modelDAO.UsuarioDAO"%>
+<%@page import="model.Usuario"%>
 <%@page import="modelDAO.ProdutoDAO"%>
 <%@page import="model.Produto"%>
 <!doctype html>
@@ -285,7 +287,17 @@
             function redireciona(param) {
                 location.href = param;
             }
+            
+            
         </script>
+        
+        <style>
+            .login,.nome{
+                float: right;
+                font-size: 18px;
+                color: white;
+            }
+        </style>
 
         <%
 
@@ -348,18 +360,63 @@
     <body>   
         <div class="container-fluid">
 
-            <div class="cabecalho">
-                <a href="#" class="login">Login/Registra-se</a>
-                <span class="nome">Droopboks</span>
-            </div> 
-            <form id="caixa2">
-                <div class="form-row align-items-center">
+            <!--<div class="cabecalho">
+                
+                <%
+                    //if(session.getAttribute("email") != null){
+                        
+                       //String email = request.getSession().getAttribute("email").toString();
+
+                       //Usuario user = new UsuarioDAO().getUsuario(email);    
+                       //out.print("<a class=nav-item nav-link href=alterarCadastro.jsp>Bem Vindo(a) "+user.getNomeRazao() +"</a>");
+                   //}else{
+                      // out.print("<a class=nav-item nav-link href=login.jsp>Login</a>");
+                      // out.print("<a class=nav-item nav-link href=cadastro.html>Registrar-se</a>");
+                    //}
+                
+                
+                %> --> 
+                
+                <!--<a href="#" class="login">Login/Registra-se</a>-->
+                
+                
+               <!-- <span class="nome">Droopboks</span>
+            </div>--> 
+               
+              <nav class="navbar navbar-expand-md  ">	
+    <a class="navbar-brand" href="#">Dropbooks</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+     <span class="navbar-toggler-icon"></span>
+ </button>
+
+ <div class="collapse navbar-collapse " id="navbarNavAltMarkup">
+     <div class="navbar-nav ml-auto">
+            <%
+
+                   if(session.getAttribute("email") != null){
+                        
+                       String email = request.getSession().getAttribute("email").toString();
+
+                       Usuario user = new UsuarioDAO().getUsuario(email);    
+                       out.print("<a class=nav-item nav-link href=alterarCadastro.jsp>Bem Vindo(a) "+user.getNomeRazao() +"</a>");
+                    }else{
+                       out.print("<a class=nav-item nav-link href=login.jsp>Login</a>");
+                       out.print("<a class=nav-item nav-link href=cadastro.html>Registrar-se</a>");
+                    }
+   
+            %>  
+    </div><!-- fim da class que ajusta o nav  -->
+</div><!-- Fim do nav collapse-->
+</nav> <!--fim do nav--><br> 
+               
+            <form id="caixa2" method="post" name="PesquisarLivrosServlet">
+                <div class="form-row align-items-center" >
                     <div class="col-auto my-1">
-                        <select class="custom-select mr-sm-2" id="tipoPesquisa">
-                            <option>Titulo</option>
-                            <option>Autor</option>
-                            <option>Editora</option>
-                            <option>Genêro</option>
+                        <select class="custom-select mr-sm-2" id="tipoPesquisa" name="opcaoPesquisa">
+                            <option  value="Titulo">Título</option>
+                            <option  value="Autor">Autor</option>
+                            <option  value="Editora">Editora</option>
+                            <option  value="Genero">Genero</option>
                         </select>
                     </div>
 
@@ -372,10 +429,10 @@
 
 
             <nav class="nav nav-pills flex-column flex-sm-row" id="menu">
-                <a class="flex-sm-fill text-sm-center nav-link" href="#">Home</a>
+                <a class="flex-sm-fill text-sm-center nav-link" href="home.jsp">Home</a>
                 <a class="flex-sm-fill text-sm-center nav-link" href="#">Livro</a>
                 <a class="flex-sm-fill text-sm-center nav-link" href="#">FAQ</a>
-                <a class="flex-sm-fill text-sm-center nav-link" href="contato.html">Contato</a>
+                <a class="flex-sm-fill text-sm-center nav-link" href="contato.jsp">Contato</a>
             </nav>
         </div>
 
