@@ -149,7 +149,9 @@
           
           <% 
             //Usuario user = new Usuario();
+
             String email = request.getSession().getAttribute("email").toString();
+
             
             Usuario user = new UsuarioDAO().getUsuario(email);
 
@@ -167,12 +169,14 @@
           
   </head>
   <body>
+
 	 	<div class="container-fluid">
 		
 		<div class="cabecalho">
 			<p class="login">Bem Vindo(a)<%= user.getNomeRazao()%></p>
 			<span class="drop">Droopboks</span>
 		</div>
+
 
 		<form id="caixa2">
 			<div class="form-row align-items-center">

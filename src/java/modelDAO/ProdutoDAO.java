@@ -4,10 +4,9 @@ import model.Produto;
 import java.sql.*;
 import java.util.ArrayList;
 
-
 public class ProdutoDAO {
     
-    public static Produto getProduto(String id) {
+    public static Produto getProduto(int id) {
         
         Produto produto = new Produto();
         
@@ -15,7 +14,7 @@ public class ProdutoDAO {
             Connection con = Conecta.getConexao();
             String sql = "SELECT * FROM produto WHERE id=?";
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setString(1, id);
+            ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             
             if(rs.next()){
@@ -120,6 +119,7 @@ public class ProdutoDAO {
         return produtos;
     }
     
+
     public static ArrayList<Produto> getProdutosPorAutor(String autor) {
         
         ArrayList <Produto> produtos = new ArrayList();
@@ -240,7 +240,8 @@ public class ProdutoDAO {
     
     }
     
-    public static ArrayList<Produto> getProdutos(String id_usuario) {
+    public static ArrayList<Produto> getProdutos(int id_usuario) {
+
         
         ArrayList <Produto> produtos = new ArrayList();
         
@@ -248,7 +249,7 @@ public class ProdutoDAO {
             Connection con = Conecta.getConexao();
             String sql = "SELECT * FROM produto WHERE id_usuario=?";
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setString(1, id_usuario);
+            ps.setInt(1, id_usuario);
             ResultSet rs = ps.executeQuery();
             
             while(rs.next()){
@@ -279,6 +280,87 @@ public class ProdutoDAO {
 
         return produtos;
     }
+    
+    public static String ativadoDesativado(Produto produto) {
+
+     String resp = "";
+
+     try {
+         Connection con = Conecta.getConexao();
+         String sql = "UPDATE produto SET ativo=? WHERE id=?";
+         PreparedStatement ps = con.prepareStatement(sql);
+         ps.setInt(1, produto.getAtivo());
+
+         ps.setString(2, Integer.toString(produto.getId()));
+
+         ps.execute();
+
+         ps.close();
+         con.close();
+
+         resp = "OK";
+
+        } catch (Exception e) {
+            resp = e.toString();
+        }
+
+        return resp;
+    } 
+    
+    public static String alterarProduto(Produto produto) {
+
+     String resp = "";
+
+     try {
+         Connection con = Conecta.getConexao();
+         String sql = "UPDATE produto SET quantidade=?, titulo=?, autor=?, editora=?, dataPublicacao=?, descricao=?, preco=? WHERE id=?";
+         PreparedStatement ps = con.prepareStatement(sql);
+         ps.setInt(1, produto.getQuantidade());
+         ps.setString(2, produto.getTitulo());
+         ps.setString(3, produto.getAutor());
+         ps.setString(4, produto.getEditora());
+         ps.setString(5, produto.getDataPublicacao().toString());
+         ps.setString(6, produto.getDescricao());
+         ps.setFloat(7, produto.getPreco());
+         //ps.setString(7, produto.getIdioma());
+         //ps.setString(8, produto.getGenero());
+
+         ps.setString(8, Integer.toString(produto.getId()));
+
+         ps.execute();
+
+         ps.close();
+         con.close();
+
+         resp = "OK";
+
+        } catch (Exception e) {
+            resp = e.toString();
+        }
+
+        return resp;
+    } 
+    
+    public static String excluirProduto(String idProduto) {
+    String resp = "";
+    try {
+        Connection con = Conecta.getConexao();
+        String sql = "DELETE FROM produto WHERE id = ?";
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setString(1, idProduto);
+
+        ps.execute();
+
+        ps.close();
+        con.close();
+
+        resp="ok";
+        }catch (Exception e){
+            resp = e.toString();
+        }
+        return resp;
+    }
+        
 }
     
     

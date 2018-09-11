@@ -6,43 +6,57 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Produto;
 import model.Usuario;
+import modelDAO.ProdutoDAO;
 import modelDAO.UsuarioDAO;
 
 /**
  *
- * @author Caique
+ * @author Elaine
  */
-@WebServlet(name = "AlterarUsuarioServlet", urlPatterns = {"/AlterarUsuarioServlet"})
-public class AlterarUsuarioServlet extends HttpServlet {
+@WebServlet(name = "AlterarProdutoServlet", urlPatterns = {"/AlterarProdutoServlet"})
+public class AlterarProdutoServlet extends HttpServlet {
 
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-         String _email = request.getSession().getAttribute("email").toString();
+        //String _email = request.getSession().getAttribute("email").toString();
          
-         Usuario user = new UsuarioDAO().getUsuario(_email);
-
-         user.setNomeRazao(request.getParameter("hNome")); 
-         user.setEmail(request.getParameter("hEmail"));
-         user.setSexo(request.getParameter("sexoPessoa"));
-         user.setEstado(request.getParameter("hEstado"));
-         user.setTelefone(request.getParameter("hTelefone")); 
-         user.setNumero(request.getParameter("hNumero")); 
-         user.setCidade(request.getParameter("hCidade"));
-         user.setComplemento(request.getParameter("hComplemento"));
-         user.setBairro(request.getParameter("hBairro")); 
-         user.setCep(request.getParameter("hCEP"));
-         user.setDataNascimento(Usuario.toSqlDate(request.getParameter("hData")));
+         //Usuario user = new UsuarioDAO().getUsuario(_email);
          
-         UsuarioDAO.alterarUsuario(user);
+         Produto prod = new ProdutoDAO().getProduto(1);
          
 
+         prod.setTitulo(request.getParameter("namelivro")); 
+         prod.setAutor(request.getParameter("nameAutor"));
+         prod.setEditora(request.getParameter("nameEditora"));
+         prod.setPreco(Float.parseFloat(request.getParameter("valor")));
+         prod.setDescricao(request.getParameter("descricaoProduto")); 
+         prod.setGenero(request.getParameter("menuGenero"));
+         prod.setIdioma(request.getParameter("menuIdioma"));
+         //prod.setBairro(request.getParameter("inputFoto")); 
+         prod.setDataPublicacao(Usuario.toSqlDate(request.getParameter("anoLancamento")));
+         
+         ProdutoDAO.alterarProduto(prod);
+         
+        // Recarregar a página
+        response.sendRedirect("./catalogoLivro.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -54,7 +68,7 @@ public class AlterarUsuarioServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    @Override 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
