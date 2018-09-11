@@ -119,7 +119,129 @@ public class ProdutoDAO {
         return produtos;
     }
     
+
+    public static ArrayList<Produto> getProdutosPorAutor(String autor) {
+        
+        ArrayList <Produto> produtos = new ArrayList();
+        
+        try {
+            Connection con = Conecta.getConexao();
+            String sql = "SELECT * FROM produto WHERE autor LIKE ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, autor + "%");
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){
+                Produto produto = new Produto();
+                produto.setDataPublicacao(rs.getDate("dataPublicacao"));
+                produto.setDataRegistro(rs.getDate("dataRegistro"));
+                produto.setPreco(rs.getFloat("preco"));
+                produto.setId_usuario(rs.getInt("id_usuario"));
+                produto.setId(rs.getInt("id"));
+                produto.setQuantidade(rs.getInt("quantidade"));
+                produto.setAtivo(rs.getInt("ativo"));
+                produto.setAutor(rs.getString("autor"));
+                produto.setEditora(rs.getString("editora"));
+                produto.setDescricao(rs.getString("descricao"));
+                produto.setTitulo(rs.getString("titulo"));
+                produto.setGenero(rs.getString("genero"));
+                produto.setIdioma(rs.getString("idioma"));
+                produtos.add(produto);
+            }
+            
+            rs.close();
+            ps.close();
+            con.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return produtos;
+    }
+    
+    public static ArrayList<Produto> getProdutosPorEditora(String editora){
+            ArrayList <Produto> produtos = new ArrayList();
+        
+        try {
+            Connection con = Conecta.getConexao();
+            String sql = "SELECT * FROM produto WHERE editora LIKE ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, editora + "%");
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){
+                Produto produto = new Produto();
+                produto.setDataPublicacao(rs.getDate("dataPublicacao"));
+                produto.setDataRegistro(rs.getDate("dataRegistro"));
+                produto.setPreco(rs.getFloat("preco"));
+                produto.setId_usuario(rs.getInt("id_usuario"));
+                produto.setId(rs.getInt("id"));
+                produto.setQuantidade(rs.getInt("quantidade"));
+                produto.setAtivo(rs.getInt("ativo"));
+                produto.setAutor(rs.getString("autor"));
+                produto.setEditora(rs.getString("editora"));
+                produto.setDescricao(rs.getString("descricao"));
+                produto.setTitulo(rs.getString("titulo"));
+                produto.setGenero(rs.getString("genero"));
+                produto.setIdioma(rs.getString("idioma"));
+                produtos.add(produto);
+            }
+            
+            rs.close();
+            ps.close();
+            con.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return produtos;
+    
+    }
+    
+    public static ArrayList<Produto> getProdutosPorGenero(String genero){
+             ArrayList <Produto> produtos = new ArrayList();
+        
+        try {
+            Connection con = Conecta.getConexao();
+            String sql = "SELECT * FROM produto WHERE genero LIKE ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, genero + "%");
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){
+                Produto produto = new Produto();
+                produto.setDataPublicacao(rs.getDate("dataPublicacao"));
+                produto.setDataRegistro(rs.getDate("dataRegistro"));
+                produto.setPreco(rs.getFloat("preco"));
+                produto.setId_usuario(rs.getInt("id_usuario"));
+                produto.setId(rs.getInt("id"));
+                produto.setQuantidade(rs.getInt("quantidade"));
+                produto.setAtivo(rs.getInt("ativo"));
+                produto.setAutor(rs.getString("autor"));
+                produto.setEditora(rs.getString("editora"));
+                produto.setDescricao(rs.getString("descricao"));
+                produto.setTitulo(rs.getString("titulo"));
+                produto.setGenero(rs.getString("genero"));
+                produto.setIdioma(rs.getString("idioma"));
+                produtos.add(produto);
+            }
+            
+            rs.close();
+            ps.close();
+            con.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return produtos;
+    
+    }
+    
     public static ArrayList<Produto> getProdutos(int id_usuario) {
+
         
         ArrayList <Produto> produtos = new ArrayList();
         
@@ -240,3 +362,6 @@ public class ProdutoDAO {
     }
         
 }
+    
+    
+   
