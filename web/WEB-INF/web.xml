@@ -8,6 +8,10 @@
         <servlet-name>PerfilServlet</servlet-name>
         <servlet-class>controller.PerfilServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PesquisarLivrosServlet</servlet-name>
+        <servlet-class>controller.PesquisarLivrosServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -24,12 +28,16 @@
         <servlet-name>PerfilServlet</servlet-name>
         <url-pattern>/PerfilServlet</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PesquisarLivrosServlet</servlet-name>
+        <url-pattern>/PesquisarLivrosServlet</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>Senha.html</welcome-file>
+        <welcome-file>login.jsp</welcome-file>
     </welcome-file-list>
 </web-app>
