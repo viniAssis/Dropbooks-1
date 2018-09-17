@@ -3,10 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/vinim/Documents/NetBeansProjects/Dropbooks-1-master/src/java/controller/AlterarUsuarioServlet.java</file>
             <file>file:/C:/Users/vinim/Documents/NetBeansProjects/Dropbooks-1-master/web/testeBusca.html</file>
             <file>file:/C:/Users/vinim/Documents/NetBeansProjects/Dropbooks-1-master/src/java/model/Usuario.java</file>
+            <file>file:/C:/Users/vinim/Documents/NetBeansProjects/Dropbooks-1-master/web/pesquisa.jsp</file>
             <file>file:/C:/Users/vinim/Documents/NetBeansProjects/Dropbooks-1-master/web/catalogoLivro.jsp</file>
             <file>file:/C:/Users/vinim/Documents/NetBeansProjects/Dropbooks-1-master/src/java/modelDAO/UsuarioDAO.java</file>
+            <file>file:/C:/Users/vinim/Documents/NetBeansProjects/Dropbooks-1-master/web/cadastro.html</file>
+            <file>file:/C:/Users/vinim/Documents/NetBeansProjects/Dropbooks-1-master/src/java/model/Utilitarios.java</file>
         </group>
     </open-files>
 </project-private>
