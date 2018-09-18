@@ -1,6 +1,7 @@
 
 <%@page import="modelDAO.UsuarioDAO"%>
 <%@page import="model.Usuario"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="modelDAO.ProdutoDAO"%>
 <%@page import="model.Produto"%>
 <!doctype html>
@@ -16,6 +17,7 @@
         <!-- Principal CSS do Bootstrap -->
         <link href="res/css/bootstrap.min.css" rel="stylesheet">
         <link href="res/js/dist/dropdown.js" rel="stylesheet">
+        
         <style>
             .cabecalho{
                 height: 40px;	
@@ -283,140 +285,39 @@
             }
 
         </style> 
+                
         <script type="text/javascript">
             function redireciona(param) {
                 location.href = param;
             }
-            
-            
         </script>
-        
-        <style>
-            .login,.nome{
-                float: right;
-                font-size: 18px;
-                color: white;
-            }
-        </style>
-
         <%
-
-                
-            // ID do produto
-            int id = 1;
-            // Está criando um produto, passado pelo ID
-            Produto prod = new ProdutoDAO().getProduto(id);
-           
-            String titulo, autor, editora, publicacao, descricao, genero, idioma, status = null;
-            float valor;
+        String email = request.getSession().getAttribute("email").toString();
+		   
+            Usuario user = new UsuarioDAO().getUsuario(email);
+            Produto pro = new ProdutoDAO().getProduto(user.getId());
             
-            if(prod != null) {
-              titulo = prod.getTitulo();
-              autor = prod.getAutor();
-              valor = prod.getPreco();
-              editora = prod.getEditora();
-              publicacao = String.valueOf(prod.getDataPublicacao());
-              descricao = prod.getDescricao();
-              genero = prod.getGenero();
-              idioma = prod.getIdioma();
-              //foto = prod.getFoto();
-              
-              
-              
-              
-                // Retorna o status do produto
-                if (prod.getAtivo() == 1) {
-                    status = "checked";
-                } else if (prod.getAtivo() == 0) {
-                    status = null;
-                } else {
-
-                }
-             
-            
-            } else {
-              titulo = "";
-              autor = "";
-              valor = 0.0f;
-              publicacao = "";
-              editora = "";
-              descricao = "";
-              genero = "";
-              idioma = "";
-              //foto = "";
-            }
-            
-
-
-            
-
-            
-            
-            
-
         %>
-
     </head>
     <body>   
         <div class="container-fluid">
 
-            <!--<div class="cabecalho">
-                
+            <div class="cabecalho">
                 <%
-                    //if(session.getAttribute("email") != null){
-                        
-                       //String email = request.getSession().getAttribute("email").toString();
 
-                       //Usuario user = new UsuarioDAO().getUsuario(email);    
-                       //out.print("<a class=nav-item nav-link href=alterarCadastro.jsp>Bem Vindo(a) "+user.getNomeRazao() +"</a>");
-                   //}else{
-                      // out.print("<a class=nav-item nav-link href=login.jsp>Login</a>");
-                      // out.print("<a class=nav-item nav-link href=cadastro.html>Registrar-se</a>");
-                    //}
-                
-                
-                %> --> 
-                
-                <!--<a href="#" class="login">Login/Registra-se</a>-->
-                
-                
-               <!-- <span class="nome">Droopboks</span>
-            </div>--> 
-               
-              <nav class="navbar navbar-expand-md  ">	
-    <a class="navbar-brand" href="#">Dropbooks</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-     <span class="navbar-toggler-icon"></span>
- </button>
+                    out.print("<a href=alterarCadastro.jsp class=login>"+user.getNomeRazao()+"</a>");
 
- <div class="collapse navbar-collapse " id="navbarNavAltMarkup">
-     <div class="navbar-nav ml-auto">
-            <%
-
-                   if(session.getAttribute("email") != null){
-                        
-                       String email = request.getSession().getAttribute("email").toString();
-
-                       Usuario user = new UsuarioDAO().getUsuario(email);    
-                       out.print("<a class=nav-item nav-link href=alterarCadastro.jsp>Bem Vindo(a) "+user.getNomeRazao() +"</a>");
-                    }else{
-                       out.print("<a class=nav-item nav-link href=login.jsp>Login</a>");
-                       out.print("<a class=nav-item nav-link href=cadastro.html>Registrar-se</a>");
-                    }
-   
-            %>  
-    </div><!-- fim da class que ajusta o nav  -->
-</div><!-- Fim do nav collapse-->
-</nav> <!--fim do nav--><br> 
-               
-            <form id="caixa2" method="post" name="PesquisarLivrosServlet">
-                <div class="form-row align-items-center" >
+                %>
+                <span class="nome">Droopboks</span>
+            </div> 
+            <form id="caixa2">
+                <div class="form-row align-items-center">
                     <div class="col-auto my-1">
-                        <select class="custom-select mr-sm-2" id="tipoPesquisa" name="opcaoPesquisa">
-                            <option  value="Titulo">Título</option>
-                            <option  value="Autor">Autor</option>
-                            <option  value="Editora">Editora</option>
-                            <option  value="Genero">Genero</option>
+                        <select class="custom-select mr-sm-2" id="tipoPesquisa">
+                            <option>Titulo</option>
+                            <option>Autor</option>
+                            <option>Editora</option>
+                            <option>Genêro</option>
                         </select>
                     </div>
 
@@ -429,574 +330,205 @@
 
 
             <nav class="nav nav-pills flex-column flex-sm-row" id="menu">
-                <a class="flex-sm-fill text-sm-center nav-link" href="home.jsp">Home</a>
+                <a class="flex-sm-fill text-sm-center nav-link" href="#">Home</a>
                 <a class="flex-sm-fill text-sm-center nav-link" href="#">Livro</a>
                 <a class="flex-sm-fill text-sm-center nav-link" href="#">FAQ</a>
-                <a class="flex-sm-fill text-sm-center nav-link" href="contato.jsp">Contato</a>
+                <a class="flex-sm-fill text-sm-center nav-link" href="contato.html">Contato</a>
             </nav>
         </div>
+<%
+    
+        out.println("<div id= 'container1'>");
 
-        <div id= "container1">
+            out.println("<h4 class='titulo'>Catálogo do Livro</h4>");
+                 
+            out.println("<div id='container' >	");
+                out.println("<table>");
+                    
+        
+            // TODO Pegar id_usuario da sessao
+            int id_usuario = pro.getId_usuario();
+            
+            ArrayList<Produto> lista = new ProdutoDAO().getProdutos(id_usuario);       
+                
+            for(int i=0; i<lista.size(); i++) {
+                
+                String status = null;
 
-            <h4 class="titulo">Catálogo do Livro</h4>
-            <div id="container" >	
-                <table>
-                    <tr>
-                        <td class="caixa">
-                            <img src="https://images.livrariasaraiva.com.br/imagemnet/imagem.aspx/?pro_id=2870760&qld=90&l=430&a=-1" width="200" height = "200"  alt="">
-                            <p> Titulo: <span name="titulo" id="texto"><%= titulo %></span></p>
-                            <p> Autor:  <span name="autor" id="autor"><%= autor %></span></p>
-                            <p> Valor: R&#36;: <span name="valor" id="valor"><%= valor %></span></p>
+                // Retorna o status do produto
+                if (lista.get(i).getAtivo()== 1) {
+                    status = "checked";
+                } else if (lista.get(i).getAtivo()== 0) {
+                    status = "";
+                } else {
 
-                            <!-- Botão para acionar modal BOTAO EDITAR -->
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ExemploModalCentralizado" name="editar" id="idEditar">
-                                Editar
-                            </button>
+                }
 
-                            <!-- Modal -->
-                            <div class="modal fade" id="ExemploModalCentralizado" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="TituloModalCentralizado">Editar Catálogo</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <center>
-                                                <form method="post" action="AlterarProdutoServlet" name="ed_catalogo">
-                                                    <table>
-                                                        <tr>
-                                                            <td class="formLivro">Titulo do Livro:</td>
-                                                            <td style="color:black">
-                                                                <input type="text" class="input" name="namelivro" id="namelivro" placeholder="" value="<%= titulo %>">
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="formLivro">Nome do Autor: </td>
-                                                            <td style="color:black">
-                                                                <input type="text" class="input" name="nameAutor" id="nameAutor" placeholder="" value="<%= autor %>">
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="formLivro">Nome da Editora: </td>
-                                                            <td style="color:black">
-                                                                <input type="text" class="input" name="nameEditora" id="nameEditora" placeholder="" value="<%= editora %>">
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="formLivro">Ano de Lançamento: </td>
-                                                            <td style="color:black">
-                                                                <input type="date" class="input" name="anoLancamento" id="anoLancamento" placeholder=""  value="<%= publicacao %>">
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="formLivro">Valor do Livro: </td>
-                                                            <td style="color:black">
-                                                                <input type="text"  class="input" name="valor" id="idValor" placeholder="" value="<%= valor %>">
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="formLivro">Descrição: </td>
-                                                            <td style="color:black">
-                                                                <textarea class="form-control input" id="descricao" name="descricaoProduto" value="" placeholder="" rows="3" ><%= descricao %></textarea>
-                                                            </td>
-                                                        </tr>
+                //out.println("<td><a href='index.jsp?rgm=" + lista.get(i).getId()+ "'>" + lista.get(i).getId()+ "</a></td>");
+             
+                 //out.println("<tr>");
+                
 
-                                                    </table>
-                                                    <div class="dropdown" id="dropdown1">
-                                                        <button class="btn  dropdown-toggle" type="button" id="idGenero" name="menuGenero" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" value="<%= genero %>">Gênero</button>
-                                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                            <a class="dropdown-item" href="#" name="drama" id="drama">Drama</a>
-                                                            <a class="dropdown-item" href="#" name="acao" id="acao">Ação</a>
-                                                            <a class="dropdown-item" href="#" name="aventura" id="aventura">Aventura</a>
-                                                            <a class="dropdown-item" href="#" name="comedia" id="comedia">Comédia</a>
-                                                            <a class="dropdown-item" href="#" name="fantasia" id="fantasia">Fantasia</a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="dropdown" id="dropdown2">    
-                                                        <button class="btn  dropdown-toggle" type="button" id="idIdioma" name="menuIdioma" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" value="<%= idioma %>">Idioma</button>
-                                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                            <a class="dropdown-item" href="#" name="idiomaPortugues" id="idiomaPortugues">Português</a>
-                                                            <a class="dropdown-item" href="#" name="idiomaIngles" id="idiomaIngles">Inglês</a>
-                                                        </div>
-                                                    </div>
+                    out.println("<td class='caixa'>");
+                            out.println("<img src='https://images.livrariasaraiva.com.br/imagemnet/imagem.aspx/?pro_id=2870760&qld=90&l=430&a=-1' width='200' height = '200'  alt=''>");
+                            
+                            //out.println("<p> ID: <span name='id' id='id'>" + lista.get(i).getId()+ "</span></p>");
+                            out.println("<p> Titulo: <span name='titulo' id='texto'>" + lista.get(i).getTitulo()+ "</span></p>");
+                            out.println("<p> Autor:  <span name='autor' id='autor'>" + lista.get(i).getAutor()+ "</span></p>");
+                            out.println("<p> Valor: R&#36;: <span name='valor' id='valor'>" + lista.get(i).getPreco()+ "</span></p>");
 
-                                                    <div class="input-group mb-3">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text" id="inputGroupFileAddon01">Alterar Foto</span>
-                                                        </div>
-                                                        <div class="custom-file">
-                                                            <input type="file" class="custom-file-input" id="inputFoto" name="inputFoto"aria-describedby="inputGroupFileAddon01">
-                                                            <label class="custom-file-label" for="inputGroupFile01"></label>
-                                                        </div>
-                                                    </div>
-                                                    <br>
-                                                    <button type="submit" class="btn btn-primary" name="editar_catalogo" id="edcatalogo">Editar Catálogo</button>
-                                                </form>
-                                            </center>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            // <!-- Botão para acionar modal BOTAO EDITAR -->
+                            out.println("<button type='button' class='btn btn-primary' data-toggle='modal' data-target='#ExemploModalCentralizado' name='editar' id='idEditar'>");
+                                out.println("Editar");
+                            out.println("</button>");
 
-                            <!-- Botão para acionar modal BOTAO EXCLUIR -->
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalExemplo" name="excluir" id="idExcluir">
-                                Excluir
-                            </button>
+                            // <!-- Modal -->
+                            out.println("<div class='modal fade' id='ExemploModalCentralizado' tabindex='-1' role='dialog' aria-labelledby='TituloModalCentralizado' aria-hidden='true'>");
+                                out.println("<div class='modal-dialog modal-dialog-centered' role='document'>");
+                                    out.println("<div class='modal-content'>");
+                                        out.println("<div class='modal-header'>");
+                                            out.println("<h5 class='modal-title' id='TituloModalCentralizado'>Editar Catálogo</h5>");
+                                            out.println("<button type='button' class='close' data-dismiss='modal' aria-label='Fechar'>");
+                                                out.println("<span aria-hidden='true'>&times;</span>");
+                                            out.println("</button>");
+                                        out.println("</div>");
+                                        out.println("<div class='modal-body'>");
+                                            out.println("<center>");
+                                                out.println("<form method='post' action='AlterarProdutoServlet?id=" + lista.get(i).getId() + "' name='ed_catalogo'>");
+                                                    out.println("<table>");
+                                                        out.println("<tr>");
+                                                            out.println("<td class='formLivro'>Titulo do Livro:</td>");
+                                                            //out.println("<p> ID: <span name='id' id='id'>" + lista.get(i).getId() + "</span></p>");
+                                                            out.println("<td style='color:black'>");
+                                                                out.println("<input type='text' class='input' name='namelivro' id='namelivro' placeholder='' value='" + lista.get(i).getTitulo()+ "'>");
+                                                            out.println("</td>");
+                                                        out.println("</tr>");
+                                                        out.println("<tr>");
+                                                            out.println("<td class='formLivro'>Nome do Autor: </td>");
+                                                            out.println("<td style='color:black'>");
+                                                                out.println("<input type='text' class='input' name='nameAutor' id='nameAutor' placeholder='' value='" + lista.get(i).getAutor()+ "'>");
+                                                            out.println("</td>");
+                                                        out.println("</tr>");
+                                                        out.println("<tr>");
+                                                            out.println("<td class='formLivro'>Nome da Editora: </td>");
+                                                            out.println("<td style='color:black'>");
+                                                                out.println("<input type='text' class='input' name='nameEditora' id='nameEditora' placeholder='' value='" + lista.get(i).getEditora()+ "'>");
+                                                            out.println("</td>");
+                                                        out.println("</tr>");
+                                                        out.println("<tr>");
+                                                            out.println("<td class='formLivro'>Ano de Lançamento: </td>");
+                                                            out.println("<td style='color:black'>");
+                                                                out.println("<input type='date' class='input' name='anoLancamento' id='anoLancamento' placeholder=''  value='" + lista.get(i).getDataPublicacao()+ "'>");
+                                                            out.println("</td>");
+                                                        out.println("</tr>");
+                                                        out.println("<tr>");
+                                                            out.println("<td class='formLivro'>Valor do Livro: </td>");
+                                                            out.println("<td style='color:black'>");
+                                                                out.println("<input type='text'  class='input' name='valor' id='idValor' placeholder='' value='" + lista.get(i).getPreco()+ "'>");
+                                                            out.println("</td>");
+                                                        out.println("</tr>");
+                                                        out.println("<tr>");
+                                                            out.println("<td class='formLivro'>Descrição: </td>");
+                                                            out.println("<td style='color:black'>");
+                                                                out.println("<textarea class='form-control input' id='descricao' name='descricaoProduto' value='' placeholder='' rows='3' >" + lista.get(i).getDescricao()+ "</textarea>");
+                                                            out.println("</td>");
+                                                        out.println("</tr>");
 
-                            <!-- Modal -->
-                            <div class="modal fade" id="modalExemplo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Atenção !!!</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            Você tem certeza que quer excluir esse livro do seu catálogo? 
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-primary" name="confirmar" id="idConfirmar" onClick="redireciona('ExcluirProdutoServlet');">Sim</button>
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal" name="fechar" id="idFechar">Fechar</button>  
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                                                    out.println("</table>");
+                                                    out.println("<div class='dropdown' id='dropdown1'>");
+                                                        out.println("<div class='dropdown'>");
+                                                            out.println("<label class='formLivro'>Gênero</label>");
+                                                            out.println("<select class='btn  dropdown-toggle' id='idGenero' name='menuGenero' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false' value=''>");
+                                                                out.println("<option>" + lista.get(i).getGenero()+ "</option>");
+                                                                out.println("<option>Drama</option>");
+                                                                out.println("<option>Ação</option>");
+                                                                out.println("<option>Aventura</option>");
+                                                                out.println("<option>Comédia</option>");
+                                                                out.println("<option>Fantasia</option>");
+                                                            out.println("</select>");
 
-                            <div class="sliderCheck">
-                                <label class="switch">
-                                    <input type="checkbox" name="statusCheckbox1" <%= status %> onClick="redireciona('StatusProdutoServlet');">
-                                    <span class="slider round"></span>
-                                </label>
-                            </div>
-                        </td>
+                                                        out.println("</div>");
+                                                    out.println("</div>");
+                                                    out.println("<div class='dropdown' id='dropdown2'>");
+                                                        out.println("<div class='dropdown'>");
+                                                            out.println("<label class='formLivro'>Idioma</label>");
+                                                            out.println("<select class='btn  dropdown-toggle' id='idIdioma' name='menuIdioma' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false' value=''>");
+                                                                out.println("<option>" + lista.get(i).getIdioma()+ "</option>");
+                                                                out.println("<option>Português</option>");
+                                                                out.println("<option>Inglês</option>");
+                                                            out.println("</select>");
 
-                        <td class="caixa">
-                            <img src="https://images.livrariasaraiva.com.br/imagemnet/imagem.aspx/?pro_id=2870760&qld=90&l=430&a=-1" width="200" height = "200"  alt="">
-                            <p> Titulo: <span name="titulo" id="texto"> </span></p>
-                            <p> Autor:  <span name="autor" id="autor"></span></p>
-                            <p> Valor: R&#36;: <span name="valor" id="valor">0.0</span></p>
+                                                        out.println("</div>");
+                                                    out.println("</div>");
+                                                    
+                                                     out.println("<div class='input-group mb-3'>");
+                                                        out.println("<div class='input-group-prepend'>");
+                                                            out.println("<span class='input-group-text' id='inputGroupFileAddon01'>Alterar Foto</span>");
+                                                        out.println("</div>");
+                                                        out.println("<div class='custom-file'>");
+                                                            out.println("<input type='file' class='custom-file-input' id='inputFoto' name='inputFoto' aria-describedby='inputGroupFileAddon01'>");
+                                                            out.println("<label class='custom-file-label' for='inputGroupFile01'></label>");
+                                                        out.println("</div>");
+                                                    out.println("</div>");
+                                                    out.println("<br>");
+                                                    out.println("<button type='submit' class='btn btn-primary' name='editar_catalogo' id='edcatalogo'>Editar Catálogo</button>");
+                                                out.println("</form>");
+                                            out.println("</center>");
+                                        out.println("</div>");
+                                    out.println("</div>");
+                                out.println("</div>");
+                            out.println("</div>");
 
-                            <!-- Botão para acionar modal BOTAO EDITAR -->
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ExemploModalCentralizado" name="editar" id="idEditar">
-                                Editar
-                            </button>
+                            // <!-- Botão para acionar modal BOTAO EXCLUIR -->
+                            out.println("<button type='button' class='btn btn-primary' data-toggle='modal' data-target='#modalExemplo' name='excluir' id='idExcluir'>");
+                                out.println("Excluir");
+                            out.println("</button>");
 
-                            <!-- Modal -->
-                            <div class="modal fade" id="ExemploModalCentralizado" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="TituloModalCentralizado">Editar Catálogo</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <center>
-                                                <form method="post" action" "name="ed_catalogo">
-                                                      <table>
-                                                        <tr>
-                                                            <td class="formLivro">Titulo do Livro:</td>
-                                                            <td style="color:black">
-                                                                <input type="text" class="input" name="namelivro" id="namelivro" placeholder="">
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="formLivro">Nome do Autor: </td>
-                                                            <td style="color:black">
-                                                                <input type="text" class="input" name="nameAutor" id="nameAutor" placeholder="">
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="formLivro">Nome da Editora: </td>
-                                                            <td style="color:black">
-                                                                <input type="text" class="input" name="nameEditora" id="nameEditora" placeholder="">
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="formLivro">Ano de Lançamento: </td>
-                                                            <td style="color:black">
-                                                                <input type="date" class="input" name="anoLancamento" id="anoLancamento" placeholder="">
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="formLivro">Valor do Livro: </td>
-                                                            <td style="color:black">
-                                                                <input type="text"  class="input" name="valor" id="idValor" placeholder="">
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="formLivro">Descrição: </td>
-                                                            <td style="color:black">
-                                                                <textarea class="form-control input" id="descricao" name="descricaoProduto" placeholder="Descrição do produto" rows="3"></textarea>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="formLivro">Estado de conservação: </td>
-                                                            <td style="color:black">
-                                                                <textarea class="form-control input" id="descricao" name="estadoProduto" placeholder="Estado do Produto" rows="3"></textarea>
-                                                            </td>    
-                                                        </tr> 
-                                                    </table>
-                                                    <div class="dropdown" id="dropdown1">
-                                                        <button class="btn  dropdown-toggle" type="button" id="idGenero" name="menuGenero" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Gênero</button>
-                                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                            <a class="dropdown-item" href="#" name="drama" id="drama">Drama</a>
-                                                            <a class="dropdown-item" href="#" name="acao" id="acao">Ação</a>
-                                                            <a class="dropdown-item" href="#" name="aventura" id="aventura">Aventura</a>
-                                                            <a class="dropdown-item" href="#" name="comedia" id="comedia">Comédia</a>
-                                                            <a class="dropdown-item" href="#" name="fantasia" id="fantasia">Fantasia</a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="dropdown" id="dropdown2">    
-                                                        <button class="btn  dropdown-toggle" type="button" id="idIdioma" name="menuIdioma" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Idioma</button>
-                                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                            <a class="dropdown-item" href="#" name="idiomaPortugues" id="idiomaPortugues">Português</a>
-                                                            <a class="dropdown-item" href="#" name="idiomaIngles" id="idiomaIngles">Inglês</a>
-                                                        </div>
-                                                    </div>
+                            // <!-- Modal -->
+                            out.println("<div class='modal fade' id='modalExemplo' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>");
+                                out.println("<div class='modal-dialog' role='document'>");
+                                    out.println("<div class='modal-content'>");
+                                        out.println("<div class='modal-header'>");
+                                            out.println("<h5 class='modal-title' id='exampleModalLabel'>Atenção !!!</h5>");
+                                            out.println("<button type='button' class='close' data-dismiss='modal' aria-label='Fechar'>");
+                                                out.println("<span aria-hidden='true'>&times;</span>");
+                                            out.println("</button>");
+                                        out.println("</div>");
+                                        out.println("<div class='modal-body'>");
+                                            out.println("Você tem certeza que quer excluir esse livro do seu catálogo? ");
+                                        out.println("</div>");
+                                        out.println("<div class='modal-footer'>");
+                                        out.println("<form method='post' action='ExcluirProdutoServlet?id=" + lista.get(i).getId() + "' name='ex_catalogo'>");
+                                            out.println("<button type='submit' class='btn btn-primary' name='confirmar' id='idConfirmar'>Sim</button>");
+                                            out.println("</form>");
+                                            out.println("<button type='button' class='btn btn-secondary' data-dismiss='modal' name='fechar' id='idFechar'>Fechar</button>  ");
+                                        out.println("</div>");
+                                    out.println("</div>");
+                                out.println("</div>");
+                            out.println("</div>");
 
-                                                    <div class="input-group mb-3">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text" id="inputGroupFileAddon01">Alterar Foto</span>
-                                                        </div>
-                                                        <div class="custom-file">
-                                                            <input type="file" class="custom-file-input" id="inputFoto" name="inputFoto"aria-describedby="inputGroupFileAddon01">
-                                                            <label class="custom-file-label" for="inputGroupFile01"></label>
-                                                        </div>
-                                                    </div>
-                                                    <br>
-                                                    <button type="button" class="btn btn-primary" name="editar_catalogo" id="edcatalogo">Editar Catálogo</button>
-                                                </form>
-                                            </center>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            out.println("<div class='sliderCheck'>");
+                                out.println("<label class='switch'>");
+                                %>
+                                    <input type="checkbox" name="statusCheckbox1" <%= status %> onClick="redireciona('StatusProdutoServlet?id='<%= lista.get(i).getId() %>'');">
+                                <%
+                                    
+                                    
+                                    out.println("<span class='slider round'></span>");
+                                out.println("</label>");
+                            out.println("</div>");
+                        out.println("</td>");
+            
+                // out.println("</tr>");
 
-                            <!-- Botão para acionar modal BOTAO EXCLUIR -->
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalExemplo" name="excluir" id="idExcluir">
-                                Excluir
-                            </button>
-
-                            <!-- Modal -->
-                            <div class="modal fade" id="modalExemplo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Atenção !!!</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            Você tem certeza que quer excluir esse livro do seu catálogo? 
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-primary" name="confirmar" id="idConfirmar">Sim</button>
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal" name="fechar" id="idFechar">Fechar</button>  
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="sliderCheck">
-                                <label class="switch">
-                                    <input type="checkbox" name="statusCheckbox2">
-                                    <span class="slider round"></span>
-                                </label>
-                            </div>
-                        </td>
-
-
-                        <td class="caixa">
-                            <img src="https://images.livrariasaraiva.com.br/imagemnet/imagem.aspx/?pro_id=2870760&qld=90&l=430&a=-1" width="200" height = "200"  alt="">
-                            <p> Titulo: <span name="titulo" id="texto"> </span></p>
-                            <p> Autor:  <span name="autor" id="autor"></span></p>
-                            <p> Valor: R&#36;: <span name="valor" id="valor">0.0</span></p>
-
-                            <!-- Botão para acionar modal BOTAO EDITAR -->
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ExemploModalCentralizado" name="editar" id="idEditar">
-                                Editar
-                            </button>
-
-                            <!-- Modal -->
-                            <div class="modal fade" id="ExemploModalCentralizado" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="TituloModalCentralizado">Editar Catálogo</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <center>
-                                                <form method="post" action" "name="ed_catalogo">
-                                                      <table>
-                                                        <tr>
-                                                            <td class="formLivro">Titulo do Livro:</td>
-                                                            <td style="color:black">
-                                                                <input type="text" class="input" name="namelivro" id="namelivro" placeholder="">
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="formLivro">Nome do Autor: </td>
-                                                            <td style="color:black">
-                                                                <input type="text" class="input" name="nameAutor" id="nameAutor" placeholder="">
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="formLivro">Nome da Editora: </td>
-                                                            <td style="color:black">
-                                                                <input type="text" class="input" name="nameEditora" id="nameEditora" placeholder="">
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="formLivro">Ano de Lançamento: </td>
-                                                            <td style="color:black">
-                                                                <input type="date" class="input" name="anoLancamento" id="anoLancamento" placeholder="">
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="formLivro">Valor do Livro: </td>
-                                                            <td style="color:black">
-                                                                <input type="text"  class="input" name="valor" id="idValor" placeholder="">
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="formLivro">Descrição: </td>
-                                                            <td style="color:black">
-                                                                <textarea class="form-control input" id="descricao" name="descricaoProduto" placeholder="Descrição do produto" rows="3"></textarea>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="formLivro">Estado de conservação: </td>
-                                                            <td style="color:black">
-                                                                <textarea class="form-control input" id="descricao" name="estadoProduto" placeholder="Estado do Produto" rows="3"></textarea>
-                                                            </td>    
-                                                        </tr> 
-                                                    </table>
-                                                    <div class="dropdown" id="dropdown1">
-                                                        <button class="btn  dropdown-toggle" type="button" id="idGenero" name="menuGenero" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Gênero</button>
-                                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                            <a class="dropdown-item" href="#" name="drama" id="drama">Drama</a>
-                                                            <a class="dropdown-item" href="#" name="acao" id="acao">Ação</a>
-                                                            <a class="dropdown-item" href="#" name="aventura" id="aventura">Aventura</a>
-                                                            <a class="dropdown-item" href="#" name="comedia" id="comedia">Comédia</a>
-                                                            <a class="dropdown-item" href="#" name="fantasia" id="fantasia">Fantasia</a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="dropdown" id="dropdown2">    
-                                                        <button class="btn  dropdown-toggle" type="button" id="idIdioma" name="menuIdioma" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Idioma</button>
-                                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                            <a class="dropdown-item" href="#" name="idiomaPortugues" id="idiomaPortugues">Português</a>
-                                                            <a class="dropdown-item" href="#" name="idiomaIngles" id="idiomaIngles">Inglês</a>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="input-group mb-3">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text" id="inputGroupFileAddon01">Alterar Foto</span>
-                                                        </div>
-                                                        <div class="custom-file">
-                                                            <input type="file" class="custom-file-input" id="inputFoto" name="inputFoto"aria-describedby="inputGroupFileAddon01">
-                                                            <label class="custom-file-label" for="inputGroupFile01"></label>
-                                                        </div>
-                                                    </div>
-                                                    <br>
-                                                    <button type="button" class="btn btn-primary" name="editar_catalogo" id="edcatalogo">Editar Catálogo</button>
-                                                </form>
-                                            </center>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Botão para acionar modal BOTAO EXCLUIR -->
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalExemplo" name="excluir" id="idExcluir">
-                                Excluir
-                            </button>
-
-                            <!-- Modal -->
-                            <div class="modal fade" id="modalExemplo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Atenção !!!</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            Você tem certeza que quer excluir esse livro do seu catálogo? 
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-primary" name="confirmar" id="idConfirmar">Sim</button>
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal" name="fechar" id="idFechar">Fechar</button>  
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="sliderCheck">
-                                <label class="switch">
-                                    <input type="checkbox" name="statusCheckbox3">
-                                    <span class="slider round"></span>
-                                </label>
-                            </div>
-                        </td>
-
-
-                        <td class="caixa">
-                            <img src="https://images.livrariasaraiva.com.br/imagemnet/imagem.aspx/?pro_id=2870760&qld=90&l=430&a=-1" width="200" height = "200"  alt="">
-                            <p> Titulo: <span name="titulo" id="texto"> </span></p>
-                            <p> Autor:  <span name="autor" id="autor"></span></p>
-                            <p> Valor: R&#36;: <span name="valor" id="valor">0.0</span></p>
-
-                            <!-- Botão para acionar modal BOTAO EDITAR -->
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ExemploModalCentralizado" name="editar" id="idEditar">
-                                Editar
-                            </button>
-
-                            <!-- Modal -->
-                            <div class="modal fade" id="ExemploModalCentralizado" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="TituloModalCentralizado">Editar Catálogo</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <center>
-                                                <form method="post" action" "name="ed_catalogo">
-                                                      <table>
-                                                        <tr>
-                                                            <td class="formLivro">Titulo do Livro:</td>
-                                                            <td style="color:black">
-                                                                <input type="text" class="input" name="namelivro" id="namelivro" placeholder="">
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="formLivro">Nome do Autor: </td>
-                                                            <td style="color:black">
-                                                                <input type="text" class="input" name="nameAutor" id="nameAutor" placeholder="">
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="formLivro">Nome da Editora: </td>
-                                                            <td style="color:black">
-                                                                <input type="text" class="input" name="nameEditora" id="nameEditora" placeholder="">
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="formLivro">Ano de Lançamento: </td>
-                                                            <td style="color:black">
-                                                                <input type="date" class="input" name="anoLancamento" id="anoLancamento" placeholder="">
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="formLivro">Valor do Livro: </td>
-                                                            <td style="color:black">
-                                                                <input type="text"  class="input" name="valor" id="idValor" placeholder="">
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="formLivro">Descrição: </td>
-                                                            <td style="color:black">
-                                                                <textarea class="form-control input" id="descricao" name="descricaoProduto" placeholder="Descrição do produto" rows="3"></textarea>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="formLivro">Estado de conservação: </td>
-                                                            <td style="color:black">
-                                                                <textarea class="form-control input" id="descricao" name="estadoProduto" placeholder="Estado do Produto" rows="3"></textarea>
-                                                            </td>    
-                                                        </tr> 
-                                                    </table>
-                                                    <div class="dropdown" id="dropdown1">
-                                                        <button class="btn  dropdown-toggle" type="button" id="idGenero" name="menuGenero" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Gênero</button>
-                                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                            <a class="dropdown-item" href="#" name="drama" id="drama">Drama</a>
-                                                            <a class="dropdown-item" href="#" name="acao" id="acao">Ação</a>
-                                                            <a class="dropdown-item" href="#" name="aventura" id="aventura">Aventura</a>
-                                                            <a class="dropdown-item" href="#" name="comedia" id="comedia">Comédia</a>
-                                                            <a class="dropdown-item" href="#" name="fantasia" id="fantasia">Fantasia</a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="dropdown" id="dropdown2">    
-                                                        <button class="btn  dropdown-toggle" type="button" id="idIdioma" name="menuIdioma" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Idioma</button>
-                                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                            <a class="dropdown-item" href="#" name="idiomaPortugues" id="idiomaPortugues">Português</a>
-                                                            <a class="dropdown-item" href="#" name="idiomaIngles" id="idiomaIngles">Inglês</a>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="input-group mb-3">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text" id="inputGroupFileAddon01">Alterar Foto</span>
-                                                        </div>
-                                                        <div class="custom-file">
-                                                            <input type="file" class="custom-file-input" id="inputFoto" name="inputFoto"aria-describedby="inputGroupFileAddon01">
-                                                            <label class="custom-file-label" for="inputGroupFile01"></label>
-                                                        </div>
-                                                    </div>
-                                                    <br>
-                                                    <button type="button" class="btn btn-primary" name="editar_catalogo" id="edcatalogo">Editar Catálogo</button>
-                                                </form>
-                                            </center>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Botão para acionar modal BOTAO EXCLUIR -->
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalExemplo" name="excluir" id="idExcluir">
-                                Excluir
-                            </button>
-
-                            <!-- Modal -->
-                            <div class="modal fade" id="modalExemplo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Atenção !!!</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            Você tem certeza que quer excluir esse livro do seu catálogo? 
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-primary" name="confirmar" id="idConfirmar">Sim</button>
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal" name="fechar" id="idFechar">Fechar</button>  
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="sliderCheck">
-                                <label class="switch">
-                                    <input type="checkbox" name="statusCheckbox4">
-                                    <span class="slider round"></span>
-                                </label>
-                            </div>
-                        </td>
-
-
-
-                    </tr>
+                
+            //Fechando página dinamica
+            }
+        %>
                 </table>
 
             </div>
+                                    
 
 
 
