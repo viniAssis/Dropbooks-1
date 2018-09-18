@@ -2,6 +2,8 @@ package modelDAO;
 
 import model.Usuario;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UsuarioDAO {
 
@@ -104,4 +106,30 @@ public class UsuarioDAO {
 
         return resp;
     } 
+    
+     public static List<Usuario> getUsuario (String email, String senha){
+        List<Usuario> lista = new ArrayList<>();
+        try{
+            Connection conn = Conecta.getConexao();
+            PreparedStatement ps = conn.prepareStatement("select*from usuario WHERE email=? AND senha=?");
+            ps.setString(1, email);
+            ps.setString(2, senha);
+            ResultSet rs =ps.executeQuery();
+            
+            if(rs.next()){
+                Usuario objUsuario = new Usuario();
+                objUsuario.setEmail(rs.getString(1));
+                objUsuario.setSenha(rs.getString(2));
+                lista.add(objUsuario);
+            }
+            conn.close();
+        }
+        catch(Exception ex){
+            
+        }
+        return lista;
+    }
+    
+    
+    
 }

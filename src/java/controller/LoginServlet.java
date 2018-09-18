@@ -16,7 +16,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Usuario;
 import modelDAO.Conecta;
-import modelDAO.LoginDAO;
+import modelDAO.UsuarioDAO;
+
 
 public class LoginServlet extends HttpServlet {
 
@@ -42,7 +43,7 @@ public class LoginServlet extends HttpServlet {
             List<Usuario>listausuario=new ArrayList<>();
             
             //Passando os valores para o getUsuario no loginDAO
-            listausuario = LoginDAO.getUsuario(email, senha);
+            listausuario = UsuarioDAO.getUsuario(email, senha);
             //se não for vazio é porque logou
             if(!(listausuario.isEmpty())){
                 HttpSession session = request.getSession();
