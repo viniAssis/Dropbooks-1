@@ -81,24 +81,24 @@
         </ol>
         <div class="carousel-inner" role="listbox">
           <!-- Slide One - Set the background image for this slide in the line below -->
-          <div class="carousel-item active" style="background-image: url('http://placehold.it/1900x1080')">
+          <div class="carousel-item active" style="background-image: url('res/img/cr-1.jpg')">
             <div class="carousel-caption d-none d-md-block">
-              <h3>First Slide</h3>
-              <p>This is a description for the first slide.</p>
+              <h3> Direito</h3>
+              <p>Livros Sobre Direito</p>
             </div>
           </div>
           <!-- Slide Two - Set the background image for this slide in the line below -->
-          <div class="carousel-item" style="background-image: url('http://placehold.it/1900x1080')">
+          <div class="carousel-item" style="background-image: url('res/img/cr-2.jpg')">
             <div class="carousel-caption d-none d-md-block">
-              <h3>Second Slide</h3>
-              <p>This is a description for the second slide.</p>
+              <h3>Economia</h3>
+              <p>Administração e Contabilidade</p>
             </div>
           </div>
           <!-- Slide Three - Set the background image for this slide in the line below -->
-          <div class="carousel-item" style="background-image: url('http://placehold.it/1900x1080')">
+          <div class="carousel-item" style="background-image: url('res/img/cr-3.jpg')">
             <div class="carousel-caption d-none d-md-block">
-              <h3>Third Slide</h3>
-              <p>This is a description for the third slide.</p>
+              <h3>Dicas De Leitura</h3>
+              <p>Esta Perdido ? Nossa Equipe Pode te Ajudar</p>
             </div>
           </div>
         </div>
@@ -162,67 +162,73 @@
       <div class="row">
         <div class="col-lg-4 col-sm-6 portfolio-item">
           <div class="card h-100">
-            <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+            <a href="#"><img class="card-img-top" src="res/img/img-3.jpg" alt=""></a>
             <div class="card-body">
               <h4 class="card-title">
-                <a href="#">Livro - 2</a>
+                <a href="#"> Stephen King - Achados e Perdidos</a>
               </h4>
               <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur eum quasi sapiente nesciunt? Voluptatibus sit, repellat sequi itaque deserunt, dolores in, nesciunt, illum tempora ex quae? Nihil, dolorem!</p>
+                 <a href="#" class="btn btn-primary">Leia Mais</a>
             </div>
           </div>
         </div>
         <div class="col-lg-4 col-sm-6 portfolio-item">
           <div class="card h-100">
-            <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+            <a href="#"><img class="card-img-top" src="res/img/img-1.jpg" alt=""></a>
             <div class="card-body">
               <h4 class="card-title">
-                <a href="#">Livro - 1 </a>
+                <a href="#"> Box - Harry Potter</a>
               </h4>
               <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+                 <a href="#" class="btn btn-primary">Leia Mais</a>
             </div>
           </div>
         </div>
         <div class="col-lg-4 col-sm-6 portfolio-item">
           <div class="card h-100">
-            <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+            <a href="#"><img class="card-img-top" src="res/img/img-2.jpg" alt=""></a>
             <div class="card-body">
               <h4 class="card-title">
-                <a href="#">Livro - 3</a>
+                <a href="#"> Livro - P/todos garatos que ja Amei</a>
               </h4>
               <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos quisquam, error quod sed cumque, odio distinctio velit nostrum temporibus necessitatibus et facere atque iure perspiciatis mollitia recusandae vero vel quam!</p>
+                 <a href="#" class="btn btn-primary">Leia Mais</a>
             </div>
           </div>
         </div>
         <div class="col-lg-4 col-sm-6 portfolio-item">
           <div class="card h-100">
-            <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+            <a href="#"><img class="card-img-top" src="res/img/img-4.jpg" alt=""></a>
             <div class="card-body">
               <h4 class="card-title">
-                <a href="#">Livro -  4</a>
+                <a href="#">Dan Brow </a>
               </h4>
               <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+                 <a href="#" class="btn btn-primary">Leia Mais</a>
             </div>
           </div>
         </div>
         <div class="col-lg-4 col-sm-6 portfolio-item">
           <div class="card h-100">
-            <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+            <a href="#"><img class="card-img-top" src="res/img/img-5.jpg" alt=""></a>
             <div class="card-body">
               <h4 class="card-title">
-                <a href="#">Livro - 5</a>
+                <a href="#">Watchmen</a>
               </h4>
               <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+                 <a href="#" class="btn btn-primary">Leia Mais</a>
             </div>
           </div>
         </div>
         <div class="col-lg-4 col-sm-6 portfolio-item">
           <div class="card h-100">
-            <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+            <a href="#"><img class="card-img-top" src="res/img/img-6.jpg" alt=""></a>
             <div class="card-body">
               <h4 class="card-title">
-                <a href="#">Livro - 6</a>
+                <a href="#"> Box - A cronica do Matador de Rei</a>
               </h4>
               <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque earum nostrum suscipit ducimus nihil provident, perferendis rem illo, voluptate atque, sit eius in voluptates, nemo repellat fugiat excepturi! Nemo, esse.</p>
+                 <a href="#" class="btn btn-primary">Leia Mais</a>
             </div>
           </div>
         </div>
@@ -232,21 +238,21 @@
       <!-- Features Section -->
       <div class="row">
         <div class="col-lg-6">
-          <h2>Texto</h2>
-          <p>Texto</p>
+          <h2> Gostou de Um Nossos Produtos  ?</h2>
+          <p> Saiba avaliar siga essas caracterisitas basicas para uma boa Compra</p>
           <ul>
             <li>
-              <strong>Texto</strong>
+              <strong> Folhas em bom estados</strong>
             </li>
-            <li>Test</li>
-            <li>Texto</li>
-            <li>Texto</li>
-            <li>Texto</li>
+            <li>Capa</li>
+            <li>Mais 1 Livro da Mesmo autor + BOX</li>
+            <li>Status do Vendedor</li>x    
+            <li>Localização</li>
           </ul>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, omnis doloremque non cum id reprehenderit, quisquam totam aspernatur tempora minima unde aliquid ea culpa sunt. Reiciendis quia dolorum ducimus unde.</p>
+          <p>Caso Haja Problemas na Compra Entre em Contato  no Menu há Cima na Pagina de Contato</p>
         </div>
         <div class="col-lg-6">
-          <img class="img-fluid rounded" src="http://placehold.it/700x450" alt="">
+          <img class="img-fluid rounded" src="https://media.giphy.com/media/TZ3Y3sUWzrquY/giphy.gif" alt="">
         </div>
       </div>
       <!-- /.row -->
@@ -258,7 +264,9 @@
         <div class="col-md-8">
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias, expedita, saepe, vero rerum deleniti beatae veniam harum neque nemo praesentium cum alias asperiores commodi.</p>
         </div>
-        
+        <div class="col-md-4">
+          <a class="btn btn-lg btn-secondary btn-block bg-primary" href="#"> Deseja ver Mais </a>
+        </div>
       </div>
 
     </div>
@@ -267,14 +275,15 @@
     <!-- Footer -->
     <footer class="py-5 bg-primary">
       <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; DropBooks</p>
+        <p class="m-0 text-center text-white">Copyright &copy;  DropBooks 2x018</p>
       </div>
       <!-- /.container -->
     </footer>
 
+
     <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="res/vendor/jquery/jquery.min.js"></script>
+    <script src="res/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     
 
   </body>

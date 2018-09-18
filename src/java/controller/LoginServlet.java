@@ -47,7 +47,7 @@ public class LoginServlet extends HttpServlet {
             if(!(listausuario.isEmpty())){
                 HttpSession session = request.getSession();
                  session.setAttribute("email", email);
-                 response.sendRedirect("home.jsp");
+                 response.sendRedirect("index.jsp");
             }
             else{
                 // response.sendRedirect("login.jsp");

@@ -30,14 +30,11 @@
         body {
             background-image: url(res/img/bgPadrao.jpg)
         }
-
         tr {
             color: #FFF0F5;
         }
-
         .table-hover>tbody>.item:hover {
             background: #4169E1;
-
         }
         
         #caixa2{
@@ -49,7 +46,7 @@
     </style>
     
     <script>
-        
+        var	flagOrdenaProduto = false;
 		 var flagOrdenaTitulo = false;
         var flagOrdenaDataRegistro = false;
         var flagOrdenaAtivo= false;
@@ -62,14 +59,13 @@
         var flagOrdenaGenero = false;
         var flagOrdenaPreco = false;
         var flagOrdenaUsuario = false;
-
         
         window.onload=function(){
             
-
             document.getElementById("botao").onclick=function(){ ordenar("titulo"); }
 			
 			document.getElementById("botao2").onclick=function(){ ordenar("ativo"); }
+			document.getElementById("botao3").onclick=function(){ ordenar("preco"); }
         }
 		
 		
@@ -82,17 +78,13 @@
 			
 			if( strBotaoClicado == "titulo" ){
 				for(var i = document.getElementsByClassName("titulo").length-1; i > 0 ; i--){
-
 					document.getElementsByClassName("linha")[i].setAttribute("value", document.getElementsByClassName(strBotaoClicado)[i].innerText)  ; 
 					array.push(document.getElementsByClassName("linha")[i].outerHTML);
 					console.log(i +" ,"+ document.getElementsByClassName("linha")[i].outerHTML);
 				}
-
 					if(flagOrdenaTitulo == false){
 					array.sort();
-
 					flagOrdenaTitulo = true;
-
 					flagOrdenaDataRegistro = false;
 					flagOrdenaAtivo= false;
 					flagOrdenaQtd = false;
@@ -105,13 +97,9 @@
 					flagOrdenaPreco = false;
 					flagOrdenaUsuario = false;
 					}
-
 					else{
 					array.sort(function(a, b){return a-b});				
 					flagOrdenaTitulo = false;
-
-
-
 					flagOrdenaDataRegistro = false;
 					flagOrdenaAtivo= false;
 					flagOrdenaQtd = false;
@@ -451,7 +439,59 @@
 			
 			else if( strBotaoClicado == "genero"){}
 			
-			else if( strBotaoClicado == "preco"){}
+			else if( strBotaoClicado == "preco"){
+				
+				for(var i = document.getElementsByClassName("titulo").length-1; i > 0 ; i--){
+				
+				document.getElementsByClassName("linha")[i].setAttribute("value", document.getElementsByClassName(strBotaoClicado)[i].innerText);//AQUI 
+				array.push(document.getElementsByClassName("linha")[i].outerHTML);
+				console.log(i +" ,"+ document.getElementsByClassName("linha")[i].outerHTML);
+					
+				}
+				
+				
+				if(flagOrdenaPreco == false){//AQUI 
+					
+					array.sort();
+				
+					flagOrdenaAtivo = false;
+					
+					flagOrdenaTitulo = false;
+					flagOrdenaDataRegistro = false;
+					flagOrdenaQtd = false;
+					flagOrdenaAutor = false;
+					flagOrdenaEditora = false;
+					flagOrdenaDataPublic = false;
+					flagOrdenaDescricao = false;
+					flagOrdenaIdioma = false;
+					flagOrdenaGenero = false;
+					flagOrdenaPreco = true;//
+					flagOrdenaUsuario = false;
+					flagOrdenaProduto = false;
+					
+				}
+				else{
+				
+					array.sort(function(a, b){return a-b});
+					flagOrdenaAtivo = false;//AQUI
+					
+					
+					flagOrdenaTitulo = false;
+					flagOrdenaDataRegistro = false;
+					flagOrdenaQtd = false;
+					flagOrdenaAutor = false;
+					flagOrdenaEditora = false;
+					flagOrdenaDataPublic = false;
+					flagOrdenaDescricao = false;
+					flagOrdenaIdioma = false;
+					flagOrdenaGenero = false;
+					flagOrdenaPreco = false;//
+					flagOrdenaUsuario = false;
+					flagOrdenaProduto = false;
+				
+				}
+				
+			}
 			
 			else if( strBotaoClicado == "idUsuario"){}
 			
@@ -526,7 +566,9 @@
 					<button type="submit" class="btn btn-primary" id="botao1">Pesquisa</button>
   				</div>
        </form>
-        <button type="button" class="btn btn-primary" id="botao">Ordena</button>
+        <button type="button" class="btn btn-primary" id="botao">Ordena Titulo</button>
+        <button type="button" class="btn btn-primary" id="botao2">Ordena Ativo</button>
+        <button type="button" class="btn btn-primary" id="botao3">Ordena Preço</button>
         
         <h1><%      
                     
@@ -575,10 +617,7 @@
 				</tr>
         
 				<% 
-
-
 				   for(int i = 0; i < produtos.size();i++){
-
 					  out.println( "<tr class='item linha'>"+
 						"<td class='idProduto'>"+produtos.get(i).getId()+"</td>"+
 						"<td class='dataRegistro'>"+produtos.get(i).getDataRegistro()+"</td>"+

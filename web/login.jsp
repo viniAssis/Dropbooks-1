@@ -9,7 +9,7 @@
         <link href="res/css/style.css" rel="stylesheet">
         <script src="res/js/jquery.js"></script>
         <script src="res/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="res/jquery-3.3.1.js">
+        <script type="text/javascript" src="res/jquery-3.3.1.js"></script>
     <script type="text/javascript">
             $(document).ready(function(){
                     $('#enviar').click(function(){
@@ -37,7 +37,7 @@
                     });
                     });
                     });
-                                </script>
+    </script>
                                 
         <style>
                                     

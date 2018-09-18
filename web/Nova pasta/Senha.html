@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+
+        <title>Recuperar Senha</title>
+
+
+        <link href="res/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+
+        <link href="res/css/the-big-picture.css" rel="stylesheet">
+
+        <script type="text/javascript" src="res/jquery-3.3.1.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("#validaEmail").hide();
+                $("#validaCpf").hide();
+                $("#validaOk").hide();
+                $('#enviar').click(function () {
+
+                    $("#validaEmail").hide();
+                    $("#validaCpf").hide();
+
+                    var email = $("#email").val();
+                    var cpf = $("#cpf").val();
+                    var senha = $("#senha").val();
+
+                    $.ajax({
+                        type: 'POST',
+                        url: "RecupSenhaServlet",
+                        data: {
+                            email: email,
+                            cpf: cpf,
+                            senha: senha
+                        },
+                        success: function (results) {
+                            if (results === "1") {
+                                $("#validaEmail").show();
+                            } else if (results === "2") {
+                                $("#validaCpf").show();
+                            } else {
+                                $("#validaOk").show();
+                                $("#enviar").hide();
+                                //window.location.href = "../recupSenha";
+                            }
+                        }
+                    });
+                });
+            });
+        </script>
+
+
+        <style>
+            .cabecalho{
+                height: 40px;	
+                width: 100%; 
+                margin-bottom: 5%;
+                margin: auto;
+            }
+
+            .login,.nome{
+                float: right;
+                font-size: 18px;
+                color: white;
+            }
+
+            .nome{margin-right: 25%;}
+
+            #botao1{;
+                    background: #008B8B;
+                    color: white;
+                    border: #008B8B;
+            }
+
+
+            nav >a{
+                font-size: 22px;
+                color: white;
+            }
+
+
+            #menu a:hover{
+                color: black;
+            }
+            a:hover{
+                color: white;
+                text-decoration: none;
+            }
+
+
+
+        </style>
+    </head>
+
+    <body>
+        <div class="cabecalho">
+            <a href="login.jsp" class="login">Login/Registra-se</a>
+            <span class="nome">Droopboks</span>
+        </div>
+
+
+
+        <nav class="nav nav-pills flex-column flex-sm-row" id="menu">
+            <a class="flex-sm-fill text-sm-center nav-link" href="#">Home</a>
+            <a class="flex-sm-fill text-sm-center nav-link" href="#">Livro</a>
+            <a class="flex-sm-fill text-sm-center nav-link" href="#">FAQ</a>
+            <a class="flex-sm-fill text-sm-center nav-link" href="contato.html">Contato</a>
+        </nav>
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-bottom">
+            <div class="container">
+                <a class="navbar-brand" href="#">Dropbooks</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="index.html">Home
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Livros</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Serviços</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contato.html">Contato</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+
+        <section>
+            <div class="container">
+                <div  class="conteudo">
+
+                    <form>
+
+                        <div class="form-row">
+                            <input type="text" class="form-control" placeholder="Email" id="email" required >
+                            <div id="validaEmail">Email Incorreto</div>
+                            <input type="text" class="form-control" placeholder="CPF" id="cpf" required>
+                            <div id="validaCpf">CPF Incorreto</div>
+                            <input type="Password" class="form-control" placeholder="Senha Nova" id="senha" required>
+
+
+                            <button type="button" class="btn btn-light" id="enviar">Alterar Senha</button>
+                            <div id="validaOk">Senha alterada com sucesso</div>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <h1 class="mt-5"></h1>
+
+                    </div>
+                </div>
+
+        </section>
+
+
+        <script src="res/vendor/jquery/jquery.min.js"></script>
+        <script src="res/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    </body>
+
+</html>

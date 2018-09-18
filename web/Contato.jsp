@@ -108,18 +108,18 @@
             </div>
         </nav>
 
-        <form id="caixa2">
+        <form id="caixa2" method='post' action="PesquisarLivrosServlet">
             <div class="form-row align-items-center">
                 <div class="col-auto my-1">
-                    <select class="custom-select mr-sm-2 border border-dark" id="tipoPesquisa">
-                        <option>Titulo</option>
-                        <option>Autor</option>
-                        <option>Editora</option>
-                        <option>Genero</option>
+                    <select class="custom-select mr-sm-2 border border-dark" id="tipoPesquisa" name="opcaoPesquisa">
+                        <option  value="Titulo">Título</option>
+                        <option  value="Autor">Autor</option>
+                        <option  value="Editora">Editora</option>
+                        <option  value="Genero">Genêro</option>
                     </select>
                 </div>
                 <div class="col-auto col-md-6">
-                    <input class="form-control mr-sm-2 border border-dark" type="search" placeholder="Pesquisar" aria-label="Pesquisar" name="pesquisa">
+                    <input class="form-control mr-sm-2 border border-dark" type="search" placeholder="Pesquisar" aria-label="Pesquisar" name="palavraChave">
                 </div>
                 <button type="submit" class="btn btn-primary" id="botao1" name="botao1">Pesquisa</button>
             </div>
