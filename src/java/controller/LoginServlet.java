@@ -6,13 +6,17 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.Usuario;
 import modelDAO.Conecta;
+import modelDAO.LoginDAO;
 
 public class LoginServlet extends HttpServlet {
 
@@ -26,40 +30,36 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+         PrintWriter out = response.getWriter();
         try {
-            PrintWriter out = response.getWriter();
+           
             String email = request.getParameter("email");
             String senha = request.getParameter("senha");
+            Usuario objUsuario = new Usuario();
             
-            //variaveis para salvar a resposta do banco
-            String dbEmail=null;
-            String dbSenha=null;
+            objUsuario.setEmail(email);
+            objUsuario.setSenha(senha);
+            List<Usuario>listausuario=new ArrayList<>();
             
-            String sql="SELECT*FROM usuario WHERE email=? AND senha=?";
-            Class.forName("com.mysql.jdbc.Driver");
-             Connection con = Conecta.getConexao();
-             PreparedStatement ps = con.prepareStatement(sql);
-             ps.setString(1, email);
-             ps.setString(2, senha);
-            ResultSet rs= ps.executeQuery();
-             while (rs.next()) {                
-                dbEmail=rs.getString(6);
-                dbSenha=rs.getString("senha");
-            }
-             if(email.equals(dbEmail)&&senha.equals(dbSenha)){
-                 HttpSession session = request.getSession();
+            //Passando os valores para o getUsuario no loginDAO
+            listausuario = LoginDAO.getUsuario(email, senha);
+            //se não for vazio é porque logou
+            if(!(listausuario.isEmpty())){
+                HttpSession session = request.getSession();
                  session.setAttribute("email", email);
                  response.sendRedirect("home.jsp");
-             }
-             else{
+            }
+            else{
                 // response.sendRedirect("login.jsp");
                  RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
                  rd.include(request, response);
-             }           
+             } 
+      
             
         } catch (Exception e) {
-            PrintWriter out = response.getWriter();
-            out.print("deu ruim");
+           
+            out.print("esse erro nunca existiu aqui");
         }
+    
     }
-}
+    }
