@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Produto;
 import modelDAO.ProdutoDAO;
 
 /**
@@ -34,7 +35,8 @@ public class ExcluirProdutoServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        String id = "1";
+        String id = request.getParameter("id");
+        
                   
         new ProdutoDAO().excluirProduto(id);
         

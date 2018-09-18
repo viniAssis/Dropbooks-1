@@ -19,7 +19,7 @@ import modelDAO.UsuarioDAO;
 
 /**
  *
- * @author Elaine
+ * @author Cristiano
  */
 @WebServlet(name = "AlterarProdutoServlet", urlPatterns = {"/AlterarProdutoServlet"})
 public class AlterarProdutoServlet extends HttpServlet {
@@ -40,7 +40,9 @@ public class AlterarProdutoServlet extends HttpServlet {
          
          //Usuario user = new UsuarioDAO().getUsuario(_email);
          
-         Produto prod = new ProdutoDAO().getProduto(1);
+         int id = Integer.parseInt(request.getParameter("id"));
+         
+         Produto prod = new ProdutoDAO().getProduto(id);
          
 
          prod.setTitulo(request.getParameter("namelivro")); 
