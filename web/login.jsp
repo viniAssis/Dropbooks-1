@@ -10,7 +10,7 @@
         <script src="res/js/jquery.js"></script>
         <script src="res/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="res/jquery-3.3.1.js">
-        <script type="text/javascript">
+    <script type="text/javascript">
             $(document).ready(function(){
                     $('#enviar').click(function(){
 
@@ -23,146 +23,157 @@
                     data : {
                     email : email,
                             senha : senha
-                    },
+            },
                     success : function(results){
-                            if (results === "1"){
+                    if (results === "1"){
                     $("#email").css("color", "red");
-            }else i f(resul ts === "2"){                             $("#senha").css("color", "red");
-                    }els e{
+                    }else if(results === "2"){
+                            $("#senha").css("color", "red");
+                             }els e{
                             $("#email").css("color", "green");
                     $("#senha").css("color", "green");
-            }
-            }
-            });
+                     }
+                    }
                     });
-            });
-            </script>
+                    });
+                    });
+                                </script>
+                                
+        <style>
+                                    
+		#caixa2{
+			margin-top: 5%;
+			margin-left: 20%;
+			margin-bottom: 3%;
+			clear: both;
+
+		}
+                
+                #container{
+                    margin-top: 3%;
+                         margin-bottom: 10%;
+                         margin-left: 15%;
+                }
+        </style>
     </head>
-
-
-    <style>
-        .cabecalho{
-            height: 40px;	
-            width: 100%; 
-            margin-bottom: 5%;
-            margin: auto;
-        }
-
-        .login,.nome{
-            float: right;
-            font-size: 18px;
-            color: white;
-        }
-
-        .nome{margin-right: 25%;}
-
-        #botao1{;
-                background: #008B8B;
-                color: white;
-                border: #008B8B;
-        }
-
-
-        nav >a{
-            font-size: 22px;
-            color: white;
-            margin-top: 5%;
-        }
-
-
-        #menu a:hover{
-            color: black;
-        }
-
-        body{
-            background-image: url(res/img/bgPadrao.jpg);
-        }
-
-        .container{
-            width: 40%;
-            margin-left: 30%;
-            margin-bottom:7%;
-            margin-top: 5%;	
-            background: #CFCFCF;
-            border-radius: 15px 15px 15px 15px;                 
-        }
-        .titulo1{
-            color: black;
-            padding: 3%;		
-            margin-bottom: 2%;
-            margin-left: 40%;
-
-        }
-
-        .caixa, #caixa{
-            width: 120%;
-            margin-left: 50px;  
-            margin-bottom: 5%;
-        }
-        a:hover{
-            color: black;
-            text-decoration: none;
-        }   
-        #botao1{
-            margin-left: 2%;
-            width: 100%;
-            background: #008B8B;
-            color: white;
-
-
-        }
-        #botao2{color: white;
-                border: #008B8B;
-                background: #008B8B;
-        }
-        .senha{
-              color: black;             
-        }
-        
-    </style>
     <body>
-        <div class="cabecalho">
-            <a href="login.jsp" class="login">Login/Registra-se</a>
-            <span class="nome">Droopboks</span>
-        </div>
+      		<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary fixed-top">
+				<div class="container">
+                                    <a class="navbar-brand" href="index.jsp">DropBooks</a>
+					<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse" id="navbarResponsive">
+						<ul class="navbar-nav ml-auto">
+							<li class="nav-item">
+								<a class="nav-link" href="index.jsp">Home</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">Livro</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="Contato.jsp">Contato</a>
+							</li>
+							<!--
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">	Blog</a>
+								<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
+									<a class="dropdown-item" href="blog-home-1.html">Blog Home 1</a>
+									<a class="dropdown-item" href="blog-home-2.html">Blog Home 2</a>
+									<a class="dropdown-item" href="blog-post.html">Blog Post</a>
+								</div>
+							</li>
 
-        <nav class="nav nav-pills flex-column flex-sm-row" id="menu">
-            <a class="flex-sm-fill text-sm-center nav-link" href="#">Home</a>
-            <a class="flex-sm-fill text-sm-center nav-link" href="#">Livro</a>
-            <a class="flex-sm-fill text-sm-center nav-link" href="#">FAQ</a>
-            <a class="flex-sm-fill text-sm-center nav-link" href="contato.html">Contato</a>
-        </nav>
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Portfolio</a>
+								<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
+									<a class="dropdown-item" href="portfolio-1-col.html">1 Column Portfolio</a>
+									<a class="dropdown-item" href="portfolio-2-col.html">2 Column Portfolio</a>
+									<a class="dropdown-item" href="portfolio-3-col.html">3 Column Portfolio</a>
+									<a class="dropdown-item" href="portfolio-4-col.html">4 Column Portfolio</a>
+									<a class="dropdown-item" href="portfolio-item.html">Single Portfolio Item</a>
+								</div>
+							</li>
 
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Blog</a>
+								<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
+									<a class="dropdown-item" href="blog-home-1.html">Blog Home 1</a>
+									<a class="dropdown-item" href="blog-home-2.html">Blog Home 2</a>
+									<a class="dropdown-item" href="blog-post.html">Blog Post</a>
+								</div>
+							</li>
 
-        <div class="container col-lg-6">
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Other Pages</a>
+								<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
+									<a class="dropdown-item" href="full-width.html">Full Width Page</a>
+									<a class="dropdown-item" href="sidebar.html">Sidebar Page</a>
+									<a class="dropdown-item" href="faq.html">FAQ</a>
+									<a class="dropdown-item" href="404.html">404</a>
+									<a class="dropdown-item" href="pricing.html">Pricing Table</a>
+								</div>
+							</li>-->
+						</ul>
+					</div>
+				</div>
+		</nav>
+		
+		<form id="caixa2">
+			<div class="form-row align-items-center">
+				<div class="col-auto my-1">
+					<select class="custom-select mr-sm-2 border border-dark" id="tipoPesquisa">
+						<option selected>Titulo</option>
+						<option>Autor</option>
+						<option>Editora</option>
+						<option>Genero</option>
+				</select>
+				</div>
+				<div class="col-auto col-md-6">
+					<input class="form-control mr-sm-2  border border-dark" type="search" placeholder="Pesquisar" aria-label="Pesquisar" name="pesquisa">
+				</div>
+				<button type="submit" class="btn btn-primary" id="botao1" name="botao1">Pesquisa</button>
+			</div>
+		</form>   
+ 
+
+        <div class="container col-lg-6" >
             <div class="row">
-                <div class="formLogin col-md-8 ">
-                    <h3 class="titulo1">Identifique-se</h3>
-                    <form action="Login" method="post" class="caixa">
+                <div class="formLogin col-md-8" id="container">
+                    <p class="h3 text-center">Identifique-se</p>
+                    <form action="Login" method="post">
                         <div class="form-group">
                             <label for="labelLogin">Email</label>
                             <input type="text" class="form-control" name="email" aria-describedby="email"
-                                   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"  required="required"                                  
+                                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"  required="required"                                  
                                    placeholder="email@dominio.com"/>
                         </div>
                         <div class="form-group">
                             <label for="labelSenha">Senha</label>
                             <input type="password" class="form-control" name="senha" aria-describedby="senha" placeholder="*******">
-                            <small class="text-left novaSenha "><a href="Senha.html" class="senha">Esqueceu sua senha?</a></small>
+                            <small class="text-left novaSenha "><a href="Senha.html">Esqueceu sua senha?</a></small>
                         </div>
-                        <button type="submit" value="login" class="btn btn-primary btn-block" id="botao1">Enviar</button>
-                    </form><hr/>
+                        <button type="submit" value="login" class="btn btn-primary btn-block">Enviar</button>
+                    </form><hr>
 
                     <!--Adicionar link chamando um novo registro-->
-                    <div class="goRegistro" id="caixa">
+                    <div class="goRegistro">
                         <label for="labelNovoReg">Primeira vez no Dropbooks?</label><br>
-                        <a href="cadastro.html">
-                            <button type="submit" class="btn btn-outline-primary btn-md btn-block" id="botao2">
-                                Cadastre-se</button></a>
+                         <a href="cadastro.html">
+                        <button type="submit" class="btn btn-outline-primary btn-md btn-block">
+                           Cadastre-se</button></a>
                     </div>
                 </div><br>
             </div>
         </div>
+        
+            <!-- Footer -->
+    <footer class="py-5 bg-primary">
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; DropBooks</p>
+      </div>
+      <!-- /.container -->
+    </footer>
     </body>
 
 </html>
