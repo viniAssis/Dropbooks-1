@@ -12,7 +12,7 @@ public class ProdutoDAO {
         
         try {
             Connection con = Conecta.getConexao();
-            String sql = "SELECT * FROM produto WHERE id=?";
+            String sql = "SELECT * FROM produto WHERE id_usuario=?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
