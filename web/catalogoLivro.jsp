@@ -330,10 +330,10 @@
 
 
             <nav class="nav nav-pills flex-column flex-sm-row" id="menu">
-                <a class="flex-sm-fill text-sm-center nav-link" href="#">Home</a>
-                <a class="flex-sm-fill text-sm-center nav-link" href="#">Livro</a>
+                <a class="flex-sm-fill text-sm-center nav-link" href="index.jsp">Home</a>
+                <a class="flex-sm-fill text-sm-center nav-link" href="catalogoLivro.jsp">Livro</a>
                 <a class="flex-sm-fill text-sm-center nav-link" href="#">FAQ</a>
-                <a class="flex-sm-fill text-sm-center nav-link" href="contato.html">Contato</a>
+                <a class="flex-sm-fill text-sm-center nav-link" href="Contato.jsp">Contato</a>
             </nav>
         </div>
 <%

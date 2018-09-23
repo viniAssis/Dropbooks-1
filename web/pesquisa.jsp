@@ -30,14 +30,11 @@
         body {
             background-image: url(res/img/bgPadrao.jpg)
         }
-
         tr {
             color: #FFF0F5;
         }
-
         .table-hover>tbody>.item:hover {
             background: #4169E1;
-
         }
         
         #caixa2{
@@ -47,6 +44,505 @@
 			clear: both;
 		}
     </style>
+    
+    <script>
+        var	flagOrdenaProduto = false;
+		 var flagOrdenaTitulo = false;
+        var flagOrdenaDataRegistro = false;
+        var flagOrdenaAtivo= false;
+        var flagOrdenaQtd = false;
+        var flagOrdenaAutor = false;
+        var flagOrdenaEditora = false;
+        var flagOrdenaDataPublic = false;
+        var flagOrdenaDescricao = false;
+        var flagOrdenaIdioma = false;
+        var flagOrdenaGenero = false;
+        var flagOrdenaPreco = false;
+        var flagOrdenaUsuario = false;
+        
+        window.onload=function(){
+            
+            document.getElementById("botao").onclick=function(){ ordenar("titulo"); }
+			
+			document.getElementById("botao2").onclick=function(){ ordenar("ativo"); }
+			document.getElementById("botao3").onclick=function(){ ordenar("preco"); }
+        }
+		
+		
+		function ordenar(strBotaoClicado){
+            
+			
+           
+			var array = [];
+			
+			
+			if( strBotaoClicado == "titulo" ){
+				for(var i = document.getElementsByClassName("titulo").length-1; i > 0 ; i--){
+					document.getElementsByClassName("linha")[i].setAttribute("value", document.getElementsByClassName(strBotaoClicado)[i].innerText)  ; 
+					array.push(document.getElementsByClassName("linha")[i].outerHTML);
+					console.log(i +" ,"+ document.getElementsByClassName("linha")[i].outerHTML);
+				}
+					if(flagOrdenaTitulo == false){
+					array.sort();
+					flagOrdenaTitulo = true;
+					flagOrdenaDataRegistro = false;
+					flagOrdenaAtivo= false;
+					flagOrdenaQtd = false;
+					flagOrdenaAutor = false;
+					flagOrdenaEditora = false;
+					flagOrdenaDataPublic = false;
+					flagOrdenaDescricao = false;
+					flagOrdenaIdioma = false;
+					flagOrdenaGenero = false;
+					flagOrdenaPreco = false;
+					flagOrdenaUsuario = false;
+					}
+					else{
+					array.sort(function(a, b){return a-b});				
+					flagOrdenaTitulo = false;
+					flagOrdenaDataRegistro = false;
+					flagOrdenaAtivo= false;
+					flagOrdenaQtd = false;
+					flagOrdenaAutor = false;
+					flagOrdenaEditora = false;
+					flagOrdenaDataPublic = false;
+					flagOrdenaDescricao = false;
+					flagOrdenaIdioma = false;
+					flagOrdenaGenero = false;
+					flagOrdenaPreco = false;
+					flagOrdenaUsuario = false;
+					}
+				
+				
+				
+					
+			}
+			
+			else if( strBotaoClicado == "ativo"){
+				
+				for(var i = document.getElementsByClassName("titulo").length-1; i > 0 ; i--){
+				
+				document.getElementsByClassName("linha")[i].setAttribute("value", document.getElementsByClassName(strBotaoClicado)[i].innerText);//AQUI 
+				array.push(document.getElementsByClassName("linha")[i].outerHTML);
+				console.log(i +" ,"+ document.getElementsByClassName("linha")[i].outerHTML);
+					
+				}
+				
+				
+				if(flagOrdenaAtivo == false){//AQUI 
+					
+					array.sort();
+				
+					flagOrdenaAtivo = true;//AQUI 
+					
+					flagOrdenaTitulo = false;
+					flagOrdenaDataRegistro = false;
+					flagOrdenaQtd = false;
+					flagOrdenaAutor = false;
+					flagOrdenaEditora = false;
+					flagOrdenaDataPublic = false;
+					flagOrdenaDescricao = false;
+					flagOrdenaIdioma = false;
+					flagOrdenaGenero = false;
+					flagOrdenaPreco = false;
+					flagOrdenaUsuario = false;
+					
+				}
+				else{
+				
+					array.sort(function(a, b){return a-b});
+					flagOrdenaAtivo = false;//AQUI
+					
+					
+					flagOrdenaTitulo = false;
+					flagOrdenaDataRegistro = false;
+					flagOrdenaQtd = false;
+					flagOrdenaAutor = false;
+					flagOrdenaEditora = false;
+					flagOrdenaDataPublic = false;
+					flagOrdenaDescricao = false;
+					flagOrdenaIdioma = false;
+					flagOrdenaGenero = false;
+					flagOrdenaPreco = false;
+					flagOrdenaUsuario = false;
+				
+				}
+				
+				
+				
+			}
+			
+			else if( strBotaoClicado == "idProduto"){
+				
+				for(var i = document.getElementsByClassName("titulo").length-1; i > 0 ; i--){
+				
+				document.getElementsByClassName("linha")[i].setAttribute("value", document.getElementsByClassName(strBotaoClicado)[i].innerText);//AQUI 
+				array.push(document.getElementsByClassName("linha")[i].outerHTML);
+				console.log(i +" ,"+ document.getElementsByClassName("linha")[i].outerHTML);
+					
+				}
+				
+				
+				if(flagOrdenaUsuario == false){//AQUI 
+					
+					array.sort();
+				
+					flagOrdenaAtivo = false;//AQUI 
+					
+					flagOrdenaTitulo = false;
+					flagOrdenaDataRegistro = false;
+					flagOrdenaQtd = false;
+					flagOrdenaAutor = false;
+					flagOrdenaEditora = false;
+					flagOrdenaDataPublic = false;
+					flagOrdenaDescricao = false;
+					flagOrdenaIdioma = false;
+					flagOrdenaGenero = false;
+					flagOrdenaPreco = false;
+					flagOrdenaUsuario = true;//
+					
+				}
+				else{
+				
+					array.sort(function(a, b){return a-b});
+					flagOrdenaAtivo = false;//AQUI
+					
+					
+					flagOrdenaTitulo = false;
+					flagOrdenaDataRegistro = false;
+					flagOrdenaQtd = false;
+					flagOrdenaAutor = false;
+					flagOrdenaEditora = false;
+					flagOrdenaDataPublic = false;
+					flagOrdenaDescricao = false;
+					flagOrdenaIdioma = false;
+					flagOrdenaGenero = false;
+					flagOrdenaPreco = false;
+					flagOrdenaUsuario = false;//
+				
+				}
+				
+			}
+			
+			else if( strBotaoClicado == "dataRegistro"){
+				
+				for(var i = document.getElementsByClassName("titulo").length-1; i > 0 ; i--){
+				
+				document.getElementsByClassName("linha")[i].setAttribute("value", document.getElementsByClassName(strBotaoClicado)[i].innerText);//AQUI 
+				array.push(document.getElementsByClassName("linha")[i].outerHTML);
+				console.log(i +" ,"+ document.getElementsByClassName("linha")[i].outerHTML);
+					
+				}
+				
+				
+				if(flagOrdenaDataRegistro == false){//AQUI 
+					
+					array.sort();
+				
+					flagOrdenaAtivo = false;//AQUI 
+					
+					flagOrdenaTitulo = false;
+					flagOrdenaDataRegistro = true;//
+					flagOrdenaQtd = false;
+					flagOrdenaAutor = false;
+					flagOrdenaEditora = false;
+					flagOrdenaDataPublic = false;
+					flagOrdenaDescricao = false;
+					flagOrdenaIdioma = false;
+					flagOrdenaGenero = false;
+					flagOrdenaPreco = false;
+					flagOrdenaUsuario = true;
+					
+				}
+				else{
+				
+					array.sort(function(a, b){return a-b});
+					flagOrdenaAtivo = false;//AQUI
+					
+					
+					flagOrdenaTitulo = false;
+					flagOrdenaDataRegistro = false;//
+					flagOrdenaQtd = false;
+					flagOrdenaAutor = false;
+					flagOrdenaEditora = false;
+					flagOrdenaDataPublic = false;
+					flagOrdenaDescricao = false;
+					flagOrdenaIdioma = false;
+					flagOrdenaGenero = false;
+					flagOrdenaPreco = false;
+					flagOrdenaUsuario = false;
+				
+				}
+				
+			}
+			
+			else if( strBotaoClicado == "qtd"){
+				
+				for(var i = document.getElementsByClassName("titulo").length-1; i > 0 ; i--){
+				
+				document.getElementsByClassName("linha")[i].setAttribute("value", document.getElementsByClassName(strBotaoClicado)[i].innerText);//AQUI 
+				array.push(document.getElementsByClassName("linha")[i].outerHTML);
+				console.log(i +" ,"+ document.getElementsByClassName("linha")[i].outerHTML);
+					
+				}
+				
+				
+				if(flagOrdenaQtd == false){//AQUI 
+					
+					array.sort();
+				
+					flagOrdenaAtivo = false;//AQUI 
+					
+					flagOrdenaTitulo = false;
+					flagOrdenaDataRegistro = false;
+					flagOrdenaQtd = true;//
+					flagOrdenaAutor = false;
+					flagOrdenaEditora = false;
+					flagOrdenaDataPublic = false;
+					flagOrdenaDescricao = false;
+					flagOrdenaIdioma = false;
+					flagOrdenaGenero = false;
+					flagOrdenaPreco = false;
+					flagOrdenaUsuario = false;
+					
+				}
+				else{
+				
+					array.sort(function(a, b){return a-b});
+					flagOrdenaAtivo = false;//AQUI
+					
+					
+					flagOrdenaTitulo = false;
+					flagOrdenaDataRegistro = false;
+					flagOrdenaQtd = false;//
+					flagOrdenaAutor = false;
+					flagOrdenaEditora = false;
+					flagOrdenaDataPublic = false;
+					flagOrdenaDescricao = false;
+					flagOrdenaIdioma = false;
+					flagOrdenaGenero = false;
+					flagOrdenaPreco = false;
+					flagOrdenaUsuario = false;
+				
+				}
+			}
+			
+			else if( strBotaoClicado == "auto"){
+				
+				for(var i = document.getElementsByClassName("titulo").length-1; i > 0 ; i--){
+				
+				document.getElementsByClassName("linha")[i].setAttribute("value", document.getElementsByClassName(strBotaoClicado)[i].innerText);//AQUI 
+				array.push(document.getElementsByClassName("linha")[i].outerHTML);
+				console.log(i +" ,"+ document.getElementsByClassName("linha")[i].outerHTML);
+					
+				}
+				
+				
+				if(flagOrdenaAutor == false){//AQUI 
+					
+					array.sort();
+				
+					flagOrdenaAtivo = false;
+					
+					flagOrdenaTitulo = false;
+					flagOrdenaDataRegistro = false;
+					flagOrdenaQtd = false;
+					flagOrdenaAutor = true;//
+					flagOrdenaEditora = false;
+					flagOrdenaDataPublic = false;
+					flagOrdenaDescricao = false;
+					flagOrdenaIdioma = false;
+					flagOrdenaGenero = false;
+					flagOrdenaPreco = false;
+					flagOrdenaUsuario = false;
+					
+				}
+				else{
+				
+					array.sort(function(a, b){return a-b});
+					flagOrdenaAtivo = false;//AQUI
+					
+					
+					flagOrdenaTitulo = false;
+					flagOrdenaDataRegistro = false;
+					flagOrdenaQtd = false;
+					flagOrdenaAutor = false;//
+					flagOrdenaEditora = false;
+					flagOrdenaDataPublic = false;
+					flagOrdenaDescricao = false;
+					flagOrdenaIdioma = false;
+					flagOrdenaGenero = false;
+					flagOrdenaPreco = false;
+					flagOrdenaUsuario = false;
+				
+				}
+				
+			}
+			
+			else if( strBotaoClicado == "editora"){
+				
+				for(var i = document.getElementsByClassName("titulo").length-1; i > 0 ; i--){
+				
+				document.getElementsByClassName("linha")[i].setAttribute("value", document.getElementsByClassName(strBotaoClicado)[i].innerText);//AQUI 
+				array.push(document.getElementsByClassName("linha")[i].outerHTML);
+				console.log(i +" ,"+ document.getElementsByClassName("linha")[i].outerHTML);
+					
+				}
+				
+				
+				if(flagOrdenaEditora == false){//AQUI 
+					
+					array.sort();
+				
+					flagOrdenaAtivo = false;
+					
+					flagOrdenaTitulo = false;
+					flagOrdenaDataRegistro = false;
+					flagOrdenaQtd = false;
+					flagOrdenaAutor = false;
+					flagOrdenaEditora = true;
+					flagOrdenaDataPublic = false;
+					flagOrdenaDescricao = false;
+					flagOrdenaIdioma = false;
+					flagOrdenaGenero = false;
+					flagOrdenaPreco = false;
+					flagOrdenaUsuario = false;
+					
+				}
+				else{
+				
+					array.sort(function(a, b){return a-b});
+					flagOrdenaAtivo = false;//AQUI
+					
+					
+					flagOrdenaTitulo = false;
+					flagOrdenaDataRegistro = false;
+					flagOrdenaQtd = false;
+					flagOrdenaAutor = false;//
+					flagOrdenaEditora = false;
+					flagOrdenaDataPublic = false;
+					flagOrdenaDescricao = false;
+					flagOrdenaIdioma = false;
+					flagOrdenaGenero = false;
+					flagOrdenaPreco = false;
+					flagOrdenaUsuario = false;
+				
+				}
+				
+			}
+			
+			else if( strBotaoClicado == "dataPublicacao"){}
+			
+			else if( strBotaoClicado == "decricao"){}
+			
+			else if( strBotaoClicado == "idioma"){}
+			
+			else if( strBotaoClicado == "genero"){}
+			
+			else if( strBotaoClicado == "preco"){
+				
+				for(var i = document.getElementsByClassName("titulo").length-1; i > 0 ; i--){
+				
+				document.getElementsByClassName("linha")[i].setAttribute("value", document.getElementsByClassName(strBotaoClicado)[i].innerText);//AQUI 
+				array.push(document.getElementsByClassName("linha")[i].outerHTML);
+				console.log(i +" ,"+ document.getElementsByClassName("linha")[i].outerHTML);
+					
+				}
+				
+				
+				if(flagOrdenaPreco == false){//AQUI 
+					
+					array.sort();
+				
+					flagOrdenaAtivo = false;
+					
+					flagOrdenaTitulo = false;
+					flagOrdenaDataRegistro = false;
+					flagOrdenaQtd = false;
+					flagOrdenaAutor = false;
+					flagOrdenaEditora = false;
+					flagOrdenaDataPublic = false;
+					flagOrdenaDescricao = false;
+					flagOrdenaIdioma = false;
+					flagOrdenaGenero = false;
+					flagOrdenaPreco = true;//
+					flagOrdenaUsuario = false;
+					flagOrdenaProduto = false;
+					
+				}
+				else{
+				
+					array.sort(function(a, b){return a-b});
+					flagOrdenaAtivo = false;//AQUI
+					
+					
+					flagOrdenaTitulo = false;
+					flagOrdenaDataRegistro = false;
+					flagOrdenaQtd = false;
+					flagOrdenaAutor = false;
+					flagOrdenaEditora = false;
+					flagOrdenaDataPublic = false;
+					flagOrdenaDescricao = false;
+					flagOrdenaIdioma = false;
+					flagOrdenaGenero = false;
+					flagOrdenaPreco = false;//
+					flagOrdenaUsuario = false;
+					flagOrdenaProduto = false;
+				
+				}
+				
+			}
+			
+			else if( strBotaoClicado == "idUsuario"){}
+			
+			else{alert("erro")};
+			
+			
+		   
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+			
+			
+			
+			
+			
+			console.log(array);
+			document.getElementById("tblProduto").innerHTML = "<tr class='linha'>"
+                +"<th scope='col' class='idProduto'> id</th>"
+                +"<th scope='col' class='dataRegistro'> dataRegistro </th>"
+                +"<th scope='col' class='ativo'> ativo </th>"
+                +"<th scope='col' class='qtd'> quantidade </th>"
+                +"<th scope='col' class='titulo' id='botao'> titulo </th>"
+                +"<th scope='col' class='auto'> autor </th>"
+                +"<th scope='col' class='editora'> editora </th>"
+                +"<th scope='col' class='dataPublicacao'> dataPublicacao</th>"
+                +"<th scope='col' class='decricao'> descrição</th>"
+                +"<th scope='col' class='idioma'> idioma</th>"
+                +"<th scope='col' class='genero'> genero</th>"
+                +"<th scope='col' class='preco'> preço</th>"
+                +"<th scope='col' class='idUsuario'> id_usuario</th>"
+                        +"</tr>";
+			
+			
+             document.getElementById("tblProduto").innerHTML += array.join("");
+            
+             
+			
+        }
+        
+        
+    </script>
+    
     
         <%ArrayList<Produto> produtos = (ArrayList<Produto>)session.getAttribute("produtos");%>
         
@@ -70,6 +566,9 @@
 					<button type="submit" class="btn btn-primary" id="botao1">Pesquisa</button>
   				</div>
        </form>
+        <button type="button" class="btn btn-primary" id="botao">Ordena Titulo</button>
+        <button type="button" class="btn btn-primary" id="botao2">Ordena Ativo</button>
+        <button type="button" class="btn btn-primary" id="botao3">Ordena Preço</button>
         
         <h1><%      
                     
@@ -98,45 +597,45 @@
             %></h1>
         
         
-        <table class="table table-striped table table-hover">
+        <table class="table table-striped table table-hover" >
             
-            <tr>
-                <th scope="col"> id</th>
-                <th scope="col"> dataRegistro </th>
-                <th scope="col"> ativo </th>
-                <th scope="col"> quantidade </th>
-                <th scope="col"> titulo </th>
-                <th scope="col"> autor </th>
-                <th scope="col"> editora </th>
-                <th scope="col"> dataPublicacao</th>
-                <th scope="col"> descrição</th>
-                <th scope="col"> idioma</th>
-                <th scope="col"> genero</th>
-                <th scope="col"> preço</th>
-                <th scope="col"> id_usuario</th>
-            </tr>
+			<tbody id="tblProduto">
+				<tr class='linha'>
+					<th scope="col" class='idProduto'> id</th>
+					<th scope="col" class='dataRegistro'> dataRegistro </th>
+					<th scope="col" class='ativo'> ativo </th>
+					<th scope="col" class='qtd'> quantidade </th>
+					<th scope="col" class='titulo'> titulo </th>
+					<th scope="col" class='auto'> autor </th>
+					<th scope="col" class='editora'> editora </th>
+					<th scope="col" class='dataPublicacao'> dataPublicacao</th>
+					<th scope="col" class='decricao'> descrição</th>
+					<th scope="col" class='idioma'> idioma</th>
+					<th scope="col" class='genero'> genero</th>
+					<th scope="col" class='preco'> preço</th>
+					<th scope="col" class='idUsuario'> id_usuario</th>
+				</tr>
         
-        <% 
-           
-        
-           for(int i = 0; i < produtos.size();i++){
-               
-              out.println( "<tr class='item'>"+
-                "<td>"+produtos.get(i).getId()+"</td>"+
-                "<td>"+produtos.get(i).getDataRegistro()+"</td>"+
-                "<td>"+produtos.get(i).getAtivo()+"</td>"+
-                "<td>"+produtos.get(i).getQuantidade()+"</td>"+
-                "<td>"+produtos.get(i).getTitulo()+"</td>"+
-                "<td>"+produtos.get(i).getAutor()+"</td>"+
-                "<td>"+produtos.get(i).getEditora()+"</td>"+
-                "<td>"+produtos.get(i).getDataPublicacao()+"</td>"+
-                "<td>"+produtos.get(i).getDescricao()+"</td>"+
-                "<td>"+produtos.get(i).getIdioma()+"</td>"+
-                "<td>"+produtos.get(i).getGenero()+"</td>"+
-                "<td>R$"+produtos.get(i).getPreco()+"</td>"+
-                "<td>"+produtos.get(i).getId_usuario()+"</td>"+"</tr>");
-           }
-        %>
-        </table>
-    </body>
+				<% 
+				   for(int i = 0; i < produtos.size();i++){
+					  out.println( "<tr class='item linha'>"+
+						"<td class='idProduto'>"+produtos.get(i).getId()+"</td>"+
+						"<td class='dataRegistro'>"+produtos.get(i).getDataRegistro()+"</td>"+
+						"<td class='ativo'>"+produtos.get(i).getAtivo()+"</td>"+
+						"<td class='qtd'>"+produtos.get(i).getQuantidade()+"</td>"+
+						"<td class='titulo'>"+produtos.get(i).getTitulo()+"</td>"+
+						"<td class='auto'>"+produtos.get(i).getAutor()+"</td>"+
+						"<td class='editora'>"+produtos.get(i).getEditora()+"</td>"+
+						"<td class='dataPublicacao'>"+produtos.get(i).getDataPublicacao()+"</td>"+
+						"<td class='decricao'>"+produtos.get(i).getDescricao()+"</td>"+
+						"<td class='idioma'>"+produtos.get(i).getIdioma()+"</td>"+
+						"<td class='genero'>"+produtos.get(i).getGenero()+"</td>"+
+						"<td class='preco'>R$"+produtos.get(i).getPreco()+"</td>"+
+						"<td class='idUsuario'>"+produtos.get(i).getId_usuario()+"</td>"+"</tr>");
+				   }
+				%>
+			
+		</tbody>
+        <table>
+	</body>
 </html>
