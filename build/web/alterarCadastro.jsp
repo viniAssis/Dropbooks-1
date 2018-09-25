@@ -18,7 +18,7 @@
 
 		<!-- Custom styles for this template -->
 		<link href="res/css/modern-business.css" rel="stylesheet">
-
+                
 		<script src="res/jquery-3.3.1.js"></script>
 		<script type="text/javascript" src="res/jquery-3.3.1.js"></script>		
 		<style>
@@ -87,11 +87,22 @@
 						<li class="nav-item">
 							<a class="nav-link" href="index.jsp">Home</a>
 						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="catalogoLivro.jsp">Livro</a>
-						</li>
-                                                   
-					</ul>
+                                                <li class="nav-item">
+                                                        <a class="nav-link" href="Contato.jsp">Contato</a>
+                                                </li>
+                                              
+                                                <li class="nav-item">
+                                                    <li class="nav-item dropdown"> 
+                                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= user.getNomeRazao()%></a>
+                                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
+                                                    <a class="dropdown-item" href="alterarCadastro.jsp">Alterar Dados</a>
+                                                    <a class="dropdown-item" href="catalogoLivro.jsp">Meu Catalogo</a>
+                                                    <a class="dropdown-item" href="cadastroProduto.jsp">Cadastra Catalogo</a>
+                                                    <a class="dropdown-item" href="Senha.jsp">Alterar Senha</a>
+                                                    <a class="dropdown-item" name=Sair href=SairServlet>Sair</a>
+                                                    </div>
+                                                </li>
+                			</ul>
 				</div>
 			</div>
 		</nav>
@@ -222,7 +233,10 @@
 		$(function(){
 		$("#inputEstado").val("<% out.print(user.getEstado()); %>");
 		});
-
 		</script>
+                <!-- Bootstrap core JavaScript -->
+    <script src="res/vendor/jquery/jquery.min.js"></script>
+    <script src="res/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
 	</body>
 </html>

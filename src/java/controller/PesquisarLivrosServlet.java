@@ -47,6 +47,8 @@ public class PesquisarLivrosServlet extends HttpServlet {
             
                 switch (request.getParameter("opcaoPesquisa")) {
                     case "Titulo":
+                        
+                        
                         produtos = ProdutoDAO.getProdutosPorTermo("%"+palavraChave);
                         session.setAttribute("produtos", produtos);
                         session.setAttribute("opcao","Titulo");

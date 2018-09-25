@@ -151,7 +151,7 @@
                         <div class="form-group">
                             <label for="labelSenha">Senha</label>
                             <input type="password" class="form-control" name="senha" aria-describedby="senha" placeholder="*******">
-                            <small class="text-left novaSenha "><a href="Senha.html">Esqueceu sua senha?</a></small>
+                            <small class="text-left novaSenha "><a href="Senha.jsp">Esqueceu sua senha?</a></small>
                         </div>
                         <button type="submit" value="login" class="btn btn-primary btn-block">Enviar</button>
                     </form><hr>
