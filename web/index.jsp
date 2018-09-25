@@ -19,6 +19,15 @@
 
     <!-- Custom styles for this template -->
     <link href="res/css/modern-business.css" rel="stylesheet">
+    
+    <style>
+        #caixa2{
+                margin-top: 5%;
+                margin-left: 25%;
+                margin-bottom: 3%;
+                clear: both;
+            }
+    </style>
 	  
   </head>
   
@@ -114,11 +123,31 @@
       </div>
     </header>
 
+    
+                        
+                        
     <!-- Page Content -->
     <div class="container">
 
       <h1 class="my-4">Bem Vindo DropBooks  Nossos Produdos</h1>
-
+      
+      <form id="caixa2" method='post' action="PesquisarLivrosServlet">
+            <div class="form-row align-items-center">
+                <div class="col-auto my-1">
+                    <select class="custom-select mr-sm-2 border border-dark" id="tipoPesquisa" name="opcaoPesquisa">
+                        <option  value="Titulo">Título</option>
+                        <option  value="Autor">Autor</option>
+                        <option  value="Editora">Editora</option>
+                        <option  value="Genero">Genêro</option>
+                    </select>
+                </div>
+                <div class="col-auto col-md-6">
+                    <input class="form-control mr-sm-2 border border-dark" type="search" placeholder="Pesquisar" aria-label="Pesquisar" name="palavraChave">
+                </div>
+                <button type="submit" class="btn btn-primary" id="botao1" name="botao1">Pesquisa</button>
+            </div>
+        </form>
+      
       <!-- Marketing Icons Section -->
       <div class="row">
         <div class="col-lg-4 mb-4">
