@@ -39,9 +39,6 @@
                             <a class="nav-link" href="index.jsp">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="catalogoLivro.jsp">Livro</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link" href="Contato.jsp">Contato</a>
                         </li>
                         <li class="nav-item">
@@ -52,21 +49,25 @@
                                     String email = request.getSession().getAttribute("email").toString();
 
                                     Usuario user = new UsuarioDAO().getUsuario(email);
-                                    out.print("<a class=nav-link href=alterarCadastro.jsp>Bem Vindo(a) " + user.getNomeRazao() + "</a>");
+                             
                                     out.print("</li>");
                                     out.print("<li class=nav-item>");
+                                    out.print("<li class='nav-item dropdown'> "
+                                            + "<a class='nav-link dropdown-toggle' href='#' id='navbarDropdownPortfolio' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>"+ user.getNomeRazao() +"</a>"
+                                            + "<div class='dropdown-menu dropdown-menu-right' aria-labelledby='navbarDropdownPortfolio'>"
+                                            + "<a class='dropdown-item' href='alterarCadastro.jsp'>Alterar Dados</a>"
+                                            + "<a class='dropdown-item' href='catalogoLivro.jsp'>Meu Catalogo</a>"
+                                            + "<a class='dropdown-item' href='cadastroProduto.jsp'>Cadastra Catalogo</a>"
+                                            + "<a class='dropdown-item' href=Senha.jsp>Alterar Senha</a>"
+                                            + "<a class='dropdown-item' name=Sair href=SairServlet>Sair</a>"
+                                            + "</div>"
+                                            + "</li>");
                                     
-                                    //BOTÃO SAIR
-                                    out.print("<a class=nav-link name=Sair href=SairServlet>Sair</a>");
-                             
                                 } else {
                                     out.print("<a class=nav-link href=login.jsp>Login/Cadastrar</a>");
                                 }        
                             %>   
-                        </li>
-                        
-                       
-                        
+                        </li>               
                     </ul>
                 </div>
             </div>
