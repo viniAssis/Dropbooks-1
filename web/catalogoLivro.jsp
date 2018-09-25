@@ -18,46 +18,37 @@
         <link href="res/css/bootstrap.min.css" rel="stylesheet">
         <link href="res/js/dist/dropdown.js" rel="stylesheet">
         
+        
+        <!-- Custom styles for this template -->
+        <link href="res/css/modern-business.css" rel="stylesheet">
+        
         <style>
-            .cabecalho{
-                height: 40px;	
-                width: 100%; 
-                margin-bottom: 5%;
-                margin: auto;
-            }
-
-            .login, .nome{
-                float: right;
-                font-size: 18px;
-                color: white;
-            }
-
-            .nome{margin-right: 25%;}
-
-            /**#container1{
-                    height: 800px;
-                    width: 90%;
-                    margin-left: 5%;
-                    background: #CFCFCF;
-                    margin-top: 30px;
-                    border-radius: 100px 100px 0 0 ;
-            }**/
-
-            .titulo{
-                padding-top: 5%;
-                text-align: center;
-                margin-bottom: 7%
-            }
-
-            body{ background-image: url(res/img/bgPadrao.jpg); }           
 
             #caixa2{
                 margin-top: 5%;
                 margin-left: 20%;
-                margin-bottom: 10%;
+                margin-bottom: 3%;
                 clear: both;
-            }
 
+            }
+            #botao1{
+                width: 15%;
+                border: #00008B;
+                color: white;
+                margin: 0;
+                margin-left: 2%;
+
+            }
+           
+            .titulo{
+                padding-top: 3%;
+                text-align: center;
+                margin-bottom: 7%;
+                color: black;
+                font-size: 40px;
+
+
+            }
             table{width: 100%;}
 
             #conteudo{
@@ -68,13 +59,10 @@
 
             }
 
-
-
-            .modal-body{ background: #179588; }
-
             .modal-header{
                 text-align: center;
-                background-color: #C1839F;
+                background-color: #1E90FF;
+
             }
 
             .toggle {
@@ -125,12 +113,7 @@
                 width: 250px;
             }
 
-            .modal-body{ background: #179588; }
 
-            .modal-header{
-                text-align: center;
-                background-color: #C1839F;
-            }
 
             .sliderCheck{ margin-top: 10px; }
 
@@ -182,7 +165,7 @@
             }
 
             .caixa{
-                border: 1px solid grey;
+                border: 1px solid black;
                 background: #FFFFF0;
                 height:75%;
                 width: 20%;
@@ -201,8 +184,8 @@
                 width: 200px;
                 height: 230px;
             }
-            .dropdown-toggle{
-                background-color: #C1839F;
+            .dropdown-toggle1{
+                background-color: #1E90FF;
                 color: white;   
                 margin-left: 10px;
 
@@ -243,7 +226,6 @@
                 margin-left: 5%;
                 margin-bottom: 2%;
                 width: 30%;
-                background: #008B8B;
                 border: #C1839F;
                 color: white;
             }
@@ -267,24 +249,18 @@
             }
 
 
-            #botao1{
-                background: #008B8B;
-                border:  #008B8B;
-                margin-left: 3%;
-
-            }
-
             .desativar{
                 color: black;
                 margin-left: 120%;
             }
 
-            #idConfirmar, #idFechar, #edcatalogo{
-                background: #C1839F;
-                border: #C1839F;
-            }
+            /** #idConfirmar, #idFechar, #edcatalogo{
+                 background: #C1839F;
+                 border: #C1839F;
+             }**/
 
         </style> 
+        
                 
         <script type="text/javascript">
             function redireciona(param) {
@@ -292,32 +268,57 @@
             }
         </script>
         <%
-        String email = request.getSession().getAttribute("email").toString();
-		   
+            String email = request.getSession().getAttribute("email").toString();
+	
+            //int id = user.getId(); 
             Usuario user = new UsuarioDAO().getUsuario(email);
-            Produto pro = new ProdutoDAO().getProduto(user.getId());
+            int id = user.getId(); 
+            Produto pro = new ProdutoDAO().getProduto(id);
             
         %>
     </head>
     <body>   
+        <!-- Navigation -->
+		<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary fixed-top">
+			<div class="container">
+				<a class="navbar-brand" href="index.jsp">DropBooks</a>
+				<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarResponsive">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item">
+							<a class="nav-link" href="index.jsp">Home</a>
+						</li>
+                                                <li class="nav-item">
+                                                        <a class="nav-link" href="Contato.jsp">Contato</a>
+                                                </li>
+                                              
+                                                <li class="nav-item">
+                                                    <li class="nav-item dropdown"> 
+                                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= user.getNomeRazao()%></a>
+                                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
+                                                    <a class="dropdown-item" href="alterarCadastro.jsp">Alterar Dados</a>
+                                                    <a class="dropdown-item" href="catalogoLivro.jsp">Meu Catalogo</a>
+                                                    <a class="dropdown-item" href="cadastroProduto.jsp">Cadastra Catalogo</a>
+                                                    <a class="dropdown-item" href="Senha.jsp">Alterar Senha</a>
+                                                    <a class="dropdown-item" name=Sair href=SairServlet>Sair</a>
+                                                    </div>
+                                                </li>
+                			</ul>
+				</div>
+			</div>
+		</nav>
+        
         <div class="container-fluid">
-
-            <div class="cabecalho">
-                <%
-
-                    out.print("<a href=alterarCadastro.jsp class=login>"+user.getNomeRazao()+"</a>");
-
-                %>
-                <span class="nome">Droopboks</span>
-            </div> 
-            <form id="caixa2">
-                <div class="form-row align-items-center">
+ 
+            <form id="caixa2" method="post" name="PesquisarLivrosServlet">
+                <div class="form-row align-items-center" >
                     <div class="col-auto my-1">
-                        <select class="custom-select mr-sm-2" id="tipoPesquisa">
-                            <option>Titulo</option>
-                            <option>Autor</option>
-                            <option>Editora</option>
-                            <option>Genêro</option>
+                        <select class="custom-select mr-sm-2" id="tipoPesquisa" name="opcaoPesquisa">
+                            <option  value="Titulo">Título</option>
+                            <option  value="Autor">Autor</option>
+                            <option  value="Editora">Editora</option>
+                            <option  value="Genero">Genero</option>
                         </select>
                     </div>
 
@@ -328,13 +329,6 @@
                 </div>
             </form>
 
-
-            <nav class="nav nav-pills flex-column flex-sm-row" id="menu">
-                <a class="flex-sm-fill text-sm-center nav-link" href="index.jsp">Home</a>
-                <a class="flex-sm-fill text-sm-center nav-link" href="catalogoLivro.jsp">Livro</a>
-                <a class="flex-sm-fill text-sm-center nav-link" href="#">FAQ</a>
-                <a class="flex-sm-fill text-sm-center nav-link" href="Contato.jsp">Contato</a>
-            </nav>
         </div>
 <%
     
@@ -344,12 +338,8 @@
                  
             out.println("<div id='container' >	");
                 out.println("<table>");
-                    
-        
-            // TODO Pegar id_usuario da sessao
-            int id_usuario = pro.getId_usuario();
-            
-            ArrayList<Produto> lista = new ProdutoDAO().getProdutos(id_usuario);       
+
+            ArrayList<Produto> lista = new ProdutoDAO().getProdutos(user.getId());       
                 
             for(int i=0; i<lista.size(); i++) {
                 
@@ -511,20 +501,17 @@
                                 out.println("<label class='switch'>");
                                 %>
                                     <input type="checkbox" name="statusCheckbox1" <%= status %> onClick="redireciona('StatusProdutoServlet?id='<%= lista.get(i).getId() %>'');">
-                                <%
-                                    
-                                    
-                                    out.println("<span class='slider round'></span>");
-                                out.println("</label>");
-                            out.println("</div>");
-                        out.println("</td>");
-            
-                // out.println("</tr>");
+                                    <%
 
-                
-            //Fechando página dinamica
-            }
-        %>
+                                            out.println("<span class='slider round'></span>");
+                                            out.println("</label>");
+                                            out.println("</div>");
+                                            out.println("</td>");
+
+                                            // out.println("</tr>");
+                                            //Fechando página dinamica
+                                        }
+                                    %>
                 </table>
 
             </div>
@@ -545,5 +532,18 @@
             <script src="res/js/bootstrap.bundle.min.js"></script>
 
         </div>
+        
+    <!-- Footer -->
+    <footer class="py-5 bg-primary">
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy;  DropBooks 2x018</p>
+      </div>
+      <!-- /.container -->
+    </footer>
+
+        
+        <!-- Bootstrap core JavaScript -->
+    <script src="res/vendor/jquery/jquery.min.js"></script>
+    <script src="res/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     </body>
 </html>

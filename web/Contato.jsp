@@ -67,10 +67,7 @@
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
                             <a class="nav-link" href="index.jsp">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Livro</a>
-                        </li>
+                        </li> 
                         <li class="nav-item">
                             <a class="nav-link" href="Contato.jsp">Contato</a>
                         </li>
@@ -87,7 +84,20 @@
                                     Usuario user = new UsuarioDAO().getUsuario(email);
                                     _email += user.getEmail();
                                     _nome += user.getNomeRazao();
-                                    out.print("<a class=nav-link href=alterarCadastro.jsp>Bem Vindo(a) " + user.getNomeRazao() + "</a>");
+                                    
+                                    out.print("</li>");
+                                    out.print("<li class=nav-item>");
+                                    out.print("<li class='nav-item dropdown'> "
+                                            + "<a class='nav-link dropdown-toggle' href='#' id='navbarDropdownPortfolio' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>"+ user.getNomeRazao() +"</a>"
+                                            + "<div class='dropdown-menu dropdown-menu-right' aria-labelledby='navbarDropdownPortfolio'>"
+                                            + "<a class='dropdown-item' href='alterarCadastro.jsp'>Alterar Dados</a>"
+                                            + "<a class='dropdown-item' href='catalogoLivro.jsp'>Meu Catalogo</a>"
+                                            + "<a class='dropdown-item' href='cadastroProduto.jsp'>Cadastra Catalogo</a>"
+                                            + "<a class='dropdown-item' href=Senha.jsp>Alterar Senha</a>"
+                                            + "<a class='dropdown-item' name=Sair href=SairServlet>Sair</a>"
+                                            + "</div>"
+                                            + "</li>");
+                                    
                                     
                                     
                                 } else {
@@ -95,14 +105,7 @@
                                 }        
                             %>
                         </li> 
-                        <%
-                                    if(session.getAttribute("email") != null){
-                                        out.print("<li class=nav-item>");
-                                        out.print("<a class=nav-link href=index.jsp>Sair</a>");
-                                        
-                                        out.print("</li>");
-                                    }
-                        %>
+   
                     </ul>
                 </div>
             </div>
@@ -175,6 +178,10 @@
                 <p class="m-0 text-center text-white">Copyright &copy; DropBooks</p>
             </div>
             <!-- /.container -->
-        </footer>     
+        </footer>   
+        
+        <!-- Bootstrap core JavaScript -->
+    <script src="res/vendor/jquery/jquery.min.js"></script>
+    <script src="res/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     </body>
 </html>
