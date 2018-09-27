@@ -41,6 +41,7 @@ public class CadastroProdutoServlet extends HttpServlet {
             produto.setTitulo(request.getParameter("nameLivro"));
             
             ProdutoDAO.setProduto(produto);
+            response.sendRedirect("catalogoLivro.jsp");
         }
     }
 

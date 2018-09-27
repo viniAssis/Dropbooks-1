@@ -160,7 +160,7 @@
 						<div class="row">
 							<div class="col">
 								<label id="texto">Ano de Lançamento</label>
-								<input type="date" class="form-control  border border-dark" id="anoLancamento" required>
+								<input type="date" class="form-control  border border-dark" id="anoLancamento" name="anoLancamento" required>
 							</div>
 
 							<div class="dropdown1">

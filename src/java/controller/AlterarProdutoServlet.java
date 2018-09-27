@@ -23,7 +23,7 @@ import modelDAO.UsuarioDAO;
  */
 @WebServlet(name = "AlterarProdutoServlet", urlPatterns = {"/AlterarProdutoServlet"})
 public class AlterarProdutoServlet extends HttpServlet {
-
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -35,7 +35,7 @@ public class AlterarProdutoServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        response.setContentType("text/html;charset=UTF-8");
         //String _email = request.getSession().getAttribute("email").toString();
          
          //Usuario user = new UsuarioDAO().getUsuario(_email);

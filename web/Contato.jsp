@@ -1,11 +1,10 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="modelDAO.UsuarioDAO"%>
 <%@page import="model.Usuario"%>
 <%@page import="javax.servlet.http.HttpSession"%>
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
-        <!-- Meta tags ObrigatÃ³rias -->
+        <!-- Meta tags Obrigatórias -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">    
         <!-- Bootstrap CSS -->
@@ -73,7 +72,7 @@
                         </li>
                          <li class="nav-item">
                             <%
-                                //VARIAVEIS QUE VÃƒO PREENCHER OS CAMPOS VAZIOS COM OS DADOS DO USUARIO(SE ESTIVER LOGADO)
+                                //VARIAVEIS QUE VÃO PREENCHER OS CAMPOS VAZIOS COM OS DADOS DO USUARIO(SE ESTIVER LOGADO)
                                 String _email = "";
                                 String _nome = "";
                                 //IDENTIFICA SE O USUARIO ESTA LOGADO E TRAZ SEUS DADOS PARA A PAGINA, SE NAO ESTIVER LOGADO, MOSTRA O LINK PARA QUE O IMUNDO POSSA SE LOGAR
@@ -115,10 +114,10 @@
             <div class="form-row align-items-center">
                 <div class="col-auto my-1">
                     <select class="custom-select mr-sm-2 border border-dark" id="tipoPesquisa" name="opcaoPesquisa">
-                        <option  value="Titulo">TÃ­tulo</option>
+                        <option  value="Titulo">Título</option>
                         <option  value="Autor">Autor</option>
                         <option  value="Editora">Editora</option>
-                        <option  value="Genero">GenÃªro</option>
+                        <option  value="Genero">Genêro</option>
                     </select>
                 </div>
                 <div class="col-auto col-md-6">
@@ -130,7 +129,7 @@
 
         <div  class="container" id="container">
 
-            <h3 class="titulo">Contate-se</h3>
+            <h3 class="titulo">Contate-nos</h3>
 
             <form id="form1" method="post" action="EnviaEmailServlet">
                 <!-- Nome -->
@@ -154,8 +153,8 @@
                     <div class="form-group col-md-10">
                         <label id="texto">Assunto <span class="alerta">*</span></label>
                         <select id="assunto" class="form-control col-md-10  border border-dark" name="assunto">
-                            <option selected>DÃºvidas</option>
-                            <option>ReclamaÃ§Ãµes</option>
+                            <option selected>Dúvidas</option>
+                            <option>Reclamações</option>
                             <option>Cancelamento</option>
                             <option>Outros Assuntos</option>
                         </select>

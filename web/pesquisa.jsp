@@ -705,5 +705,8 @@
 			
 		</tbody>
         <table>
+            
+            <script src="res/vendor/jquery/jquery.min.js"></script>
+    <script src="res/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 	</body>
 </html>

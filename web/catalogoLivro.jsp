@@ -311,23 +311,22 @@
         
         <div class="container-fluid">
  
-            <form id="caixa2" method="post" name="PesquisarLivrosServlet">
-                <div class="form-row align-items-center" >
-                    <div class="col-auto my-1">
-                        <select class="custom-select mr-sm-2" id="tipoPesquisa" name="opcaoPesquisa">
-                            <option  value="Titulo">Título</option>
-                            <option  value="Autor">Autor</option>
-                            <option  value="Editora">Editora</option>
-                            <option  value="Genero">Genero</option>
-                        </select>
-                    </div>
-
-                    <div class="col-auto col-md-5">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar" aria-label="Pesquisar" name="pesquisa">
-                    </div>
-                    <button type="submit" class="btn btn-primary" id="botao1" name="botao1">Pesquisa</button>
-                </div>
-            </form>
+           <form id="caixa2" action="PesquisarLivrosServlet">
+			<div class="form-row align-items-center">
+				<div class="col-auto my-1">
+					<select class="custom-select mr-sm-2" id="tipoPesquisa" name="opcaoPesquisa">
+						<option  value="Titulo">Título</option>
+                                                        <option  value="Autor">Autor</option>
+                                                        <option  value="Editora">Editora</option>
+                                                        <option  value="Genero">Genero</option>
+					</select>
+				</div>
+				<div class="col-auto col-md-6">
+					<input class="form-control mr-sm-2" type="search" placeholder="Pesquisar" aria-label="Pesquisar" name="palavraChave">
+				</div>
+				<button type="submit" class="btn btn-primary" id="botao1" name="botao1">Pesquisa</button>
+			</div>
+		</form>
 
         </div>
 <%

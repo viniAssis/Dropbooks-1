@@ -23,11 +23,11 @@ public class AlterarUsuarioServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+         response.setContentType("text/html;charset=UTF-8");
          String _email = request.getSession().getAttribute("email").toString();
          
          Usuario user = new UsuarioDAO().getUsuario(_email);
-
+         
          user.setNomeRazao(request.getParameter("hNome")); 
          user.setEmail(request.getParameter("hEmail"));
          user.setSexo(request.getParameter("sexoPessoa"));
@@ -42,7 +42,7 @@ public class AlterarUsuarioServlet extends HttpServlet {
          
          UsuarioDAO.alterarUsuario(user);
          
-         response.sendRedirect("home.jsp");
+         response.sendRedirect("index.jsp");
          
 
     }

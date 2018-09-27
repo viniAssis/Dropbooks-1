@@ -40,7 +40,7 @@ String mensagem = request.getParameter("mensagem");
 Email.enviaEmail(nome, email, assunto, mensagem);
 
     // Redireciona para outra página
-    response.sendRedirect("./home.jsp");
+    response.sendRedirect("index.jsp");
 }
  
 }

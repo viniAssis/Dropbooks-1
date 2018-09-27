@@ -1,12 +1,11 @@
 <%@page import="javax.swing.JOptionPane"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="modelDAO.UsuarioDAO"%>
 <%@page import="model.Usuario"%>
 
 <!DOCTYPE html>
 <html lang="pt-br">
 	<head>
-		<!-- Meta tags Obrigat√≥rias -->
+		<!-- Meta tags ObrigatÛrias -->
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -111,7 +110,7 @@
 			<div class="form-row align-items-center">
 				<div class="col-auto my-1">
 					<select class="custom-select mr-sm-2" id="tipoPesquisa" name="opcaoPesquisa">
-						<option  value="Titulo">T√≠tulo</option>
+						<option  value="Titulo">TÌtulo</option>
                                                         <option  value="Autor">Autor</option>
                                                         <option  value="Editora">Editora</option>
                                                         <option  value="Genero">Genero</option>
@@ -124,7 +123,7 @@
 			</div>
 		</form>
 
-		<h3 id="nome">Ol√°, <%= user.getNomeRazao()%> </h3>
+		<h3 id="nome">Ol·, <%= user.getNomeRazao()%> </h3>
 
 		<form id="form1" action="AlterarUsuarioServlet">
 
@@ -136,9 +135,9 @@
 				</div>
 			</div>
 
-			<!-- Nome/Raz√£o Social -->
+			<!-- Nome/Raz„o Social -->
 			<div class="form-group row">
-				<label class="col-sm-3 col-form-label" id="texto">Nome/Raz√£o Social:</label>
+				<label class="col-sm-3 col-form-label" id="texto">Nome/Raz„o Social:</label>
 				<div class="col-sm-9">
 					<input type="text" class="form-control  border border-dark" id="inputNome" name="hNome" value="<%= user.getNomeRazao()%>" >
 				</div>
@@ -173,14 +172,14 @@
 				</div>
 			</div>
 
-			<!-- CEP, Endere√ßo e Numero  -->
+			<!-- CEP, EndereÁo e Numero  -->
 			<div class="form-row">
 				<div class="form-group col-md-4">
 					<label id="texto">CEP</label>
 					<input type="text" class="form-control  border border-dark" id="inputCEP" name="hCEP" value="<%= user.getCep()%>">
 				</div>
 				<div class="form-group col-md-4">
-					<label id="texto">Endere√ßo</label>
+					<label id="texto">EndereÁo</label>
 					<input type="text" class="form-control  border border-dark" id="inputCidade" name="hBairro" value="<%= user.getBairro()%>">
 				</div>
 				<div class="form-group col-md-4">
