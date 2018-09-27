@@ -15,7 +15,7 @@ window.onload=function(){
             
             aparecerCaixa();
             
-            alert("JQUERY dentro do .js");
+            alert("JQUERY dentro do .js teste");
                     
       
                 
