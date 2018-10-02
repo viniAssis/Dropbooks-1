@@ -7,16 +7,12 @@
         <!-- Meta tags Obrigatórias -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">    
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
         <script src="res/jquery-3.3.1.js"></script>
-
-        <!-- Bootstrap core CSS -->
         <link href="res/css/bootstrap.min.css" rel="stylesheet">
+        <link href="res/css/modern-business.css" rel="stylesheet">     
+        <script src="res/js/contato.js"></script>
 
-        <!-- Custom styles for this template -->
-        <link href="res/css/modern-business.css" rel="stylesheet">
         <style>
 
             #container{
@@ -53,9 +49,6 @@
         </style>
     </head>
     <body>
-        
-
-        <!-- Navigation -->
         <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary fixed-top">
             <div class="container">
                 <a class="navbar-brand" href="index.jsp">DropBooks</a>
@@ -128,15 +121,15 @@
         </form>
 
         <div  class="container" id="container">
-
             <h3 class="titulo">Contate-nos</h3>
-
+            
             <form id="form1" method="post" action="EnviaEmailServlet">
+                
                 <!-- Nome -->
                 <div class="form-row">
                     <div class="form-group col-md-10 mb-8">
                         <label id="texto">Nome <span class="alerta">*</span></label>
-                        <input type="text" class="form-control col-md-10  border border-dark" id="nome" name="nome" value="<%=_nome%>">
+                        <input type="text" class="form-control col-md-10  border border-dark" id="nome" name="nome"  maxlength="40" value="<%=_nome%>">
                     </div>
                 </div>
 
@@ -144,7 +137,7 @@
                 <div class="form-row">
                     <div class="form-group col-md-10">
                         <label id="texto">Email <span class="alerta">*</span></label>
-                        <input type="email" class="form-control col-md-10  border border-dark" id="email" name="email" value="<%=_email%>">
+                        <input type="email" class="form-control col-md-10  border border-dark" id="email" maxlength="45" name="email" value="<%=_email%>">
                     </div>
                 </div>
 
@@ -164,7 +157,7 @@
                 <!-- Mensagem -->
                 <div class="form-group">
                     <label id="texto">Mensagem <span class="alerta">*</span></label>
-                    <textarea class="form-control col-md-8  border border-dark" id="mensagem" rows="7" name="mensagem"></textarea>
+                    <textarea class="form-control col-md-8  border border-dark" id="mensagem" rows="7" maxlength="2000" name="mensagem"></textarea>
                 </div>
 
                 <button type="submit" class="btn btn-primary" id="botao2" onClick="alert('Mensagem enviada !')">Enviar</button>

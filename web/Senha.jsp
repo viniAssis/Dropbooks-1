@@ -10,26 +10,26 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
+    <head>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
 
-    <title>DropBooks</title>
+        <title>DropBooks</title>
 
         <link href="res/css/bootstrap.min.css" rel="stylesheet">
 
         <!-- Custom styles for this template -->
         <link href="res/css/modern-business.css" rel="stylesheet">
 
-                <script src="res/jquery-3.3.1.js"></script>
+        <script src="res/jquery-3.3.1.js"></script>
 
-               <!-- <link href="res/css/the-big-picture.css" rel="stylesheet">
-               -->
-	        <script type="text/javascript">
-                      
+        <!-- <link href="res/css/the-big-picture.css" rel="stylesheet">
+        -->
+        <script type="text/javascript">
+
             $(document).ready(function () {
                 $("#validaEmail").hide();
                 $("#validaCpf").hide();
@@ -66,34 +66,36 @@
                 });
             });
         </script>
-        
+
         <style>
+            
+            
             .conteudo{ 
+              margin-top: 5%;
                 height: 350px;
                 width: 450px;
-                margin-top: 5%;
-                margin: 0 auto;
+                margin-left: 30%; 
+                font: 'arial';
             }
 
             input{
                 margin:  20px;
                 font-weight: 800; 
-                }
+            }
 
             #enviar{
                 margin-top: 2%;
                 margin-left: 35%
             }
-            
-            
-        </style>
-  </head>
 
-  <body>
+
+        </style>
+    </head>
+
+    <body>
 
         <!-- Navigation -->
-    <!-- Navigation -->
-    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary fixed-top" >
+        <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary fixed-top" >
             <div class="container">
                 <a class="navbar-brand" href="index.jsp">DropBooks</a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -109,17 +111,17 @@
                         </li>
                         <li class="nav-item">
                             <%
-                                   
-                                if(session.getAttribute("email") != null) {
+
+                                if (session.getAttribute("email") != null) {
 
                                     String email = request.getSession().getAttribute("email").toString();
 
                                     Usuario user = new UsuarioDAO().getUsuario(email);
-                             
+
                                     out.print("</li>");
                                     out.print("<li class=nav-item>");
                                     out.print("<li class='nav-item dropdown'> "
-                                            + "<a class='nav-link dropdown-toggle' href='#' id='navbarDropdownPortfolio' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>"+ user.getNomeRazao() +"</a>"
+                                            + "<a class='nav-link dropdown-toggle' href='#' id='navbarDropdownPortfolio' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>" + user.getNomeRazao() + "</a>"
                                             + "<div class='dropdown-menu dropdown-menu-right' aria-labelledby='navbarDropdownPortfolio'>"
                                             + "<a class='dropdown-item' href='alterarCadastro.jsp'>Alterar Dados</a>"
                                             + "<a class='dropdown-item' href='catalogoLivro.jsp'>Meu Catalogo</a>"
@@ -128,34 +130,27 @@
                                             + "<a class='dropdown-item' name=Sair href=SairServlet>Sair</a>"
                                             + "</div>"
                                             + "</li>");
-                                    
+
                                 } else {
                                     out.print("<a class=nav-link href=login.jsp>Login/Cadastrar</a>");
-                                }        
+                                }
                             %>   
                         </li>
-                        
-                        
-                       
-                        
                     </ul>
                 </div>
             </div>
         </nav>
-
-	    <section>
+        <section>
             <div class="container">
                 <div class="conteudo">
 
                     <form>
-
                         <div class="form-row">
-                            <input type="text" class="form-control border border-dark" placeholder="Email" id="email" required="">
+                            <input type="text" class="form-control border border-dark"  placeholder="Email" id="email" maxlength="45" required="">
                             <div id="validaEmail" style="display: none;">Email Incorreto</div>
-                            <input type="text" class="form-control border border-dark" placeholder="CPF" id="cpf" required="">
+                            <input type="text" class="form-control border border-dark" placeholder="CPF" id="cpf" maxlength="20" required="">
                             <div id="validaCpf" style="display: none;">CPF Incorreto</div>
-                            <input type="Password" class="form-control border border-dark" placeholder="Senha Nova" id="senha" required="">
-
+                            <input type="Password" class="form-control border border-dark" placeholder="Senha Nova" maxlength="20" id="senha" required="">
 
                             <button type="button" class="btn btn-primary" id="enviar">Alterar Senha</button>
                             <div id="validaOk" style="display: none;">Senha alterada com sucesso</div>
@@ -173,21 +168,20 @@
                     </div>
                 </div>
 
-        </div></section>
-    <!-- Footer -->
-    <footer class="py-5 bg-primary">
-      <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; DropBooks</p>
-      </div>
-      <!-- /.container -->
-    </footer>
+            </div></section>
+        <!-- Footer -->
+        <footer class="py-5 bg-primary">
+            <div class="container">
+                <p class="m-0 text-center text-white">Copyright &copy; DropBooks</p>
+            </div>
+            <!-- /.container -->
+        </footer>
 
-    <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="res/vendor/jquery/jquery.min.js"></script>
-    <script src="res/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- Bootstrap core JavaScript -->
+        
+        <script src="res/vendor/jquery/jquery.min.js"></script>
+        <script src="res/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-  </body>
+    </body>
 
 </html>

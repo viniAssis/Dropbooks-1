@@ -1,41 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
+    <head>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
 
-    <title>DropBooks</title>
+        <title>DropBooks</title>
 
-	 <script src="js/Cadastro.js"></script>
-	 <script src="res/jquery-3.3.1.js"></script>
+        <script src="res/js/Cadastro.js"></script>
+        <script src="res/jquery-3.3.1.js"></script>   
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.8/jquery.mask.js"></script>
 
-		 
-		 <!-- Bootstrap core CSS -->
-    <link href="res/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Bootstrap core CSS -->
+        <link href="res/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
-    <link href="res/css/modern-business.css" rel="stylesheet">
-	  
-	          <script src="res/js/Cadastro.js"></script>
-        	<script src="res/jquery-3.3.1.js"></script>
-<style>
-	  
-	  	   #caixa2{
-                margin-top: 5%;
-                margin-left: 20%;
-                margin-bottom: 3%;
-                clear: both;
+        <!-- Custom styles for this template -->
+        <link href="res/css/modern-business.css" rel="stylesheet">
 
-            }
+        <style>
 
-        
             h2{
+                margin-top: 5%;
                 text-align: center;
-                margin-bottom: 2%;
+                margin-bottom: 5%;
                 color: black;
             }
 
@@ -76,139 +67,98 @@
 				margin-left: 2%;
 			}
 
-			#cadastrar,#limpar{
-				margin-top: 15px;
-				margin-left: 5%;
-			}
-				
-			#espaco{
-				margin-top: 2%;
-				margin-left: 7%;
-			}	
-		  
-		  #form{
-			  margin-bottom: 5%;
-		  }
-			
-	  </style>
+            #caixa2 {
+                margin-top: 2%;
+                margin-left: 20%;
+                margin-bottom: 3%;
+                clear: both;
+            }
 
-  </head>
+            #botao1,#cadastrar,#limpar{
+                width: 15%;
 
-  <body>
 
-    <!-- Navigation -->
-    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary fixed-top">
-      <div class="container">
-        <a class="navbar-brand" href="index.html">DropBooks</a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="index.html">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Livro</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="Contato.jsp">Contato</a>
-            </li>
-		 <!-- 	 	  <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Blog
-              </a>
-              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-                <a class="dropdown-item" href="blog-home-1.html">Blog Home 1</a>
-                <a class="dropdown-item" href="blog-home-2.html">Blog Home 2</a>
-                <a class="dropdown-item" href="blog-post.html">Blog Post</a>
-              </div>
-            </li>
-         	  <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Portfolio
-              </a>
-              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
-                <a class="dropdown-item" href="portfolio-1-col.html">1 Column Portfolio</a>
-                <a class="dropdown-item" href="portfolio-2-col.html">2 Column Portfolio</a>
-                <a class="dropdown-item" href="portfolio-3-col.html">3 Column Portfolio</a>
-                <a class="dropdown-item" href="portfolio-4-col.html">4 Column Portfolio</a>
-                <a class="dropdown-item" href="portfolio-item.html">Single Portfolio Item</a>
-              </div>
-            </li>
+                border: #00008B;
+            }
 
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Blog
-              </a>
-              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-                <a class="dropdown-item" href="blog-home-1.html">Blog Home 1</a>
-                <a class="dropdown-item" href="blog-home-2.html">Blog Home 2</a>
-                <a class="dropdown-item" href="blog-post.html">Blog Post</a>
-              </div>
-            </li>
-            <li class="nav-item dropdown">
-             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Other Pages
-              </a>
-              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-                <a class="dropdown-item" href="full-width.html">Full Width Page</a>
-                <a class="dropdown-item" href="sidebar.html">Sidebar Page</a>
-                <a class="dropdown-item" href="faq.html">FAQ</a>
-                <a class="dropdown-item" href="404.html">404</a>
-                <a class="dropdown-item" href="pricing.html">Pricing Table</a>
-              </div>
-            </li>-->
-          </ul>
-        </div>
-      </div>
-    </nav>
+            #botao1 {
+                color: white;
+                margin: 0;
+                margin-left: 2%;
+            }
 
-	   <form id="caixa2">
-            <div class="form-row align-items-center">
-                <div class="col-auto my-1">
-                    <select class="custom-select mr-sm-2" id="tipoPesquisa">
-                        <option>Titulo</option>
-                        <option>Autor</option>
-                        <option>Editora</option>
-                        <option>Genero</option>
-                    </select>
+            #cadastrar,#limpar{
+                margin-top: 15px;
+                margin-left: 5%;
+            }
+
+            #espaco{
+                margin-top: 2%;
+                margin-left: 7%;
+            }	
+
+            #form{
+                margin-bottom: 5%;
+            }
+
+            input{
+                margin-bottom: 3%;
+            }
+
+        </style>
+
+    </head>
+    
+    <body>
+
+        <!-- Navigation -->
+        <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="index.jsp">DropBooks</a>
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.jsp">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Contato.jsp">Contato</a>
+                        </li>
+                    </ul>
                 </div>
-                <div class="col-auto col-md-6">
-                    <input class="form-control mr-sm-2  border border-dark" type="search" placeholder="Pesquisar" aria-label="Pesquisar" name="pesquisa">
-                </div>
-                <button type="submit" class="btn btn-primary" id="botao1" name="botao1">Pesquisa</button>
             </div>
-        </form>
-		
+        </nav>
+
         <h2>Cadastro de Usuário</h2>
-		
+
         <form method="post" id="form" name="form" action="CadastroServlet" onsubmit="teste()">
 
-             <div class="container">
+            <div class="container">
 
-				<!--Email -->
-				<div class="form-row">
-					<div class="col-md-6 mb-8">
-						<label>Email:</label>
-						  <input class="form-control border border-dark" type="email" name="email" id="email"  placeholder="Email" required/>
-					</div>
-					<div class="col-md-6 mb-8">
-						<label>Repita o email:</label>
-						<input type="email" class="form-control border border-dark" name="repemail" id="reemail"  placeholder="Repita o Email" required>
-					</div>
+                <!--Email -->
+                <div class="form-row">
+                    <div class="col-md-6 mb-8">
+                        <label>Email:</label>
+                        <input class="form-control border border-dark" type="email" name="email" id="email" maxlength="40" quired/>
+                    </div>
+                    <div class="col-md-6 mb-8">
+                        <label>Repita o email:</label>
+                        <input type="email" class="form-control border border-dark" name="repemail" id="reemail"  maxlength="40" required>
+                    </div>
 
-				</div>
-				
-				 <!--Senha -->
-				 <div class="form-row">
+                </div>
+
+                <!--Senha -->
+                <div class="form-row">
                     <div class="col-md-6 mb-8">
                         <label>Senha:</label>
-                        <input type="password" class="form-control border border-dark" name="senha" id="senha"  placeholder="Senha" required>
+                        <input type="password" class="form-control border border-dark" name="senha" maxlength="20" id="senha" required>
                     </div>
                     <div class="col-md-6 mb-8">
                         <label>Repita a Senha:</label>
-                        <input type="password" class="form-control border border-dark" name="repsenha" id="repsenha" placeholder="Repita Senha" required>
+                        <input type="password" class="form-control border border-dark" name="repsenha" maxlength="20" id="repsenha" required>
                     </div>
                 </div>
 				
@@ -220,69 +170,71 @@
                         <div class="valid-feedback">Tudo certo!</div>
                     </div>
 
+                <!-- Telefone e Data Nascimento -->	
+                <div class="form-row">      
+                    <div class="col-md-6 mb-8">
+                        <label>Telefone:</label>
+                        <input type="tel" class="form-control border border-dark" name="telefone"  id="telefone" required>
+                    </div>
+
                     <div class="col-md-6 mb-8">
                         <label>Data de Nascimento:</label>
                         <input type="date" class="form-control border border-dark" name="data" id="data" class="cxs1" required>
-                        <div class="valid-feedback">Tudo certo!</div>
                     </div>
                 </div>  
-				
-				<!-- Tipo -->
-				<div class="form-group">
-					<label>Tipo:</label>
-					<div class="form-check form-check-inline " id="espaco">
-						<input class="form-check-input" type="radio"  NAME="tipoPessoa" id="idFisico" VALUE="1" required>
-						<label class="form-check-label">Fisico</label>
-					</div>
-					<div class="form-check form-check-inline" id="espaco">
-						<input class="form-check-input" type="radio"  NAME="tipoPessoa" id="idJuridico" VALUE="2" required>
-						<label class="form-check-label">Juridico</label>
-					</div>
-				</div>
-		
-				<!-- Nome, Cpf e Sexo -->
-                <div id="fisico" class="fj">	
-					<div class="form-row">
-						<div class="col-md-6 mb-8">
-							<label>Nome Completo:</label>
-							<input type="text" class="form-control border border-dark" name="nomeRazao" id="nome"  placeholder="Nome" required>
-							<div class="valid-feedback">Tudo certo!</div>
-						</div>
-						<div class="col-md-6 mb-8">
-							<label>CPF:</label>
-							<input type="text" class="form-control border border-dark" name="cpf" id="cpf" maxlength="11" placeholder="Insira os 11 digitos" required>
-							<div class="valid-feedback">Tudo certo!</div>
-						</div>					
-					</div> 
-					
-						<div class="form-group">
-					<label>Sexo:</label>
-					<div class="form-check form-check-inline " id="espaco">
-						<input class="form-check-input" type="radio"  name="sexo" id="feminino" value="f" required>
-						<label class="form-check-label">Femino</label>
-					</div>
-					<div class="form-check form-check-inline" id="espaco">
-						<input class="form-check-input" type="radio" name="sexo" id="masculino" value="m" required>
-						<label class="form-check-label">Masculino</label>
-					</div>
-				</div>
-                </div>
-				
-				<!-- CNPJ E RAZAO SOCIAL -->
-                <div id="juridico" class="fj">
-					<div class="form-row">
-						<div class="col-md-6 mb-8">
-							<label>CNPJ:</label>
-							<input type="text" class="form-control border border-dark" name="cnpj" id="cnpj" placeholder="Insira os 14 caracteres" maxlength="14" required>
-							<div class="valid-feedback">Tudo certo! </div>
-						</div>
 
-						<div class="col-md-6 mb-8">
-							<label for="validationCustom02">Razão Social:</label>
-							<input type="text" class="form-control border border-dark" name="nomeRazao" id="nomeRazao"  placeholder="Razão Social" required>
-							<div class="valid-feedback">Tudo certo!</div>
-						</div>
-					</div>
+                <!-- Tipo -->
+                <div class="form-group">
+                    <label>Tipo:</label>
+                    <div class="form-check form-check-inline " id="espaco">
+                        <input class="form-check-input" type="radio"  NAME="tipoPessoa" id="idFisico" VALUE="1" required>
+                        <label class="form-check-label">Fisico</label>
+                    </div>
+                    <div class="form-check form-check-inline" id="espaco">
+                        <input class="form-check-input" type="radio"  NAME="tipoPessoa" id="idJuridico" VALUE="2" required>
+                        <label class="form-check-label">Juridico</label>
+                    </div>
+                </div>
+
+                <!-- Nome, Cpf e Sexo -->
+                <div id="fisico" class="fj">	
+                    <div class="form-row">
+                        <div class="col-md-6 mb-8">
+                            <label>Nome Completo:</label>
+                            <input type="text" class="form-control border border-dark" name="nomeRazao" maxlength="40" id="nomeRazao">
+                        </div>
+                        <div class="col-md-6 mb-8">
+                            <label>CPF:</label>
+                            <input type="text" class="form-control border border-dark" name="cpf" id="cpf">
+                        </div>					
+                    </div> 
+
+                    <div class="form-group">
+                        <label>Sexo:</label>
+                        <div class="form-check form-check-inline " id="espaco">
+                            <input class="form-check-input" type="radio"  name="sexo" id="feminino" value="f" required>
+                            <label class="form-check-label">Femino</label>
+                        </div>
+                        <div class="form-check form-check-inline" id="espaco">
+                            <input class="form-check-input" type="radio" name="sexo" id="masculino" value="m" required>
+                            <label class="form-check-label">Masculino</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CNPJ E RAZAO SOCIAL -->
+                <div id="juridico" class="fj">
+                    <div class="form-row">
+                        <div class="col-md-6 mb-8">
+                            <label>CNPJ:</label>
+                            <input type="text" class="form-control border border-dark" name="cnpj" id="cnpj">
+                        </div>
+
+                        <div class="col-md-6 mb-8">
+                            <label for="validationCustom02">Razão Social:</label>
+                            <input type="text" class="form-control border border-dark" name="nomeRazao" id="nomeRazao" onkeypress="return event.charCode >= 97 && event.charCode <= 122">
+                        </div>
+                    </div>
                 </div>
 				
 				<!-- CEP,Endereço e Numero  -->
@@ -293,46 +245,47 @@
 						<div class="invalid-feedback">Por favor, informe o CEP Valido.</div>
 					</div>
 
-					<div class="col-md-4 mb-3">
-						<label>Endereço:</label>
-						<input type="text" class="form-control border border-dark" name="logradouro"  placeholder="Endereço" required>
-						<div class="invalid-feedback">Por favor, informe o Endereço Valido.</div>
-					</div>
+                <!-- CEP,Endereço e Numero  -->
+                <div class="form-row">
+                    <div class="col-md-4 mb-3">
+                        <label>CEP:</label>
+                        <input type="text" class="form-control border border-dark" name="cep"  id="cep" required>         
+                    </div>
 
-					<div class="col-md-4 mb-3">
-						<label>Numero:</label>
-						<input type="text" class="form-control border border-dark" id="numero"  name="numero"   placeholder="Numero" required>
-						<div class="invalid-feedback">Por favor, informe um Numero Valido.</div>
-					</div>
-				</div>
-					
-				<!--Complemento, Bairro e Cidade -->
-				<div class="form-row">
-					<div class="col-md-4 mb-3">
-						<label>Complemento:</label>
-						<input type="text" class="form-control border border-dark" name="complemento"  placeholder="Complemento" id="comp" required>
-						<div class="invalid-feedback">Por favor, informe um Completo Valido.</div>
-					</div>
-					<div class="col-md-4 mb-3">
-						<label>Bairro:</label>
-						<input type="text" class="form-control border border-dark" name="bairro" id="bairro"  placeholder="Bairro" required>
-						<div class="invalid-feedback">Por favor, informe um Bairo Valido.</div>
-					</div>
+                    <div class="col-md-4 mb-3">
+                        <label>Endereço:</label>
+                        <input type="text" class="form-control border border-dark" name="logradouro" maxlength="50" id="logradouro" required>
+                    </div>
 
-					<div class="col-md-4 mb-3">
-						<label>Cidade:</label>
-						<input type="text" class="form-control border border-dark" name="cidade" id="cidade"  placeholder="Cidade" required>
-						<div class="invalid-feedback">Por favor, informe uma cidade Valido.</div>
-					</div>
+                    <div class="col-md-4 mb-3">
+                        <label>Numero:</label>
+                        <input type="text" class="form-control border border-dark" id="numero"  maxlength="5" name="numero" required>
+                    </div>
+                </div>
 
-				</div>		
-				
-				<!--Estado -->
-				<div class="form-row">
+                <!--Complemento, Bairro e Cidade -->
+                <div class="form-row">
+                    <div class="col-md-4 mb-3">
+                        <label>Complemento:</label>
+                        <input type="text" class="form-control border border-dark" name="complemento" id="complemento"  maxlength="20" required>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label>Bairro:</label>
+                        <input type="text" class="form-control border border-dark" name="bairro" id="bairro"  maxlength="20" required>
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label>Cidade:</label>
+                        <input type="text" class="form-control border border-dark" name="cidade" id="cidade"  maxlength="20" required>
+                    </div>
+
+                </div>		
+
+                <!--Estado -->
+                <div class="form-row">
                     <div class="col-md-4 mb-3">
                         <label>Estado:</label>
-                        <input type="text" class="form-control border border-dark" name="estado" id="estado" placeholder="Estado" required>
-                        <div class="invalid-feedback">Por favor, informe um estado vÃ¡lido.</div>
+                        <input type="text" class="form-control border border-dark" name="estado" id="estado"  maxlength="20"required>
                     </div>
                 </div>
 
@@ -349,19 +302,15 @@
         </form>
 		
 
-	  
-    <!-- Footer -->
-    <footer class="py-5 bg-primary">
-      <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; DropBooks</p>
-      </div>
-      <!-- /.container -->
-    </footer>
+        <!-- Footer -->
+        <footer class="py-5 bg-primary">
+            <div class="container">
+                <p class="m-0 text-center text-white">Copyright &copy; DropBooks</p>
+            </div>
+            <!-- /.container -->
+        </footer>
 
-    <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-  </body>
+    </body>
 
 </html>
