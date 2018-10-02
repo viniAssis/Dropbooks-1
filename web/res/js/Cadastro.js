@@ -22,7 +22,7 @@ window.onload=function(){
               document.getElementById("cpf").onkeypress   = function(){return Onlynumbers(event);};
               document.getElementById("cnpj").onkeypress   = function(){return Onlynumbers(event);};
               document.getElementById("numero").onkeypress   = function(){return Onlynumbers(event);};
-              document.getElementById("ddd").onkeypress   = function(){return Onlynumbers(event);};
+             
               document.getElementById("telefone").onkeypress   = function(){return Onlynumbers(event);};
               
               var email = $("#email").val();
@@ -46,11 +46,13 @@ window.onload=function(){
                                 success : function(results){
                                     if(results === "Ja existente"){
                                         $("#email").css("border-color", "red");
+                                        alert("vermelho");
                                         emailDisponivel = "nao";
                                         console.log(emailDisponivel);
                                         
                                     }else if(results === "Valido"){
                                         $("#email").css("border-color", "lightgreen");
+                                        alert("verde");
                                         emailDisponivel = "sim";
                                         console.log(emailDisponivel);
                                                          
