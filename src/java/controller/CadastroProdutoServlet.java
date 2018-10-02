@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +14,7 @@ import model.Produto;
 import modelDAO.ProdutoDAO;
 
 @WebServlet(name = "CadastroProdutoServlet", urlPatterns = {"/CadastroProdutoServlet"})
+@MultipartConfig(maxFileSize = 16177215)
 public class CadastroProdutoServlet extends HttpServlet {
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -39,6 +41,21 @@ public class CadastroProdutoServlet extends HttpServlet {
             produto.setPreco(Float.parseFloat(request.getParameter("valorLivro")));
             produto.setQuantidade(Integer.parseInt(request.getParameter("qtdLivro")));
             produto.setTitulo(request.getParameter("nameLivro"));
+            if(request.getPart("imagem_1").getSize() != 0){
+                produto.setImagem_1(request.getPart("imagem_1").getInputStream());
+            }
+            if (request.getPart("imagem_2").getSize() != 0){
+                produto.setImagem_2(request.getPart("imagem_2").getInputStream());
+            }
+            if (request.getPart("imagem_3").getSize() != 0){
+                produto.setImagem_3(request.getPart("imagem_3").getInputStream());
+            }
+            if (request.getPart("imagem_4").getSize() != 0){
+                produto.setImagem_4(request.getPart("imagem_4").getInputStream());
+            }
+            if (request.getPart("imagem_5").getSize() != 0){
+                produto.setImagem_5(request.getPart("imagem_5").getInputStream());
+            }
             
             ProdutoDAO.setProduto(produto);
             response.sendRedirect("catalogoLivro.jsp");
