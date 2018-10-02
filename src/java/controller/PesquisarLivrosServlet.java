@@ -81,7 +81,7 @@ public class PesquisarLivrosServlet extends HttpServlet {
            
             
             
-                 response.sendRedirect("pesquisa.jsp");
+                 response.sendRedirect("pesquisa1.jsp");
             
         }
     }

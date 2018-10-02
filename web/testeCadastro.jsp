@@ -26,7 +26,7 @@
             
             // Para trazer um produto, pegue-o pelo ID do mesmo
             
-            Produto teste = ProdutoDAO.getProduto("1");
+            Produto teste = ProdutoDAO.getProduto(1);
             out.println(teste.getDescricao());
             out.println(teste.getDataPublicacao());
             
