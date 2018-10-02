@@ -7,13 +7,13 @@ window.onload = function () {
         $('#telefone').mask('(99) 99999-9999');
         $('#cpf').mask('999.999.999-99');
         $('#cnpj').mask('99.999.999/9999-99');
-        $('#cep').mask('99999-999')
+        $('#cep').mask('99999-999');
 
     });
 
     document.getElementById("cpf").onkeypress = function () {
         return Onlynumbers(event);
-    }
+    };
 
     document.getElementById("telefone").onkeypress = function () {
         return Onlynumbers(event);
@@ -121,7 +121,7 @@ window.onload = function () {
             $("#repsenha").css("border-color", "red");
         }
 
-    }
+    };
 
     document.getElementById("form").onsubmit = function () {
 
