@@ -1,28 +1,23 @@
 
         
+
+
+
+
+
  
         
 window.onload=function(){
-            
-            
-            
-            
-            
-            
-            
-
-            
-            
             aparecerCaixa();
             
-            alert("JQUERY dentro do .js");
+            //alert("JQUERY dentro do .js");
                     
       
                 
-              document.getElementById("cpf").onkeypress   = function(){return Onlynumbers(event);};
-              document.getElementById("cnpj").onkeypress   = function(){return Onlynumbers(event);};
+              //document.getElementById("cpf").onkeypress   = function(){return Onlynumbers(event);};
+             // document.getElementById("cnpj").onkeypress   = function(){return Onlynumbers(event);};
               document.getElementById("numero").onkeypress   = function(){return Onlynumbers(event);};
-              document.getElementById("ddd").onkeypress   = function(){return Onlynumbers(event);};
+              //document.getElementById("ddd").onkeypress   = function(){return Onlynumbers(event);};
               document.getElementById("telefone").onkeypress   = function(){return Onlynumbers(event);};
               
               var email = $("#email").val();
@@ -62,12 +57,7 @@ window.onload=function(){
                                     console.log(emailDisponivel);
                                     }   
                                 }
-                                
-                       
-                 });
-                 
-                
-    
+                 });             
             };
             
             document.getElementById("reemail").onchange = function(events){
@@ -117,9 +107,9 @@ window.onload=function(){
                   
                   
 
-                        /*email = $("#email").val();*/
+                        email = $("#email").val();
                      
-                         /*Consulta email
+                         /*Consulta email*/
                          $.ajax({
                                 type:'POST',
                                 url : "ConsultaEmail",
@@ -146,7 +136,7 @@ window.onload=function(){
                                     }   
                                     
                                 }
-                         });*/
+                         });
                   
                                         
                                         if(emailDisponivel === "nao" || emailDisponivel === "vazio"){
@@ -241,7 +231,7 @@ window.onload=function(){
                                         
                                         alert(cpf.value +" eeeeeeee "+cnpj.value);
                                         
-                                       /*if(valid1 === false || fisicoValid === false || juridicoIValid === false || emailDisponivel === "nao" || emailDisponivel === "vazio" ){
+                                       if(valid1 === false || fisicoValid === false || juridicoIValid === false || emailDisponivel === "nao" || emailDisponivel === "vazio" ){
                                                 
                                                 
                                                 if(emailDisponivel === "nao"|| emailDisponivel === "vazio"){
@@ -250,7 +240,7 @@ window.onload=function(){
                                                 return false;
                                                 
                                                 
-                                        }*/
+                                        }
                                             
                                         document.getElementById("form").submit;    
                                             
@@ -261,7 +251,7 @@ window.onload=function(){
                   
                     
                     
-              };/*on submit*/   
+              };
                   
         };
         
