@@ -12,6 +12,10 @@
         <servlet-name>PesquisarLivrosServlet</servlet-name>
         <servlet-class>controller.PesquisarLivrosServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GetProdutoServlet</servlet-name>
+        <servlet-class>controller.GetProdutoServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -31,6 +35,10 @@
     <servlet-mapping>
         <servlet-name>PesquisarLivrosServlet</servlet-name>
         <url-pattern>/PesquisarLivrosServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetProdutoServlet</servlet-name>
+        <url-pattern>/GetProdutoServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

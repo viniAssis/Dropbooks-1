@@ -367,7 +367,7 @@
                             out.println("<p> Valor: R&#36;: <span name='valor' id='valor'>" + lista.get(i).getPreco()+ "</span></p>");
 
                             // <!-- Botão para acionar modal BOTAO EDITAR -->
-                            out.println("<button type='button' class='btn btn-primary' data-toggle='modal' data-target='#ExemploModalCentralizado' name='editar' id='idEditar'>");
+                            out.println("<button type='button' class='btn btn-primary editar' data-toggle='modal' data-target='#ExemploModalCentralizado' name='editar' id='"+lista.get(i).getId()+"'>");
                                 out.println("Editar");
                             out.println("</button>");
 
@@ -529,6 +529,7 @@
             <script src="res/js/bootstrap.min.js"></script>
             <!-- Só faz o nossos placeholders de imagens funcionarem. Não precisar copiar a próxima linha! -->
             <script src="res/js/bootstrap.bundle.min.js"></script>
+            <script src="res/js/catalogoLivro.js"></script>
 
         </div>
         

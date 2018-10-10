@@ -29,7 +29,8 @@ public class ImagemServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
            
-        Produto prod = ProdutoDAO.getProduto(Integer.parseInt(request.getParameter("id_prod")));
+        ProdutoDAO p = new ProdutoDAO();
+        Produto prod = p.getProduto(Integer.parseInt(request.getParameter("id_prod")));
 
         switch(request.getParameter("img")){
             case "1":

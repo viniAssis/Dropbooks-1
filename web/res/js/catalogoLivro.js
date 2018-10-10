@@ -1,20 +1,19 @@
 window.onload = function () {
 
-
     document.getElementById("namelivro").onkeypress = function () {
         return Onlychars(event);
     };
     
-        document.getElementById("nameAutor").onkeypress = function () {
+    document.getElementById("nameAutor").onkeypress = function () {
         return Onlychars(event);
     };
     
-        document.getElementById("nameEditora").onkeypress = function () {
+    document.getElementById("nameEditora").onkeypress = function () {
         return Onlychars(event);
     };
     
     
-        document.getElementById("valor").onkeypress = function () {
+    document.getElementById("valor").onkeypress = function () {
         return Onlynumbers(event);
     };
     
@@ -32,6 +31,28 @@ window.onload = function () {
 
 
 };
+
+$(".editar").click(function(){
+    var id = $(this).attr('id');
+    console.log(id);
+    $.ajax({
+        type: "POST",
+        url: "GetProdutoServlet",
+        dataType: "json",
+        data: {
+            id: id
+        }, success: function(data){
+            $("#namelivro").val(data.titulo);
+            $("#nameAutor").val(data.autor);
+            $("#nameEditora").val(data.editora);
+            $("#anoLancamento").val(data.dataPublicacao);
+            $("#idValor").val(data.preco);
+            $("#descricaoProduto").val(data.descricao);
+        }, error: function(e){
+            console.log(e);
+        }
+    });
+});
 
 function Onlynumbers(e) {
     var tecla = new Number();
