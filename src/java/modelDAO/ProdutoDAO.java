@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class ProdutoDAO {
     
-    public Produto getProduto(int id) {
+    public static Produto getProduto(int id) {
         
         Produto produto = new Produto();
         

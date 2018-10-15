@@ -38,7 +38,7 @@
             color: black;
         }
         tr {
-            
+            cursor: pointer;
         }
         .table-hover>tbody>.item:hover {
             background: #4169E1;
@@ -189,7 +189,7 @@
 					  out.println( 
                                                   
                                                  
-                                                  "<tr class='item linha' onclick=' location.href= &#39 Item.html?id="+ produtos.get(i).getId() +" &#39'>"+
+                                                  "<tr class='item linha' onclick=' location.href= &#39 pagProduto.jsp?id="+ produtos.get(i).getId() +" &#39'>"+
                                                 
 						"<td class='idProduto'>"+produtos.get(i).getId()+"</td>"+
 						"<td class='dataRegistro'>"+produtos.get(i).getDataRegistro()+"</td>"+
