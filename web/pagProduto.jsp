@@ -131,10 +131,10 @@
                         <button class="button button1" name="CalculaCEP" value="Calcular">OK</button>
 
                     </div>
-                    <div class="compra"> 
-                        <input type="button" class="btn btn-info " value="Comprar" id="btnComprar">
-                        <button type="button" class="btn btn-secondary">Adicionar Carrinho</button>
-                    </div>
+                        <form class="compra" method="get" action="ComprarServlet"> 
+                            <input type="hidden" class="btn btn-info " value="Comprar" id="btnComprar">
+                            <button type="submit" class="btn btn-secondary" name="livro" value=<%=prod.getId()%>>Adicionar Carrinho</button>
+                        </form>
 
 
 
