@@ -1,21 +1,20 @@
 package model;
 
 public class ItemCart {
-    private Produto produto;
-    private int quantidade;
+    private int produto, quantidade;
     
     public ItemCart () {}
     
-    public ItemCart (Produto produto, int quantidade) {
+    public ItemCart (int produto, int quantidade) {
         this.produto = produto;
         this.quantidade = quantidade;
     }
     
-    public void setProduto(Produto produto) {
+    public void setProduto(int produto) {
         this.produto = produto;
     }
     
-    public Produto getProduto() {
+    public int getProduto() {
         return this.produto;
     }
     

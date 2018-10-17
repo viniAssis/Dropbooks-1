@@ -4,8 +4,10 @@ import model.Cart;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -36,12 +38,26 @@ public class ComprarServlet extends HttpServlet {
             HttpSession session = request.getSession(true);
 
             int codLivro = Integer.parseInt(request.getParameter("livro"));
-            Produto produto = new ProdutoDAO().getProduto(codLivro);
-            ArrayList lista = (ArrayList) session.getAttribute("cart");
-            lista = new Cart().AddItemCart(produto, lista);
+            int codProduto = new ProdutoDAO().getProduto(codLivro).getId();
+            
+            HashMap<String, String> lista = new HashMap<String, String>();
+            Cookie[] cookies = request.getCookies();
+            
+            for (Cookie c : request.getCookies()) {
+                lista.put(c.getName(), c.getValue());
+            }
+            
+            lista = new Cart().AddItemCart(codProduto, lista);
+            
+            Cookie cookie = new Cookie(String.valueOf(codLivro), "1");
+            response.addCookie(cookie);
             session.setAttribute("cart", lista);
+            
+            for (Cookie c : request.getCookies()) {
+                out.print("<br />" + c.getName() + " : " + c.getValue());
+            }
 
-            response.sendRedirect(request.getContextPath() + "/carrinho.jsp");
+            // request.getRequestDispatcher("carrinho.jsp");
         }
     }
 
