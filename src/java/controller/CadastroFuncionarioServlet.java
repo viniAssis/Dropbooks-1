@@ -79,10 +79,10 @@ public class CadastroFuncionarioServlet extends HttpServlet {
             
             String resp = FuncionarioDAO.setFuncionario(user);
             
-            out.println("Resposta" + resp);
+            //out.println("Resposta" + resp);
             
             // Redireciona para outra página
-            //response.sendRedirect("index.jsp");
+            response.sendRedirect("index.jsp");
             
             
             out.println("</body>");

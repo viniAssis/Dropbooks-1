@@ -1,0 +1,65 @@
+body{
+  background-image: url(./res/img/BG.png) !important;
+  font-family: "Segoe UI";
+
+}
+
+
+nav{
+    background: #090446;
+}
+hr{
+  width: 200px;
+}
+/* Navbar */
+.navbar .navbar-nav li a{
+  color: #FEB95F !important;
+  font-weight: 400;
+  padding-left: 50px !important;
+
+
+}
+.navbar .navbar-nav li a:hover{
+  color: #FEB95F !important;
+  font-weight: 400;
+  padding-left: 50px !important;
+  transform: scale(1);
+
+
+}
+
+.navbar-brand{
+  color: #FEB95F !important;
+  font-size: 24px;
+  font-weight: 700;
+
+}
+a:link,a:visited {
+	color: black;
+	margin-left:
+}
+.container {
+  background-color: #FFF;
+  border-radius: 10px;
+  margin-top: 5%;
+  position: relative;
+}
+
+.btnPrincipal{
+  background-color: #363457;
+  width: 150px;
+  color:#FFF;
+  margin-left: 30%;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.15);
+
+}
+.btnSecundario{
+  background-color: #98A886;
+  color: #FFF;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.15);
+}
+
+#cadastrar, #limpar{
+      background: #090446;
+    color: #FEB95F !important;
+}

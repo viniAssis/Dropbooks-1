@@ -46,10 +46,15 @@
 
                        Usuario user = new UsuarioDAO().getUsuario(email);    
                        out.print("<a class=nav-item nav-link href=alterarCadastro.jsp>Bem Vindo(a) "+user.getNomeRazao() +"</a>");
+                       out.print("<a class='dropdown-item' href='carrinho.jsp'>Carrinho</a>");
                     }else{
                        out.print("<a class=nav-item nav-link href=login.jsp>Login</a>");
                        out.print("<a class=nav-item nav-link href=cadastro.html>Registrar-se</a>");
                     }
+                   
+                   
+                                            
+                                           
    
             %>  
     </div><!-- fim da class que ajusta o nav  -->

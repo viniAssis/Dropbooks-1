@@ -123,11 +123,11 @@
                                     out.print("</li>");
                                     out.print("<li class=nav-item>");
                                     out.print("<li class='nav-item dropdown'> "
-                                            + "<a class='nav-link dropdown-toggle' href='#' id='navbarDropdownPortfolio' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>" + user.getNomeRazao() + "</a>"
+                                            + "<a class='nav-link dropdown-toggle' href='#' id='navbarDropdownPortfolio' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>"+ user.getNomeRazao() +"</a>"
                                             + "<div class='dropdown-menu dropdown-menu-right' aria-labelledby='navbarDropdownPortfolio'>"
+                                            + "<a class='dropdown-item' href='carrinho.jsp'>Carrinho</a>"
                                             + "<a class='dropdown-item' href='alterarCadastro.jsp'>Alterar Dados</a>"
                                             + "<a class='dropdown-item' href='catalogoLivro.jsp'>Meu Catalogo</a>"
-                                            + "<a class='dropdown-item' href='carrinho.jsp'>Meu carrinho</a>"
                                             + "<a class='dropdown-item' href='cadastroProduto.jsp'>Cadastra Catalogo</a>"
                                             + "<a class='dropdown-item' href=Senha.jsp>Alterar Senha</a>"
                                             + "<a class='dropdown-item' name=Sair href=SairServlet>Sair</a>"
