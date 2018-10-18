@@ -11,8 +11,6 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import model.Produto;
 import modelDAO.ProdutoDAO;
 
 /**
@@ -35,26 +33,30 @@ public class ComprarServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            HttpSession session = request.getSession(true);
-
             int codLivro = Integer.parseInt(request.getParameter("livro"));
-            int codProduto = new ProdutoDAO().getProduto(codLivro).getId();
+            int codProduto = ProdutoDAO.getProduto(codLivro).getId();
             
-            HashMap<String, String> lista = new HashMap<String, String>();
+            HashMap<Integer, Integer> lista = new HashMap<>();
             Cookie[] cookies = request.getCookies();
+            out.print("Cookies teste <br />");  
             
-            for (Cookie c : request.getCookies()) {
-                lista.put(c.getName(), c.getValue());
+            if (cookies != null) {
+                for (Cookie cookie : cookies) {
+                    lista.put(Integer.parseInt(cookie.getName()), Integer.parseInt(cookie.getValue()));
+                    out.print("A: " + lista + " : " + cookie.getValue() + "<br />");
+                }
+            }
+
+            if (codProduto > 0) {
+                lista = new Cart().AddItemCart(codProduto, lista);
             }
             
-            lista = new Cart().AddItemCart(codProduto, lista);
-            
-            Cookie cookie = new Cookie(String.valueOf(codLivro), "1");
-            response.addCookie(cookie);
-            session.setAttribute("cart", lista);
-            
-            for (Cookie c : request.getCookies()) {
-                out.print("<br />" + c.getName() + " : " + c.getValue());
+            out.print("HashMap: " + lista  + "<br />");
+
+            for (int i = 0; i < lista.size(); i++) {
+                Cookie c;
+                c = new Cookie(String.valueOf(codProduto), String.valueOf(lista.get(codProduto)));
+                response.addCookie(c);
             }
 
             // request.getRequestDispatcher("carrinho.jsp");

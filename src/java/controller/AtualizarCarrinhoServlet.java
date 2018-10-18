@@ -7,13 +7,13 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
+import java.util.HashMap;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import model.Cart;
 
 /**
@@ -36,14 +36,17 @@ public class AtualizarCarrinhoServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            HttpSession session = request.getSession(true);
-
             int codLivro = Integer.parseInt(request.getParameter("livro"));
             int qtd = Integer.parseInt(request.getParameter("qtd"));
             
-            ArrayList lista = (ArrayList) session.getAttribute("cart");
+            HashMap<Integer, Integer> lista = new HashMap<>();
+            Cookie[] cookies = request.getCookies();
+            
+            for (Cookie c : cookies) {
+                lista.put(Integer.parseInt(c.getName()), Integer.parseInt(c.getValue()));
+            }
+            
             lista = new Cart().UpdateItemCart(codLivro, qtd, lista);
-            session.setAttribute("cart", lista);      
         }
     }
 
