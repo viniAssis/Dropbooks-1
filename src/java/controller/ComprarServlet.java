@@ -58,14 +58,10 @@ public class ComprarServlet extends HttpServlet {
             if (codProduto > 0) {
                 lista = new Cart().AddItemCart(codProduto, lista);
             }
-            
-            out.print("HashMap: <br />");
 
             Cookie cookieShopCart = new Cookie("ShoppingCart", lista.toString());
             response.addCookie(cookieShopCart);
-            
-            //out.print(cookieShopCart.getName() + " : " + cookieShopCart.getValue());
-
+      
             // request.getRequestDispatcher("carrinho.jsp");
         }
     }
