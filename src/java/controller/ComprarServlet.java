@@ -42,8 +42,16 @@ public class ComprarServlet extends HttpServlet {
             
             if (cookies != null) {
                 for (Cookie cookie : cookies) {
-                    lista.put(Integer.parseInt(cookie.getName()), Integer.parseInt(cookie.getValue()));
-                    out.print("A: " + lista + " : " + cookie.getValue() + "<br />");
+                    if ("ShoppingCart".equals(cookie.getName())) {
+                        String value = cookie.getValue();
+                        value = value.substring(1, value.length()-1);
+                        String[] keyValuePairs = value.split(",");
+
+                        for(String pair : keyValuePairs) {
+                            String[] entry = pair.split("=");
+                            lista.put(Integer.parseInt(entry[0].trim()), Integer.parseInt(entry[1].trim()));
+                        }
+                    }
                 }
             }
 
@@ -51,13 +59,12 @@ public class ComprarServlet extends HttpServlet {
                 lista = new Cart().AddItemCart(codProduto, lista);
             }
             
-            out.print("HashMap: " + lista  + "<br />");
+            out.print("HashMap: <br />");
 
-            for (int i = 0; i < lista.size(); i++) {
-                Cookie c;
-                c = new Cookie(String.valueOf(codProduto), String.valueOf(lista.get(codProduto)));
-                response.addCookie(c);
-            }
+            Cookie cookieShopCart = new Cookie("ShoppingCart", lista.toString());
+            response.addCookie(cookieShopCart);
+            
+            //out.print(cookieShopCart.getName() + " : " + cookieShopCart.getValue());
 
             // request.getRequestDispatcher("carrinho.jsp");
         }
