@@ -1,77 +1,24 @@
 
 *{  margin: 0 auto;
-    font-family: 'Roboto', sans-serif;
+	font: 'Arial';
 }
 
-body {
-  background-image:url('../img/Livro.jpg');
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  background-size: cover;
-  -o-background-size: cover;
-
-}
-.conteudo{ background: rgba(246, 192, 126, 0.47);
+.conteudo{ 
     height: 350px;
     width: 450px;
     margin-top: 126px;
-    text-align: center;
-     border-radius: 15px;
-} 
-.form-row{
-font-family: 'Roboto', sans-serif;
-background-color: transparent;
-width: 100%;   
-margin:  0 auto;
-  padding: 20px 0;
 }
-.EsqueceuSenha{
-    width: 100%;
-    text-align: center;
-    margin-top: 40px;
-     font-weight: 800;
-}
+
 input{
-     margin:  20px;
-    background:transparent !important;
-     font-weight: 800;
-    color:#fff !important;
-     
-    
-}
-.Senha{
-    margin-left: 5% !important;
-      font-weight: 800;
-}
-::-webkit-input-placeholder{
-color: #fff !important;}
+	margin:  20px;
+	font-weight: 800; 
+	}
 
-.btn-light {
-    color: #212529;
-    background-color: #f8f9fa29;
-    border-color: #f8f9faf0;
-    margin-top: 25px;
-    margin-left: 15px;
-  }
-
-  .validaEmail{
-    margin-left: 20px;
-    margin-bottom: -16px;
-    display:none;
-    margin-top: -16px;
-  }
-
-  .validaCpf{
-    margin-bottom: -12px;
-    margin-left: 20px;
-    margin-top: -14px;
-    display:none;
+#enviar{
+	margin-top: 2%;
+	margin-left: 35%
 }
 
-  .validaOk{
-   
-    margin-top: -12px;
-    margin-left: -110px;
-    display:none; 
-  }
- 
+.nav-item{
+	margin-left: 20%;
+}

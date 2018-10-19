@@ -1,0 +1,108 @@
+     nav{
+                background: #090446;
+            }
+            hr{
+                width: 200px;
+            }
+            .navbar .navbar-nav li a{
+                color: #FEB95F !important;
+                font-weight: 400;
+                padding-left: 50px !important;
+
+
+            }
+#link{
+	
+	 color:  #090446 !important;
+
+}
+
+
+            .navbar .navbar-nav li a:hover{
+                color: #FEB95F !important;
+                font-weight: 400;
+                padding-left: 50px !important;
+                transform: scale(1);
+
+
+            }
+            .navbar-brand{
+                color: #FEB95F !important;
+                font-size: 24px;
+                font-weight: 700;
+
+            }
+            #footer{
+                background: #090446;
+
+            }
+            #corAmarelo{
+                color:#FEB95F ;
+            }
+
+            #corBranca{
+                color: white;
+            }
+            #caixa2{
+                margin-top: 10%;
+                margin-left: 20%;
+                margin-bottom: 3%;
+                clear: both;
+
+            }
+
+            #container1{
+                width: 70%;
+                height: 800px;
+                margin:  0 auto;
+                margin-top: 4%;
+                margin-bottom: 7%;
+
+            }
+
+            .container1, .container2{
+                display: block;
+                float: left;
+                width: 40%;
+                height: 70%;
+                margin-left: 7%;
+                margin-bottom: 5%;
+                margin-top: 5%;
+
+            }
+
+            .dropdown1{
+                padding-top: 30px;
+                padding-right: 60px;
+                margin-left: 5%;
+
+
+            }
+
+            h1{
+				text-align: center;
+				color:  #090446;
+
+}
+
+
+
+            #botao{
+                clear: both;
+                margin-left: 15%;
+            }
+
+            #btnCad, #btnCanc{
+                margin-left: 10%;
+                width: 25%;
+            }
+
+            #texto{
+                font-size: 18px;
+                color: black;
+            }	
+            
+            #botao1 , .btn{
+                 background: #090446;
+                color: #FEB95F !important;
+            }

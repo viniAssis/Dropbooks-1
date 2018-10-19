@@ -1,5 +1,6 @@
 package controller;
 
+import model.Email;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,7 +26,7 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 }
  
 protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
- 
+
 /*
 * Recupera os dados da página html
 */
@@ -39,7 +40,7 @@ String mensagem = request.getParameter("mensagem");
 Email.enviaEmail(nome, email, assunto, mensagem);
 
     // Redireciona para outra página
-    response.sendRedirect("./home.jsp");
+    response.sendRedirect("index.jsp");
 }
  
 }

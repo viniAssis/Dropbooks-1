@@ -78,7 +78,7 @@
                 margin: 0 auto;
                 
             }
-        #dropdownMenuButton{
+        #dropdownMenuButton, select{
                 background-color: #FF5A5F;
                 color: white;
                 width: 100px;
@@ -130,6 +130,7 @@
             width: 100%;
             height: 100px;
             background-color: black;
+            clear:both;
         }
         #anoLancamento{
                 width: 200px;
@@ -154,73 +155,82 @@
 		</div><!-- Fim do nav collapse-->
 	</nav> <!--fim do nav-->
      
-</body>     
+     
     
-     <div id= "container1">
+     <form method="post" id= "container1" action="CadastroProdutoServlet">
           <div><h4>Cadastro de Livro</h4></div>
           <div class="container">
-            <form method="post" action" " class="form-signin"> 
+            <div  class="form-signin"> 
                  <div class="form-group">
                     <label for="exampleFormControlInput1">Titulo do Livro</label>
-                    <input type="text" class="form-control" id="nameLivro">
+                    <input type="text" class="form-control" id="nameLivro" name="nameLivro" required>
                   </div>    
                 <div class="form-group">
                     <label for="exampleFormControlInput1">Autor</label>
-                    <input type="text" class="form-control" id="nameAutor">
+                    <input type="text" class="form-control" id="nameAutor" name="nameAutor" required>
                   </div>
                 <div class="form-group">
                     <label for="exampleFormControlInput1">Editora</label>
-                    <input type="text" class="form-control" id="nameEditora">
+                    <input type="text" class="form-control" id="nameEditora" name="nameEditora" required>
                 </div>
                 <div class="form-group">
                     <div class="row">
                         <div class="col">
                          <label for="exampleFormControlInput1">Ano de Lançamento</label>
-                          <input type="date" class="form-control" id="anoLancamento">
+                          <input type="date" class="form-control" id="anoLancamento" required>
                         </div>
                         <div id="dropdown">
                         <div class="dropdown">
-                         <button class="btn  dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Gênero</button>
-                              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="#">Romântico</a>
-                                <a class="dropdown-item" href="#">Literatura</a>
-                                <a class="dropdown-item" href="#">Suspense</a>
-                              </div>
+                         <select class="btn  dropdown-toggle" name="genero">
+                             <option>Romântico</option>
+                             <option>Literatura</option>
+                             <option>Suspense</option>
+                             
+                         </select>
+                              
                         </div>
                         </div>    
                       </div>
                     </div>
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">Fale um pouco sobre o conteúdo</label>
-                    <textarea class="form-control" id="descricao" placeholder="Descrição do produto" rows="3"></textarea>
+                    <textarea class="form-control" id="descricao" name="descricao" placeholder="Descrição do produto" rows="3"></textarea>
                 </div>
-                <button id="btnCad" type="button" class="btn btn-sm">Cadastrar Livro</button>
+                <button id="btnCad" type="submit" class="btn btn-sm">Cadastrar Livro</button>
                 <button id="btnCanc" type="button" class="btn btn-sm">Cancelar</button>
-               </form>
+            </div>
               
            </div>
             <div class="container2">
-                <form method="post" action" " class="form-signin"> 
+                <div class="form-signin">
+                 <div class="form-group">
+                    <label for="exampleFormControlInput1">Idioma</label>
+                    <input type="text" class="form-control" id="idiomaLivro" name="idiomaLivro" required>
+                  </div>
+                 <div class="form-group">
+                    <label for="exampleFormControlInput1">Quantidade</label>
+                    <input type="number" class="form-control" id="qtdLivro" name="qtdLivro" required>
+                  </div>
                  <div class="form-group">
                     <label for="exampleFormControlInput1">Valor do Livro</label>
-                    <input type="text" class="form-control" id="valorLivro">
+                    <input type="text" class="form-control" id="valorLivro" name="valorLivro" required>
                   </div>
                     <label for="exampleFormControlTextarea1">Opções de frete</label>
                  <div id="radio1">
                     <div class="custom-control custom-radio">   
-                      <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
+                      <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input" value="frete_gratis" required>
                       <label class="custom-control-label" for="customRadio1">Frete grátis</label>
                     </div>
                 </div>
                 <div id="radio2">
                     <div class="custom-control custom-radio">
-                      <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
+                      <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input" value="frete_comprador" required>
                       <label class="custom-control-label" for="customRadio2">Frete por conta do comprador</label>
                     </div>
                 </div>
-                 </form>
+                </div>
             </div>
-    </div>
+    </form>
 <footer>
     
     </footer>

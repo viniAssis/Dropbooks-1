@@ -7,123 +7,182 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
 
-    <title>Recuperar Senha</title>
+    <title>DropBooks</title>
 
-    
-    <link href="res/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-    
-    <link href="res/css/the-big-picture.css" rel="stylesheet">
-    
-    <script type="text/javascript" src="res/jquery-3.3.1.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function(){
-            $("#validaEmail").hide();
-            $("#validaCpf").hide();
-            $("#validaOk").hide();
-            $('#enviar').click(function(){
-                
+        <link href="res/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+
+        <link href="res/css/the-big-picture.css" rel="stylesheet">
+
+        <script type="text/javascript" src="res/jquery-3.3.1.js"></script>
+	  
+	  
+	          <script type="text/javascript">
+            $(document).ready(function () {
                 $("#validaEmail").hide();
                 $("#validaCpf").hide();
-                
-                var email = $("#email").val();
-                var cpf = $("#cpf").val();
-                var senha = $("#senha").val();
+                $("#validaOk").hide();
+                $('#enviar').click(function () {
 
-                $.ajax({
-                            type:'POST',
-                            url : "RecupSenhaServlet",
-                            data : {
-                                email : email,
-                                cpf   : cpf,
-                                senha : senha
-                            },
-                            success : function(results){
-                                if(results === "1"){
-                                    $("#validaEmail").show();
-                                }else if(results === "2"){
-                                    $("#validaCpf").show();
-                                }else{
-                                    $("#validaOk").show();
-                                    $("#enviar").hide();
-                                    //window.location.href = "../recupSenha";
-                                }
+                    $("#validaEmail").hide();
+                    $("#validaCpf").hide();
+
+                    var email = $("#email").val();
+                    var cpf = $("#cpf").val();
+                    var senha = $("#senha").val();
+
+                    $.ajax({
+                        type: 'POST',
+                        url: "RecupSenhaServlet",
+                        data: {
+                            email: email,
+                            cpf: cpf,
+                            senha: senha
+                        },
+                        success: function (results) {
+                            if (results === "1") {
+                                $("#validaEmail").show();
+                            } else if (results === "2") {
+                                $("#validaCpf").show();
+                            } else {
+                                $("#validaOk").show();
+                                $("#enviar").hide();
+                                //window.location.href = "../recupSenha";
                             }
+                        }
+                    });
                 });
             });
-        });
-    </script>
+        </script>
+  </head>
 
-    </head>
+  <body>
 
-    <body>
-
-    
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-bottom">
+        <!-- Navigation -->
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary fixed-top" id="menuFixo">
       <div class="container">
-        <a class="navbar-brand" href="#">Dropbooks</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <a class="navbar-brand" href="home.jsp">DropBooks</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="index.html">Home
-                <span class="sr-only">(current)</span>
+            <li class="nav-item">
+              <a class="nav-link" href="home.jsp">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Livro</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="Contato.jsp">Contato</a>
+            </li>
+            
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Perfil
               </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
+                <a class="dropdown-item" href="AlterarCadastro.jsp">Alterar Cadastro</a>
+                <a class="dropdown-item" href="cadastroProduto.html">Cadastra livro</a>
+                <a class="dropdown-item" href="catalogo.jps">Meu Catalogo</a>
+                <a class="dropdown-item" href="#">Sair</a>
+              </div>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Livros</a>
+			<!--  <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Blog
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
+                <a class="dropdown-item" href="blog-home-1.html">Blog Home 1</a>
+                <a class="dropdown-item" href="blog-home-2.html">Blog Home 2</a>
+                <a class="dropdown-item" href="blog-post.html">Blog Post</a>
+              </div>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Serviços</a>
+         	    <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Portfolio
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
+                <a class="dropdown-item" href="portfolio-1-col.html">1 Column Portfolio</a>
+                <a class="dropdown-item" href="portfolio-2-col.html">2 Column Portfolio</a>
+                <a class="dropdown-item" href="portfolio-3-col.html">3 Column Portfolio</a>
+                <a class="dropdown-item" href="portfolio-4-col.html">4 Column Portfolio</a>
+                <a class="dropdown-item" href="portfolio-item.html">Single Portfolio Item</a>
+              </div>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Contato</a>
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Blog
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
+                <a class="dropdown-item" href="blog-home-1.html">Blog Home 1</a>
+                <a class="dropdown-item" href="blog-home-2.html">Blog Home 2</a>
+                <a class="dropdown-item" href="blog-post.html">Blog Post</a>
+              </div>
             </li>
+            <li class="nav-item dropdown">
+             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Other Pages
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
+                <a class="dropdown-item" href="full-width.html">Full Width Page</a>
+                <a class="dropdown-item" href="sidebar.html">Sidebar Page</a>
+                <a class="dropdown-item" href="faq.html">FAQ</a>
+                <a class="dropdown-item" href="404.html">404</a>
+                <a class="dropdown-item" href="pricing.html">Pricing Table</a>
+              </div>
+            </li>-->
+                        
           </ul>
         </div>
       </div>
     </nav>
 
-    
-    <section>
+	    <section>
+            <div class="container">
+                <div class="conteudo">
+
+                    <form>
+
+                        <div class="form-row">
+                            <input type="text" class="form-control border border-dark" placeholder="Email" id="email" required="">
+                            <div id="validaEmail" style="display: none;">Email Incorreto</div>
+                            <input type="text" class="form-control border border-dark" placeholder="CPF" id="cpf" required="">
+                            <div id="validaCpf" style="display: none;">CPF Incorreto</div>
+                            <input type="Password" class="form-control border border-dark" placeholder="Senha Nova" id="senha" required="">
+
+
+                            <button type="button" class="btn btn-primary" id="enviar">Alterar Senha</button>
+                            <div id="validaOk" style="display: none;">Senha alterada com sucesso</div>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <h1 class="mt-5"></h1>
+
+                    </div>
+                </div>
+
+        </div></section>
+    <!-- Footer -->
+    <footer class="py-5 bg-primary">
       <div class="container">
-<div  class="conteudo">
-    
-      <form>
+        <p class="m-0 text-center text-white">Copyright &copy; DropBooks</p>
+      </div>
+      <!-- /.container -->
+    </footer>
 
-  <div class="form-row">
-    <input type="text" class="form-control" placeholder="Email" id="email" required >
-    <div id="validaEmail">Email Incorreto</div>
-   <input type="text" class="form-control" placeholder="CPF" id="cpf" required>
-   <div id="validaCpf">CPF Incorreto</div>
-   <input type="Password" class="form-control" placeholder="Senha Nova" id="senha" required>
-   
-    
-    <button type="button" class="btn btn-light" id="enviar">Alterar Senha</button>
-    <div id="validaOk">Senha alterada com sucesso</div>
-    
-    </div>
-  
-    </form>
-
-</div>
-           
-        <div class="row">
-          <div class="col-lg-6">
-            <h1 class="mt-5"></h1>
-            
-          </div>
-        </div>
-  
-    </section>
-
-    
-    <script src="res/vendor/jquery/jquery.min.js"></script>
-    <script src="res/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   </body>
 

@@ -1,441 +1,347 @@
 <%@page import="javax.swing.JOptionPane"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="modelDAO.UsuarioDAO"%>
 <%@page import="model.Usuario"%>
 
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <!-- Meta tags Obrigatórias -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
- 	<style>
-	  
-		#pesquisa{
-			
-			width: 50%;
-		}
-		
-		#v-pills-tab{
-			 width: 20%;
-			float: left;
-				
-		}
-	  	
-		#form1{
-			width: 60%;
-			float: left;
-			margin-left: 8%;
-			margin-bottom: 5%;
-			margin-top: 5%;	
-			
-		}
-		
-		#caixa{
-			
-			float: left;
-			width: 42%;
-			margin-left: 5%;
-		}
-		
-		#botao{
-			margin-top: 10%;
-			margin-left: 40%;
-			background-color:#582B11;
-			border: 1px solid #582B11;
-			font-size: 20px;
-		}
-		
-		#texto{
-			font-size: 20px;
-		}
-				
-		.titulo{
-			margin-left: 32%;
-			margin-bottom: 3%;
-			font-size: 20px;
-		}
-		
-		.titulo2{
-			
-			color: #582B11;
-			border: 1px solid #A57F60;
-			padding: 0.5%;
-			
-		}
-		
-		hr{
-			clear: both;
-			margin-top: 5%;
-		}
-		
-		#infor{
-			width: 20%;
-			float: left;
-			margin-bottom: 2%;
-		}
-		
-		#drop{
-			margin-left: 5%;
-		}
-		
-		#cabelho{
-			margin-left: 30%;
-			margin-bottom: 5%;
-		}
-		
-		#caixa1{
-			display: inline-block;
-			float: right;
-			margin-right: 2%;
-		}
-		
-		#caixa2{
-			margin-left: 25%;
-			margin-bottom: 3%;
-		}
-		
-		#menu1{
-			margin-bottom: 5%;
-		}
-		
-		.nav-item, a{
-			background: #582B11;
-			color: white;
-			padding: 0.5%;
-			font-size: 18px;
-		}
-		
-		.nav-item, a:hover {
-			color: #C6AD94;
-		}
-		
-		h3{
-			text-align: center;	
-			margin-bottom: 2%;
-			color: #A57F60;
-		}
-		
-		.menu2> a {
-			background: #582B11;
-			color: white;
-			padding: 3%;
-			font-size: 18px;
-			text-align: center;			
-			border-bottom:3px solid #C6AD94;
-		}
-		
-		.menu2{
-			margin-top: 5%;
-			
-		}
-		
-		#corBotao{
-			background-color:#582B11;
-			border: 1px solid #582B11;
-			color: white;
-		}
-			
-		#links{
-			background: #582B11;
-			padding: 3%;
-			font-size: 16px;
-			margin-top: 2%;
-			width: 120%;
-		}
-		
-		footer{
-			text-align: center;
-			font-size: 20px;
-			font-weight:  bold;
-		}
-		
-	  </style>
-          
-          <script type="text/javascript" src="res/jquery-3.3.1.js"></script>
-    <script type="text/javascript">
-        $("#btnAlterar").click(function(){
-            
-            if(("#inputNome").val() == "" ){
-                alert("Preencha o campo Nome");
-            }
-            
-        });
-                 
-        
-    </script>
-          
-          <% 
-            //Usuario user = new Usuario();
-            String email = "teste@bixo.com";//request.getSession().getAttribute("email").toString();
-            
-            Usuario user = new UsuarioDAO().getUsuario(email);
-
-            String masc = null;
-            String fem = null;
-            
-            if(user.getSexo().equals("m")){
-                masc = "checked";
-            }else{
-                fem = "checked";
-            }
-          %>
-          
-          
-          
-  </head>
-  <body>
-	  <div class="container-fluid">
-		  
-		<div id="cabelho">
-		  	<img src="res/img/logo.png">
-		  	<img src="res/img/nome.png" id="drop">
-		  </div>
-		  
-		<section id="caixa1">
-		 	<label id="nome"></label>
-	  		<img src="res/img/carrinho.jpg" id="imagens">
-		  </section>
-		  
-		<form id="caixa2">
-  			<div class="form-row align-items-center">
-    			<div class="col-auto my-1">
-      					<select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-        					<option>Titulo</option>
-  							<option>Autor</option>
-  							<option>Editora</option>
-  							<option>Genêro</option>
-      					</select>
-    			</div>
- 
-				<div class="col-auto my-1" id="pesquisa">
-					<input class="form-control col-md-15" type="text" placeholder="Search">		
-				</div>
-					<button class="btn btn-outline-success col-md-1" type="submit" id="corBotao">Pesquisar</button>
-  			</div>
-		</form>
-		  
-		<ul class="nav nav-pills nav-fill" id="menu1">
-  			<li class="nav-item"> <a class="nav-link" href="teste.html">Home</a></li>
- 			<li class="nav-item"> <a class="nav-link" href="#">Livros</a></li>
-  			<li class="nav-item"> <a class="nav-link" href="#">FAQ</a> </li>
-  			<li class="nav-item"> <a class="nav-link" href="#">Contato</a> </li>
-  			<li class="nav-item"> <a class="nav-link" href="#">Meus Dados</a> </li>
-			
-		</ul>
-		
-		<h3 id="nome">Olá, <%= user.getNomeRazao()%> </h3>
-		
-		<div class="menu2" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-  			<a class="nav-link" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Meus Dados</a>
-  			<a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Catálogo de Livros</a>
-			<a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Acionar minhas vendas</a>
-			<a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Minhas Compras</a>
-		</div>
-	  
-                <form id="form1" action="AlterarUsuarioServlet">
-			<h3 class="titulo2">Meus Dados</h3>
-  			<div class="form-group row">
-    			<label id="texto" class="col-sm-3 col-form-label">Email:</label>
-    			<div class="col-sm-9">
-                            <input type="email"readonly class="form-control" id="inputEmail3" name="hEmail" value="<%= user.getEmail()%>">
-    			</div>
-  			</div>
- 
-			
-			<div class="form-group row">
-    				<label class="col-sm-3 col-form-label" id="texto">Nome Completo:</label>
-    				<div class="col-sm-9">
-                                    <input type="text" class="form-control" id="inputNome" name="hNome" value="<%= user.getNomeRazao()%>" >
-    				</div>
-  				</div>
-			
-			<div class="form-group row">
-    				<label class="col-sm-4 col-form-label" id="texto">Data de Nascimento:</label>
-    				<div class="col-sm-3">
-                                    <input type="date" class="form-control" id="inputData" name="hData" value="<%= user.getDataNascimento()%>">
-    				</div>
-  				</div>
-			
-			<div class="form-group row">	
-				<label id="texto" class="col-sm-4 col-form-label">Sexo:</label>
-				<div class="form-check form-check-inline">
-  					<input class="form-check-input" type="radio" name="sexoPessoa" id="sxFem" value="F" <% out.print(fem); %> required>
-  					<label class="form-check-label" id="texto">Feminino</label>
-				</div>
-				<div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="sexoPessoa" id="sxMas" value="M" <% out.print(masc); %> required>
-  					<label class="form-check-label" id="texto">Masculino</label>
-				</div>
-			</div>
-			
-			<div class="form-group row">
-    			<label id="texto" class="col-sm-4 col-form-label">Telefone:</label>
-    			<div class="col-3">
-                            <input type="text" class="form-control" placeholder="xx xxxxx-xxxx" id="inputTelefone" name="hTelefone" value="<%= user.getTelefone()%>">
-		    	</div>
-  			</div>
-			
-			<div class="form-row">
-				<div class="form-group col-md-2">
-      				<label id="texto">CEP</label>
-                                <input type="text" class="form-control" id="inputCEP" name="hCEP" value="<%= user.getCep()%>">
-				</div>
-    			<div class="form-group col-md-6">
-      				<label id="texto">Endereço</label>
-                                <input type="text" class="form-control" id="inputCidade" name="hBairro" value="<%= user.getBairro()%>">
-    			</div>
-				<div class="form-group col-md-3">
-      				<label id="texto">Numero</label>
-                                <input type="text" class="form-control" id="inputNumero" name="hNumero" value="<%= user.getNumero()%>">
-				</div>
-  			</div>
-			
-			<div class="form-row">
-				<div class="form-group col-md-4">
-      				<label id="texto">Estado</label>
-                                <select id="inputEstado" class="form-control" name="hEstado" value="<%= user.getEstado()%>">
-        					<option selected>Acre</option>
-        					<option selected>Alagoas</option>
-        					<option selected>Amapá</option>
-        					<option selected>Amazonas</option>
-        					<option selected>Bahia</option>
-        					<option selected>Ceará</option>
-        					<option selected>Distrito Federal</option>
-        					<option selected>Espírito Santo</option>
-        					<option selected>Goiás</option>
-        					<option selected>Maranhão</option>
-        					<option selected>Mato Grosso</option>
-        					<option selected>Mato Grosso do Sul</option>
-        					<option selected>Minas Gerais</option>
-        					<option selected>Pará</option>
-        					<option selected>Paraíba</option>
-        					<option selected>Paraná</option>
-        					<option selected>Pernambuco</option>
-        					<option selected>Piauí</option>
-        					<option selected>Rio de Janeiro</option>
-        					<option selected>Rio Grande do Norte</option>
-        					<option selected>Rio Grande do Sul</option>
-        					<option selected>Rondônia</option>
-        					<option selected>Roraima</option>
-        					<option selected>Santa Catarina</option>
-        					<option selected>São Paulo</option>
-        					<option selected>Sergipe</option>
-        					<option selected>Tocantins</option>
-        					
-      					</select>
-    			</div> 
-    			<div class="form-group col-md-4">
-      				<label id="texto">Complemento</label>
-                                <input type="text" class="form-control" id="inputCity" name="hComplemento" value="<%= user.getComplemento()%>">
-    			</div>
-				<div class="form-group col-md-3">
-      				<label id="texto">Bairro</label>
-                                <input type="text" class="form-control" id="inputBairro" name="hBairro" value="<%= user.getBairro()%>">
-				</div>
-  			</div>
-			
-			<div class="form-row">
-				<div class="form-group col-md-3">
-      				<label id="texto">Cidade</label>
-                                <input type="text" class="form-control" id="inputCity" name="hCidade" value="<%= user.getCidade()%>">
-				</div>
-				
-  			</div>
-			
-			<h3 class="titulo2">Alterar Email ou Senha</h3>
-			
-  			<div id="caixa">
-  				
-  				<div class="form-group">
-    				<label  class="titulo">Nova Senha</label>
-    				<input type="password" class="form-control">
-  				</div>
-			  <div class="form-group">
-    				<label  class="titulo">Repita a Senha</label>
-    				<input type="password" class="form-control">
-  				</div>
-			</div>
-			
-			<div id="caixa">
-  				
-  				<div class="form-group">
-    				<label class="titulo">Novo Email</label>
-    				<input type="email" class="form-control">
-  				</div>
-			  <div class="form-group">
-    				<label class="titulo">Repita o Email</label>
-    				<input type="email" class="form-control">
-  				</div>
-  				
-			</div>
-			<button type="submit" class="btn btn-primary" id="btnAlterar" class="">Alterar</button>
-
-		  </form>	
-				
-		 <hr>
-		  
-		<div id="infor">
-		  	<div class="form-group col-md-7">
-      			<label class="titulo">Contato</label><br/>
-				<label id="texto">(11) 32585-9685</label>
-				<a href="#" class="badge badge-info" id="links">Fale Conosco</a>
-			</div>
-		</div>
-		
-		<div id="infor">
-		  	<div class="form-group col-md-5">
-      			<label class="titulo">Serviços</label><br/>
-				<a href="#" class="badge badge-info" id="links">Venda seu livro</a><br/>
-				<a href="#" class="badge badge-info" id="links">FAQ</a>
-				
-			</div>
-		</div>		
-			
-		 <div id="infor">
-		  	<div class="form-group col-md-10">
-      			<label class="titulo">Meio de Pagamento</label><br/>
-				<!--<img src="" class="img-fluid" alt="Imagem responsiva">-->
-			</div>
-		</div>	
-		    
-		 <div id="infor">
-		  	<div class="form-group col-md-10">
-      			<label class="titulo">Certificação</label><br/>
-				<!--<img src="" class="img-fluid" alt="Imagem responsiva">-->
-			</div>
-		</div>	  
-		  
-		 <div id="infor">
-		  	<div class="form-group col-md-10">
-      			<label 	class="titulo">Instituição</label><br/>
-				<a href="#" class="badge badge-info" id="links">Sobre o DropBooks</a><br/>
-				<a href="#" class="badge badge-info" id="links">Termos de Uso</a>
-				<a href="#" class="badge badge-info" id="links">Segurança e Privacidade</a>
-			</div>
-		</div> 
-		
-	  </div> 
-	  
-	  <footer>Copyrigth&copy; - 2018 www.dropbooks.com, todos os direiro reservados</footer>
-    <!-- JavaScript (Opcional) -->
-    <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     
-    <script type="text/javascript">
-        $(function(){
-            $("#inputEstado").val("<% out.print(user.getEstado()); %>");
-        });
+    <head>
+        <!-- Meta tags Obrigat�rias -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap core CSS -->
+        <link href="res/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Custom styles for this template -->
+        <link href="res/css/modern-business.css" rel="stylesheet">
+
+          <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="res/fonts/font-awesome-4.7.0/css/font-awesome.min.css"/>
+        <link rel="stylesheet" type="text/css" href="res/css/util.css"/>
+        <link rel="stylesheet" type="text/css" href="res/css/main.css"/>
+
+        <script src="res/jquery-3.3.1.js"></script>
+
+        <script src="res/js/alteraCadastro.js"></script>
+
+        <style>
+            #form1{
+                width: 60%;
+                margin: 0 auto;
+                margin-bottom: 5%;
+                margin-top: 5%;	
+            }
+
+            #nome{
+                margin-top: 5%;
+                text-align: center;
+            }
+
+            #caixa2{
+                margin-top: 5%;
+                margin-left: 25%;
+                margin-bottom: 3%;
+                clear: both;
+            }
+
+            #btnAlterar{			
+                margin-left: 30%;
+                width: 40%;
+                margin-top: 30px;
+            }
+
+            #texto{
+                font-size: 20px;
+                color: black;
+            }
+            
+   #nav{
+                                background: #090446;
+                            }
+
+                            .navbar .navbar-nav li a{
+                                color: #FEB95F !important;
+                                font-weight: 400;
+
+
+
+                            }
+                            .navbar .navbar-nav li a:hover{
+                                color: #FEB95F !important;
+                                font-weight: 400;
+
+                                transform: scale(1);
+
+
+                            }
+                            .navbar-brand{
+                                color: #FEB95F !important;
+                                font-size: 24px;
+                                font-weight: 700;
+
+                            }
+
+
+            #footer{
+                background: #090446;
+
+            }
+            #corAmarelo{
+                color:#FEB95F ;
+            }
+
+            #corBranca{
+                color: white;
+            }
+            
+            #btnAlterar{
+               color:#FEB95F ;
+                    background: #090446;
+            }
+        </style>
+
+        <%
+           
+               //Usuario user = new Usuario();
+
+                String email = request.getSession().getAttribute("email").toString();
+		   
+                Usuario user = new UsuarioDAO().getUsuario(email);
+
+                String masc = null;
+                String fem = null;
+
+                if(user.getSexo().equals("M") || user.getSexo().equals("m")){
+                masc = "checked";
+                }else{
+                fem = "checked";
+                }
+        %>
+
+
+
+
+    </head>
+    
+    <body>
         
-        $(function(){
-            $("#inputEstado").val("<% out.print(user.getEstado()); %>");
-        });
+        <nav class="navbar fixed-top navbar-expand-lg navbar-dark  fixed-top" id="nav">
+            <div class="container">
+                <a class="navbar-brand" href="index.jsp">DropBooks</a>
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.jsp">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Contato.jsp">Contato</a>
+                        </li>
+
+                        <li class="nav-item">
+                        <li class="nav-item dropdown"> 
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= user.getNomeRazao()%></a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
+                                <a class="dropdown-item" href="alterarCadastro.jsp">Alterar Dados</a>
+                                <a class="dropdown-item" href="catalogoLivro.jsp">Meu Catalogo</a>
+                                <a class="dropdown-item" href="cadastroProduto.jsp">Cadastra Catalogo</a>
+                                <a class="dropdown-item" href="Senha.jsp">Alterar Senha</a>
+                                <a class="dropdown-item" name=Sair href=SairServlet>Sair</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <h3 id="nome">Ol�, <%= user.getNomeRazao()%> </h3>
+
+        <form id="form1" action="AlterarUsuarioServlet">
+
+            <!-- Email -->
+            <div class="form-group row">
+                <label id="texto" class="col-sm-3 col-form-label ">Email:</label>
+                <div class="col-sm-9">
+                    <input type="email"readonly class="form-control border border-dark" id="inputEmail3" name="hEmail" value="<%= user.getEmail()%>">
+                </div>
+            </div>
+
+            <!-- Nome/Raz�o Social -->
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label" id="texto">Nome/Raz�o Social:</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control  border border-dark" id="inputNome" maxlength="45" name="hNome" value="<%= user.getNomeRazao()%>" required>
+                </div>
+            </div>
+
+            <!-- Data de Nascimento -->
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label" id="texto">Data de Nascimento:</label>
+                <div class="col-sm-3">
+                    <input type="date" class="form-control  border border-dark" id="inputData" name="hData" value="<%= user.getDataNascimento()%>" required>
+                </div>
+            </div>
+
+            <!-- Sexo  -->
+            <div class="form-group row">	
+                <label id="texto" class="col-sm-3 col-form-label">Sexo:</label>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="sexoPessoa" id="sxFem"  value="F" <% out.print(fem); %> required>
+                    <label class="form-check-label" id="texto">Feminino</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="sexoPessoa" id="sxMas"  value="F" <% out.print(fem); %> required>
+                    <label class="form-check-label" id="texto">Masculino</label>
+                </div>
+            </div>
+
+            <!-- Telefone  -->
+            <div class="form-group row">
+                <label id="texto" class="col-sm-3 col-form-label">Telefone:</label>
+                <div class="col-4">
+                    <input type="text" class="form-control  border border-dark" id="inputTelefone" value="<%= user.getTelefone()%>" name="hTelefone" required>
+                </div>
+            </div>
+
+            <!-- CEP, Endere�o e Numero  -->
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label id="texto">CEP</label>
+                    <input type="text" class="form-control  border border-dark" id="inputCEP" name="hCEP" value="<%= user.getCep()%>" required>
+                </div>
+                <div class="form-group col-md-4">
+                    <label id="texto">Endere�o</label>
+                    <input type="text" class="form-control  border border-dark" id="endereco"  maxlength="50" name="endereco"  value="<%= user.getLogradouro()%>" required>
+                </div>
+                <div class="form-group col-md-4">
+                    <label id="texto">Numero</label>
+                    <input type="text" class="form-control  border border-dark" id="inputNumero" maxlength="5" name="hNumero" value="<%= user.getNumero()%>" required>
+                </div>
+            </div>
+
+            <!-- Cidade, Complemento e Bairro -->
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label id="texto">Cidade</label> 
+                    <input type="text" class="form-control  border border-dark" id="inputCity"  maxlength="20" name="hCidade" value="<%= user.getCidade()%>" required>
+                </div> 
+                <div class="form-group col-md-4">
+                    <label id="texto">Complemento</label>
+                    <input type="text" class="form-control  border border-dark " id="complemento" maxlength="20" name="hComplemento" value="<%= user.getComplemento()%>" required>
+                </div>
+                <div class="form-group col-md-4">
+                    <label id="texto">Bairro</label> 
+                    <input type="text" class="form-control  border border-dark"  id="inputBairro"  maxlength="20" name="hBairro" value="<%= user.getBairro()%>" required> 
+                </div>
+            </div>
+
+            <!-- Estado  -->
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <label id="texto">Estado</label>
+                    <input type="text" class="form-control  border border-dark" id="estado" maxlength="20" name="hEstado"  value="<%= user.getEstado()%>" required>
+                </div>
+            </div>
+
+            <button type="submit" class="btn border-0" id="btnAlterar" >Alterar</button>
+
+        </form>	
+     
+ <!-- Footer -->
+        <footer class="bg6 p-t-45 p-b-43 p-l-45 p-r-45" id="footer">
+            <div class="flex-w p-b-90">
+                <div class="w-size6 p-t-30 p-l-15 p-r-15 respon3">
+                    <h4	 id="corAmarelo">
+                        Problemas
+                    </h4>
+                    <div>
+                        <p class="s-text7 w-size27" id="corBranca">
+                            Caso Tenha Qualquer Problema na Compra ou Venda do Seu livro Entre em Contato Para que seja Resolvido.
+                            Agradecemos sua Visita. Volte Sempre !
+                        </p>
+                    </div>
+                </div>
+                <div class="w-size7 p-t-30 p-l-15 p-r-15 respon4">
+                    <h4  class="s-text12 p-b-30" id="corAmarelo">
+                        Categorias
+                    </h4>
+                    <ul>
+                        <li class="p-b-9">
+                            <a href="#" id="corBranca">
+                                Fic��o
+                            </a>
+                        </li>
+                        <li class="p-b-9">
+                            <a href="#" id="corBranca">
+                                Terror
+                            </a>
+                        </li>
+                        <li class="p-b-9">
+                            <a href="#" id="corBranca">
+                                Romance
+                            </a>
+                        </li>
+                        <li class="p-b-9">
+                            <a href="#" id="corBranca">
+                                Academicos
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="w-size7 p-t-30 p-l-15 p-r-15 respon4">
+                    <h4 class="s-text12 p-b-30"  id="corAmarelo">Livros</h4>
+                    <ul>
+                        <li class="p-b-9"><a href="#" id="corBranca">Busca</a></li>
+                        <li class="p-b-9"><a href="#" id="corBranca">Sobre N�s</a></li>
+                        <li class="p-b-9"><a href="#" id="corBranca">Email</a></li>
+                        <li class="p-b-9"><a href="#" id="corBranca">Local</a></li>
+                    </ul>
+                </div>
+                <div class="w-size7 p-t-30 p-l-15 p-r-15 respon4">
+                    <h4 class="s-text12 p-b-30"  id="corAmarelo">Ajuda</h4>
+                    <ul>
+                        <li class="p-b-9">
+                            <a href="#" class="s-text7" id="corBranca">Dicas</a>
+                        </li>
+                        <li class="p-b-9">
+                            <a href="#" class="s-text7" id="corBranca">Como Vender</a>
+                        </li>
+                        <li class="p-b-9">
+                            <a href="#" class="s-text7" id="corBranca">Como Comprar</a>
+                        </li>
+                        <li class="p-b-9">
+                            <a href="#" class="s-text7" id="corBranca">FAQs</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="t-center p-l-15 p-r-15">
+                <a href="#"><img class="h-size2" src="res/images/icons/paypal.png" alt="IMG-PAYPAL"></a>
+                <a href="#"><img class="h-size2" src="res/images/icons/visa.png" alt="IMG-VISA"></a>
+                <a href="#"><img class="h-size2" src="res/images/icons/mastercard.png" alt="IMG-MASTERCARD"></a>
+                <a href="#"><img class="h-size2" src="res/images/icons/express.png" alt="IMG-EXPRESS"></a>
+                <a href="#"><img class="h-size2" src="res/images/icons/discover.png" alt="IMG-DISCOVER"></a>
+                <div class="t-center s-text8 p-t-20">
+                    Copyright � 2018 Todos Direitos Reservados <i class="fa fa-heart-o" aria-hidden="true"></i> by DropBooks
+                </div>
+            </div>
+        </footer>
+
+        <!-- Back to top -->
+        <div class="btn-back-to-top bg0-hov" id="myBtn">
+            <span class="symbol-btn-back-to-top">
+                <i class="fa fa-angle-double-up" aria-hidden="true"></i>
+            </span>
+        </div>
+
         
-    </script>
-  </body>
-</html>
+        <!-- Bootstrap core JavaScript -->
+        <script src="res/vendor/jquery/jquery.min.js"></script>
+        <script src="res/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.8/jquery.mask.js"></script>
+       
+        </body>
+        </html>
