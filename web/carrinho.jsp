@@ -97,7 +97,7 @@
         </style>
     </head>
 
-    <body class="bg-light">
+    <body class="bg-light" onload="loadShoppingCart()">
         <!-- Navigation -->
         <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary fixed-top">
             <div class="container">
@@ -148,72 +148,27 @@
 
         <!--meu carrinho-->
         <div class="container">
-            <%
-                HashMap<Integer, Integer> lista = null;
-                lista = new HashMap<Integer, Integer>();
-                Cookie[] cookies = null;
-                cookies = request.getCookies();
-
-                ArrayList<ItemCart> cart = new ArrayList<ItemCart>();
-
-                if (cookies != null) {
-                    for (Cookie cookie : cookies) {
-                        if ("ShoppingCart".equals(cookie.getName())) {
-                            String value = cookie.getValue();
-                            value = value.substring(1, value.length()-1);
-                            String[] keyValuePairs = value.split(",");
-
-                            for(String pair : keyValuePairs) {
-                                String[] entry = pair.split("=");
-                                lista.put(Integer.parseInt(entry[0].trim()), Integer.parseInt(entry[1].trim()));
-                            }
-                        }
-                    }
-                }
-
-                if (lista.size() > 0) {
-                    for (int i = 0; i < lista.size(); i++) {
-                        ItemCart item = new ItemCart();
-                        item.setProduto(ProdutoDAO.getProduto(i));
-                        item.setQuantidade(lista.get(i));
-                        cart.add(item);
-                    }
-                }
-            %>
             <div id="resumo" class="row">
-                <% 
-                    if (cart != null && cart.size() > 0) {
-                        float total = 0.00f;
-                        
-                        for (int j = 0; j < cart.size(); j++) {
-                            ItemCart item = (ItemCart) cart.get(j);
-                            
-                            total = total + (item.getProduto().getPreco() * item.getQuantidade());
-                        }
-                %>
+                
                 <div class="col-md-4 order-md-2 mb-4">
                     <h4 class="d-flex justify-content-between align-items-center mb-3">
                         <span class="text-muted">Resumo do Pedido</span>
-                        <span class="badge badge-secondary badge-pill" id="qtdeProdutos"  name="qtdeProdutos"><%=cart.size()%></span>
+                        <span class="badge badge-secondary badge-pill" id="qtdeProdutos"  name="qtdeProdutos"></span>
                     </h4>
                     <ul class="list-group mb-3">
-                        <%
-                                for (int i = 0; i < cart.size(); i++) {
-                                    ItemCart item = (ItemCart) cart.get(i);
-                                    Produto produto = item.getProduto();%>
+                        
 
                                     <li class="list-group-item d-flex justify-content-between lh-condensed">
                                         <div>
-                                            <h6 class="my-0" id="idTitulo"  name="idTitulo"><%=produto.getTitulo()%></h6>
-                                            <small class="text-muted" id="idAutor"  name="idAutor">Autor: <%=produto.getAutor()%></small> 
+                                            <h6 class="my-0" id="idTitulo"  name="idTitulo"></h6>
+                                            <small class="text-muted" id="idAutor"  name="idAutor">Autor:</small> 
                                         </div>
-                                        <span class="text-muted" id="idValor" name="idValor">R$ <%=String.format("%.2f", produto.getPreco())%></span>
+                                        <span class="text-muted" id="idValor" name="idValor">R$</span>
                                     </li>
-                            <%
-                                } %>
+                            
                         <li class="list-group-item d-flex justify-content-between">
                             <span>Valor Total</span>
-                            <strong id="valorTotal" name="valorTotal">R$ <%=String.format("%.2f", total)%></strong>
+                            <strong id="valorTotal" name="valorTotal"></strong>
                         </li>
                         <li class="nav-item d-flex">
                             <a class="nav-link" href="" >Continuar comprando</a>
@@ -222,33 +177,24 @@
                     <input type="button" name="finalizarPedido" class="action-button  btn-block" value="Finalizar Pedido"/>
 
                 </div>
-                <%}%>
+                
                 <div class="col-md-8 order-md-1">
                     <h4 class="mb-3">Meu Carrinho</h4>
-                    <%
-                        if (cart != null && cart.size() > 0) {
-                            for (int i = 0; i < cart.size(); i++) {
-                                ItemCart item = (ItemCart) cart.get(i);
-                                Produto produto = item.getProduto();
-                    %>
+                    
                     <div class="caixa">
-                        <img src="./imagens?id_prod=<%=produto.getId()%>&img=1" width="150" height ="200" alt=""/>
+                        <img src="" width="150" height ="200" alt=""/>
                         <div id="titulo">
-                            <label id="idTitulo" name="idTitulo"><%=produto.getTitulo()%></label>
+                            <label id="idTitulo" name="idTitulo"></label>
                             <br/>
-                            <label id="idAutor" name="idAutor">Autor: <%=produto.getAutor()%></label>
+                            <label id="idAutor" name="idAutor">Autor: </label>
                             <br/>
                             <label>Quantidade:</label>
-                            <input id="idQtde" name="idQtde" type="number" onchange="atualizarQuantidade(this, <%=produto.getId()%>)" value="<%=item.getQuantidade()%>">
+                            <input id="idQtde" name="idQtde" type="number" onchange="atualizarQuantidade(this)" value="">
                             <br/>
-                            <a href="#" onclick="excluir(<%=produto.getId()%>)">Excluir</a>
+                            <a href="#" onclick="">Excluir</a>
                         </div>
                     </div>
-                    <%
-                            }
-                        } else {
-                            out.print("<h4>Seu carrinho está vazio.</h4>");
-                        }%>
+
                 </div>
             </div>
         </div>
@@ -268,6 +214,20 @@
         <script src="res/vendor/jquery/jquery.min.js"></script>
         <script src="res/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
         <script>
+            function loadShoppingCart() {
+                var xhttp = new XMLHttpRequest();
+                var jsonCart;
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState === 4 && this.status === 200) {
+                        jsonCart = JSON.parse(this.responseText);
+                   }
+                };
+                xhttp.open("GET", "GetShoppingCartServlet", true);
+                xhttp.send();
+            }
+            
+            loadShoppingCart();
+
             function excluir(id) {
                 var xhttp = new XMLHttpRequest();
                 xhttp.onreadystatechange = function() {
