@@ -3,7 +3,6 @@ package controller;
 import model.Cart;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.HashMap;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -38,7 +37,6 @@ public class ComprarServlet extends HttpServlet {
             
             HashMap<Integer, Integer> lista = new HashMap<>();
             Cookie[] cookies = request.getCookies();
-            out.print("Cookies teste <br />");  
             
             if (cookies != null) {
                 for (Cookie cookie : cookies) {
@@ -62,7 +60,7 @@ public class ComprarServlet extends HttpServlet {
             Cookie cookieShopCart = new Cookie("ShoppingCart", lista.toString());
             response.addCookie(cookieShopCart);
       
-            // request.getRequestDispatcher("carrinho.jsp");
+            response.sendRedirect(request.getContextPath() + "/carrinho.jsp");
         }
     }
 

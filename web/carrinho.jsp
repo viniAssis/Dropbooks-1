@@ -1,3 +1,5 @@
+<%@page import="modelDAO.ProdutoDAO"%>
+<%@page import="java.util.HashMap"%>
 <%@page import="model.Produto"%>
 <%@page import="model.ItemCart"%>
 <%@page import="java.util.ArrayList"%>
@@ -146,14 +148,45 @@
 
         <!--meu carrinho-->
         <div class="container">
-        <% ArrayList lista = (ArrayList) session.getAttribute("cart"); %>
+            <%
+                HashMap<Integer, Integer> lista = null;
+                lista = new HashMap<Integer, Integer>();
+                Cookie[] cookies = null;
+                cookies = request.getCookies();
+
+                ArrayList<ItemCart> cart = new ArrayList<ItemCart>();
+
+                if (cookies != null) {
+                    for (Cookie cookie : cookies) {
+                        if ("ShoppingCart".equals(cookie.getName())) {
+                            String value = cookie.getValue();
+                            value = value.substring(1, value.length()-1);
+                            String[] keyValuePairs = value.split(",");
+
+                            for(String pair : keyValuePairs) {
+                                String[] entry = pair.split("=");
+                                lista.put(Integer.parseInt(entry[0].trim()), Integer.parseInt(entry[1].trim()));
+                            }
+                        }
+                    }
+                }
+
+                if (lista.size() > 0) {
+                    for (int i = 0; i < lista.size(); i++) {
+                        ItemCart item = new ItemCart();
+                        item.setProduto(ProdutoDAO.getProduto(i));
+                        item.setQuantidade(lista.get(i));
+                        cart.add(item);
+                    }
+                }
+            %>
             <div id="resumo" class="row">
                 <% 
-                    if (lista != null && lista.size() > 0) {
+                    if (cart != null && cart.size() > 0) {
                         float total = 0.00f;
                         
-                        for (int j = 0; j < lista.size(); j++) {
-                            ItemCart item = (ItemCart) lista.get(j);
+                        for (int j = 0; j < cart.size(); j++) {
+                            ItemCart item = (ItemCart) cart.get(j);
                             
                             total = total + (item.getProduto().getPreco() * item.getQuantidade());
                         }
@@ -161,12 +194,12 @@
                 <div class="col-md-4 order-md-2 mb-4">
                     <h4 class="d-flex justify-content-between align-items-center mb-3">
                         <span class="text-muted">Resumo do Pedido</span>
-                        <span class="badge badge-secondary badge-pill" id="qtdeProdutos"  name="qtdeProdutos"><%=lista.size()%></span>
+                        <span class="badge badge-secondary badge-pill" id="qtdeProdutos"  name="qtdeProdutos"><%=cart.size()%></span>
                     </h4>
                     <ul class="list-group mb-3">
                         <%
-                                for (int i = 0; i < lista.size(); i++) {
-                                    ItemCart item = (ItemCart) lista.get(i);
+                                for (int i = 0; i < cart.size(); i++) {
+                                    ItemCart item = (ItemCart) cart.get(i);
                                     Produto produto = item.getProduto();%>
 
                                     <li class="list-group-item d-flex justify-content-between lh-condensed">
@@ -186,16 +219,16 @@
                             <a class="nav-link" href="" >Continuar comprando</a>
                         </li>
                     </ul>
-                    <input type="button" name="finalizarPedido" class="action-button  btn-block" value="Finalizar Pedido" onclick="alterarfs()"/>
+                    <input type="button" name="finalizarPedido" class="action-button  btn-block" value="Finalizar Pedido"/>
 
                 </div>
                 <%}%>
                 <div class="col-md-8 order-md-1">
                     <h4 class="mb-3">Meu Carrinho</h4>
                     <%
-                        if (lista != null && lista.size() > 0) {
-                            for (int i = 0; i < lista.size(); i++) {
-                                ItemCart item = (ItemCart) lista.get(i);
+                        if (cart != null && cart.size() > 0) {
+                            for (int i = 0; i < cart.size(); i++) {
+                                ItemCart item = (ItemCart) cart.get(i);
                                 Produto produto = item.getProduto();
                     %>
                     <div class="caixa">
