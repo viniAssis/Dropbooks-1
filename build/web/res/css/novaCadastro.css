@@ -1,0 +1,184 @@
+
+body{
+  background-image: url(./res/img/250x250.jpg) !important;
+  font-family: "Segoe UI";
+  background-color: #C7C7C7;
+}
+
+hr{
+  width: 200px;
+}
+/* Navbar */
+.navbar .navbar-nav li a{
+  color: #95989A !important;
+  font-weight: 400;
+  padding-left: 50px !important;
+
+}
+.navbar .navbar-nav li a:hover{
+  color: #363457 !important;
+  font-weight: 400;
+  padding-left: 50px !important;
+  transform: scale(1);
+
+}
+
+.navbar-brand{
+  color: #363457 !important;
+  font-size: 24px;
+  font-weight: 700;
+}
+a:link,a:visited {
+	color: black;
+	margin-left:
+}
+
+
+#msform {
+
+    text-align: center;
+    position: center;
+    margin-top: 30px;
+
+}
+
+#msform fieldset {
+    background: white;
+    border: 0 none;
+    border-radius: 0px;
+    box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+    padding: 20px 30px;
+    box-sizing: border-box;
+    width: 80%;
+    margin: 0 10%;
+    position: relative;
+}
+
+
+#msform fieldset:not(:first-of-type) {
+    display: none;
+}
+
+/*inputs*/
+#msform input, #msform textarea, #msform select {
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 0px;
+    margin-bottom: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: montserrat;
+    color: black;
+    font-size: 13px;
+}
+
+
+#msform input:focus, #msform textarea:focus {
+
+    box-shadow: none !important;
+    outline-width: 0;
+    transition: All 0.5s ease-in;
+
+}
+
+/*buttons*/
+#msform .action-button {
+    width: 150px;
+    background: #98A886;
+    font-weight: bold;
+    color: white;
+    border: 0 none;
+    border-radius: 25px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 5px;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.15);
+}
+#msform .btnVoltar {
+    width: 100px;
+    background: #363457;
+    font-weight: bold;
+    color: white;
+    border: 0 none;
+    border-radius: 25px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 5px;
+}
+
+#msform .action-button:hover, #msform .action-button:focus {
+    background-color: forestgreen;
+}
+
+/*headings*/
+.fs-title {
+    font-size: 18px;
+    text-transform: uppercase;
+    color: #2C3E50;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+    font-weight: bold;
+}
+
+.fs-subtitle {
+    font-weight: normal;
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+/*progressbar*/
+#progressbar {
+    margin-bottom: 30px;
+    overflow: hidden;
+    /*CSS counters to number the steps*/
+    counter-reset: step;
+}
+
+#progressbar li {
+    list-style-type: none;
+    color: #252525;
+    text-transform: uppercase;
+    font-size: 9px;
+    width: 33.33%;
+    float: left;
+    position: relative;
+    letter-spacing: 1px;
+}
+
+#progressbar li:before {
+    content: counter(step);
+    counter-increment: step;
+    width: 24px;
+    height: 24px;
+    line-height: 26px;
+    display: block;
+    font-size: 12px;
+    color: #252525;
+    background: white;
+    border-radius: 25px;
+    margin: 0 auto 10px auto;
+    border: 1px solid #d1d1d1;
+}
+
+/*progressbar connectors*/
+#progressbar li:after {
+    content: '';
+    width: 100%;
+    height: 2px;
+    background: #d1d1d1;
+    position: absolute;
+    left: -50%;
+    top: 9px;
+    z-index: -1; /*put it behind the numbers*/
+}
+
+#progressbar li:first-child:after {
+    /*connector not needed before the first step*/
+    content: none;
+}
+#principal{
+  margin-top: 2%;
+  margin-left: 25%;
+  margin-bottom: 5%;
+}

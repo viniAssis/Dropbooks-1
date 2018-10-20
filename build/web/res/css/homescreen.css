@@ -1,0 +1,149 @@
+body{
+	background-color:#087E8B;
+	background-image: url("/res/img/bgPadrao.jpg") ;
+	background-size: 100% ;
+	background-repeat: no-repeat;
+	
+}
+
+.carousel-inner .carousel-item{
+	width: 250px;
+	height: 250px;
+	max-width: 300px;
+	max-height: 300px;
+	object-fit:  cover;
+}
+.carousel-inner .carousel-item img{
+	margin-left: 250px;
+	width: 800px;
+	height: 250px;
+	object-fit: cover;
+}
+
+
+
+
+/* Navbar */
+.navbar{
+            background-color: #C1839F !important;
+           
+        }
+        .navbar .navbar-nav li a{
+            color: #FFF !important;
+        }
+        .navbar .nav-item .nav-link .active{
+            color:#FFF !important;
+        }
+        .navbar-brand{
+            color:#FFF !important;
+        }
+
+/*  Barra de busca  */
+
+.wrapBusca{
+	margin-top:35%;
+}
+
+.barra_busca{
+	background-color: #FF5A5F;
+	border-radius: 20px;
+	margin-left: 15px;
+	color: #FFF;
+}
+
+
+.form-control{
+	border-radius: 20px !important;
+}
+
+.maisPopulares .header h1,h3{
+	color:white;
+	font-size:15px !important;
+	margin-left: 70%;
+	margin-top: 0vw;
+
+}
+
+
+
+a:link,a:visited {
+	color: #FFF;
+	margin-left: 
+}
+.rowLivros{
+	margin-left: 30%;
+	min-width: 50vw;
+	
+}
+
+.card-deck{
+	position: relative;
+	min-height: 250px;
+	min-width: 250px;
+	
+}
+
+.header-populares {
+	align-items: center;
+	padding-bottom: 5px;
+	max-width: calc(100% - 30px);
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 2vh;
+	margin-top: 10vh;
+	display: inline-flex;
+	color: #FFF;
+
+
+}
+
+.card .card-img-top .card-deck{
+
+	background-color: #fff;
+	border-radius: 10px;
+	min-width: 250px;
+	min-height: 200px;
+	max-width: 250px;
+	max-width: 300px;
+
+	box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+	/*padding-bottom: 48px;*/
+	
+	text-align: center;
+	
+}
+.card-deck{
+	padding-bottom: 10vh;
+}
+
+.card:focus, .card:hover {
+	box-shadow: 5px 20px 30px rgba(0, 0, 0, 0.2);
+	transform: scale(1.1);
+}
+.container .mais-populares{
+	margin-bottom: 20px;
+}
+.header-populares-genero{
+	color: #fff
+}
+.botoes{
+	background-color: #FF5A5F;
+	border-radius:20px; 
+	border:0px;
+	/*border-color: #FF5A5F;*/
+}
+.botoes:hover{
+	background-color: #ff272e;
+	transform: scale(1); 
+}
+
+
+
+
+
+
+
+
+.carousel{ outline: solid 0.25rem hsla(210, 100%, 100%, 0.5); }
+
+
