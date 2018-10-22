@@ -20,10 +20,14 @@ var calcWsCorreios = function(cepOrigem, valor) {
         },
         dataType: "xml",
         success: function (data) {
-            var valor = $(data).find('Valor').text();
+            var valor = Number.parseFloat($(data).find('Valor').text()).toFixed(2);
             var prazo = $(data).find('PrazoEntrega').text();
-            $("#resultadoFrete").html("Chega em até " + prazo + " dias úteis via PAC por R$ " + Number.parseFloat(valor).toFixed(2));
-            console.log("Chega em até " + prazo + " dias úteis via PAC por R$ " + Number.parseFloat(valor).toFixed(2));
+            if (valor > 0) {
+                $("#resultadoFrete").html("Chega em até " + prazo + " dias úteis via PAC por R$ " + valor);
+                console.log("Chega em até " + prazo + " dias úteis via PAC por R$ " + valor);
+            } else {
+                $("#resultadoFrete").html("Não foi possível calcular o frete. Verifique o CEP e tente novamente.");
+            }
         }
     });
 };
