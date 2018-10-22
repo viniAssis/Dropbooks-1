@@ -1,7 +1,7 @@
 <!--<%@page import="modelDAO.UsuarioDAO"%>
-<%@page import="model.Usuario"%>-->
-<!doctype html>
-<html>
+  <%@page import="model.Usuario"%>-->
+  <!doctype html>
+  <html>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -15,62 +15,25 @@
 
     <!-- Custom styles for this template -->
     <link href="res/css/modern-business.css" rel="stylesheet">
-                <!-- Custom styles for this template -->
-                <link href="res/css/modern-business.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="res/css/modern-business.css" rel="stylesheet">
+    <link href="res/css/cadastroProduto.css" rel="stylesheet" >
 
     <script src="res/jquery-3.3.1.js"></script>
-    <link href="res/js/dist/dropdown.js" rel="stylesheet">
-                
-    <style>
-    #caixa2{
-      margin-top: 5%;
-      margin-left: 20%;
-      margin-bottom: 3%;
-      clear: both;
-    }
-    #container1{
-      width: 70%;
-      height: 800px;
-      margin:  0 auto;
-      margin-top: 4%;
-      margin-bottom: 7%;
-    }
-    .container1, .container2{
-      display: block;
-      float: left;
-      width: 40%;
-      height: 70%;
-      margin-left: 7%;
-      margin-bottom: 5%;
-      margin-top: 5%;
-    }
-    .dropdown1{
-      padding-top: 30px;
-      padding-right: 60px;
-      margin-left: 5%;
-    }
-    h4{text-align: center;}
-    #botao{
-      clear: both;
-      margin-left: 15%;
-    }
-    #btnCad, #btnCanc{margin-left: 15%;}
-      
-      #texto{
-        font-size: 18px;
-        color: black;
-      } 
-    </style> 
-                <%
-                    String email = request.getSession().getAttribute("email").toString();
-       
-                    Usuario user = new UsuarioDAO().getUsuario(email);
-                    
-                %>
+    <link href="res/js/dist/dropdown.js">
+
+
+    
+    <%
+    String email = request.getSession().getAttribute("email").toString();
+
+    Usuario user = new UsuarioDAO().getUsuario(email);
+
+    %>
   </head>
   <body>
 
-  <!-- Navigation -->
+    <!-- Navigation -->
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary fixed-top">
       <div class="container">
         <a class="navbar-brand" href="index.jsp">DropBooks</a>
@@ -81,168 +44,207 @@
             <li class="nav-item">
               <a class="nav-link" href="index.jsp">Home</a>
             </li>
-                                                <li class="nav-item">
-                                                        <a class="nav-link" href="Contato.jsp">Contato</a>
-                                                </li>
-                                              
-                                                <li class="nav-item">
-                                                    <li class="nav-item dropdown"> 
-                                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= user.getNomeRazao()%></a>
-                                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
-                                                    <a class="dropdown-item" href="alterarCadastro.jsp">Alterar Dados</a>
-                                                    <a class="dropdown-item" href="catalogoLivro.jsp">Meu Catalogo</a>
-                                                    <a class="dropdown-item" href="cadastroProduto.jsp">Cadastra Catalogo</a>
-                                                    <a class="dropdown-item" href="Senha.jsp">Alterar Senha</a>
-                                                    <a class="dropdown-item" name=Sair href=SairServlet>Sair</a>
-                                                    </div>
-                                                </li>
-                      </ul>
+            <li class="nav-item">
+              <a class="nav-link" href="Contato.jsp">Contato</a>
+            </li>
+
+            <li class="nav-item">
+              <li class="nav-item dropdown"> 
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= user.getNomeRazao()%></a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
+                  <a class="dropdown-item" href="alterarCadastro.jsp">Alterar Dados</a>
+                  <a class="dropdown-item" href="catalogoLivro.jsp">Meu Catalogo</a>
+                  <a class="dropdown-item" href="cadastroProduto.jsp">Cadastra Catalogo</a>
+                  <a class="dropdown-item" href="Senha.jsp">Alterar Senha</a>
+                  <a class="dropdown-item" name=Sair href=SairServlet>Sair</a>
+                </div>
+              </li>
+            </ul>
+          </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+
+
+
+ 
+
+
+
+  <!-- FORMULÁRIO - CADASTRO PRODUTO -->
+  <form action="" method="">
+
+    <!-- DESCRIÇÃO DA PÁGINA --><div class="form-group"><h4>Cadastro de livro</h4></div>
+
+    <!-- DESCRIÇÃO DO PRODUTO -->
+    <label>Título do livro</label>
+    <div class="form-group">
+      <input type="text" id="nameLivro" name="nomeLivro" placeholder="Título do livro" class="form-control" required>
+    </div>
     
-    <form id="caixa2" enctype="multipart/form-data">
-      <div class="form-row align-items-center">
-        <div class="col-auto my-1">
-          <select class="custom-select mr-sm-2 border border-dark" id="tipoPesquisa">
-            <option selected>Titulo</option>
-            <option>Autor</option>
-            <option>Editora</option>
-            <option>Genero</option>
+
+    <table class="table">
+
+      <tr><td><!-- Genero do livro -->
+        <label>Gênero</label>
+        <select value=" Selecione a categoria" class="form-control">
+          <option>Selecione o gênero</option>
+          <option>Biografias e Memórias</option>
+          <option>Contos</option>
+          <option>Cordel</option>
+          <option>Crônica</option>
+          <option>Ensaios</option>
+          <option>Ficção científica</option>
+          <option>Novela</option>
+          <option>Poesia</option>
+          <option>Policial</option>
+          <option>Romance</option>
+          <option>Terror</option>
+          <option>Livro-reportagem</option>
+          <option>Quadrinhos</option>
         </select>
-        </div>
-        <div class="col-auto col-md-6">
-          <input class="form-control mr-sm-2  border border-dark" type="search" placeholder="Pesquisar" aria-label="Pesquisar" name="pesquisa">
-        </div>
-        <button type="submit" class="btn btn-primary" id="botao1" name="botao1">Pesquisa</button>
-      </div>
-    </form> 
+      </td>
 
-    <form method="post" id= "container1" action="CadastroProdutoServlet" enctype="multipart/form-data">
-      
-      <h4>Cadastro de Livro</h4>
-      
-      <div class="container1">
-        <div  class="form-signin"> 
-          <!-- Titulo do livro -->
-          <div class="form-group">
-            <label id="texto" >Titulo do Livro</label>
-            <input type="text" class="form-control  border border-dark" id="nameLivro" name="nameLivro" required>
-          </div>   
-          
-          <!-- Titulo do livro -->
-          <div class="form-group">
-            <label id="texto">Autor</label>
-            <input type="text" class="form-control  border border-dark" id="nameAutor" name="nameAutor" required>
-          </div>
-          
-          <!--Editora -->
-          <div class="form-group">
-            <label id="texto">Editora</label>
-            <input type="text" class="form-control  border border-dark" id="nameEditora" name="nameEditora" required>
-          </div>
-          
-          <!--Ano de Lançamento e Genero -->
-          <div class="form-group">
-            <div class="row">
-              <div class="col">
-                <label id="texto">Ano de Lançamento</label>
-                <input type="date" class="form-control  border border-dark" id="anoLancamento" name="anoLancamento" required>
+      <td><!-- Autor-->
+        <label>Autor</label>
+        <input type="text" name="nameAutor" id="nameAutor" placeholder="Autor" class="form-control" required ></td></tr>
+      </table>
+
+
+      <table class="table">
+        <tr>
+          <td><!-- Editora-->
+            <label>Editora</label>
+            <input type="text" name="nameEditora" placeholder="Editora" class="form-control" required>
+          </td>
+          <td>
+            <!-- Idioma-->
+            <label>Idioma</label>
+            <input type="text" name="idiomaLivro" placeholder="Escolha um idioma" class="form-control" required="" ></td>
+          </tr>
+        </table>
+
+
+
+        <table class="table">
+          <tr>
+            <td><!-- Lançamento-->
+              <label>Escolha o ano de lançamento do livro</label>
+              <input id="anoLancamento" name="anoLancamento" type="date" class="form-control" required>
+            </td>
+            <!--Opções de frete-->
+            <td> <br/>
+              <div>
+                <input type="radio" id="customRadio1"
+                name="customRadio" value="frete_gratis"/>
+                <label for="frete_gratis">Frete Grátis</label>
               </div>
 
-              <div class="dropdown1">
-                <select class="btn  dropdown-toggle  border border-dark" name="genero">
-                  <option selected>Romântico</option>
-                  <option>Literatura</option>
-                  <option>Suspense</option>
-
-                </select>
+              <div>
+                <input type="radio" id="customRadio2"
+                name="customRadio" value="frete_comprador" />
+                <label for="frete_comprador">Frete por conta do comprador</label>
               </div>
-            </div>    
-          </div>
-          
-          <!-- Fale um pouco -->
-          <div class="form-group">
-            <label id="texto">Fale um pouco sobre o conteúdo</label>
-            <textarea class="form-control  border border-dark" id="descricao" name="descricao" placeholder="Descrição do produto" rows="3"></textarea>
-          </div>
+            </td>
+          </tr>
+        </table>
+        <!-- OBSERVAÇÕES ADICIONAIS -->
+        <div class="form-group">
+          <textarea class="form-control" rows="3" id="observacoes" name="text" placeholder=" Detalhes sobre o livro como estado de conservação, folhas soltas">
+          </textarea>
         </div>
-      </div>
 
-      <div class="container2">
-        <div class="form-signin">
-          
-          <!-- Idioma -->
-          <div class="form-group">
-            <label id="texto">Idioma</label>
-            <input type="text" class="form-control  border border-dark" id="idiomaLivro" name="idiomaLivro" required>
-          </div>
-          
-          <!-- Quantidade -->
-          <div class="form-group">
-            <label id="texto">Quantidade</label>
-            <input type="number" class="form-control  border border-dark" id="qtdLivro" name="qtdLivro" required>
-          </div>
-          
-          <!-- Valor de cada Livro--> 
-          <div class="form-group">
-            <label id="texto">Valor do Livro</label>
-            <input type="text" class="form-control  border border-dark" id="valorLivro" name="valorLivro" required>
-          </div>
-          
-          <!-- Opção de Frente -->
-          <label id="texto">Opções de frete </label>
-          <div id="radio1">
-            <div class="custom-control custom-radio">   
-              <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input" value="frete_gratis">
-              <label class="custom-control-label" id="texto">Frete grátis</label>
-            </div>
-          </div>
-          <div id="radio2">
-            <div class="custom-control custom-radio">
-              <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input" value="frete_comprador">
-              <label class="custom-control-label" id="texto">Frete por conta do comprador</label>
-            </div>
-          </div>
-                                        
-                                        <!-- Imagens -->
-                                        <div class="form-group">
-                                            <input type="file" class="form-control  border border-dark" id="imagem_1" name="imagem_1" accept="image/*" required>
-            <input type="file" class="form-control  border border-dark" id="imagem_2" name="imagem_2" accept="image/*">
-            <input type="file" class="form-control  border border-dark" id="imagem_3" name="imagem_3" accept="image/*">
-            <input type="file" class="form-control  border border-dark" id="imagem_4" name="imagem_4" accept="image/*">
-            <input type="file" class="form-control  border border-dark" id="imagem_5" name="imagem_5" accept="image/*">
-          </div>
-          
+ <!--fotos-->
+        <div class="form-group">
+          <table class="table"><tr>
+            <br><div class="container">
+              <div class="row">
+                <div class="col-sm-2 imgUp">
+                  <div class="imagePreview"></div>
+                  <label class="btn btn-primary">
+                    Adicionar arquivo <input type="file" name="imagem" class="addFoto img" value="Adicionar foto" style="width: 0px;height: 0px;overflow: hidden;">
+                  </label>
+                </div><!-- col-2 -->
+                <i class="fa fa-plus imgAdd"></i>
+              </div><!-- row -->
+            </div><!-- container -->
+        
+           
+            
+
+          </table>
         </div>
-      </div>
-      
-      <div id="botao">
-        <button id="btnCad" type="submit" class="btn btn-primary">Cadastrar Livro</button>
-        <button id="btnCanc" type="button" class="btn btn-primary">Cancelar</button>
-      </div>
 
-    </form>
-    
-    <!-- Footer -->
-    <footer class="py-5 bg-primary">
-      <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; DropBooks</p>
-      </div>
-    <!-- /.container -->
-    </footer>
+        <div class="form-group"><table class="table"><tr><td><!-- LIMPAR CADASTRO-->
+          <input type=reset value="Limpar" class="btnSecundario  form-control">
+        </td>
+          <td><!-- Enviar-->
+          <input type="submit" class="btnPrimario form-control">
+        </td>
+      </tr>
+    </table>
+  </div>
 
-  <!-- Foi colocado no final para a página carregar mais rápido -->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/popper.js"></script>
-  <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-  <script src="res/js/bootstrap.min.js"></script>
-  <!-- Só faz o nossos placeholders de imagens funcionarem. Não precisar copiar a próxima linha! -->
-  <script src="res/js/bootstrap.bundle.min.js"></script>
-        <!-- Bootstrap core JavaScript -->
-        <script src="res/vendor/jquery/jquery.min.js"></script>
-        <script src="res/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  </body>
-</html>
+
+
+
+</form>
+
+      <!-- Footer -->
+      <footer class="py-5 bg-primary">
+        <div class="container">
+          <p class="m-0 text-center text-white">Copyright &copy; DropBooks</p>
+        </div>
+        <!-- /.container -->
+      </footer>
+
+
+<!--Eu deveria ter jogado esse script num arquivo separado, mas estava dando erro, perdào -->
+
+<script type="text/javascript">
+  $(".imgAdd").click(function(){
+    $(this).closest(".row").find('.imgAdd').before('<div class="col-sm-2 imgUp"><div class="imagePreview"></div><label class="btn btn-primary">Adicionar arquivo<input type="file" class="addFoto img" value="Upload Photo" style="width:0px;height:0px;overflow:hidden;"></label><i class="fa fa-times del"></i></div>');
+  });
+  $(document).on("click", "i.del" , function() {
+    $(this).parent().remove();
+  });
+  $(function() {
+    $(document).on("change",".addFoto", function()
+    {
+      var addFoto = $(this);
+      var files = !!this.files ? this.files : [];
+        if (!files.length || !window.FileReader) return; 
+        //se voltar vazio é porque deu erro no fileReadr ou não pegou o arquivo 
+
+        if (/^image/.test( files[0].type)){ //validando se é do tipo imagem
+            var reader = new FileReader(); 
+            reader.readAsDataURL(files[0]); 
+
+            reader.onloadend = function(){ // aqui começa a mágica de adicionar a imagem selecionada como bg do card 
+               
+                addFoto.closest(".imgUp").find('.imagePreview').css("background-image", "url("+this.result+")");
+              }
+            }
+
+          });
+  });
+
+
+</script>
+      <!-- Foi colocado no final para a página carregar mais rápido -->
+       <script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js'></script>
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+      <script src="https://unpkg.com/popper.js"></script>
+      <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+      <script src="res/js/bootstrap.min.js"></script>
+      <!-- Só faz o nossos placeholders de imagens funcionarem. Não precisar copiar a próxima linha! -->
+      <script src="res/js/bootstrap.bundle.min.js"></script>
+      <!-- Bootstrap core JavaScript -->
+      <script src="res/vendor/jquery/jquery.min.js"></script>
+      <script src="res/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js">
+  </script>
+    </body>
+    </html>
 
     
