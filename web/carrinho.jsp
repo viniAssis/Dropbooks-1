@@ -149,52 +149,13 @@
         <!--meu carrinho-->
         <div class="container">
             <div id="resumo" class="row">
-                
-                <div class="col-md-4 order-md-2 mb-4">
-                    <h4 class="d-flex justify-content-between align-items-center mb-3">
-                        <span class="text-muted">Resumo do Pedido</span>
-                        <span class="badge badge-secondary badge-pill" id="qtdeProdutos"  name="qtdeProdutos"></span>
-                    </h4>
-                    <ul class="list-group mb-3">
-                        
-
-                                    <li class="list-group-item d-flex justify-content-between lh-condensed">
-                                        <div>
-                                            <h6 class="my-0" id="idTitulo"  name="idTitulo"></h6>
-                                            <small class="text-muted" id="idAutor"  name="idAutor">Autor:</small> 
-                                        </div>
-                                        <span class="text-muted" id="idValor" name="idValor">R$</span>
-                                    </li>
-                            
-                        <li class="list-group-item d-flex justify-content-between">
-                            <span>Valor Total</span>
-                            <strong id="valorTotal" name="valorTotal"></strong>
-                        </li>
-                        <li class="nav-item d-flex">
-                            <a class="nav-link" href="" >Continuar comprando</a>
-                        </li>
-                    </ul>
-                    <input type="button" name="finalizarPedido" class="action-button  btn-block" value="Finalizar Pedido"/>
-
+                <div id="order" class="col-md-4 order-md-2 mb-4">
                 </div>
-                
                 <div class="col-md-8 order-md-1">
                     <h4 class="mb-3">Meu Carrinho</h4>
-                    
-                    <div class="caixa">
-                        <img src="" width="150" height ="200" alt=""/>
-                        <div id="titulo">
-                            <label id="idTitulo" name="idTitulo"></label>
-                            <br/>
-                            <label id="idAutor" name="idAutor">Autor: </label>
-                            <br/>
-                            <label>Quantidade:</label>
-                            <input id="idQtde" name="idQtde" type="number" onchange="atualizarQuantidade(this)" value="">
-                            <br/>
-                            <a href="#" onclick="">Excluir</a>
-                        </div>
+                    <div id="list-cart">
+                        <!-- Dados do carrinho inseridos com Javascript -->
                     </div>
-
                 </div>
             </div>
         </div>
@@ -204,7 +165,6 @@
             <div class="container">
                 <p class="m-0 text-center text-white">Copyright &copy; DropBooks</p>
             </div>
-            <!-- /.container -->
         </footer>
 
         <!-- Principal JavaScript do Bootstrap
@@ -219,14 +179,68 @@
                 var jsonCart;
                 xhttp.onreadystatechange = function() {
                     if (this.readyState === 4 && this.status === 200) {
+                        console.log("J: " + this.responseText);
                         jsonCart = JSON.parse(this.responseText);
+                        listarCarrinho(jsonCart);
                    }
                 };
                 xhttp.open("GET", "GetShoppingCartServlet", true);
+                xhttp.setRequestHeader("Content-type", "application/json");
                 xhttp.send();
             }
             
-            loadShoppingCart();
+            var listarCarrinho = function (json) {
+                var html = "";
+                var htmlOrder = "";
+                
+                if (json.length > 0) {
+                    
+                    htmlOrder += '<h4 class="d-flex justify-content-between align-items-center mb-3">';
+                    htmlOrder += '<span class="text-muted">Resumo do Pedido</span>';
+                    htmlOrder += '<span class="badge badge-secondary badge-pill" id="qtdeProdutos"  name="qtdeProdutos">' + json.length + '</span>';
+                    htmlOrder += '</h4>';
+                    htmlOrder += '<ul class="list-group mb-3">';
+                    
+                    for (var i = 0; i < json.length; i++) {
+                        html += '<div class="caixa">';
+                        html += '<img src=" ' + json[i].produto.imagem_1 + ' " width="150" height ="200" alt=""/>';
+                        html += '<div id="titulo">';
+                        html += '<label id="idTitulo" name="idTitulo">' + json[i].produto.titulo + '</label>';
+                        html += '<br/>';
+                        html += '<label id="idAutor" name="idAutor">Autor: ' + json[i].produto.autor + '</label>';
+                        html += '<br/>';
+                        html += '<label>Quantidade:</label>';
+                        html +='<input id="idQtde" name="idQtde" type="number" onchange="atualizarQuantidade(this)" value="' + json[i].quantidade + '">';
+                        html += '<br/>';
+                        html += '<a href="#" onclick="">Excluir</a>';
+                        html += '</div>';
+                        html += '</div>';
+                        
+                        htmlOrder += '<li class="list-group-item d-flex justify-content-between lh-condensed">';
+                        htmlOrder += '<div>';
+                        htmlOrder += '<h6 class="my-0" id="idTitulo"  name="idTitulo">' + json[i].produto.titulo + '</h6>';
+                        htmlOrder += '<small class="text-muted" id="idAutor"  name="idAutor">Autor: ' + json[i].produto.autor + '</small>';
+                        htmlOrder += '</div>';
+                        htmlOrder += '<span class="text-muted" id="idValor" name="idValor">R$ ' + json[i].produto.preco + '</span>';
+                        htmlOrder += '</li>';
+                    }
+                    
+                    htmlOrder += '<li class="list-group-item d-flex justify-content-between">';
+                    htmlOrder += '<span>Valor Total</span>';
+                    htmlOrder += '<strong id="valorTotal" name="valorTotal"></strong>';
+                    htmlOrder += '</li>';
+                    htmlOrder += '<li class="nav-item d-flex">';
+                    htmlOrder += '<a class="nav-link" href="" >Continuar comprando</a>';
+                    htmlOrder += '</li>';
+                    htmlOrder += '</ul>';
+                    htmlOrder += '<input type="button" name="finalizarPedido" class="action-button  btn-block" value="Finalizar Pedido"/>';
+                } else {
+                    html = "<h4>Seu carrinho está vazio</h4>"
+                }
+                
+                document.getElementById("list-cart").innerHTML = html;
+                document.getElementById("order").innerHTML = htmlOrder;
+            };
 
             function excluir(id) {
                 var xhttp = new XMLHttpRequest();
