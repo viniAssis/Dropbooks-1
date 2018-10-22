@@ -44,12 +44,37 @@ public class RemoverItemCarrinhoServlet extends HttpServlet {
             
             HashMap<Integer, Integer> lista = new HashMap<>();
             Cookie[] cookies = request.getCookies();
+            Cookie actualCookie = null;
             
-            for (Cookie c : cookies) {
-                lista.put(Integer.parseInt(c.getName()), Integer.parseInt(c.getValue()));
+            if (cookies != null) {
+                for (Cookie cookie : cookies) {
+                    if ("ShoppingCart".equals(cookie.getName())) {
+                        String value = cookie.getValue();
+                        value = value.substring(1, value.length()-1);
+                        String[] keyValuePairs = value.split(",");
+                        
+                        actualCookie = cookie;
+
+                        if (value.length() > 0){
+                            for(String pair : keyValuePairs) {
+                                String[] entry = pair.split("=");
+                                lista.put(Integer.parseInt(entry[0].trim()), Integer.parseInt(entry[1].trim()));
+                            }
+                        }
+                    }
+                }
             }
 
             lista = new Cart().RemoveItemCart(codLivro, lista);
+            
+            if (lista.size() > 0) {
+                actualCookie.setValue(lista.toString());
+            } else {
+                actualCookie.setMaxAge(0);
+                actualCookie.setValue(null);
+            }
+            
+            response.addCookie(actualCookie);            
         }
     }
 

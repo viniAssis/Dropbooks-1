@@ -37,6 +37,7 @@ public class ComprarServlet extends HttpServlet {
             
             HashMap<Integer, Integer> lista = new HashMap<>();
             Cookie[] cookies = request.getCookies();
+            Cookie actualCookie = new Cookie("ShoppingCart", lista.toString());
             
             if (cookies != null) {
                 for (Cookie cookie : cookies) {
@@ -44,10 +45,15 @@ public class ComprarServlet extends HttpServlet {
                         String value = cookie.getValue();
                         value = value.substring(1, value.length()-1);
                         String[] keyValuePairs = value.split(",");
-
-                        for(String pair : keyValuePairs) {
-                            String[] entry = pair.split("=");
-                            lista.put(Integer.parseInt(entry[0].trim()), Integer.parseInt(entry[1].trim()));
+                        actualCookie = cookie;
+                        actualCookie.setMaxAge(60 * 60 * 24 * 7);
+                        
+                        if (value.length() > 0){
+                            for(String pair : keyValuePairs) {
+                                out.print(pair);
+                                String[] entry = pair.split("=");
+                                lista.put(Integer.parseInt(entry[0].trim()), Integer.parseInt(entry[1].trim()));
+                            }
                         }
                     }
                 }
@@ -57,9 +63,12 @@ public class ComprarServlet extends HttpServlet {
                 lista = new Cart().AddItemCart(codProduto, lista);
             }
 
-            Cookie cookieShopCart = new Cookie("ShoppingCart", lista.toString());
-            response.addCookie(cookieShopCart);
-      
+            actualCookie.setValue(lista.toString());
+            actualCookie.setMaxAge(60 * 60 * 24 * 365);
+            response.addCookie(actualCookie);
+            
+            out.print("Lista: " + actualCookie);
+
             response.sendRedirect(request.getContextPath() + "/carrinho.jsp");
         }
     }

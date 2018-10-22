@@ -11,25 +11,38 @@
 <html lang="pt-br">
     <head>
         <!-- Meta tags Obrigatórias -->
-        <meta charset="utf-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         
         <title>Dropbooks - Meu Carrinho</title>
 
-        <link rel="stylesheet" href="res/css/cadastro.css">
         <link href="res/css/bootstrap.min.css" rel="stylesheet">
-        <link href="res/css/modern-business.css" rel="stylesheet">     
-        <script src="res/js/contato.js"></script>
-
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="res/css/modern-business.css" rel="stylesheet">           
         <link rel="stylesheet" type="text/css" href="res/fonts/font-awesome-4.7.0/css/font-awesome.min.css"/>
         <link rel="stylesheet" type="text/css" href="res/vendor/animsition/css/animsition.min.css"/>
         <link rel="stylesheet" type="text/css" href="res/vendor/select2/select2.min.css"/>
         <link rel="stylesheet" type="text/css" href="res/css/util.css"/>
         <link rel="stylesheet" type="text/css" href="res/css/main.css"/>
 
-        <link rel="stylesheet" href="res/css/bootstrap.css">
         <style>
+            #nav{
+                background: #090446 !important;
+            }
+
+            .navbar .navbar-nav li a{
+                color: #FEB95F !important;
+                font-weight: 400;
+            }
+            .navbar .navbar-nav li a:hover{
+                color: #FEB95F !important;
+                font-weight: 400;
+                transform: scale(1);
+            }
+            .navbar-brand{
+                color: #FEB95F !important;
+                font-size: 24px;
+                font-weight: 700;
+            }
             #resumo{
                 margin-top: 30px;
                 font-family: arial;
@@ -37,7 +50,6 @@
                 padding: 20px;
                 color: blue;
             }
-
             .action-button {
                 width: 150px;
                 background: #090446;
@@ -50,19 +62,6 @@
                 margin: 10px 5px;
                 box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.15);
             }
-            .ccontainer{
-                border: 1px solid black;
-                background: white;
-                border: 0 none;
-                border-radius: 0px;
-                box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
-                padding: 20px 30px;
-                box-sizing: border-box;
-                width: 120%;
-                margin-top: 10px;
-                margin-bottom: 10px;  
-
-            }
             #formPgto{
                 border: 1px solid black;
                 background: white;
@@ -74,7 +73,6 @@
                 width: 100%;
                 margin-top: 10px;
                 margin-bottom: 10px;  
-
             }
             .caixa{
                 width: 50%;
@@ -94,12 +92,22 @@
                 box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.2);
                 margin-left: 3px;
             }
+            #footer{
+                background: #090446;
+            }
+            #corAmarelo{
+                color:#FEB95F ;
+            }
+
+            #corBranca{
+                color: white;
+            }
         </style>
     </head>
 
     <body class="bg-light" onload="loadShoppingCart()">
         <!-- Navigation -->
-        <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary fixed-top">
+        <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary fixed-top" id="nav">
             <div class="container">
                 <a class="navbar-brand" href="index.jsp">DropBooks</a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -161,11 +169,95 @@
         </div>
 
         <!-- Footer -->
-        <footer class="py-5 bg-primary">
-            <div class="container">
-                <p class="m-0 text-center text-white">Copyright &copy; DropBooks</p>
+        <footer class="bg6 p-t-45 p-b-43 p-l-45 p-r-45" id="footer">
+            <div class="flex-w p-b-90">
+                <div class="w-size6 p-t-30 p-l-15 p-r-15 respon3">
+                    <h4	 id="corAmarelo">
+                        Problemas
+                    </h4>
+                    <div>
+                        <p class="s-text7 w-size27" id="corBranca">
+                            Caso Tenha Qualquer Problema na Compra ou Venda do Seu livro Entre em Contato Para que seja Resolvido.
+                            Agradecemos sua Visita. Volte Sempre !
+                        </p>
+                    </div>
+                </div>
+                <div class="w-size7 p-t-30 p-l-15 p-r-15 respon4">
+                    <h4  class="s-text12 p-b-30" id="corAmarelo">
+                        Categorias
+                    </h4>
+                    <ul>
+                        <li class="p-b-9">
+                            <a href="#" id="corBranca">
+                                Ficção
+                            </a>
+                        </li>
+                        <li class="p-b-9">
+                            <a href="#" id="corBranca">
+                                Terror
+                            </a>
+                        </li>
+                        <li class="p-b-9">
+                            <a href="#" id="corBranca">
+                                Romance
+                            </a>
+                        </li>
+                        <li class="p-b-9">
+                            <a href="#" id="corBranca">
+                                Academicos
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="w-size7 p-t-30 p-l-15 p-r-15 respon4">
+                    <h4 class="s-text12 p-b-30"  id="corAmarelo">Livros</h4>
+                    <ul>
+                        <li class="p-b-9"><a href="#" id="corBranca">Busca</a></li>
+                        <li class="p-b-9"><a href="#" id="corBranca">Sobre Nós</a></li>
+                        <li class="p-b-9"><a href="#" id="corBranca">Email</a></li>
+                        <li class="p-b-9"><a href="#" id="corBranca">Local</a></li>
+                    </ul>
+                </div>
+                <div class="w-size7 p-t-30 p-l-15 p-r-15 respon4">
+                    <h4 class="s-text12 p-b-30"  id="corAmarelo">Ajuda</h4>
+                    <ul>
+                        <li class="p-b-9">
+                            <a href="#" class="s-text7" id="corBranca">Dicas</a>
+                        </li>
+                        <li class="p-b-9">
+                            <a href="#" class="s-text7" id="corBranca">Como Vender</a>
+                        </li>
+                        <li class="p-b-9">
+                            <a href="#" class="s-text7" id="corBranca">Como Comprar</a>
+                        </li>
+                        <li class="p-b-9">
+                            <a href="#" class="s-text7" id="corBranca">FAQs</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="t-center p-l-15 p-r-15">
+                <a href="#"><img class="h-size2" src="res/images/icons/paypal.png" alt="IMG-PAYPAL" /></a>
+                <a href="#"><img class="h-size2" src="res/images/icons/visa.png" alt="IMG-VISA" /></a>
+                <a href="#"><img class="h-size2" src="res/images/icons/mastercard.png" alt="IMG-MASTERCARD" /></a>
+                <a href="#"><img class="h-size2" src="res/images/icons/express.png" alt="IMG-EXPRESS" /></a>
+                <a href="#"><img class="h-size2" src="res/images/icons/discover.png" alt="IMG-DISCOVER"/></a>
+                <div class="t-center s-text8 p-t-20">
+                    Copyright © 2018 Todos Direitos Reservados <i class="fa fa-heart-o" aria-hidden="true"></i> by DropBooks
+                </div>
             </div>
         </footer>
+
+        <!-- Back to top -->
+        <div class="btn-back-to-top bg0-hov" id="myBtn">
+            <span class="symbol-btn-back-to-top">
+                <i class="fa fa-angle-double-up" aria-hidden="true"></i>
+            </span>
+        </div>
+
+        <!-- Container Selection1 -->
+        <div id="dropDownSelect1"></div>
+        <!-- Bootstrap core JavaScript -->
 
         <!-- Principal JavaScript do Bootstrap
         ================================================== -->
@@ -173,96 +265,6 @@
         <!-- Bootstrap core JavaScript -->
         <script src="res/vendor/jquery/jquery.min.js"></script>
         <script src="res/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script>
-            function loadShoppingCart() {
-                var xhttp = new XMLHttpRequest();
-                var jsonCart;
-                xhttp.onreadystatechange = function() {
-                    if (this.readyState === 4 && this.status === 200) {
-                        console.log("J: " + this.responseText);
-                        jsonCart = JSON.parse(this.responseText);
-                        listarCarrinho(jsonCart);
-                   }
-                };
-                xhttp.open("GET", "GetShoppingCartServlet", true);
-                xhttp.setRequestHeader("Content-type", "application/json");
-                xhttp.send();
-            }
-            
-            var listarCarrinho = function (json) {
-                var html = "";
-                var htmlOrder = "";
-                
-                if (json.length > 0) {
-                    
-                    htmlOrder += '<h4 class="d-flex justify-content-between align-items-center mb-3">';
-                    htmlOrder += '<span class="text-muted">Resumo do Pedido</span>';
-                    htmlOrder += '<span class="badge badge-secondary badge-pill" id="qtdeProdutos"  name="qtdeProdutos">' + json.length + '</span>';
-                    htmlOrder += '</h4>';
-                    htmlOrder += '<ul class="list-group mb-3">';
-                    
-                    for (var i = 0; i < json.length; i++) {
-                        html += '<div class="caixa">';
-                        html += '<img src=" ' + json[i].produto.imagem_1 + ' " width="150" height ="200" alt=""/>';
-                        html += '<div id="titulo">';
-                        html += '<label id="idTitulo" name="idTitulo">' + json[i].produto.titulo + '</label>';
-                        html += '<br/>';
-                        html += '<label id="idAutor" name="idAutor">Autor: ' + json[i].produto.autor + '</label>';
-                        html += '<br/>';
-                        html += '<label>Quantidade:</label>';
-                        html +='<input id="idQtde" name="idQtde" type="number" onchange="atualizarQuantidade(this)" value="' + json[i].quantidade + '">';
-                        html += '<br/>';
-                        html += '<a href="#" onclick="">Excluir</a>';
-                        html += '</div>';
-                        html += '</div>';
-                        
-                        htmlOrder += '<li class="list-group-item d-flex justify-content-between lh-condensed">';
-                        htmlOrder += '<div>';
-                        htmlOrder += '<h6 class="my-0" id="idTitulo"  name="idTitulo">' + json[i].produto.titulo + '</h6>';
-                        htmlOrder += '<small class="text-muted" id="idAutor"  name="idAutor">Autor: ' + json[i].produto.autor + '</small>';
-                        htmlOrder += '</div>';
-                        htmlOrder += '<span class="text-muted" id="idValor" name="idValor">R$ ' + json[i].produto.preco + '</span>';
-                        htmlOrder += '</li>';
-                    }
-                    
-                    htmlOrder += '<li class="list-group-item d-flex justify-content-between">';
-                    htmlOrder += '<span>Valor Total</span>';
-                    htmlOrder += '<strong id="valorTotal" name="valorTotal"></strong>';
-                    htmlOrder += '</li>';
-                    htmlOrder += '<li class="nav-item d-flex">';
-                    htmlOrder += '<a class="nav-link" href="" >Continuar comprando</a>';
-                    htmlOrder += '</li>';
-                    htmlOrder += '</ul>';
-                    htmlOrder += '<input type="button" name="finalizarPedido" class="action-button  btn-block" value="Finalizar Pedido"/>';
-                } else {
-                    html = "<h4>Seu carrinho está vazio</h4>"
-                }
-                
-                document.getElementById("list-cart").innerHTML = html;
-                document.getElementById("order").innerHTML = htmlOrder;
-            };
-
-            function excluir(id) {
-                var xhttp = new XMLHttpRequest();
-                xhttp.onreadystatechange = function() {
-                    if (this.readyState === 4 && this.status === 200) {
-                        document.location.reload();
-                   }
-                };
-                xhttp.open("GET", "RemoverItemCarrinhoServlet?livro=" + id, true);
-                xhttp.send(); 
-            }
-            
-            function atualizarQuantidade(event, id) {
-                var xhttp = new XMLHttpRequest();
-                xhttp.onreadystatechange = function() {
-                    if (this.readyState === 4 && this.status === 200) {
-                        document.location.reload();
-                    }
-                };
-                xhttp.open("GET", "AtualizarCarrinhoServlet?livro=" + id + "&qtd="+ event.value, true);
-                xhttp.send(); 
-            }
-        </script>
+        <script src="res/js/carrinho.js"></script>
     </body>
 </html>

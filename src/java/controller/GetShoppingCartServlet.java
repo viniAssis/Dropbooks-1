@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -52,21 +53,28 @@ public class GetShoppingCartServlet extends HttpServlet {
                         value = value.substring(1, value.length()-1);
                         String[] keyValuePairs = value.split(",");
 
-                        for(String pair : keyValuePairs) {
-                            String[] entry = pair.split("=");
-                            lista.put(Integer.parseInt(entry[0].trim()), Integer.parseInt(entry[1].trim()));
+                        if (value.length() > 0){
+                            for(String pair : keyValuePairs) {
+                                String[] entry = pair.split("=");
+                                lista.put(Integer.parseInt(entry[0].trim()), Integer.parseInt(entry[1].trim()));
+                            }
                         }
                     }
                 }
             }
 
             if (lista.size() > 0) {
-                for (int i = 0; i < lista.size(); i++) {
-                    ItemCart item = new ItemCart();
-                    int qtd = lista.get(i + 1);
-                    item.setProduto(ProdutoDAO.getProduto(i + 1));
-                    item.setQuantidade(qtd);
-                    cart.add(item);
+                for(Map.Entry<Integer, Integer> entry : lista.entrySet()) {
+                    if (lista.get(entry.getKey()) != null) {
+                        ItemCart item = new ItemCart();
+                        int qtd = lista.get(entry.getKey());
+                    
+                        if (ProdutoDAO.getProduto(entry.getKey()) != null) {
+                            item.setProduto(ProdutoDAO.getProduto(entry.getKey()));
+                            item.setQuantidade(qtd);
+                            cart.add(item);
+                        }
+                    }
                 }
             }
             
