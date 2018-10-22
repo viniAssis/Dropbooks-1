@@ -127,7 +127,7 @@
                             <input class="form-control" id="cepDestino" type="text" placeholder="_____-___" />
                         </div>
 
-                        <button class="button button1" name="CalculaCEP" id="calculaCEP" value="Calcular" onclick="calcWsCorreios('05202260', <%=prod.getPreco()%>)">OK</button>
+                        <button class="button button1" name="CalculaCEP" id="calculaCEP" value="Calcular" onclick="calcWsCorreios(<%=userProd.getCep()%>, <%=prod.getPreco()%>)">OK</button>
                         <br />
                         <div id="resultadoFrete"></div>
 
