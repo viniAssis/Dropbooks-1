@@ -22,7 +22,7 @@ public class ProdutoDAO {
                 produto.setDataPublicacao(rs.getDate("dataPublicacao"));
                 produto.setDataRegistro(rs.getDate("dataRegistro"));
                 produto.setPreco(rs.getFloat("preco"));
-//                produto.setId_usuario(rs.getInt("id_usuario"));
+                produto.setId_usuario(rs.getInt("id_usuario"));
                 produto.setId(rs.getInt("id"));
                 produto.setQuantidade(rs.getInt("quantidade"));
                 produto.setAtivo(rs.getInt("ativo"));

@@ -29,12 +29,11 @@
 
         <%
             Produto prod = new ProdutoDAO().getProduto(Integer.parseInt(request.getParameter("id")));
-        
+            Usuario userProd = new UsuarioDAO().getUserById(prod.getId_usuario());
         %>
     </head>
 
     <body>
-
         <!-- Navigation -->
           <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary fixed-top">
             <div class="container">
@@ -125,10 +124,12 @@
                     <div class="my-3 cep">
                         <p>Calcular Frete</p>
                         <div class="col-xs-2  button2">
-                            <input class="form-control" id="frete" type="text" placeholder="_____-___" />
+                            <input class="form-control" id="cepDestino" type="text" placeholder="_____-___" />
                         </div>
 
-                        <button class="button button1" name="CalculaCEP" value="Calcular">OK</button>
+                        <button class="button button1" name="CalculaCEP" id="calculaCEP" value="Calcular" onclick="calcWsCorreios(<%=userProd.getCep()%>, <%=prod.getPreco()%>)">OK</button>
+                        <br />
+                        <div id="resultadoFrete"></div>
 
                     </div>
                         <form class="compra" method="get" action="ComprarServlet"> 
@@ -190,7 +191,7 @@
             <!-- Bootstrap core JavaScript -->
             <script src="res/vendor/jquery/jquery.min.js"></script>
             <script src="res/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
+            <script src="res/js/calculoFrete.js"></script>
     </body>
 
 </html>

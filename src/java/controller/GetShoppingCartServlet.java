@@ -5,27 +5,28 @@
  */
 package controller;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import model.Cart;
-import model.Produto;
+import model.ItemCart;
 import modelDAO.ProdutoDAO;
 
 /**
  *
- * @author Caio
+ * @author marketing0
  */
-@WebServlet(name = "RemoverItemCarrinhoServlet", urlPatterns = {"/RemoverItemCarrinhoServlet"})
-public class RemoverItemCarrinhoServlet extends HttpServlet {
+@WebServlet(name = "GetShoppingCartServlet", urlPatterns = {"/GetShoppingCartServlet"})
+public class GetShoppingCartServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,20 +41,17 @@ public class RemoverItemCarrinhoServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            int codLivro = Integer.parseInt(request.getParameter("livro"));
-            
-            HashMap<Integer, Integer> lista = new HashMap<>();
+            HashMap<Integer, Integer> lista =  new HashMap<>();
             Cookie[] cookies = request.getCookies();
-            Cookie actualCookie = null;
-            
+
+            ArrayList<ItemCart> cart = new ArrayList<>();
+
             if (cookies != null) {
                 for (Cookie cookie : cookies) {
                     if ("ShoppingCart".equals(cookie.getName())) {
                         String value = cookie.getValue();
                         value = value.substring(1, value.length()-1);
                         String[] keyValuePairs = value.split(",");
-                        
-                        actualCookie = cookie;
 
                         if (value.length() > 0){
                             for(String pair : keyValuePairs) {
@@ -65,16 +63,26 @@ public class RemoverItemCarrinhoServlet extends HttpServlet {
                 }
             }
 
-            lista = new Cart().RemoveItemCart(codLivro, lista);
-            
             if (lista.size() > 0) {
-                actualCookie.setValue(lista.toString());
-            } else {
-                actualCookie.setMaxAge(0);
-                actualCookie.setValue(null);
+                for(Map.Entry<Integer, Integer> entry : lista.entrySet()) {
+                    if (lista.get(entry.getKey()) != null) {
+                        ItemCart item = new ItemCart();
+                        int qtd = lista.get(entry.getKey());
+                    
+                        if (ProdutoDAO.getProduto(entry.getKey()) != null) {
+                            item.setProduto(ProdutoDAO.getProduto(entry.getKey()));
+                            item.setQuantidade(qtd);
+                            cart.add(item);
+                        }
+                    }
+                }
             }
             
-            response.addCookie(actualCookie);            
+            GsonBuilder gBuilder = new GsonBuilder();
+            Gson gson = gBuilder.create();
+            String jsonCart = gson.toJson(cart);
+            
+            out.print(jsonCart);
         }
     }
 

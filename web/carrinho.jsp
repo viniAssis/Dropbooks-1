@@ -1,3 +1,5 @@
+<%@page import="modelDAO.ProdutoDAO"%>
+<%@page import="java.util.HashMap"%>
 <%@page import="model.Produto"%>
 <%@page import="model.ItemCart"%>
 <%@page import="java.util.ArrayList"%>
@@ -9,25 +11,38 @@
 <html lang="pt-br">
     <head>
         <!-- Meta tags Obrigatórias -->
-        <meta charset="utf-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         
         <title>Dropbooks - Meu Carrinho</title>
 
-        <link rel="stylesheet" href="res/css/cadastro.css">
         <link href="res/css/bootstrap.min.css" rel="stylesheet">
-        <link href="res/css/modern-business.css" rel="stylesheet">     
-        <script src="res/js/contato.js"></script>
-
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="res/css/modern-business.css" rel="stylesheet">           
         <link rel="stylesheet" type="text/css" href="res/fonts/font-awesome-4.7.0/css/font-awesome.min.css"/>
         <link rel="stylesheet" type="text/css" href="res/vendor/animsition/css/animsition.min.css"/>
         <link rel="stylesheet" type="text/css" href="res/vendor/select2/select2.min.css"/>
         <link rel="stylesheet" type="text/css" href="res/css/util.css"/>
         <link rel="stylesheet" type="text/css" href="res/css/main.css"/>
 
-        <link rel="stylesheet" href="res/css/bootstrap.css">
         <style>
+            #nav{
+                background: #090446 !important;
+            }
+
+            .navbar .navbar-nav li a{
+                color: #FEB95F !important;
+                font-weight: 400;
+            }
+            .navbar .navbar-nav li a:hover{
+                color: #FEB95F !important;
+                font-weight: 400;
+                transform: scale(1);
+            }
+            .navbar-brand{
+                color: #FEB95F !important;
+                font-size: 24px;
+                font-weight: 700;
+            }
             #resumo{
                 margin-top: 30px;
                 font-family: arial;
@@ -35,7 +50,6 @@
                 padding: 20px;
                 color: blue;
             }
-
             .action-button {
                 width: 150px;
                 background: #090446;
@@ -48,19 +62,6 @@
                 margin: 10px 5px;
                 box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.15);
             }
-            .ccontainer{
-                border: 1px solid black;
-                background: white;
-                border: 0 none;
-                border-radius: 0px;
-                box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
-                padding: 20px 30px;
-                box-sizing: border-box;
-                width: 120%;
-                margin-top: 10px;
-                margin-bottom: 10px;  
-
-            }
             #formPgto{
                 border: 1px solid black;
                 background: white;
@@ -72,16 +73,11 @@
                 width: 100%;
                 margin-top: 10px;
                 margin-bottom: 10px;  
-
             }
             .caixa{
                 width: 50%;
                 float: left;
             }
-            img{
-                padding: 15px;
-            }
-
             #titulo{
                 padding: 15px;
             }
@@ -92,12 +88,22 @@
                 box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.2);
                 margin-left: 3px;
             }
+            #footer{
+                background: #090446;
+            }
+            #corAmarelo{
+                color:#FEB95F ;
+            }
+
+            #corBranca{
+                color: white;
+            }
         </style>
     </head>
 
-    <body class="bg-light">
+    <body class="bg-light" onload="loadShoppingCart()">
         <!-- Navigation -->
-        <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary fixed-top">
+        <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary fixed-top" id="nav">
             <div class="container">
                 <a class="navbar-brand" href="index.jsp">DropBooks</a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -146,87 +152,108 @@
 
         <!--meu carrinho-->
         <div class="container">
-        <% ArrayList lista = (ArrayList) session.getAttribute("cart"); %>
             <div id="resumo" class="row">
-                <% 
-                    if (lista != null && lista.size() > 0) {
-                        float total = 0.00f;
-                        
-                        for (int j = 0; j < lista.size(); j++) {
-                            ItemCart item = (ItemCart) lista.get(j);
-                            
-                            total = total + (item.getProduto().getPreco() * item.getQuantidade());
-                        }
-                %>
-                <div class="col-md-4 order-md-2 mb-4">
-                    <h4 class="d-flex justify-content-between align-items-center mb-3">
-                        <span class="text-muted">Resumo do Pedido</span>
-                        <span class="badge badge-secondary badge-pill" id="qtdeProdutos"  name="qtdeProdutos"><%=lista.size()%></span>
-                    </h4>
-                    <ul class="list-group mb-3">
-                        <%
-                                for (int i = 0; i < lista.size(); i++) {
-                                    ItemCart item = (ItemCart) lista.get(i);
-                                    Produto produto = item.getProduto();%>
-
-                                    <li class="list-group-item d-flex justify-content-between lh-condensed">
-                                        <div>
-                                            <h6 class="my-0" id="idTitulo"  name="idTitulo"><%=produto.getTitulo()%></h6>
-                                            <small class="text-muted" id="idAutor"  name="idAutor">Autor: <%=produto.getAutor()%></small> 
-                                        </div>
-                                        <span class="text-muted" id="idValor" name="idValor">R$ <%=String.format("%.2f", produto.getPreco())%></span>
-                                    </li>
-                            <%
-                                } %>
-                        <li class="list-group-item d-flex justify-content-between">
-                            <span>Valor Total</span>
-                            <strong id="valorTotal" name="valorTotal">R$ <%=String.format("%.2f", total)%></strong>
-                        </li>
-                        <li class="nav-item d-flex">
-                            <a class="nav-link" href="" >Continuar comprando</a>
-                        </li>
-                    </ul>
-                    <input type="button" name="finalizarPedido" class="action-button  btn-block" value="Finalizar Pedido" onclick="alterarfs()"/>
-
+                <div id="order" class="col-md-4 order-md-2 mb-4">
                 </div>
-                <%}%>
                 <div class="col-md-8 order-md-1">
                     <h4 class="mb-3">Meu Carrinho</h4>
-                    <%
-                        if (lista != null && lista.size() > 0) {
-                            for (int i = 0; i < lista.size(); i++) {
-                                ItemCart item = (ItemCart) lista.get(i);
-                                Produto produto = item.getProduto();
-                    %>
-                    <div class="caixa">
-                        <img src="./imagens?id_prod=<%=produto.getId()%>&img=1" width="150" height ="200" alt=""/>
-                        <div id="titulo">
-                            <label id="idTitulo" name="idTitulo"><%=produto.getTitulo()%></label>
-                            <br/>
-                            <label id="idAutor" name="idAutor">Autor: <%=produto.getAutor()%></label>
-                            <br/>
-                            <label>Quantidade:</label>
-                            <input id="idQtde" name="idQtde" type="number" onchange="atualizarQuantidade(this, <%=produto.getId()%>)" value="<%=item.getQuantidade()%>">
-                            <br/>
-                            <a href="#" onclick="excluir(<%=produto.getId()%>)">Excluir</a>
-                        </div>
+                    <div id="list-cart">
+                        <!-- Dados do carrinho inseridos com Javascript -->
                     </div>
-                    <%
-                            }
-                        } else {
-                            out.print("<h4>Seu carrinho está vazio.</h4>");
-                        }%>
                 </div>
             </div>
         </div>
 
         <!-- Footer -->
-        <footer class="py-5 bg-primary">
-            <div class="container">
-                <p class="m-0 text-center text-white">Copyright &copy; DropBooks</p>
+        <footer class="bg6 p-t-45 p-b-43 p-l-45 p-r-45" id="footer">
+            <div class="flex-w p-b-90">
+                <div class="w-size6 p-t-30 p-l-15 p-r-15 respon3">
+                    <h4	 id="corAmarelo">
+                        Problemas
+                    </h4>
+                    <div>
+                        <p class="s-text7 w-size27" id="corBranca">
+                            Caso Tenha Qualquer Problema na Compra ou Venda do Seu livro Entre em Contato Para que seja Resolvido.
+                            Agradecemos sua Visita. Volte Sempre !
+                        </p>
+                    </div>
+                </div>
+                <div class="w-size7 p-t-30 p-l-15 p-r-15 respon4">
+                    <h4  class="s-text12 p-b-30" id="corAmarelo">
+                        Categorias
+                    </h4>
+                    <ul>
+                        <li class="p-b-9">
+                            <a href="#" id="corBranca">
+                                Ficção
+                            </a>
+                        </li>
+                        <li class="p-b-9">
+                            <a href="#" id="corBranca">
+                                Terror
+                            </a>
+                        </li>
+                        <li class="p-b-9">
+                            <a href="#" id="corBranca">
+                                Romance
+                            </a>
+                        </li>
+                        <li class="p-b-9">
+                            <a href="#" id="corBranca">
+                                Academicos
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="w-size7 p-t-30 p-l-15 p-r-15 respon4">
+                    <h4 class="s-text12 p-b-30"  id="corAmarelo">Livros</h4>
+                    <ul>
+                        <li class="p-b-9"><a href="#" id="corBranca">Busca</a></li>
+                        <li class="p-b-9"><a href="#" id="corBranca">Sobre Nós</a></li>
+                        <li class="p-b-9"><a href="#" id="corBranca">Email</a></li>
+                        <li class="p-b-9"><a href="#" id="corBranca">Local</a></li>
+                    </ul>
+                </div>
+                <div class="w-size7 p-t-30 p-l-15 p-r-15 respon4">
+                    <h4 class="s-text12 p-b-30"  id="corAmarelo">Ajuda</h4>
+                    <ul>
+                        <li class="p-b-9">
+                            <a href="#" class="s-text7" id="corBranca">Dicas</a>
+                        </li>
+                        <li class="p-b-9">
+                            <a href="#" class="s-text7" id="corBranca">Como Vender</a>
+                        </li>
+                        <li class="p-b-9">
+                            <a href="#" class="s-text7" id="corBranca">Como Comprar</a>
+                        </li>
+                        <li class="p-b-9">
+                            <a href="#" class="s-text7" id="corBranca">FAQs</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <!-- /.container -->
+            <div class="t-center p-l-15 p-r-15">
+                <a href="#"><img class="h-size2" src="res/images/icons/paypal.png" alt="IMG-PAYPAL" /></a>
+                <a href="#"><img class="h-size2" src="res/images/icons/visa.png" alt="IMG-VISA" /></a>
+                <a href="#"><img class="h-size2" src="res/images/icons/mastercard.png" alt="IMG-MASTERCARD" /></a>
+                <a href="#"><img class="h-size2" src="res/images/icons/express.png" alt="IMG-EXPRESS" /></a>
+                <a href="#"><img class="h-size2" src="res/images/icons/discover.png" alt="IMG-DISCOVER"/></a>
+                <div class="t-center s-text8 p-t-20">
+                    Copyright © 2018 Todos Direitos Reservados <i class="fa fa-heart-o" aria-hidden="true"></i> by DropBooks
+                </div>
+            </div>
         </footer>
+
+        <!-- Back to top -->
+        <div class="btn-back-to-top bg0-hov" id="myBtn">
+            <span class="symbol-btn-back-to-top">
+                <i class="fa fa-angle-double-up" aria-hidden="true"></i>
+            </span>
+        </div>
+
+        <!-- Container Selection1 -->
+        <div id="dropDownSelect1"></div>
+        <!-- Bootstrap core JavaScript -->
 
         <!-- Principal JavaScript do Bootstrap
         ================================================== -->
@@ -234,28 +261,6 @@
         <!-- Bootstrap core JavaScript -->
         <script src="res/vendor/jquery/jquery.min.js"></script>
         <script src="res/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script>
-            function excluir(id) {
-                var xhttp = new XMLHttpRequest();
-                xhttp.onreadystatechange = function() {
-                    if (this.readyState === 4 && this.status === 200) {
-                        document.location.reload();
-                   }
-                };
-                xhttp.open("GET", "RemoverItemCarrinhoServlet?livro=" + id, true);
-                xhttp.send(); 
-            }
-            
-            function atualizarQuantidade(event, id) {
-                var xhttp = new XMLHttpRequest();
-                xhttp.onreadystatechange = function() {
-                    if (this.readyState === 4 && this.status === 200) {
-                        document.location.reload();
-                    }
-                };
-                xhttp.open("GET", "AtualizarCarrinhoServlet?livro=" + id + "&qtd="+ event.value, true);
-                xhttp.send(); 
-            }
-        </script>
+        <script src="res/js/carrinho.js"></script>
     </body>
 </html>
