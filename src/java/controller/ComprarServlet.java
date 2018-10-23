@@ -3,14 +3,13 @@ package controller;
 import model.Cart;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
+import java.util.HashMap;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import model.Produto;
 import modelDAO.ProdutoDAO;
 
 /**
@@ -33,13 +32,42 @@ public class ComprarServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            HttpSession session = request.getSession(true);
-
             int codLivro = Integer.parseInt(request.getParameter("livro"));
-            Produto produto = new ProdutoDAO().getProduto(codLivro);
-            ArrayList lista = (ArrayList) session.getAttribute("cart");
-            lista = new Cart().AddItemCart(produto, lista);
-            session.setAttribute("cart", lista);
+            int codProduto = ProdutoDAO.getProduto(codLivro).getId();
+            
+            HashMap<Integer, Integer> lista = new HashMap<>();
+            Cookie[] cookies = request.getCookies();
+            Cookie actualCookie = new Cookie("ShoppingCart", lista.toString());
+            
+            if (cookies != null) {
+                for (Cookie cookie : cookies) {
+                    if ("ShoppingCart".equals(cookie.getName())) {
+                        String value = cookie.getValue();
+                        value = value.substring(1, value.length()-1);
+                        String[] keyValuePairs = value.split(",");
+                        actualCookie = cookie;
+                        actualCookie.setMaxAge(60 * 60 * 24 * 7);
+                        
+                        if (value.length() > 0){
+                            for(String pair : keyValuePairs) {
+                                out.print(pair);
+                                String[] entry = pair.split("=");
+                                lista.put(Integer.parseInt(entry[0].trim()), Integer.parseInt(entry[1].trim()));
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (codProduto > 0) {
+                lista = new Cart().AddItemCart(codProduto, lista);
+            }
+
+            actualCookie.setValue(lista.toString());
+            actualCookie.setMaxAge(60 * 60 * 24 * 365);
+            response.addCookie(actualCookie);
+            
+            out.print("Lista: " + actualCookie);
 
             response.sendRedirect(request.getContextPath() + "/carrinho.jsp");
         }

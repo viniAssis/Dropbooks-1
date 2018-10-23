@@ -7,13 +7,13 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
+import java.util.HashMap;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import model.Cart;
 
 /**
@@ -36,14 +36,35 @@ public class AtualizarCarrinhoServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            HttpSession session = request.getSession(true);
-
             int codLivro = Integer.parseInt(request.getParameter("livro"));
             int qtd = Integer.parseInt(request.getParameter("qtd"));
             
-            ArrayList lista = (ArrayList) session.getAttribute("cart");
+            HashMap<Integer, Integer> lista = new HashMap<>();
+            Cookie[] cookies = request.getCookies();
+            Cookie actualCookie = null;
+            
+            if (cookies != null) {
+                for (Cookie cookie : cookies) {
+                    if ("ShoppingCart".equals(cookie.getName())) {
+                        String value = cookie.getValue();
+                        value = value.substring(1, value.length()-1);
+                        String[] keyValuePairs = value.split(",");
+                        
+                        actualCookie = cookie;
+
+                        if (value.length() > 0){
+                            for(String pair : keyValuePairs) {
+                                String[] entry = pair.split("=");
+                                lista.put(Integer.parseInt(entry[0].trim()), Integer.parseInt(entry[1].trim()));
+                            }
+                        }
+                    }
+                }
+            }
+
             lista = new Cart().UpdateItemCart(codLivro, qtd, lista);
-            session.setAttribute("cart", lista);      
+            actualCookie.setValue(lista.toString());
+            response.addCookie(actualCookie);
         }
     }
 
