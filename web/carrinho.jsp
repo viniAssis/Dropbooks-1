@@ -78,10 +78,6 @@
                 width: 50%;
                 float: left;
             }
-            img{
-                padding: 15px;
-            }
-
             #titulo{
                 padding: 15px;
             }
