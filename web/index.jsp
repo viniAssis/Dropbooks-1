@@ -1,3 +1,7 @@
+<%@page import="model.Utilitarios"%>
+<%@page import="modelDAO.ProdutoDAO"%>
+<%@page import="model.Produto"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="modelDAO.UsuarioDAO"%>
 <%@page import="model.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -38,38 +42,26 @@
                    #nav{
                                 background: #090446;
                             }
-
                             .navbar .navbar-nav li a{
                                 color: #FEB95F !important;
                                 font-weight: 400;
-
-
-
                             }
                             .navbar .navbar-nav li a:hover{
                                 color: #FEB95F !important;
                                 font-weight: 400;
-
                                 transform: scale(1);
-
-
                             }
                             .navbar-brand{
                                 color: #FEB95F !important;
                                 font-size: 24px;
                                 font-weight: 700;
-
                             }
-
-
             #footer{
                 background: #090446;
-
             }
             #corAmarelo{
                 color:#FEB95F ;
             }
-
             #corBranca{
                 color: white;
             }
@@ -102,9 +94,7 @@
                             <%
                                    
                                 if(session.getAttribute("email") != null) {
-
                                     String email = request.getSession().getAttribute("email").toString();
-
                                     Usuario user = new UsuarioDAO().getUsuario(email);
                              
                                     out.print("</li>");
@@ -178,7 +168,7 @@
     <!-- Page Content -->
     <div class="container">
 
-      <h1 class="my-4">Bem Vindo DropBooks  Nossos Produdos</h1>
+      <h1 class="my-4">Bem Vindo ao DropBooks!</h1>
       
       <form id="caixa2" method='post' action="PesquisarLivrosServlet">
             <div class="form-row align-items-center">
@@ -197,38 +187,43 @@
             </div>
         </form>
       
+      <h1 class="my-4">Populares</h1>
+      
       <!-- Marketing Icons Section -->
+      <%
+          ArrayList<Produto> listaPop = ProdutoDAO.getProdutosPopulares();
+      %>
       <div class="row">
         <div class="col-lg-4 mb-4">
           <div class="card h-100">
-            <h4 class="card-header">Harry Potter</h4>
+              <h4 class="card-header"><% out.print(listaPop.get(0).getTitulo()); %></h4>
             <div class="card-body">
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
+                <p class="card-text"><% out.print(Utilitarios.trimDesc(listaPop.get(0).getDescricao())); %></p>
             </div>
             <div class="card-footer">
-              <a href="#" class="btn btn-primary">Leia Mais</a>
+              <a href="./pagProduto?id=<%=listaPop.get(0).getId()%>" class="btn btn-primary">Leia Mais</a>
             </div>
           </div>
         </div>
         <div class="col-lg-4 mb-4">
           <div class="card h-100">
-            <h4 class="card-header">O Mago</h4>
+            <h4 class="card-header"><% out.print(listaPop.get(1).getTitulo()); %></h4>
             <div class="card-body">
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis ipsam eos, nam perspiciatis natus commodi similique totam consectetur praesentium molestiae atque exercitationem ut consequuntur, sed eveniet, magni nostrum sint fuga.</p>
+              <p class="card-text"><% out.print(Utilitarios.trimDesc(listaPop.get(1).getDescricao())); %></p>
             </div>
             <div class="card-footer">
-              <a href="#" class="btn btn-primary">Leia Mais</a>
+              <a href="./pagProduto?id=<%=listaPop.get(1).getId()%>" class="btn btn-primary">Leia Mais</a>
             </div>
           </div>
         </div>
         <div class="col-lg-4 mb-4">
           <div class="card h-100">
-            <h4 class="card-header"> A Sutil Arte de Ligar o Foda se</h4>
+            <h4 class="card-header"><% out.print(listaPop.get(2).getTitulo()); %></h4>
             <div class="card-body">
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
+              <p class="card-text"><% out.print(Utilitarios.trimDesc(listaPop.get(2).getDescricao())); %></p>
             </div>
             <div class="card-footer">
-              <a href="#" class="btn btn-primary">Leia Mais</a>
+              <a href="./pagProduto?id=<%=listaPop.get(2).getId()%>" class="btn btn-primary">Leia Mais</a>
             </div>
           </div>
         </div>
@@ -236,78 +231,80 @@
       <!-- /.row -->
 
       <!-- Portfolio Section -->
-      <h2> Produtos Novos</h2>
-
+      <h2> Produtos Recentes</h2>
+      <%
+          ArrayList<Produto> listaRec = ProdutoDAO.getProdutosRecentes();
+      %>
       <div class="row">
         <div class="col-lg-4 col-sm-6 portfolio-item">
           <div class="card h-100">
-            <a href="#"><img class="card-img-top" src="res/img/img-3.jpg" alt=""></a>
+              <a href="./pagProduto?id=<%=listaRec.get(0).getId()%>"><img class ="card-img-top" src="./imagens?id_prod=<%=listaRec.get(0).getId()%>&img=1" alt=""></a>
             <div class="card-body">
               <h4 class="card-title">
-                <a href="#"> Stephen King - Achados e Perdidos</a>
+                <a href="./pagProduto?id=<%=listaRec.get(0).getId()%>"><% out.print(listaRec.get(0).getTitulo()); %></a>
               </h4>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur eum quasi sapiente nesciunt? Voluptatibus sit, repellat sequi itaque deserunt, dolores in, nesciunt, illum tempora ex quae? Nihil, dolorem!</p>
-                 <a href="#" class="btn btn-primary">Leia Mais</a>
+              <p class="card-text"><% out.print(Utilitarios.trimDesc(listaRec.get(0).getDescricao())); %></p>
+                 <a href="./pagProduto?id=<%=listaRec.get(0).getId()%>" class="btn btn-primary">Leia Mais</a>
             </div>
           </div>
         </div>
         <div class="col-lg-4 col-sm-6 portfolio-item">
           <div class="card h-100">
-            <a href="#"><img class="card-img-top" src="res/img/img-1.jpg" alt=""></a>
+            <a href="./pagProduto?id=<%=listaRec.get(1).getId()%>"><img class ="card-img-top" src="./imagens?id_prod=<%=listaRec.get(1).getId()%>&img=1" alt=""></a>
             <div class="card-body">
               <h4 class="card-title">
-                <a href="#"> Box - Harry Potter</a>
+                <a href="./pagProduto?id=<%=listaRec.get(1).getId()%>"><% out.print(listaRec.get(1).getTitulo()); %></a>
               </h4>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-                 <a href="#" class="btn btn-primary">Leia Mais</a>
+              <p class="card-text"><% out.print(Utilitarios.trimDesc(listaRec.get(1).getDescricao())); %></p>
+                 <a href="./pagProduto?id=<%=listaRec.get(1).getId()%>" class="btn btn-primary">Leia Mais</a>
             </div>
           </div>
         </div>
         <div class="col-lg-4 col-sm-6 portfolio-item">
           <div class="card h-100">
-            <a href="#"><img class="card-img-top" src="res/img/img-2.jpg" alt=""></a>
+            <a href="./pagProduto?id=<%=listaRec.get(2).getId()%>"><img class ="card-img-top" src="./imagens?id_prod=<%=listaRec.get(2).getId()%>&img=1" alt=""></a>
             <div class="card-body">
               <h4 class="card-title">
-                <a href="#"> Livro - P/todos garatos que ja Amei</a>
+                <a href="./pagProduto?id=<%=listaRec.get(2).getId()%>"><% out.print(listaRec.get(2).getTitulo()); %></a>
               </h4>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos quisquam, error quod sed cumque, odio distinctio velit nostrum temporibus necessitatibus et facere atque iure perspiciatis mollitia recusandae vero vel quam!</p>
-                 <a href="#" class="btn btn-primary">Leia Mais</a>
+              <p class="card-text"><% out.print(Utilitarios.trimDesc(listaRec.get(2).getDescricao())); %></p>
+                 <a href="./pagProduto?id=<%=listaRec.get(2).getId()%>" class="btn btn-primary">Leia Mais</a>
             </div>
           </div>
         </div>
         <div class="col-lg-4 col-sm-6 portfolio-item">
           <div class="card h-100">
-            <a href="#"><img class="card-img-top" src="res/img/img-4.jpg" alt=""></a>
+            <a href="./pagProduto?id=<%=listaRec.get(3).getId()%>"><img class ="card-img-top" src="./imagens?id_prod=<%=listaRec.get(3).getId()%>&img=1" alt=""></a>
             <div class="card-body">
               <h4 class="card-title">
-                <a href="#">Dan Brow </a>
+                <a href="./pagProduto?id=<%=listaRec.get(3).getId()%>"><% out.print(listaRec.get(3).getTitulo()); %></a>
               </h4>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-                 <a href="#" class="btn btn-primary">Leia Mais</a>
+              <p class="card-text"><% out.print(Utilitarios.trimDesc(listaRec.get(3).getDescricao())); %></p>
+                 <a href="./pagProduto?id=<%=listaRec.get(3).getId()%>" class="btn btn-primary">Leia Mais</a>
             </div>
           </div>
         </div>
         <div class="col-lg-4 col-sm-6 portfolio-item">
           <div class="card h-100">
-            <a href="#"><img class="card-img-top" src="res/img/img-5.jpg" alt=""></a>
+            <a href="./pagProduto?id=<%=listaRec.get(4).getId()%>"><img class ="card-img-top" src="./imagens?id_prod=<%=listaRec.get(4).getId()%>&img=1" alt=""></a>
             <div class="card-body">
               <h4 class="card-title">
-                <a href="#">Watchmen</a>
+                <a href="./pagProduto?id=<%=listaRec.get(4).getId()%>"><% out.print(listaRec.get(4).getTitulo()); %></a>
               </h4>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-                 <a href="#" class="btn btn-primary">Leia Mais</a>
+              <p class="card-text"><% out.print(Utilitarios.trimDesc(listaRec.get(4).getDescricao())); %></p>
+                 <a href="./pagProduto?id=<%=listaRec.get(4).getId()%>" class="btn btn-primary">Leia Mais</a>
             </div>
           </div>
         </div>
         <div class="col-lg-4 col-sm-6 portfolio-item">
           <div class="card h-100">
-            <a href="#"><img class="card-img-top" src="res/img/img-6.jpg" alt=""></a>
+            <a href="./pagProduto?id=<%=listaRec.get(5).getId()%>"><img class ="card-img-top" src="./imagens?id_prod=<%=listaRec.get(5).getId()%>&img=1" alt=""></a>
             <div class="card-body">
               <h4 class="card-title">
-                <a href="#"> Box - A cronica do Matador de Rei</a>
+                <a href="./pagProduto?id=<%=listaRec.get(5).getId()%>"><% out.print(listaRec.get(5).getTitulo()); %></a>
               </h4>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque earum nostrum suscipit ducimus nihil provident, perferendis rem illo, voluptate atque, sit eius in voluptates, nemo repellat fugiat excepturi! Nemo, esse.</p>
-                 <a href="#" class="btn btn-primary">Leia Mais</a>
+              <p class="card-text"><% out.print(Utilitarios.trimDesc(listaRec.get(5).getDescricao())); %></p>
+                 <a href="./pagProduto?id=<%=listaRec.get(5).getId()%>" class="btn btn-primary">Leia Mais</a>
             </div>
           </div>
         </div>

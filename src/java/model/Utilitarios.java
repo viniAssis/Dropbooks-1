@@ -19,4 +19,13 @@ public class Utilitarios {
 
         return res;
     }
+    
+    public static String trimDesc(String desc){
+        String fin = desc;
+        if(fin.length() > 200){
+            fin = fin.substring(0, 201);
+            fin = fin + "(...)";
+        }
+        return fin;
+    }
 }
