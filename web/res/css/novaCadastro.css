@@ -35,11 +35,11 @@ a:link,a:visited {
 
 
 #msform {
-
+    
     text-align: center;
     position: center;
     margin-top: 30px;
-
+    
 }
 
 #msform fieldset {
@@ -74,11 +74,11 @@ a:link,a:visited {
 
 
 #msform input:focus, #msform textarea:focus {
-
+    
     box-shadow: none !important;
     outline-width: 0;
     transition: All 0.5s ease-in;
-
+   
 }
 
 /*buttons*/
@@ -110,7 +110,7 @@ a:link,a:visited {
     background-color: forestgreen;
 }
 
-/*headings*/
+
 .fs-title {
     font-size: 18px;
     text-transform: uppercase;
@@ -127,58 +127,3 @@ a:link,a:visited {
     margin-bottom: 20px;
 }
 
-/*progressbar*/
-#progressbar {
-    margin-bottom: 30px;
-    overflow: hidden;
-    /*CSS counters to number the steps*/
-    counter-reset: step;
-}
-
-#progressbar li {
-    list-style-type: none;
-    color: #252525;
-    text-transform: uppercase;
-    font-size: 9px;
-    width: 33.33%;
-    float: left;
-    position: relative;
-    letter-spacing: 1px;
-}
-
-#progressbar li:before {
-    content: counter(step);
-    counter-increment: step;
-    width: 24px;
-    height: 24px;
-    line-height: 26px;
-    display: block;
-    font-size: 12px;
-    color: #252525;
-    background: white;
-    border-radius: 25px;
-    margin: 0 auto 10px auto;
-    border: 1px solid #d1d1d1;
-}
-
-/*progressbar connectors*/
-#progressbar li:after {
-    content: '';
-    width: 100%;
-    height: 2px;
-    background: #d1d1d1;
-    position: absolute;
-    left: -50%;
-    top: 9px;
-    z-index: -1; /*put it behind the numbers*/
-}
-
-#progressbar li:first-child:after {
-    /*connector not needed before the first step*/
-    content: none;
-}
-#principal{
-  margin-top: 2%;
-  margin-left: 25%;
-  margin-bottom: 5%;
-}

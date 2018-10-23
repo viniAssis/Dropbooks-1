@@ -1,248 +1,250 @@
-<!doctype html>
-<html lang="en">
+<!--<%@page import="modelDAO.UsuarioDAO"%>
+  <%@page import="model.Usuario"%>-->
+  <!doctype html>
+  <html>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    
+
+
     <title>Cadastrar Produtos</title>
 
-    <!-- Principal CSS do Bootstrap -->
+
+    <!-- Bootstrap core CSS -->
     <link href="res/css/bootstrap.min.css" rel="stylesheet">
-      <link href="res/js/dist/dropdown.js" rel="stylesheet">
- <style>
-        .navbar{
-            background-color: #C1839F !important;
-        }
-        .navbar .navbar-nav li a{
-            color: #FFF;
-        }
-        .navbar .nav-item .nav-link .active{
-            color:#FFF;
-            
-        }
-        body{
-             background-color: #C1839F;
-        }
-         #container1{
-            height: 800px;
-            width: 100%;
-            background-color: white;
-            margin-top: 30px;
-            border-radius: 100px 100px 0 0 ;
-   
-        }
-        h4{
-         text-align: center;
-        
-             
-            
-        }
-       .form-signin {
-                width: 450px;
-                padding: 25px;
-                margin: 0 auto;
-                margin-top: 30px;
-                margin-left: 400px;
-                /**background-color: #FF5A5F;**/
-                
-             
-        }
-        .form-signin .form-control {
-              position: relative;
-              box-sizing: border-box;
-              height: auto;
-              padding: 5px;
-              font-size: 15px;
-        }
-        .form-signin .form-control:focus {
-                  z-index: 2;
-        }
-        .form-signin input[type="text"] {
-                  margin-bottom: 3px;
-                  border-bottom-right-radius: 0;
-                  border-bottom-left-radius: 0;
-        }
-        .form-group{
-             text-align: left;
-            }
-        .form-control{
-                     width: 350px;
-                     box-shadow: 2px 2px 2px grey;
-                }
-     
-        #dropdown{
-                padding-top: 30px;
-                padding-right: 60px;
-                margin: 0 auto;
-                
-            }
-        #dropdownMenuButton, select{
-                background-color: #FF5A5F;
-                color: white;
-                width: 100px;
-            
-         
-        }
-        .container{
-             display: block;
-             float: left;
-             width: 350px;
-             
-         }
-         .container2{
-             display: block;
-             float: left;
-             margin-left: 30px;
-             padding-left: 60px;
-        
-         }
-        #btnCad{
-                background-color: #FF5A5F;
-                width: 150px;
-                margin-top: 15px;
-                color: white;
-              
-            }
-        #btnCanc{
-                background-color: #FF5A5F;
-                width: 150px;
-                margin-top: 15px;
-                margin-left: 30px;
-                color: white;
-            }
-        #radio1{
-            background-color: #FF5A5F;
-            width: 300px;
-            padding: 10px;
-            padding-top: 5px;
-            color: white;
-         }
-        #radio2{
-            background-color: #FF5A5F;
-            width: 300px;
-            padding: 10px;
-            margin-top: 5px;
-            color: white;
-         }
-         footer{
-            width: 100%;
-            height: 100px;
-            background-color: black;
-            clear:both;
-        }
-        #anoLancamento{
-                width: 200px;
-                }
-     
-     
-      
-      
-</style> 
-</head>
- <body>
-      <nav class="navbar navbar-expand-md navbar-dark bg-light">	
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-			<div class="navbar-nav mr-auto mt-2 mt-lg-0">
-                <a class="nav-item nav-link active" href="https://google.com">Dropbooks</a>
-				<a class="nav-item nav-link" href="#">Login ou Registrar-se</a>
-				
-			</div><!-- fim da class que ajusta o nav  -->
-		</div><!-- Fim do nav collapse-->
-	</nav> <!--fim do nav-->
-     
-     
+
+    <!-- Custom styles for this template -->
+    <link href="res/css/modern-business.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="res/css/modern-business.css" rel="stylesheet">
+    <link href="res/css/cadastroProduto.css" rel="stylesheet" >
+
+    <script src="res/jquery-3.3.1.js"></script>
+    <link href="res/js/dist/dropdown.js">
+
+
     
-     <form method="post" id= "container1" action="CadastroProdutoServlet">
-          <div><h4>Cadastro de Livro</h4></div>
-          <div class="container">
-            <div  class="form-signin"> 
-                 <div class="form-group">
-                    <label for="exampleFormControlInput1">Titulo do Livro</label>
-                    <input type="text" class="form-control" id="nameLivro" name="nameLivro" required>
-                  </div>    
-                <div class="form-group">
-                    <label for="exampleFormControlInput1">Autor</label>
-                    <input type="text" class="form-control" id="nameAutor" name="nameAutor" required>
-                  </div>
-                <div class="form-group">
-                    <label for="exampleFormControlInput1">Editora</label>
-                    <input type="text" class="form-control" id="nameEditora" name="nameEditora" required>
+    <%
+    String email = request.getSession().getAttribute("email").toString();
+
+    Usuario user = new UsuarioDAO().getUsuario(email);
+
+    %>
+  </head>
+  <body>
+
+    <!-- Navigation -->
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="index.jsp">DropBooks</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.jsp">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="Contato.jsp">Contato</a>
+            </li>
+
+            <li class="nav-item">
+              <li class="nav-item dropdown"> 
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= user.getNomeRazao()%></a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
+                  <a class="dropdown-item" href="alterarCadastro.jsp">Alterar Dados</a>
+                  <a class="dropdown-item" href="catalogoLivro.jsp">Meu Catalogo</a>
+                  <a class="dropdown-item" href="cadastroProduto.jsp">Cadastra Catalogo</a>
+                  <a class="dropdown-item" href="Senha.jsp">Alterar Senha</a>
+                  <a class="dropdown-item" name=Sair href=SairServlet>Sair</a>
                 </div>
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col">
-                         <label for="exampleFormControlInput1">Ano de Lançamento</label>
-                          <input type="date" class="form-control" id="anoLancamento" required>
-                        </div>
-                        <div id="dropdown">
-                        <div class="dropdown">
-                         <select class="btn  dropdown-toggle" name="genero">
-                             <option>Romântico</option>
-                             <option>Literatura</option>
-                             <option>Suspense</option>
-                             
-                         </select>
-                              
-                        </div>
-                        </div>    
-                      </div>
-                    </div>
-                <div class="form-group">
-                    <label for="exampleFormControlTextarea1">Fale um pouco sobre o conteúdo</label>
-                    <textarea class="form-control" id="descricao" name="descricao" placeholder="Descrição do produto" rows="3"></textarea>
-                </div>
-                <button id="btnCad" type="submit" class="btn btn-sm">Cadastrar Livro</button>
-                <button id="btnCanc" type="button" class="btn btn-sm">Cancelar</button>
-            </div>
-              
-           </div>
-            <div class="container2">
-                <div class="form-signin">
-                 <div class="form-group">
-                    <label for="exampleFormControlInput1">Idioma</label>
-                    <input type="text" class="form-control" id="idiomaLivro" name="idiomaLivro" required>
-                  </div>
-                 <div class="form-group">
-                    <label for="exampleFormControlInput1">Quantidade</label>
-                    <input type="number" class="form-control" id="qtdLivro" name="qtdLivro" required>
-                  </div>
-                 <div class="form-group">
-                    <label for="exampleFormControlInput1">Valor do Livro</label>
-                    <input type="text" class="form-control" id="valorLivro" name="valorLivro" required>
-                  </div>
-                    <label for="exampleFormControlTextarea1">Opções de frete</label>
-                 <div id="radio1">
-                    <div class="custom-control custom-radio">   
-                      <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input" value="frete_gratis" required>
-                      <label class="custom-control-label" for="customRadio1">Frete grátis</label>
-                    </div>
-                </div>
-                <div id="radio2">
-                    <div class="custom-control custom-radio">
-                      <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input" value="frete_comprador" required>
-                      <label class="custom-control-label" for="customRadio2">Frete por conta do comprador</label>
-                    </div>
-                </div>
-                </div>
-            </div>
-    </form>
-<footer>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+
+
+ 
+
+
+
+  <!-- FORMULÁRIO - CADASTRO PRODUTO -->
+  <form action="" method="">
+
+    <!-- DESCRIÇÃO DA PÁGINA --><div class="form-group"><h4>Cadastro de livro</h4></div>
+
+    <!-- DESCRIÇÃO DO PRODUTO -->
+    <label>Título do livro</label>
+    <div class="form-group">
+      <input type="text" id="nameLivro" name="nomeLivro" placeholder="Título do livro" class="form-control" required>
+    </div>
     
-    </footer>
-     
-      <!-- Principal JavaScript do Bootstrap
-    ================================================== -->
-    <!-- Foi colocado no final para a página carregar mais rápido -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/popper.js"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-    <script src="res/js/bootstrap.min.js"></script>
-    <!-- Só faz o nossos placeholders de imagens funcionarem. Não precisar copiar a próxima linha! -->
-    <script src="res/js/bootstrap.bundle.min.js"></script>
-  </body>
-</html>
+
+    <table class="table">
+
+      <tr><td><!-- Genero do livro -->
+        <label>Gênero</label>
+        <select value=" Selecione a categoria" class="form-control">
+          <option>Selecione o gênero</option>
+          <option>Biografias e Memórias</option>
+          <option>Contos</option>
+          <option>Cordel</option>
+          <option>Crônica</option>
+          <option>Ensaios</option>
+          <option>Ficção científica</option>
+          <option>Novela</option>
+          <option>Poesia</option>
+          <option>Policial</option>
+          <option>Romance</option>
+          <option>Terror</option>
+          <option>Livro-reportagem</option>
+          <option>Quadrinhos</option>
+        </select>
+      </td>
+
+      <td><!-- Autor-->
+        <label>Autor</label>
+        <input type="text" name="nameAutor" id="nameAutor" placeholder="Autor" class="form-control" required ></td></tr>
+      </table>
+
+
+      <table class="table">
+        <tr>
+          <td><!-- Editora-->
+            <label>Editora</label>
+            <input type="text" name="nameEditora" placeholder="Editora" class="form-control" required>
+          </td>
+          <td>
+            <!-- Idioma-->
+            <label>Idioma</label>
+            <input type="text" name="idiomaLivro" placeholder="Escolha um idioma" class="form-control" required="" ></td>
+          </tr>
+        </table>
+
+
+
+        <table class="table">
+          <tr>
+            <td><!-- Lançamento-->
+              <label>Escolha o ano de lançamento do livro</label>
+              <input id="anoLancamento" name="anoLancamento" type="date" class="form-control" required>
+            </td>
+            <!--Opções de frete-->
+            <td> <br/>
+              <div>
+                <input type="radio" id="customRadio1"
+                name="customRadio" value="frete_gratis"/>
+                <label for="frete_gratis">Frete Grátis</label>
+              </div>
+
+              <div>
+                <input type="radio" id="customRadio2"
+                name="customRadio" value="frete_comprador" />
+                <label for="frete_comprador">Frete por conta do comprador</label>
+              </div>
+            </td>
+          </tr>
+        </table>
+        <!-- OBSERVAÇÕES ADICIONAIS -->
+        <div class="form-group">
+          <textarea class="form-control" rows="3" id="observacoes" name="text" placeholder=" Detalhes sobre o livro como estado de conservação, folhas soltas">
+          </textarea>
+        </div>
+
+ <!--fotos-->
+        <div class="form-group">
+          <table class="table"><tr>
+            <br><div class="container">
+              <div class="row">
+                <div class="col-sm-2 imgUp">
+                  <div class="imagePreview"></div>
+                  <label class="btn btn-primary">
+                    Adicionar arquivo <input type="file" name="imagem" class="addFoto img" value="Adicionar foto" style="width: 0px;height: 0px;overflow: hidden;">
+                  </label>
+                </div><!-- col-2 -->
+                <i class="fa fa-plus imgAdd"></i>
+              </div><!-- row -->
+            </div><!-- container -->
+        
+           
+            
+
+          </table>
+        </div>
+
+        <div class="form-group"><table class="table"><tr><td><!-- LIMPAR CADASTRO-->
+          <input type=reset value="Limpar" class="btnSecundario  form-control">
+        </td>
+          <td><!-- Enviar-->
+          <input type="submit" class="btnPrimario form-control">
+        </td>
+      </tr>
+    </table>
+  </div>
+
+
+
+
+</form>
+
+      <!-- Footer -->
+      <footer class="py-5 bg-primary">
+        <div class="container">
+          <p class="m-0 text-center text-white">Copyright &copy; DropBooks</p>
+        </div>
+        <!-- /.container -->
+      </footer>
+
+
+<!--Eu deveria ter jogado esse script num arquivo separado, mas estava dando erro, perdào -->
+
+<script type="text/javascript">
+  $(".imgAdd").click(function(){
+    $(this).closest(".row").find('.imgAdd').before('<div class="col-sm-2 imgUp"><div class="imagePreview"></div><label class="btn btn-primary">Adicionar arquivo<input type="file" class="addFoto img" value="Upload Photo" style="width:0px;height:0px;overflow:hidden;"></label><i class="fa fa-times del"></i></div>');
+  });
+  $(document).on("click", "i.del" , function() {
+    $(this).parent().remove();
+  });
+  $(function() {
+    $(document).on("change",".addFoto", function()
+    {
+      var addFoto = $(this);
+      var files = !!this.files ? this.files : [];
+        if (!files.length || !window.FileReader) return; 
+        //se voltar vazio é porque deu erro no fileReadr ou não pegou o arquivo 
+
+        if (/^image/.test( files[0].type)){ //validando se é do tipo imagem
+            var reader = new FileReader(); 
+            reader.readAsDataURL(files[0]); 
+
+            reader.onloadend = function(){ // aqui começa a mágica de adicionar a imagem selecionada como bg do card 
+               
+                addFoto.closest(".imgUp").find('.imagePreview').css("background-image", "url("+this.result+")");
+              }
+            }
+
+          });
+  });
+
+
+</script>
+      <!-- Foi colocado no final para a página carregar mais rápido -->
+       <script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js'></script>
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+      <script src="https://unpkg.com/popper.js"></script>
+      <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+      <script src="res/js/bootstrap.min.js"></script>
+      <!-- Só faz o nossos placeholders de imagens funcionarem. Não precisar copiar a próxima linha! -->
+      <script src="res/js/bootstrap.bundle.min.js"></script>
+      <!-- Bootstrap core JavaScript -->
+      <script src="res/vendor/jquery/jquery.min.js"></script>
+      <script src="res/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js">
+  </script>
+    </body>
+    </html>
+
+    
