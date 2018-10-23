@@ -2,6 +2,14 @@
 window.onload = function () {
 
 
+    $(document).ready(function () {
+        $('#cpf').mask('999.999.999-99');
+        $('#telefone').mask('(99) 9999-9999');
+        $('#celular').mask('(99) 99999-9999');
+        //$('#cpf').mask('999.999.999-99');
+        $('#cep').mask('99999-999');
+
+    });
 
 
 
@@ -37,18 +45,18 @@ window.onload = function () {
         return Onlynumbers(event);
     };
 
-         document.getElementById("dig").onkeypress = function () {
+         document.getElementById("digito").onkeypress = function () {
         return Onlynumbers(event);
     };
 
 
 
 
-     document.getElementById("nomeRazao").onkeypress = function () {
+     document.getElementById("nome").onkeypress = function () {
         return Onlychars(event);
     };
 
-       document.getElementById("end").onkeypress = function () {
+       document.getElementById("logradouro").onkeypress = function () {
         return Onlychars(event);
     };
 
