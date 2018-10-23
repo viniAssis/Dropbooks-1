@@ -458,7 +458,112 @@ public class ProdutoDAO {
         }
         return resp;
     }
+    
+    public static ArrayList<Produto> getProdutosRecentes() {
         
+        ArrayList <Produto> produtos = new ArrayList();
+        
+        try {
+            Connection con = Conecta.getConexao();
+            String sql = "SELECT * FROM produto ORDER BY dataRegistro DESC LIMIT 6";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){
+                Produto produto = new Produto();
+                produto.setDataPublicacao(rs.getDate("dataPublicacao"));
+                produto.setDataRegistro(rs.getDate("dataRegistro"));
+                produto.setPreco(rs.getFloat("preco"));
+                produto.setId_usuario(rs.getInt("id_usuario"));
+                produto.setId(rs.getInt("id"));
+                produto.setQuantidade(rs.getInt("quantidade"));
+                produto.setAtivo(rs.getInt("ativo"));
+                produto.setAutor(rs.getString("autor"));
+                produto.setEditora(rs.getString("editora"));
+                produto.setDescricao(rs.getString("descricao"));
+                produto.setTitulo(rs.getString("titulo"));
+                produto.setGenero(rs.getString("genero"));
+                produto.setIdioma(rs.getString("idioma"));
+                if(rs.getBlob("imagem_1") != null){
+                    produto.setImagem_1(rs.getBlob("imagem_1").getBinaryStream());
+                }
+                if(rs.getBlob("imagem_2") != null){
+                    produto.setImagem_2(rs.getBlob("imagem_2").getBinaryStream());
+                }
+                if(rs.getBlob("imagem_3") != null){
+                    produto.setImagem_3(rs.getBlob("imagem_3").getBinaryStream());
+                }
+                if(rs.getBlob("imagem_4") != null){
+                    produto.setImagem_4(rs.getBlob("imagem_4").getBinaryStream());
+                }
+                if(rs.getBlob("imagem_5") != null){
+                    produto.setImagem_5(rs.getBlob("imagem_5").getBinaryStream());
+                }
+                produtos.add(produto);
+            }
+            
+            rs.close();
+            ps.close();
+            con.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return produtos;
+    }
+       
+    public static ArrayList<Produto> getProdutosPopulares() {
+        
+        ArrayList <Produto> produtos = new ArrayList();
+        
+        try {
+            Connection con = Conecta.getConexao();
+            String sql = "SELECT * FROM produto ORDER BY visualizacoes DESC LIMIT 3";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){
+                Produto produto = new Produto();
+                produto.setDataPublicacao(rs.getDate("dataPublicacao"));
+                produto.setDataRegistro(rs.getDate("dataRegistro"));
+                produto.setPreco(rs.getFloat("preco"));
+                produto.setId_usuario(rs.getInt("id_usuario"));
+                produto.setId(rs.getInt("id"));
+                produto.setQuantidade(rs.getInt("quantidade"));
+                produto.setAtivo(rs.getInt("ativo"));
+                produto.setAutor(rs.getString("autor"));
+                produto.setEditora(rs.getString("editora"));
+                produto.setDescricao(rs.getString("descricao"));
+                produto.setTitulo(rs.getString("titulo"));
+                produto.setGenero(rs.getString("genero"));
+                produto.setIdioma(rs.getString("idioma"));
+                if(rs.getBlob("imagem_1") != null){
+                    produto.setImagem_1(rs.getBlob("imagem_1").getBinaryStream());
+                }
+                if(rs.getBlob("imagem_2") != null){
+                    produto.setImagem_2(rs.getBlob("imagem_2").getBinaryStream());
+                }
+                if(rs.getBlob("imagem_3") != null){
+                    produto.setImagem_3(rs.getBlob("imagem_3").getBinaryStream());
+                }
+                if(rs.getBlob("imagem_4") != null){
+                    produto.setImagem_4(rs.getBlob("imagem_4").getBinaryStream());
+                }
+                if(rs.getBlob("imagem_5") != null){
+                    produto.setImagem_5(rs.getBlob("imagem_5").getBinaryStream());
+                }
+                produtos.add(produto);
+            }
+            
+            rs.close();
+            ps.close();
+            con.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return produtos;
+    }
 }
     
     
