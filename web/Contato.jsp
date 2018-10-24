@@ -14,39 +14,31 @@
         <script src="res/js/contato.js"></script>
 
         <style>
-
             #container{
                 margin-top: 2%;
                 width: 50%;
                 margin-left: 30%;    
                 margin-bottom: 7%;
-
             }
-
             #caixa2{
                 margin-top: 5%;
                 margin-left: 25%;
                 margin-bottom: 3%;
                 clear: both;
             }
-
             .titulo{
                 color: black;
                 padding: 3%;	
                 margin-left: 20%;
             }
-
             #botao2{
                 margin-top: 3%;
                 margin-left: 5%;
                 margin-bottom: 3%;
                 width: 60%;
-
-
-
             } 
-
         </style>
+        
     </head>
     <body>
         <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary fixed-top">
@@ -70,9 +62,7 @@
                                 String _nome = "";
                                 //IDENTIFICA SE O USUARIO ESTA LOGADO E TRAZ SEUS DADOS PARA A PAGINA, SE NAO ESTIVER LOGADO, MOSTRA O LINK PARA QUE O IMUNDO POSSA SE LOGAR
                                 if (session.getAttribute("email") != null) {
-
                                     String email = request.getSession().getAttribute("email").toString();
-
                                     Usuario user = new UsuarioDAO().getUsuario(email);
                                     _email += user.getEmail();
                                     _nome += user.getNomeRazao();
@@ -121,6 +111,7 @@
             </div>
         </form>
 
+        <!-- Conteúdo início -->
         <div  class="container" id="container">
             <h3 class="titulo">Contate-nos</h3>
             
@@ -129,8 +120,8 @@
                 <!-- Nome -->
                 <div class="form-row">
                     <div class="form-group col-md-10 mb-8">
-                        <label id="texto">Nome <span class="alerta">*</span></label>
-                        <input type="text" class="form-control col-md-10  border border-dark" id="nome" name="nome"  maxlength="40" value="<%=_nome%>">
+                        <label id="texto">Nome <span class="alerta"></span>*</label>
+                        <input type="text" class="form-control col-md-10  border border-dark" id="nome" name="nome"  maxlength="40" value="" required="required">
                     </div>
                 </div>
 
@@ -138,7 +129,7 @@
                 <div class="form-row">
                     <div class="form-group col-md-10">
                         <label id="texto">Email <span class="alerta">*</span></label>
-                        <input type="email" class="form-control col-md-10  border border-dark" id="email" maxlength="45" name="email" value="<%=_email%>">
+                        <input type="email" class="form-control col-md-10  border border-dark" id="email" maxlength="45" name="email" value="" required="required">
                     </div>
                 </div>
 
@@ -146,7 +137,7 @@
                 <div class="form-row">	
                     <div class="form-group col-md-10">
                         <label id="texto">Assunto <span class="alerta">*</span></label>
-                        <select id="assunto" class="form-control col-md-10  border border-dark" name="assunto">
+                        <select id="assunto" class="form-control col-md-10  border border-dark" name="assunto" required="required">
                             <option selected>Dúvidas</option>
                             <option>Reclamações</option>
                             <option>Cancelamento</option>
@@ -158,13 +149,21 @@
                 <!-- Mensagem -->
                 <div class="form-group">
                     <label id="texto">Mensagem <span class="alerta">*</span></label>
-                    <textarea class="form-control col-md-8  border border-dark" id="mensagem" rows="7" maxlength="2000" name="mensagem"></textarea>
+                    <textarea class="form-control col-md-8  border border-dark" id="mensagem" rows="7" maxlength="2000" name="mensagem" required="required"></textarea>
+                    * Campos obrigatórios
                 </div>
 
-                <button type="submit" class="btn btn-primary" id="botao2" onClick="alert('Mensagem enviada !')">Enviar</button>
+                <button type="submit" class="btn btn-primary" id="botao2">Enviar</button>
             </form>    
+            
+        <!-- Mensagem de resposta -->
+        <%=request.getParameter("msg")%>
+            
+            
         </div>
-
+        
+        <!-- Conteúdo fim -->
+        
         <!-- Footer -->
         <footer class="py-5 bg-primary">
             <div class="container">

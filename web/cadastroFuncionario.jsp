@@ -114,9 +114,9 @@
         
     <!--  Session -->
     <%
-    //String email = request.getSession().getAttribute("email").toString();
+    String email = request.getSession().getAttribute("email").toString();
 
-    //Usuario user = new UsuarioDAO().getUsuario(email);
+    Usuario user = new UsuarioDAO().getUsuario(email);
         
     %>
     
@@ -134,11 +134,11 @@
       <div class="navbar-nav-scroll">
         <ul class="navbar-nav bd-navbar-nav flex-row">
           <li class="nav-item">
-            <a class="nav-link " href="novaHome.html" >Inicio</a>
+            <a class="nav-link " href="index.jsp" >Inicio</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link " href="novaHome.html" >Livros</a>
+            <a class="nav-link " href="index.jsp" >Livros</a>
           </li>
 
           <li class="nav-item">
@@ -148,6 +148,26 @@
           <li class="nav-item">
             <a class="nav-link " href="Contato.jsp" >Contato</a>
           </li>
+          <%
+          out.print("</li>");
+                                    out.print("<li class=nav-item>");
+                                    out.print("<li class='nav-item dropdown'> "
+                                            + "<a class='nav-link dropdown-toggle' href='#' id='navbarDropdownPortfolio' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>"+ user.getNomeRazao() +"</a>"
+                                            + "<div class='dropdown-menu dropdown-menu-right' aria-labelledby='navbarDropdownPortfolio'>");
+                                            if(!user.getNivel_usuario().equals("1")){
+                                            out.print("<a class='dropdown-item' href='alterarFuncionarioAdm.jsp' id='link'>Alterar o Funcionário</a>"
+                                                    + "<a class='dropdown-item' href='cadastroFuncionario.jsp' id='link'>Cadastrar Funcionário</a>"
+                                                    + "<a class='dropdown-item' href='listaUsuarioFuncionario.jsp' id='link'>Lista de Funcionários</a>");               
+                                            }
+                                    out.print("<a class='dropdown-item' href='carrinho.jsp' id='link'>Carrinho</a>"
+                                            + "<a class='dropdown-item' href='alterarCadastro.jsp' id='link'>Alterar Dados</a>"
+                                            + "<a class='dropdown-item' href='catalogoLivro.jsp' id='link'>Meu Catalogo</a>"
+                                            + "<a class='dropdown-item' href='cadastroProduto.jsp' id='link'>Cadastra Catalogo</a>"
+                                            + "<a id='link' class='dropdown-item' href=Senha.jsp>Alterar Senha</a>"
+                                            + "<a class='dropdown-item' name=Sair href=SairServlet>Sair</a>"
+                                            + "</div>"
+                                            + "</li>");
+          %>
 
         </ul>
       </div>
