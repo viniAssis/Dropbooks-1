@@ -3,13 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/vinim/Documents/NetBeansProjects/Dropbooks-1-master/web/Senha.jsp</file>
-            <file>file:/C:/Users/vinim/Documents/NetBeansProjects/Dropbooks-1-master/web/cadastroProduto.jsp</file>
-            <file>file:/C:/Users/vinim/Documents/NetBeansProjects/Dropbooks-1-master/src/java/controller/AlterarProdutoServlet.java</file>
-            <file>file:/C:/Users/vinim/Documents/NetBeansProjects/Dropbooks-1-master/web/cadastroFuncionario.html</file>
-            <file>file:/C:/Users/vinim/Documents/NetBeansProjects/Dropbooks-1-master/src/java/controller/RecupSenhaServlet.java</file>
-            <file>file:/C:/Users/vinim/Documents/NetBeansProjects/Dropbooks-1-master/src/java/model/Email.java</file>
-            <file>file:/C:/Users/vinim/Documents/NetBeansProjects/Dropbooks-1-master/web/catalogoLivro.jsp</file>
+            <file>file:/C:/Users/vinim/Documents/%2323%20DROP/Dropbooks/web/pagProduto.jsp</file>
+            <file>file:/C:/Users/vinim/Documents/%2323%20DROP/Dropbooks/web/index.jsp</file>
+            <file>file:/C:/Users/vinim/Documents/%2323%20DROP/Dropbooks/src/java/modelDAO/UsuarioDAO.java</file>
+            <file>file:/C:/Users/vinim/Documents/%2323%20DROP/Dropbooks/src/java/model/Utilitarios.java</file>
         </group>
     </open-files>
 </project-private>
