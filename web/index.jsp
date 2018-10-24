@@ -31,6 +31,10 @@
     
     <style>
         
+        .card-img-top{
+            max-width: 500px;
+            max-height: 300px;
+        }
         
         #caixa2{
                 margin-top: 5%;
@@ -101,8 +105,13 @@
                                     out.print("<li class=nav-item>");
                                     out.print("<li class='nav-item dropdown'> "
                                             + "<a class='nav-link dropdown-toggle' href='#' id='navbarDropdownPortfolio' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>"+ user.getNomeRazao() +"</a>"
-                                            + "<div class='dropdown-menu dropdown-menu-right' aria-labelledby='navbarDropdownPortfolio'>"
-                                            + "<a class='dropdown-item' href='carrinho.jsp' id='link'>Carrinho</a>"
+                                            + "<div class='dropdown-menu dropdown-menu-right' aria-labelledby='navbarDropdownPortfolio'>");
+                                            if(!user.getNivel_usuario().equals("1")){
+                                            out.print("<a class='dropdown-item' href='alterarFuncionarioAdm.jsp' id='link'>Alterar o Funcionário</a>"
+                                                    + "<a class='dropdown-item' href='cadastroFuncionario.jsp' id='link'>Cadastrar Funcionário</a>"
+                                                    + "<a class='dropdown-item' href='listaUsuarioFuncionario.jsp' id='link'>Lista de Funcionários</a>");               
+                                            }
+                                    out.print("<a class='dropdown-item' href='carrinho.jsp' id='link'>Carrinho</a>"
                                             + "<a class='dropdown-item' href='alterarCadastro.jsp' id='link'>Alterar Dados</a>"
                                             + "<a class='dropdown-item' href='catalogoLivro.jsp' id='link'>Meu Catalogo</a>"
                                             + "<a class='dropdown-item' href='cadastroProduto.jsp' id='link'>Cadastra Catalogo</a>"
@@ -201,7 +210,7 @@
                 <p class="card-text"><% out.print(Utilitarios.trimDesc(listaPop.get(0).getDescricao())); %></p>
             </div>
             <div class="card-footer">
-              <a href="./pagProduto?id=<%=listaPop.get(0).getId()%>" class="btn btn-primary">Leia Mais</a>
+              <a href="./pagProduto.jsp?id=<%=listaPop.get(0).getId()%>" class="btn btn-primary">Leia Mais</a>
             </div>
           </div>
         </div>
@@ -212,7 +221,7 @@
               <p class="card-text"><% out.print(Utilitarios.trimDesc(listaPop.get(1).getDescricao())); %></p>
             </div>
             <div class="card-footer">
-              <a href="./pagProduto?id=<%=listaPop.get(1).getId()%>" class="btn btn-primary">Leia Mais</a>
+              <a href="./pagProduto.jsp?id=<%=listaPop.get(1).getId()%>" class="btn btn-primary">Leia Mais</a>
             </div>
           </div>
         </div>
@@ -223,7 +232,7 @@
               <p class="card-text"><% out.print(Utilitarios.trimDesc(listaPop.get(2).getDescricao())); %></p>
             </div>
             <div class="card-footer">
-              <a href="./pagProduto?id=<%=listaPop.get(2).getId()%>" class="btn btn-primary">Leia Mais</a>
+              <a href="./pagProduto.jsp?id=<%=listaPop.get(2).getId()%>" class="btn btn-primary">Leia Mais</a>
             </div>
           </div>
         </div>
@@ -238,73 +247,73 @@
       <div class="row">
         <div class="col-lg-4 col-sm-6 portfolio-item">
           <div class="card h-100">
-              <a href="./pagProduto?id=<%=listaRec.get(0).getId()%>"><img class ="card-img-top" src="./imagens?id_prod=<%=listaRec.get(0).getId()%>&img=1" alt=""></a>
+              <a href="./pagProduto.jsp?id=<%=listaRec.get(0).getId()%>"><img class ="card-img-top" src="./imagens?id_prod=<%=listaRec.get(0).getId()%>&img=1" alt=""></a>
             <div class="card-body">
               <h4 class="card-title">
-                <a href="./pagProduto?id=<%=listaRec.get(0).getId()%>"><% out.print(listaRec.get(0).getTitulo()); %></a>
+                <a href="./pagProduto.jsp?id=<%=listaRec.get(0).getId()%>"><% out.print(listaRec.get(0).getTitulo()); %></a>
               </h4>
               <p class="card-text"><% out.print(Utilitarios.trimDesc(listaRec.get(0).getDescricao())); %></p>
-                 <a href="./pagProduto?id=<%=listaRec.get(0).getId()%>" class="btn btn-primary">Leia Mais</a>
+                 <a href="./pagProduto.jsp?id=<%=listaRec.get(0).getId()%>" class="btn btn-primary">Leia Mais</a>
             </div>
           </div>
         </div>
         <div class="col-lg-4 col-sm-6 portfolio-item">
           <div class="card h-100">
-            <a href="./pagProduto?id=<%=listaRec.get(1).getId()%>"><img class ="card-img-top" src="./imagens?id_prod=<%=listaRec.get(1).getId()%>&img=1" alt=""></a>
+            <a href="./pagProduto.jsp?id=<%=listaRec.get(1).getId()%>"><img class ="card-img-top" src="./imagens?id_prod=<%=listaRec.get(1).getId()%>&img=1" alt=""></a>
             <div class="card-body">
               <h4 class="card-title">
-                <a href="./pagProduto?id=<%=listaRec.get(1).getId()%>"><% out.print(listaRec.get(1).getTitulo()); %></a>
+                <a href="./pagProduto.jsp?id=<%=listaRec.get(1).getId()%>"><% out.print(listaRec.get(1).getTitulo()); %></a>
               </h4>
               <p class="card-text"><% out.print(Utilitarios.trimDesc(listaRec.get(1).getDescricao())); %></p>
-                 <a href="./pagProduto?id=<%=listaRec.get(1).getId()%>" class="btn btn-primary">Leia Mais</a>
+                 <a href="./pagProduto.jsp?id=<%=listaRec.get(1).getId()%>" class="btn btn-primary">Leia Mais</a>
             </div>
           </div>
         </div>
         <div class="col-lg-4 col-sm-6 portfolio-item">
           <div class="card h-100">
-            <a href="./pagProduto?id=<%=listaRec.get(2).getId()%>"><img class ="card-img-top" src="./imagens?id_prod=<%=listaRec.get(2).getId()%>&img=1" alt=""></a>
+            <a href="./pagProduto.jsp?id=<%=listaRec.get(2).getId()%>"><img class ="card-img-top" src="./imagens?id_prod=<%=listaRec.get(2).getId()%>&img=1" alt=""></a>
             <div class="card-body">
               <h4 class="card-title">
-                <a href="./pagProduto?id=<%=listaRec.get(2).getId()%>"><% out.print(listaRec.get(2).getTitulo()); %></a>
+                <a href="./pagProduto.jsp?id=<%=listaRec.get(2).getId()%>"><% out.print(listaRec.get(2).getTitulo()); %></a>
               </h4>
               <p class="card-text"><% out.print(Utilitarios.trimDesc(listaRec.get(2).getDescricao())); %></p>
-                 <a href="./pagProduto?id=<%=listaRec.get(2).getId()%>" class="btn btn-primary">Leia Mais</a>
+                 <a href="./pagProduto.jsp?id=<%=listaRec.get(2).getId()%>" class="btn btn-primary">Leia Mais</a>
             </div>
           </div>
         </div>
         <div class="col-lg-4 col-sm-6 portfolio-item">
           <div class="card h-100">
-            <a href="./pagProduto?id=<%=listaRec.get(3).getId()%>"><img class ="card-img-top" src="./imagens?id_prod=<%=listaRec.get(3).getId()%>&img=1" alt=""></a>
+            <a href="./pagProduto.jsp?id=<%=listaRec.get(3).getId()%>"><img class ="card-img-top" src="./imagens?id_prod=<%=listaRec.get(3).getId()%>&img=1" alt=""></a>
             <div class="card-body">
               <h4 class="card-title">
-                <a href="./pagProduto?id=<%=listaRec.get(3).getId()%>"><% out.print(listaRec.get(3).getTitulo()); %></a>
+                <a href="./pagProduto.jsp?id=<%=listaRec.get(3).getId()%>"><% out.print(listaRec.get(3).getTitulo()); %></a>
               </h4>
               <p class="card-text"><% out.print(Utilitarios.trimDesc(listaRec.get(3).getDescricao())); %></p>
-                 <a href="./pagProduto?id=<%=listaRec.get(3).getId()%>" class="btn btn-primary">Leia Mais</a>
+                 <a href="./pagProduto.jsp?id=<%=listaRec.get(3).getId()%>" class="btn btn-primary">Leia Mais</a>
             </div>
           </div>
         </div>
         <div class="col-lg-4 col-sm-6 portfolio-item">
           <div class="card h-100">
-            <a href="./pagProduto?id=<%=listaRec.get(4).getId()%>"><img class ="card-img-top" src="./imagens?id_prod=<%=listaRec.get(4).getId()%>&img=1" alt=""></a>
+            <a href="./pagProduto.jsp?id=<%=listaRec.get(4).getId()%>"><img class ="card-img-top" src="./imagens?id_prod=<%=listaRec.get(4).getId()%>&img=1" alt=""></a>
             <div class="card-body">
               <h4 class="card-title">
-                <a href="./pagProduto?id=<%=listaRec.get(4).getId()%>"><% out.print(listaRec.get(4).getTitulo()); %></a>
+                <a href="./pagProduto.jsp?id=<%=listaRec.get(4).getId()%>"><% out.print(listaRec.get(4).getTitulo()); %></a>
               </h4>
               <p class="card-text"><% out.print(Utilitarios.trimDesc(listaRec.get(4).getDescricao())); %></p>
-                 <a href="./pagProduto?id=<%=listaRec.get(4).getId()%>" class="btn btn-primary">Leia Mais</a>
+                 <a href="./pagProduto.jsp?id=<%=listaRec.get(4).getId()%>" class="btn btn-primary">Leia Mais</a>
             </div>
           </div>
         </div>
         <div class="col-lg-4 col-sm-6 portfolio-item">
           <div class="card h-100">
-            <a href="./pagProduto?id=<%=listaRec.get(5).getId()%>"><img class ="card-img-top" src="./imagens?id_prod=<%=listaRec.get(5).getId()%>&img=1" alt=""></a>
+            <a href="./pagProduto.jsp?id=<%=listaRec.get(5).getId()%>"><img class ="card-img-top" src="./imagens?id_prod=<%=listaRec.get(5).getId()%>&img=1" alt=""></a>
             <div class="card-body">
               <h4 class="card-title">
-                <a href="./pagProduto?id=<%=listaRec.get(5).getId()%>"><% out.print(listaRec.get(5).getTitulo()); %></a>
+                <a href="./pagProduto.jsp?id=<%=listaRec.get(5).getId()%>"><% out.print(listaRec.get(5).getTitulo()); %></a>
               </h4>
               <p class="card-text"><% out.print(Utilitarios.trimDesc(listaRec.get(5).getDescricao())); %></p>
-                 <a href="./pagProduto?id=<%=listaRec.get(5).getId()%>" class="btn btn-primary">Leia Mais</a>
+                 <a href="./pagProduto.jsp?id=<%=listaRec.get(5).getId()%>" class="btn btn-primary">Leia Mais</a>
             </div>
           </div>
         </div>
