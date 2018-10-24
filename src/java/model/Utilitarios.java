@@ -20,6 +20,19 @@ public class Utilitarios {
         return res;
     }
     
+    public static Date toDataBR(String data){
+        Date res = null;
+        DateFormat dateFormat2 = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            java.util.Date parsed = dateFormat2.parse(data);
+            res = new java.sql.Date(parsed.getTime());
+        } catch (ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        return res;
+    }
+    
     public static String trimDesc(String desc){
         String fin = desc;
         if(fin.length() > 200){

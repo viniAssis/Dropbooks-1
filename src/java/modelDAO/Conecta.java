@@ -7,7 +7,7 @@ public class Conecta {
     public static Connection getConexao() {
         Connection con = null;
         try {
-            String serverName = "localhost";
+            String serverName = "localhost:3306";
             String mydatabase = "dropbooks";
             String username = "root";
             String password = "root";
