@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Produto;
+import model.Usuario;
 import modelDAO.ProdutoDAO;
+import modelDAO.UsuarioDAO;
 
 @WebServlet(name = "CadastroProdutoServlet", urlPatterns = {"/CadastroProdutoServlet"})
 @MultipartConfig(maxFileSize = 16177215)
@@ -23,6 +25,9 @@ public class CadastroProdutoServlet extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             
             Produto produto = new Produto();
+            
+            String email = request.getSession().getAttribute("email").toString();
+                                    Usuario user = new UsuarioDAO().getUsuario(email);
             
             Calendar cal = Calendar.getInstance();
             cal.add(Calendar.DATE, 0);
@@ -36,7 +41,7 @@ public class CadastroProdutoServlet extends HttpServlet {
             produto.setDescricao(request.getParameter("descricao"));
             produto.setEditora(request.getParameter("nameEditora"));
             produto.setGenero(request.getParameter("nameLivro"));
-            produto.setId_usuario(1);
+            produto.setId_usuario(user.getId());
             produto.setIdioma(request.getParameter("idiomaLivro"));
             produto.setPreco(Float.parseFloat(request.getParameter("valorLivro")));
             produto.setQuantidade(Integer.parseInt(request.getParameter("qtdLivro")));

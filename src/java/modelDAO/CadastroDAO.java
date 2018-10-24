@@ -15,7 +15,7 @@ public class CadastroDAO {
             Connection con = Conecta.getConexao();
             
             // Sintaxe para inserir os dados no banco, tem 15
-            String sql = "INSERT INTO usuario(cpf_cnpj, tipoPessoa, dataNascimento, sexo, email, telefone, nomeRazao, cep, logradouro, numero, complemento, estado, cidade, bairro, senha) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO usuario(cpf_cnpj, tipoPessoa, dataNascimento, sexo, email, telefone, nomeRazao, cep, logradouro, numero, complemento, estado, cidade, bairro, senha,Nivel_Usuario, Ativo) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             
             PreparedStatement ps = con.prepareStatement(sql);
 
@@ -36,6 +36,8 @@ public class CadastroDAO {
             ps.setString(13, user.getCidade());
             ps.setString(14, user.getBairro());
             ps.setString(15, user.getSenha());
+            ps.setString(16, user.getNivel_usuario());
+            ps.setString(17, user.getAtivo());
             
             ps.execute();
             
