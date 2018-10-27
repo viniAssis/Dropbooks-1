@@ -38,7 +38,12 @@
                 width: 60%;
             } 
         </style>
-        
+        <%
+            String msg="";
+            if (msg == null) {
+                msg = "teste";
+            }
+        %>
     </head>
     <body>
         <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary fixed-top">
@@ -55,7 +60,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="Contato.jsp">Contato</a>
                         </li>
-                         <li class="nav-item">
+                        <li class="nav-item">
                             <%
                                 //VARIAVEIS QUE VÃO PREENCHER OS CAMPOS VAZIOS COM OS DADOS DO USUARIO(SE ESTIVER LOGADO)
                                 String _email = "";
@@ -66,11 +71,11 @@
                                     Usuario user = new UsuarioDAO().getUsuario(email);
                                     _email += user.getEmail();
                                     _nome += user.getNomeRazao();
-                                    
+
                                     out.print("</li>");
                                     out.print("<li class=nav-item>");
                                     out.print("<li class='nav-item dropdown'> "
-                                            + "<a class='nav-link dropdown-toggle' href='#' id='navbarDropdownPortfolio' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>"+ user.getNomeRazao() +"</a>"
+                                            + "<a class='nav-link dropdown-toggle' href='#' id='navbarDropdownPortfolio' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>" + user.getNomeRazao() + "</a>"
                                             + "<div class='dropdown-menu dropdown-menu-right' aria-labelledby='navbarDropdownPortfolio'>"
                                             + "<a class='dropdown-item' href='carrinho.jsp'>Carrinho</a>"
                                             + "<a class='dropdown-item' href='alterarCadastro.jsp'>Alterar Dados</a>"
@@ -80,15 +85,13 @@
                                             + "<a class='dropdown-item' name=Sair href=SairServlet>Sair</a>"
                                             + "</div>"
                                             + "</li>");
-                                    
-                                    
-                                    
+
                                 } else {
                                     out.print("<a class=nav-link href=login.jsp>Login/Cadastrar</a>");
-                                }        
+                                }
                             %>
                         </li> 
-   
+
                     </ul>
                 </div>
             </div>
@@ -114,9 +117,9 @@
         <!-- Conteúdo início -->
         <div  class="container" id="container">
             <h3 class="titulo">Contate-nos</h3>
-            
+
             <form id="form1" method="post" action="EnviaEmailServlet">
-                
+
                 <!-- Nome -->
                 <div class="form-row">
                     <div class="form-group col-md-10 mb-8">
@@ -155,15 +158,15 @@
 
                 <button type="submit" class="btn btn-primary" id="botao2">Enviar</button>
             </form>    
-            
-        <!-- Mensagem de resposta -->
-        <%=request.getParameter("msg")%>
-            
-            
+
+            <!-- Mensagem de resposta -->
+            <%=request.getParameter("msg")%>
+
+
         </div>
-        
+
         <!-- Conteúdo fim -->
-        
+
         <!-- Footer -->
         <footer class="py-5 bg-primary">
             <div class="container">
@@ -171,9 +174,9 @@
             </div>
             <!-- /.container -->
         </footer>   
-        
+
         <!-- Bootstrap core JavaScript -->
-    <script src="res/vendor/jquery/jquery.min.js"></script>
-    <script src="res/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="res/vendor/jquery/jquery.min.js"></script>
+        <script src="res/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     </body>
 </html>
