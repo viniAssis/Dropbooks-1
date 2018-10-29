@@ -44,6 +44,9 @@ public class FinalizarPedidoServlet extends HttpServlet {
                                 lista.put(Integer.parseInt(entry[0].trim()), Integer.parseInt(entry[1].trim()));
                             }
                         }
+                        
+                        cookie.setMaxAge(0);
+                        cookie.setValue(null);
                     }
                 }
             }
@@ -61,9 +64,11 @@ public class FinalizarPedidoServlet extends HttpServlet {
                         }
                     }
                 }
+                
+                PedidoDAO.gerarPedido(usuario, cart);
+                
+                
             }
-            
-            PedidoDAO.gerarPedido(usuario, cart);
         }
     }
 

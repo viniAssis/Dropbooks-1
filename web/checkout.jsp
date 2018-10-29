@@ -11,8 +11,6 @@
         <link href="res/css/bootstrap.min.css" rel="stylesheet">
         <link href="res/css/modern-business.css" rel="stylesheet">           
         <link rel="stylesheet" type="text/css" href="res/fonts/font-awesome-4.7.0/css/font-awesome.min.css"/>
-        <link rel="stylesheet" type="text/css" href="res/vendor/animsition/css/animsition.min.css"/>
-        <link rel="stylesheet" type="text/css" href="res/vendor/select2/select2.min.css"/>
         <link rel="stylesheet" type="text/css" href="res/css/util.css"/>
         <link rel="stylesheet" type="text/css" href="res/css/main.css"/>
 
@@ -216,9 +214,7 @@
                                 Código de segurança é obrigatório.
                             </div>
                         </div>
-                    </div> 
-
-                    <label id="total" name="total">TOTAL DA COMPRA:</label>
+                    </div>
                     <hr class="mb-4">
                     <div class="input-group">
 
