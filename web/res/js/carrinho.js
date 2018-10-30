@@ -63,7 +63,9 @@ var listarCarrinho = function (json) {
         htmlOrder += '<a class="nav-link" href="" >Continuar comprando</a>';
         htmlOrder += '</li>';
         htmlOrder += '</ul>';
-        htmlOrder += '<input type="button" name="finalizarPedido" class="action-button  btn-block" value="Finalizar Pedido"/>';
+        htmlOrder += '<form action="checkout.jsp">';
+        htmlOrder += '<input type="submit" class="action-button btn-block" value="Finalizar Pedido"/>';
+        htmlOrder += '</form>';
     } else {
         html = "<h4>Seu carrinho est&aacute; vazio</h4>"
     }
