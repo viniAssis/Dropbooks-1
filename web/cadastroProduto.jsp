@@ -19,8 +19,17 @@
                 <!-- Custom styles for this template -->
                 <link href="res/css/modern-business.css" rel="stylesheet">
 
-		<script src="res/jquery-3.3.1.js"></script>
-		<link href="res/js/dist/dropdown.js" rel="stylesheet">
+                <script src="res/jquery-3.3.1.js"></script>
+                <link href="res/js/dist/dropdown.js" rel="stylesheet">
+                <!-- IMPORTA O MENU SUPERIOR E O FOOTER -->
+                <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+                <script>
+                   $(function(){
+                      $("#header").load("MenuNavBar.jsp");
+                      $("#footer").load("Footer.jsp");
+                   });
+                </script>
+                <!-- IMPORTA O MENU SUPERIOR E O FOOTER -->
                 
 		<style>
 
@@ -84,36 +93,9 @@
 	<body>
 
 	<!-- Navigation -->
-		<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary fixed-top">
-			<div class="container">
-				<a class="navbar-brand" href="index.jsp">DropBooks</a>
-				<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span>
-				</button>
-				<div class="collapse navbar-collapse" id="navbarResponsive">
-					<ul class="navbar-nav ml-auto">
-						<li class="nav-item">
-							<a class="nav-link" href="index.jsp">Home</a>
-						</li>
-                                                <li class="nav-item">
-                                                        <a class="nav-link" href="Contato.jsp">Contato</a>
-                                                </li>
-                                              
-                                                <li class="nav-item">
-                                                    <li class="nav-item dropdown"> 
-                                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= user.getNomeRazao()%></a>
-                                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
-                                                    <a class="dropdown-item" href="alterarCadastro.jsp">Alterar Dados</a>
-                                                    <a class="dropdown-item" href="catalogoLivro.jsp">Meu Catalogo</a>
-                                                    <a class="dropdown-item" href="cadastroProduto.jsp">Cadastra Catalogo</a>
-                                                    <a class="dropdown-item" href="Senha.jsp">Alterar Senha</a>
-                                                    <a class="dropdown-item" name=Sair href=SairServlet>Sair</a>
-                                                    </div>
-                                                </li>
-                			</ul>
-				</div>
-			</div>
-		</nav>
-		
+        <div id="header"></div>
+        
+        
 		<form id="caixa2" enctype="multipart/form-data">
 			<div class="form-row align-items-center">
 				<div class="col-auto my-1">
@@ -238,14 +220,9 @@
 		</form>
 		
 		<!-- Footer -->
-		<footer class="py-5 bg-primary">
-			<div class="container">
-				<p class="m-0 text-center text-white">Copyright &copy; DropBooks</p>
-			</div>
-		<!-- /.container -->
-		</footer>
-
-	<!-- Foi colocado no final para a página carregar mais rápido -->
+                <div id="footer"></div>
+                
+            <!-- Foi colocado no final para a página carregar mais rápido -->
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 	<script src="https://unpkg.com/popper.js"></script>
 	<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>

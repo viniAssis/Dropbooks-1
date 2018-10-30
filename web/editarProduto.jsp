@@ -71,33 +71,29 @@
                 <div class="col-md-4">
                     <h3 class="my-3">Descrição</h3>
                     <p><label><%=prod.getDescricao()%> </label></p>
-                    <h3 class="my-3">Detalhes</h3>
-
-                    <ul>
-                        <li>Autor: <%=prod.getAutor()%></li>
-                        <li>Editora: <%=prod.getEditora()%></li>
-                        <li>Data de registro no sistema: <%=prod.getDataRegistro()%></li>
-                        <li>Data de publicação: <%=prod.getDataPublicacao()%></li>
-                        <li>Genero: <%=prod.getGenero()%></li>
-                        <li>Idioma: <%=prod.getIdioma()%></li>
-                        <li>Preco: R$<%=prod.getPreco()%></li>
-                        <li>Quantidade de livros: <%=prod.getQuantidade()%></li>
-
-                    </ul>
-                    <div class="my-3 cep">
-                        <p>Calcular Frete</p>
-                        <div class="col-xs-2  button2">
-                            <input class="form-control" id="cepDestino" type="text" placeholder="_____-___" />
-                        </div>
-
-                        <button class="button button1" name="CalculaCEP" id="calculaCEP" value="Calcular" onclick="calcWsCorreios(<%=userProd.getCep()%>, <%=prod.getPreco()%>)">OK</button>
-                        <br />
-                        <div id="resultadoFrete"></div>
-
-                    </div>
+                    <h3 class="my-3">Detalhes</h3>         
+                    
                         <form class="compra" method="get" action="ComprarServlet"> 
+                            <ul>
+                                <li>Autor: <input class="form-control" id="nameAutor" name="nameAutor" type="text" /></li>
+                                
+                                <li>Editora: <%=prod.getEditora()%></li>
+                                <input type="text" name="" id="" value="">
+                                <li>Data de registro no sistema: <%=prod.getDataRegistro()%></li>
+                                <input type="text" name="" id="" value="">
+                                <li>Data de publicação: <%=prod.getDataPublicacao()%></li>
+                                <input type="text" name="" id="" value="">
+                                <li>Genero: <%=prod.getGenero()%></li>
+                                <input type="text" name="" id="" value="">
+                                <li>Idioma: <%=prod.getIdioma()%></li>
+                                <input type="text" name="" id="" value="">
+                                <li>Preco: R$<%=prod.getPreco()%></li>
+                                <input type="text" name="" id="" value="">
+                                <li>Quantidade de livros: <%=prod.getQuantidade()%></li>
+                                <input type="text" name="" id="" value="">
+                            </ul>
                             <input type="hidden" class="btn btn-info " value="Comprar" id="btnComprar">
-                            <button type="submit" class="btn btn-secondary" name="livro" value=<%=prod.getId()%>>Adicionar Carrinho</button>
+                            <button type="submit" class="btn btn-secondary" name="livro" value=<%=prod.getId()%>>Alterar Informações do Produto</button>
                         </form>
 
 

@@ -23,6 +23,28 @@
         <link rel="stylesheet" type="text/css" href="res/css/util.css"/>
         <link rel="stylesheet" type="text/css" href="res/css/main.css"/>
 
+        <!-- IMPORTA O MENU SUPERIOR E O FOOTER -->
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        <script>
+           $(function(){
+              $("#header").load("MenuNavBar.jsp");
+              $("#footer").load("Footer.jsp");
+           });
+        </script>
+        <!-- IMPORTA O MENU SUPERIOR E O FOOTER -->
+
+        <!--  Session -->
+        <%
+            String email = request.getSession().getAttribute("email").toString();
+
+            Usuario user = new UsuarioDAO().getUsuario(email);
+
+            if (!user.getNivel_usuario().equals("1")) {
+                response.sendRedirect("paginaNaoEncontrada.jsp");
+            }
+
+        %>
+        
         <style>
 
             #nav{background: #090446;}
@@ -94,50 +116,9 @@
 
     </head>
     <body>
-        <nav class="navbar fixed-top navbar-expand-lg navbar-dark fixed-top" id="nav">
-            <div class="container">
-                <a class="navbar-brand" href="index.jsp">DropBooks</a>
-                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.jsp">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="contato.jsp">Contato</a>
-                        </li>
-                        <%
-                           
-                                    String email = request.getSession().getAttribute("email").toString();
-                                    Usuario user = new UsuarioDAO().getUsuario(email);
-                            
-                            out.print("</li>");
-                                    out.print("<li class=nav-item>");
-                                    out.print("<li class='nav-item dropdown'> "
-                                            + "<a class='nav-link dropdown-toggle' href='#' id='navbarDropdownPortfolio' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>"+ user.getNomeRazao() +"</a>"
-                                            + "<div class='dropdown-menu dropdown-menu-right' aria-labelledby='navbarDropdownPortfolio'>");
-                                            if(!user.getNivel_usuario().equals("1")){
-                                            out.print("<a class='dropdown-item' href='alterarFuncionarioAdm.jsp' id='link'>Alterar o Funcionário</a>"
-                                                    + "<a class='dropdown-item' href='cadastroFuncionario.jsp' id='link'>Cadastrar Funcionário</a>"
-                                                    + "<a class='dropdown-item' href='listaUsuarioFuncionario.jsp' id='link'>Lista de Funcionários</a>");               
-                                            }
-                                    out.print("<a class='dropdown-item' href='carrinho.jsp' id='link'>Carrinho</a>"
-                                            + "<a class='dropdown-item' href='alterarCadastro.jsp' id='link'>Alterar Dados</a>"
-                                            + "<a class='dropdown-item' href='catalogoLivro.jsp' id='link'>Meu Catalogo</a>"
-                                            + "<a class='dropdown-item' href='cadastroProduto.jsp' id='link'>Cadastra Catalogo</a>"
-                                            + "<a id='link' class='dropdown-item' href=Senha.jsp>Alterar Senha</a>"
-                                            + "<a class='dropdown-item' name=Sair href=SairServlet>Sair</a>"
-                                            + "</div>"
-                                            + "</li>");
-                            
-                        %>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+      <div id="header"></div> 
 
-
-        <h1>Pesquisa de Usuários</h1>      
+    <center><h1>Pesquisa de Usuários</h1></center>      
 
         <form action="PesquisarUsuariosServlet" method="GET">
             <input type="hidden" name="acao" value="${param.acao}" />
@@ -184,78 +165,8 @@
 
 
         <!-- Footer -->
-        <footer class="bg6 p-t-45 p-b-43 p-l-45 p-r-45" id="footer">
-            <div class="flex-w p-b-90">
-
-                <div class="w-size6 p-t-30 p-l-15 p-r-15 respon3">
-                    <h4 id="corAmarelo">Problemas</h4>
-                    <div>
-                        <p class="s-text7 w-size27" id="corBranca">
-                            Caso Tenha Qualquer Problema na Compra ou Venda do Seu livro Entre em Contato Para que seja Resolvido.
-                            Agradecemos sua Visita. Volte Sempre !
-                        </p>
-                    </div>
-                </div>
-
-                <div class="w-size7 p-t-30 p-l-15 p-r-15 respon4">
-
-                    <h4  class="s-text12 p-b-30" id="corAmarelo">Categorias</h4>
-
-                    <ul>
-                        <li class="p-b-9">
-                            <a href="#" id="corBranca">Ficção</a>
-                        </li>
-                        <li class="p-b-9">
-                            <a href="#" id="corBranca">Terror</a>
-                        </li>
-                        <li class="p-b-9">
-                            <a href="#" id="corBranca">Romance</a>
-                        </li>
-                        <li class="p-b-9">
-                            <a href="#" id="corBranca">Academicos</a>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="w-size7 p-t-30 p-l-15 p-r-15 respon4">
-                    <h4 class="s-text12 p-b-30"  id="corAmarelo">Livros</h4>
-                    <ul>
-                        <li class="p-b-9"><a href="#" id="corBranca">Busca</a></li>
-                        <li class="p-b-9"><a href="#" id="corBranca">Sobre NÃ³s</a></li>
-                        <li class="p-b-9"><a href="#" id="corBranca">Email</a></li>
-                        <li class="p-b-9"><a href="#" id="corBranca">Local</a></li>
-                    </ul>
-                </div>
-
-                <div class="w-size7 p-t-30 p-l-15 p-r-15 respon4">
-                    <h4 class="s-text12 p-b-30"  id="corAmarelo">Ajuda</h4>
-                    <ul>
-                        <li class="p-b-9">
-                            <a href="#" class="s-text7" id="corBranca">Dicas</a>
-                        </li>
-                        <li class="p-b-9">
-                            <a href="#" class="s-text7" id="corBranca">Como Vender</a>
-                        </li>
-                        <li class="p-b-9">
-                            <a href="#" class="s-text7" id="corBranca">Como Comprar</a>
-                        </li>
-                        <li class="p-b-9">
-                            <a href="#" class="s-text7" id="corBranca">FAQs</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="t-center p-l-15 p-r-15">
-                <a href="#"><img class="h-size2" src="res/images/icons/paypal.png" alt="IMG-PAYPAL"></a>
-                <a href="#"><img class="h-size2" src="res/images/icons/visa.png" alt="IMG-VISA"></a>
-                <a href="#"><img class="h-size2" src="res/images/icons/mastercard.png" alt="IMG-MASTERCARD"></a>
-                <a href="#"><img class="h-size2" src="res/images/icons/express.png" alt="IMG-EXPRESS"></a>
-                <a href="#"><img class="h-size2" src="res/images/icons/discover.png" alt="IMG-DISCOVER"></a>
-                <div class="t-center s-text8 p-t-20">Copyright@ 2018 Todos Direitos Reservados <i class="fa fa-heart-o" aria-hidden="true"></i> by DropBooks</div>
-            </div>
-        </footer>
-
+        <div id="footer"></div>
+        
         <script src="res/vendor/jquery/jquery.min.js"></script>
         <script src="res/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
