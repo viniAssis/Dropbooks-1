@@ -38,10 +38,6 @@ public class UsuarioDAO {
                 usuario.setSenha(rs.getString("senha"));
                 usuario.setNivel_usuario(rs.getString("Nivel_Usuario"));
                 usuario.setAtivo(rs.getString("Ativo"));
-                usuario.setBanco(rs.getString("banco"));
-                usuario.setAgencia(rs.getInt("agencia"));
-                usuario.setConta(rs.getInt("conta"));
-                usuario.setDigito(rs.getInt("digito"));
             } else {
                 usuario = null;
             }

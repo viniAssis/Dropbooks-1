@@ -10,6 +10,7 @@ import java.io.PrintWriter;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.mail.Session;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -80,11 +81,16 @@ public class CadastroServlet extends HttpServlet {
             user.setCidade(request.getParameter("cidade"));
             user.setBairro(request.getParameter("bairro"));
             user.setSenha(request.getParameter("senha"));
+            user.setNivel_usuario(request.getParameter("perfil"));
+            user.setBanco(request.getParameter("banco"));
+            user.setAgencia(Integer.parseInt(request.getParameter("agencia")));
+            user.setConta(Integer.parseInt(request.getParameter("conta")));
+            user.setDigito(Integer.parseInt(request.getParameter("digito")));
             
             Usuario usuario = CadastroDAO.cadastrar(user);
             
             
-            /* TESTE
+            
             out.println("<h1>Meu parametro foi " + user.getBairro() + " </h1>");
             out.println("<h1>Meu parametro foi " + user.getCep() + " </h1>");
             out.println("<h1>Meu parametro foi " + user.getCidade() + " </h1>");
@@ -99,14 +105,25 @@ public class CadastroServlet extends HttpServlet {
             out.println("<h1>Meu parametro foi " + user.getSexo() + " </h1>");
             out.println("<h1>Meu parametro foi " + user.getTelefone() + " </h1>");
             out.println("<h1>Meu parametro foi " + user.getDataNascimento() + " </h1>");
-            out.println("<h1>Meu parametro foi " + user.getId() + " </h1>");
+            //out.println("<h1>Meu parametro foi " + user.getId() + " </h1>");
             out.println("<h1>Meu parametro foi " + usuario.getEmail() + " </h1>");
-            out.println("<h1>Meu parametro foi " + usuario.getId() + " </h1>");
+            // out.println("<h1>Meu parametro foi " + usuario.getId() + " </h1>");
             out.println("<h1>Meu parametro foi " + usuario.getCpf_cnpj() + " </h1>");
-            */
+            out.println("<h1>Meu parametro foi " + usuario.getNivel_usuario()+ " </h1>");
+            out.println("<h1>Meu parametro foi " + usuario.getBanco()+ " </h1>");
+            out.println("<h1>Meu parametro foi " + usuario.getAgencia()+ " </h1>");
+            out.println("<h1>Meu parametro foi " + usuario.getConta()+ " </h1>");
+            out.println("<h1>Meu parametro foi " + usuario.getDigito()+ " </h1>");
+            
+            
+           
             
             // Redireciona para outra página
-            response.sendRedirect("login.jsp");
+            if(user.getNivel_usuario().equals("3")){
+                response.sendRedirect("login.jsp");
+            }else{
+                //response.sendRedirect("index.jsp");
+            }
             
             out.println("</body>");
             out.println("</html>");
