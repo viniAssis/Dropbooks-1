@@ -1,3 +1,5 @@
+<%@page import="modelDAO.PedidoDAO"%>
+<%@page import="model.Pedido"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.text.DateFormat"%>
 <%@page import="java.util.Date"%>
