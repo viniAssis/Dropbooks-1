@@ -15,6 +15,17 @@
         <script src="res/jquery-3.3.1.js"></script>  
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
         <link rel="stylesheet" href="res/css/bootstrap.css">
+        
+        <!-- IMPORTA O MENU SUPERIOR E O FOOTER -->
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        <script>
+           $(function(){
+              $("#header").load("MenuNavBar.jsp");
+              $("#footer").load("Footer.jsp");
+           });
+        </script>
+        <!-- IMPORTA O MENU SUPERIOR E O FOOTER -->
+        
         <style>
 
             .primeiro{display: none;}
@@ -149,6 +160,9 @@
     </head>
     
     <body>
+        
+        <!-- Navigation -->
+        <div id="header"></div>  
 
         <div class="card principal">
 
@@ -241,5 +255,9 @@
             </div>
 
         </div>
+                        
+                        <!-- /.container -->
+                        <!-- Footer -->
+                        <div id="footer"></div>
     </body>
 </html>
