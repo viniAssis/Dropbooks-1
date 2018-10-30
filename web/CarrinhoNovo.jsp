@@ -15,6 +15,16 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.8/jquery.mask.js"></script>
 
+        <!-- IMPORTA O MENU SUPERIOR E O FOOTER -->
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        <script>
+           $(function(){
+              $("#header").load("MenuNavBar.jsp");
+              $("#footer").load("Footer.jsp");
+           });
+        </script>
+        <!-- IMPORTA O MENU SUPERIOR E O FOOTER -->
+        
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" type="text/css" href="res/fonts/font-awesome-4.7.0/css/font-awesome.min.css"/>
         <link rel="stylesheet" type="text/css" href="res/vendor/animsition/css/animsition.min.css"/>
@@ -123,33 +133,8 @@
 
     <body class="bg-light">
         <!--inicio do nav-->
-        <nav class="navbar navbar-expand-md navbar-dark " id="nav">
-            <a class="navbar-brand col-sm-3 col-md-2" href="#">DROPBOOKS</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse col-lg-5">
-                <div class="navbar-nav-scroll">
-                    <ul class="navbar-nav bd-navbar-nav flex-row">
-                        <li class="nav-item">
-                            <a class="nav-link " href="novaHome.html" >Inicio</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link " href="novaHome.html" >Livros</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link " href="#" >F.A.Q</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link " href="Contato.jsp" >Contato</a>
-                        </li>
-                    </ul>
-                </div>
-
-            </div>
-        </nav>
-
+        <div id="header"></div>
+        
 
         <!--meu carrinho-->
 
@@ -221,7 +206,7 @@
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="exampleModalLabel">Tem certeza que deseja retirar do carrinho? </h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                                                <span aria-hidden="true">&times;</span>
+                                                <span aria-hidden="true">&times</span>
                                             </button>
                                         </div>
                                         
@@ -256,7 +241,7 @@
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="exampleModalLabel">Tem certeza que deseja retirar do carrinho? </h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                                                <span aria-hidden="true">&times;</span>
+                                                <span aria-hidden="true">&times</span>
                                             </button>
                                         </div>
                                         
@@ -374,85 +359,8 @@
 
 
         <!-- Footer -->
-        <footer class="bg6 p-t-45 p-b-43 p-l-45 p-r-45" id="footer">
-            <div class="flex-w p-b-90">
-                <div class="w-size6 p-t-30 p-l-15 p-r-15 respon3">
-                    <h4	 id="corAmarelo">
-                        Problemas
-                    </h4>
-                    <div>
-                        <p class="s-text7 w-size27" id="corBranca">
-                            Caso Tenha Qualquer Problema na Compra ou Venda do Seu livro Entre em Contato Para que seja Resolvido.
-                            Agradecemos sua Visita. Volte Sempre !
-                        </p>
-                    </div>
-                </div>
-                <div class="w-size7 p-t-30 p-l-15 p-r-15 respon4">
-                    <h4  class="s-text12 p-b-30" id="corAmarelo">
-                        Categorias
-                    </h4>
-                    <ul>
-                        <li class="p-b-9">
-                            <a href="#" id="corBranca">
-                                Ficção
-                            </a>
-                        </li>
-                        <li class="p-b-9">
-                            <a href="#" id="corBranca">
-                                Terror
-                            </a>
-                        </li>
-                        <li class="p-b-9">
-                            <a href="#" id="corBranca">
-                                Romance
-                            </a>
-                        </li>
-                        <li class="p-b-9">
-                            <a href="#" id="corBranca">
-                                Academicos
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="w-size7 p-t-30 p-l-15 p-r-15 respon4">
-                    <h4 class="s-text12 p-b-30"  id="corAmarelo">Livros</h4>
-                    <ul>
-                        <li class="p-b-9"><a href="#" id="corBranca">Busca</a></li>
-                        <li class="p-b-9"><a href="#" id="corBranca">Sobre Nós</a></li>
-                        <li class="p-b-9"><a href="#" id="corBranca">Email</a></li>
-                        <li class="p-b-9"><a href="#" id="corBranca">Local</a></li>
-                    </ul>
-                </div>
-                <div class="w-size7 p-t-30 p-l-15 p-r-15 respon4">
-                    <h4 class="s-text12 p-b-30"  id="corAmarelo">Ajuda</h4>
-                    <ul>
-                        <li class="p-b-9">
-                            <a href="#" class="s-text7" id="corBranca">Dicas</a>
-                        </li>
-                        <li class="p-b-9">
-                            <a href="#" class="s-text7" id="corBranca">Como Vender</a>
-                        </li>
-                        <li class="p-b-9">
-                            <a href="#" class="s-text7" id="corBranca">Como Comprar</a>
-                        </li>
-                        <li class="p-b-9">
-                            <a href="#" class="s-text7" id="corBranca">FAQs</a>
-                        </li>
-                    </ul>
-                </div>	
-            </div>
-            <div class="t-center p-l-15 p-r-15">
-                <a href="#"><img class="h-size2" src="res/images/icons/paypal.png" alt="IMG-PAYPAL"></a>
-                <a href="#"><img class="h-size2" src="res/images/icons/visa.png" alt="IMG-VISA"></a>
-                <a href="#"><img class="h-size2" src="res/images/icons/mastercard.png" alt="IMG-MASTERCARD"></a>
-                <a href="#"><img class="h-size2" src="res/images/icons/express.png" alt="IMG-EXPRESS"></a>
-                <a href="#"><img class="h-size2" src="res/images/icons/discover.png" alt="IMG-DISCOVER"></a>
-                <div class="t-center s-text8 p-t-20">
-                    Copyright © 2018 Todos Direitos Reservados <i class="fa fa-heart-o" aria-hidden="true"></i> by DropBooks
-                </div>
-            </div>
-        </footer>
-
+        <div id="footer"></div>
+        
         <!-- Back to top -->
         <div class="btn-back-to-top bg0-hov" id="myBtn">
             <span class="symbol-btn-back-to-top">

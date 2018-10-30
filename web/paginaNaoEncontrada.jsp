@@ -1,10 +1,17 @@
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="modelDAO.UsuarioDAO"%>
+<%@page import="model.Usuario"%>
+<%@page import="javax.servlet.http.HttpSession"%>
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Login</title>
+        <!-- Meta tags Obrigatï¿½rias -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <script src="res/jquery-3.3.1.js"></script>
+        <link href="res/css/bootstrap.min.css" rel="stylesheet">
+        <link href="res/css/modern-business.css" rel="stylesheet">
+        <script src="res/js/contato.js"></script>
 
 
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,108 +20,68 @@
         <link rel="stylesheet" type="text/css" href="res/css/main.css"/>
 
 
-        <link href="res/css/bootstrap.min.css" rel="stylesheet">
-        <link href="res/css/style.css" rel="stylesheet">
-        <script src="res/js/jquery.js"></script>
-        <script src="res/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="res/jquery-3.3.1.js"></script>
-        <script type="text/javascript">
-            $(document).ready(function () {
-                $('#enviar').click(function () {
-
-                    alert("");
-                    var email = $("#email").val();
-                    var senha = $("#senha").val();
-                    $.ajax({
-                        type: 'POST',
-                        url: "ServletLogin",
-                        data: {
-                            email: email,
-                            senha: senha
-                        },
-                        success: function (results) {
-                            if (results === "1") {
-                                $("#email").css("color", "red");
-                            } else if (results === "2") {
-                                $("#senha").css("color", "red");
-                            }
-                            els e{
-                                $("#email").css("color", "green");
-                                $("#senha").css("color", "green");
-                            }
-                        }
-                    });
-                });
-            });
-        </script>
-
         <style>
-
+            #container{
+                margin-top: 2%;
+                width: 50%;
+                margin-left: 30%;
+                margin-bottom: 7%;
+            }
             #caixa2{
                 margin-top: 7%;
-                margin-left: 20%;
+                margin-left: 25%;
                 margin-bottom: 3%;
                 clear: both;
-
             }
-
-            #container{
+            .titulo{
+                color: black;
+                padding: 3%;
+                margin-left: 20%;
+            }
+            #botao2{
                 margin-top: 3%;
-                margin-bottom: 10%;
-                margin-left: 15%;
+                margin-left: 5%;
+                margin-bottom: 3%;
+                width: 60%;
             }
-
             #nav{
                 background: #090446;
             }
-
             .navbar .navbar-nav li a{
                 color: #FEB95F !important;
                 font-weight: 400;
-
-
-
             }
             .navbar .navbar-nav li a:hover{
                 color: #FEB95F !important;
                 font-weight: 400;
-
                 transform: scale(1);
-
-
             }
             .navbar-brand{
                 color: #FEB95F !important;
                 font-size: 24px;
                 font-weight: 700;
-
             }
-
             #footer{
                 background: #090446;
-
             }
             #corAmarelo{
                 color:#FEB95F ;
             }
-
             #corBranca{
                 color: white;
             }
-
-            #botao1, #enviar{
-                background: #090446;
+            #botao1, #botao2{
                 color: #FEB95F !important;
+                background: #090446;
+            }#link{
+	 color:  #090446 !important;
             }
-
-            #cadastrar{
-                color: #090446;
-                background:#FEB95F;
-            }
+            
         </style>
+
+          <link href="res/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     </head>
     <body>
-        <!-- Navigation -->
         <nav class="navbar fixed-top navbar-expand-lg navbar-dark  fixed-top" id="nav">
             <div class="container">
                 <a class="navbar-brand" href="index.jsp">DropBooks</a>
@@ -127,24 +94,62 @@
                             <a class="nav-link" href="index.jsp">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="pesquisa.jsp">Livros</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link" href="Contato.jsp">Contato</a>
                         </li>
+                        <li class="nav-item">
+                            <%
+                                //VARIAVEIS QUE Vï¿½O PREENCHER OS CAMPOS VAZIOS COM OS DADOS DO USUARIO(SE ESTIVER LOGADO)
+                                String _email = "";
+                                String _nome = "";
+                                //IDENTIFICA SE O USUARIO ESTA LOGADO E TRAZ SEUS DADOS PARA A PAGINA, SE NAO ESTIVER LOGADO, MOSTRA O LINK PARA QUE O IMUNDO POSSA SE LOGAR
+                                if(session.getAttribute("email") != null) {
+
+                                    String email = request.getSession().getAttribute("email").toString();
+
+                                    Usuario user = new UsuarioDAO().getUsuario(email);
+                                    _email += user.getEmail();
+                                    _nome +=user.getNomeRazao();
+                             
+                                    out.print("</li>");
+                                    out.print("<li class=nav-item>");
+                                    out.print("<li class='nav-item dropdown'> "
+                                            + "<a class='nav-link dropdown-toggle' href='#' id='navbarDropdownPortfolio' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>"+ user.getNomeRazao() +"</a>"
+                                            +"<div class='dropdown-menu dropdown-menu-right' aria-labelledby='navbarDropdownPortfolio'>");
+                                                if (user.getNivel_usuario().equals("1")) {
+                                                                    out.print("<a class='dropdown-item' href='alterarFuncionarioAdm.jsp' >Cadastrar Funcionários</a>");
+                                                                    out.print("<a class='dropdown-item' href='alterarUsuarioAdm.jsp' > Alterar Usuario Adm </a>");
+                                                                    out.print("<a class='dropdown-item' href='cadastroFuncionario.jsp' >Cadastrar Funcionários</a>");
+                                                                    out.print("<a class='dropdown-item' href='listaUsuarioFuncionario.jsp' >Lista de Funcionários</a>");
+                                                                    out.print("<a class='dropdown-item' href='listaUsuarioUsuario.jsp' > Lista de Clientes</a>");
+                                                                }
+                                    out.print("<a class='dropdown-item' href='carrinho.jsp' >Carrinho</a>"
+                                            + "<a class='dropdown-item' href='alterarCadastro.jsp'>Alterar Dados</a>"
+                                            + "<a class='dropdown-item' href='catalogoLivro.jsp' >Meu Catalogo</a>"
+                                            + "<a class='dropdown-item' href='cadastroProduto.jsp' >Cadastra Catalogo</a>"
+                                            + "<a class='dropdown-item' href=Senha.jsp>Alterar Senha</a>"   
+                                            + "<a class='dropdown-item' name=Sair href=SairServlet>Sair</a>"
+                                            + "</div>"
+                                            + "</li>");
+                                    
+                                } else {
+                                    out.print("<a class=nav-link href=login.jsp>Login/Cadastrar</a>");
+                                }   
+                            %>
+                        </li>
+
                     </ul>
                 </div>
             </div>
         </nav>
 
-      <form id="caixa2" method='post' action="PesquisarLivrosServlet">
+        <form id="caixa2" method='post' action="PesquisarLivrosServlet">
             <div class="form-row align-items-center">
                 <div class="col-auto my-1">
                     <select class="custom-select mr-sm-2 border border-dark" id="tipoPesquisa" name="opcaoPesquisa">
-                        <option  value="Titulo">TÃ­tulo</option>
+                        <option  value="Titulo">Título</option>
                         <option  value="Autor">Autor</option>
                         <option  value="Editora">Editora</option>
-                        <option  value="Genero">GenÃªro</option>
+                        <option  value="Genero">Genêro</option>
                     </select>
                 </div>
                 <div class="col-auto col-md-6">
@@ -154,40 +159,12 @@
             </div>
         </form>
 
+        <div  class="container" id="container">
 
-        <div class="container col-lg-6" >
-            <div class="row">
-                <div class="formLogin col-md-8" id="container">
-                    <p class="h3 text-center">Identifique-se</p>
-                    <form action="Login" method="post">
-                        <div class="form-group">
-                            <label for="labelLogin">Email</label>
-                            <input type="text" class="form-control  border border-dark"  name="email" aria-describedby="email"
-                                   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"  required="required"
-                                   placeholder="email@dominio.com"/>
-                        </div>
-                        <div class="form-group">
-                            <label for="labelSenha">Senha</label>
-                            <input type="password" class="form-control  border border-dark"  name="senha" aria-describedby="senha" placeholder="*******">
-                            <small class="text-left novaSenha "><a href="Senha.html">Esqueceu sua senha?</a></small>
-                        </div>
-                        <button type="submit" value="login" class="btn border-0 btn-block" id="enviar">Enviar</button>
-                    </form><hr>
-
-                    <!--Adicionar link chamando um novo registro-->
-                    <div class="goRegistro">
-                        <label for="labelNovoReg">Primeira vez no Dropbooks?</label><br>
-                        <a href="cadastro.html">
-                            <button type="submit" class="btn btn-block" id="cadastrar">
-                                Cadastre-se</button></a>
-                    </div>
-                </div><br>
-            </div>
+                          <h3 class="titulo">Pagina não encontrada</h3>
+               
         </div>
 
-        <!-- Footer -->
-
-        <!-- Footer -->
         <footer class="bg6 p-t-45 p-b-43 p-l-45 p-r-45" id="footer">
             <div class="flex-w p-b-90">
                 <div class="w-size6 p-t-30 p-l-15 p-r-15 respon3">
@@ -208,7 +185,7 @@
                     <ul>
                         <li class="p-b-9">
                             <a href="#" id="corBranca">
-                                FicÃ§Ã£o
+                                Ficção
                             </a>
                         </li>
                         <li class="p-b-9">
@@ -232,7 +209,7 @@
                     <h4 class="s-text12 p-b-30"  id="corAmarelo">Livros</h4>
                     <ul>
                         <li class="p-b-9"><a href="#" id="corBranca">Busca</a></li>
-                        <li class="p-b-9"><a href="#" id="corBranca">Sobre NÃ³s</a></li>
+                        <li class="p-b-9"><a href="#" id="corBranca">Sobre Nós</a></li>
                         <li class="p-b-9"><a href="#" id="corBranca">Email</a></li>
                         <li class="p-b-9"><a href="#" id="corBranca">Local</a></li>
                     </ul>
@@ -262,7 +239,7 @@
                 <a href="#"><img class="h-size2" src="res/images/icons/express.png" alt="IMG-EXPRESS"></a>
                 <a href="#"><img class="h-size2" src="res/images/icons/discover.png" alt="IMG-DISCOVER"></a>
                 <div class="t-center s-text8 p-t-20">
-                    Copyright Â© 2018 Todos Direitos Reservados <i class="fa fa-heart-o" aria-hidden="true"></i> by DropBooks
+                    Copyright ï¿½ 2018 Todos Direitos Reservados <i class="fa fa-heart-o" aria-hidden="true"></i> by DropBooks
                 </div>
             </div>
         </footer>
@@ -277,6 +254,9 @@
         <!-- Container Selection1 -->
         <div id="dropDownSelect1"></div>
 
-    </body>
 
+        <!-- Bootstrap core JavaScript -->
+        <script src="res/vendor/jquery/jquery.min.js"></script>
+        <script src="res/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    </body>
 </html>

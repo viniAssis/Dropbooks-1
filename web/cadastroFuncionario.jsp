@@ -11,8 +11,17 @@
         <script src="res/js/cadastroFuncionario.js"></script>
         <script src="res/jquery-3.3.1.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.8/jquery.mask.js"></script>
-
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.8/jquery.mask.js"></script
+            
+        <!-- IMPORTA O MENU SUPERIOR E O FOOTER -->
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        <script>
+           $(function(){
+              $("#header").load("MenuNavBar.jsp");
+              $("#footer").load("Footer.jsp");
+           });
+        </script>
+        <!-- IMPORTA O MENU SUPERIOR E O FOOTER -->   
 
 
   <link rel="stylesheet" href="res/css/bootstrap.css">
@@ -117,6 +126,10 @@
     String email = request.getSession().getAttribute("email").toString();
 
     Usuario user = new UsuarioDAO().getUsuario(email);
+    
+    if(!user.getNivel_usuario().equals("1")){
+        response.sendRedirect("paginaNaoEncontrada.jsp");
+    }
         
     %>
     
@@ -124,55 +137,8 @@
 
     <body>
         <!-- Navigation -->
-  <nav class="navbar navbar-expand-md navbar-dark " id="nav">
-    <a class="navbar-brand col-sm-3 col-md-2" href="#">DROPBOOKS</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse col-lg-5">
-      <div class="navbar-nav-scroll">
-        <ul class="navbar-nav bd-navbar-nav flex-row">
-          <li class="nav-item">
-            <a class="nav-link " href="index.jsp" >Inicio</a>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link " href="index.jsp" >Livros</a>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link " href="#" >F.A.Q</a>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link " href="Contato.jsp" >Contato</a>
-          </li>
-          <%
-          out.print("</li>");
-                                    out.print("<li class=nav-item>");
-                                    out.print("<li class='nav-item dropdown'> "
-                                            + "<a class='nav-link dropdown-toggle' href='#' id='navbarDropdownPortfolio' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>"+ user.getNomeRazao() +"</a>"
-                                            + "<div class='dropdown-menu dropdown-menu-right' aria-labelledby='navbarDropdownPortfolio'>");
-                                            if(!user.getNivel_usuario().equals("1")){
-                                            out.print("<a class='dropdown-item' href='alterarFuncionarioAdm.jsp' id='link'>Alterar o Funcionário</a>"
-                                                    + "<a class='dropdown-item' href='cadastroFuncionario.jsp' id='link'>Cadastrar Funcionário</a>"
-                                                    + "<a class='dropdown-item' href='listaUsuarioFuncionario.jsp' id='link'>Lista de Funcionários</a>");               
-                                            }
-                                    out.print("<a class='dropdown-item' href='carrinho.jsp' id='link'>Carrinho</a>"
-                                            + "<a class='dropdown-item' href='alterarCadastro.jsp' id='link'>Alterar Dados</a>"
-                                            + "<a class='dropdown-item' href='catalogoLivro.jsp' id='link'>Meu Catalogo</a>"
-                                            + "<a class='dropdown-item' href='cadastroProduto.jsp' id='link'>Cadastra Catalogo</a>"
-                                            + "<a id='link' class='dropdown-item' href=Senha.jsp>Alterar Senha</a>"
-                                            + "<a class='dropdown-item' name=Sair href=SairServlet>Sair</a>"
-                                            + "</div>"
-                                            + "</li>");
-          %>
-
-        </ul>
-      </div>
-    </div>
-  </nav>
+        <div id="header"></div>
+        
         <h2>Cadastro de Funcionario</h2>
 
         <!-- Removido  onsubmit="teste()" -->
@@ -337,12 +303,7 @@
 
 
         <!-- Footer -->
-        <footer class="py-5 bg-primary">
-            <div class="container">
-                <p class="m-0 text-center text-white">Copyright &copy; DropBooks</p>
-            </div>
-            <!-- /.container -->
-        </footer>
+        <div id="footer"></div>
 
     </body>
 
