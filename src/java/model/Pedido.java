@@ -1,11 +1,16 @@
 package model;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
 public class Pedido {
+
+
+
     private int id_pedido;
     private Usuario usuario;
-    private String forma_pagamento, status_pagamento, cep, logradouro, numero, complemento, estado, cidade, bairro;
+    private ArrayList<Item> itens;
+    private String forma_pagamento,status_pagamento, cep, logradouro, numero, complemento, estado, cidade, bairro;
     private Date data_pedido;
     private float subtotal, frete, total;
 
@@ -15,7 +20,19 @@ public class Pedido {
     public int getId_pedido() {
         return id_pedido;
     }
+    /**
+     * @return the itens
+     */
+    public ArrayList<Item> getItens() {
+        return itens;
+    }
 
+    /**
+     * @param itens the itens to set
+     */
+    public void setItens(ArrayList<Item> itens) {
+        this.itens = itens;
+    }
     /**
      * @param id_pedido the id_pedido to set
      */

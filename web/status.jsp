@@ -1,3 +1,4 @@
+<%@page import="model.Item"%>
 <%@page import="modelDAO.PedidoDAO"%>
 <%@page import="model.Pedido"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -117,10 +118,10 @@
             String mostrarData = dataAtual.format(data);
         
             // Todos os pedidos pelo ID do usuário
-            ArrayList<Pedido> ultimoPedido = new PedidoDAO().getUltimoPedido(user.getId());
+            Pedido ultimoPedido = PedidoDAO.getUltimoPedido(user.getId());
             
-            int status = 0;
-            status = ultimoPedido.getStatus();
+            String status = "";
+            status = ultimoPedido.getStatus_pagamento();
             
             String primeiro, segundo, terceiro, quarto;
 
@@ -129,22 +130,22 @@
             terceiro = "";
             quarto = "";
 
-            if (status == 1) {
+            if (status.equals("1")) {
                 primeiro = "display: ;";
                 segundo = "display: none;";
                 terceiro = "display: none;";
                 quarto = "display: none;";
-            } else if (status == 2) {
+            } else if (status.equals("2")) {
                 primeiro = "display: none;";
                 segundo = "display: ;";
                 terceiro = "display: none;";
                 quarto = "display: none;";
-            } else if (status == 3) {
+            } else if (status.equals("3")) {
                 primeiro = "display: none;";
                 segundo = "display: none;";
                 terceiro = "display: ;";
                 quarto = "display: none;";
-            } else if (status == 4) {
+            } else if (status.equals("4")) {
                 primeiro = "display: none;";
                 segundo = "display: none;";
                 terceiro = "display: none;";
@@ -170,7 +171,7 @@
 
                 <span class="pedido">Pedido
 
-                    <span id="numeroPedido" name="numeroPedido">00<%=ultimoPedido.getId()%></span>
+                    <span id="numeroPedido" name="numeroPedido">00<%=ultimoPedido.getId_pedido()%></span>
                 </span>
 
                 <span class="data">Data atualizada:
@@ -183,7 +184,7 @@
 
             <span class="titulo3">
                 Previsão de entrega:
-                <span class="text-info" id="prazo" name="prazo"><%=ultimoPedido.getDataPrazo()%></span>
+                <span class="text-info" id="prazo" name="prazo"><%=ultimoPedido.getData_pedido()%></span>
             </span>
 
             <div class="progress" style="height: 30px; <%=primeiro%>">
@@ -203,22 +204,22 @@
             </div>
 
             <%
-                //ArrayList<Pedido> lista = new PedidoDAO().getUltimoPedido();
-                for (int i = 0; i < ultimoPedido.size(); i++) {
+                ArrayList<Item> lista = ultimoPedido.getItens();
+                for (int i = 0; i < lista.size(); i++) {
                     out.println("<div>");
-                    out.println("<img src='./imagens?id_prod='" + ultimoPedido.get(i).getId() + "'&img=1' class='img-fluid img' alt='Imagem responsiva'>");
+                    out.println("<img src='./imagens?id_prod='" + lista.get(i).getProduto().getId() + "'&img=1' class='img-fluid img' alt='Imagem responsiva'>");
                     // Elemento com `diplay: block;`
                     out.println("<div class='row titulo'>");
-                    out.println("<p class='font-weight-normal nome' id='nomeLivro' name='nomeLivro'>Nome do Livro:" + ultimoPedido.get(i).getTitulo() + "</p>");
+                    out.println("<p class='font-weight-normal nome' id='nomeLivro' name='nomeLivro'>Nome do Livro:" + lista.get(i).getProduto().getTitulo() + "</p>");
                     out.println("</div>");
 
                     //<!-- Elemento com `diplay: inline;` -->
                     out.println("<span class='font-weight-normal d-inline-block quantidade'>");
-                    out.println("<span><span id='quantidade' name='quantidade'>Quantidade: " + ultimoPedido.get(i).getQuantidade() + "</span>");
+                    out.println("<span><span id='quantidade' name='quantidade'>Quantidade: " + lista.get(i).getProduto().getQuantidade() + "</span>");
                     out.println("</span>");
 
                     out.println("<span class='font-weight-normal d-inline-block quantidade'>");
-                    out.println("<span>R$ <span id='valor' name='valor'>Valor: " + ultimoPedido.get(i).getPreco() + "</span>");
+                    out.println("<span>R$ <span id='valor' name='valor'>Valor: " + lista.get(i).getProduto().getPreco() + "</span>");
                     out.println("</span>");
                     out.println("</div>");
                 }
@@ -231,7 +232,7 @@
                     <div class="card  mb-3 box" style="max-width: 18rem;">
                         <div class="card-header titulo2">Endereço de Entrega:  </div>
                         <div class="card-body text-primary">
-                            <p class="card-text" id="nome" name="nome"> <%=ultimoPedido.getNome()%>  </p>
+                            <p class="card-text" id="nome" name="nome"> <%=ultimoPedido.getUsuario().getNomeRazao()%>  </p>
                             <p class="card-text" id="endereco" name="endereco"> <%=ultimoPedido.getLogradouro()%>
                                 <span id="numero" name="numero"></span> <%=ultimoPedido.getNumero()%>
                             </p>
@@ -246,9 +247,9 @@
                         <div class="card-header titulo2">Total Pago</div>
                         <div class="card-body text-primary">
                             <p class="card-text">Subtotal <span class="direita" id="valor" name="valor"><%=ultimoPedido.getSubtotal()%></span> </p>
-                            <p class="card-text">Frete <span class="direita" id="valorFrente" name="valorFrente"><%=ultimoPedido.getValorFrete()%></span> </p>
+                            <p class="card-text">Frete <span class="direita" id="valorFrente" name="valorFrente"><%=ultimoPedido.getFrete()%></span> </p>
                             <hr class="barra2">
-                            <p class="card-text">Valor Total <span class="direita" id="valorTotal" name="valorTotal"><%=ultimoPedido.getValorTotal()%></span> </p>
+                            <p class="card-text">Valor Total <span class="direita" id="valorTotal" name="valorTotal"><%=ultimoPedido.getTotal()%></span> </p>
                         </div>
                     </div>
                 </div>

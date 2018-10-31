@@ -8,6 +8,49 @@ import model.Pedido;
 
 public class PedidoDAO {
     
+    public static Pedido getUltimoPedido(int id_usuario) {
+        
+        Pedido pedido = new Pedido();
+        
+        try {
+            Connection con = Conecta.getConexao();
+            String sql = "SELECT * FROM pedidos WHERE id_usuario=? limit 1";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id_usuario);
+            ResultSet rs = ps.executeQuery();
+            
+            if(rs.next()){
+                pedido.setId_pedido(rs.getInt("id_pedido"));
+                pedido.setUsuario(UsuarioDAO.getUserById(id_usuario));
+                pedido.setItens(ItemDAO.getItensDoPedido(rs.getInt("id_pedido")));
+                pedido.setForma_pagamento(rs.getString("forma_pagamento"));
+                pedido.setStatus_pagamento(rs.getString("status_pagamento"));
+                pedido.setCep(rs.getString("cep"));
+                pedido.setLogradouro(rs.getString("logradouro"));
+                pedido.setNumero(rs.getString("numero"));
+                pedido.setComplemento(rs.getString("complemento"));                
+                pedido.setEstado(rs.getString("estado"));
+                pedido.setCidade(rs.getString("cidade"));
+                pedido.setBairro(rs.getString("bairro"));
+                pedido.setData_pedido(rs.getDate("data_pedido"));
+                pedido.setSubtotal(rs.getFloat("subtotal"));
+                pedido.setFrete(rs.getFloat("frete"));
+                pedido.setTotal(rs.getFloat("total"));
+            }else{
+                pedido = null;
+            }
+            
+            rs.close();
+            ps.close();
+            con.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return pedido;
+    }
+        
     public static Pedido getPedido(int id_pedido) {
         
         Pedido pedido = new Pedido();
@@ -21,7 +64,8 @@ public class PedidoDAO {
             
             if(rs.next()){
                 pedido.setId_pedido(rs.getInt("id_pedido"));
-                pedido.setUsuario(UsuarioDAO.getUserById(rs.getInt("id_pedido")));
+                pedido.setUsuario(UsuarioDAO.getUserById(rs.getInt("id_usuario")));
+                pedido.setItens(ItemDAO.getItensDoPedido(id_pedido));
                 pedido.setForma_pagamento(rs.getString("forma_pagamento"));
                 pedido.setStatus_pagamento(rs.getString("status_pagamento"));
                 pedido.setCep(rs.getString("cep"));

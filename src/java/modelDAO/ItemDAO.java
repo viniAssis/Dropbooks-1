@@ -64,6 +64,37 @@ public class ItemDAO {
         }
         return itens;
     }
+    public static ArrayList<Item> getItensDoPedido(int id_pedido) {
+        
+        ArrayList<Item> itens = new ArrayList();
+        
+        try {
+            Connection con = Conecta.getConexao();
+            String sql = "SELECT id_item, id_pedido, id_produto, status_entrega " +
+                         "FROM itens " +
+                         "WHERE id_pedido = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id_pedido);
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){
+                Item item = new Item();                
+                item.setId_item(rs.getInt("id_item"));
+                item.setPedido(PedidoDAO.getPedido(rs.getInt("id_pedido")));
+                item.setProduto(ProdutoDAO.getProduto(rs.getInt("id_produto")));
+                item.setStatus_entrega(rs.getString("status_entrega"));
+                itens.add(item);
+            }
+            
+            rs.close();
+            ps.close();
+            con.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return itens;
+    }
     
     public static String atualizarEntrega(Item item) {
         String resp = "";
