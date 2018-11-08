@@ -26,6 +26,15 @@
         <link rel="stylesheet" type="text/css" href="res/fonts/font-awesome-4.7.0/css/font-awesome.min.css"/>
         <link rel="stylesheet" type="text/css" href="res/css/util.css"/>
         <link rel="stylesheet" type="text/css" href="res/css/main.css"/>
+        <!-- IMPORTA O MENU SUPERIOR E O FOOTER -->
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        <script>
+           $(function(){
+              $("#header").load("MenuNavBar.jsp");
+              $("#footer").load("Footer.jsp");
+           });
+        </script>
+        <!-- IMPORTA O MENU SUPERIOR E O FOOTER -->
         
         <style>
 
@@ -323,35 +332,7 @@
     </head>
     <body>   
         <!-- Navigation -->
-        <nav class="navbar fixed-top navbar-expand-lg navbar-darkfixed-top" id="nav">
-			<div class="container">
-				<a class="navbar-brand" href="index.jsp">DropBooks</a>
-				<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span>
-				</button>
-				<div class="collapse navbar-collapse" id="navbarResponsive">
-					<ul class="navbar-nav ml-auto">
-						<li class="nav-item">
-							<a class="nav-link" href="index.jsp">Home</a>
-						</li>
-                                                <li class="nav-item">
-                                                        <a class="nav-link" href="Contato.jsp">Contato</a>
-                                                </li>
-                                              
-                                                <li class="nav-item">
-                                                    <li class="nav-item dropdown"> 
-                                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= user.getNomeRazao()%></a>
-                                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
-                                                    <a class="dropdown-item" href="alterarCadastro.jsp">Alterar Dados</a>
-                                                    <a class="dropdown-item" href="catalogoLivro.jsp">Meu Catalogo</a>
-                                                    <a class="dropdown-item" href="cadastroProduto.jsp">Cadastra Catalogo</a>
-                                                    <a class="dropdown-item" href="Senha.jsp">Alterar Senha</a>
-                                                    <a class="dropdown-item" name=Sair href=SairServlet>Sair</a>
-                                                    </div>
-                                                </li>
-                			</ul>
-				</div>
-			</div>
-		</nav>
+        <div id="header"></div>
         
         <div class="container-fluid">
  
@@ -411,106 +392,9 @@
                             out.println("<p> Valor: R&#36;: <span name='valor' id='valor'>" + lista.get(i).getPreco()+ "</span></p>");
 
                             // <!-- Botão para acionar modal BOTAO EDITAR -->
-                            out.println("<button type='button' class='btn btn-primary editar' data-toggle='modal' data-target='#ExemploModalCentralizado' name='editar' id='"+lista.get(i).getId()+"'>");
+                            out.println("<button type='button' class='btn btn-primary editar' data-toggle='modal' data-target='#ExemploModalCentralizado' name='editar' onclick=' location.href= &#39 editarProduto.jsp?id="+ lista.get(i).getId() +" &#39'>");
                                 out.println("Editar");
                             out.println("</button>");
-
-                            // <!-- Modal -->
-                            out.println("<div class='modal fade' id='ExemploModalCentralizado' tabindex='-1' role='dialog' aria-labelledby='TituloModalCentralizado' aria-hidden='true'>");
-                                out.println("<div class='modal-dialog modal-dialog-centered' role='document'>");
-                                    out.println("<div class='modal-content'>");
-                                        out.println("<div class='modal-header'>");
-                                            out.println("<h5 class='modal-title' id='TituloModalCentralizado'>Editar Catálogo</h5>");
-                                            out.println("<button type='button' class='close' data-dismiss='modal' aria-label='Fechar'>");
-                                                out.println("<span aria-hidden='true'>&times;</span>");
-                                            out.println("</button>");
-                                        out.println("</div>");
-                                        out.println("<div class='modal-body'>");
-                                            out.println("<center>");
-                                                out.println("<form method='post' action='AlterarProdutoServlet?id=" + lista.get(i).getId() + "' name='ed_catalogo'>");
-                                                    out.println("<table>");
-                                                        out.println("<tr>");
-                                                            out.println("<td class='formLivro'>Titulo do Livro:</td>");
-                                                            //out.println("<p> ID: <span name='id' id='id'>" + lista.get(i).getId() + "</span></p>");
-                                                            out.println("<td style='color:black'>");
-                                                                out.println("<input type='text' class='input' name='namelivro' id='namelivro' placeholder='' value='" + lista.get(i).getTitulo()+ "'>");
-                                                            out.println("</td>");
-                                                        out.println("</tr>");
-                                                        out.println("<tr>");
-                                                            out.println("<td class='formLivro'>Nome do Autor: </td>");
-                                                            out.println("<td style='color:black'>");
-                                                                out.println("<input type='text' class='input' name='nameAutor' id='nameAutor' placeholder='' value='" + lista.get(i).getAutor()+ "'>");
-                                                            out.println("</td>");
-                                                        out.println("</tr>");
-                                                        out.println("<tr>");
-                                                            out.println("<td class='formLivro'>Nome da Editora: </td>");
-                                                            out.println("<td style='color:black'>");
-                                                                out.println("<input type='text' class='input' name='nameEditora' id='nameEditora' placeholder='' value='" + lista.get(i).getEditora()+ "'>");
-                                                            out.println("</td>");
-                                                        out.println("</tr>");
-                                                        out.println("<tr>");
-                                                            out.println("<td class='formLivro'>Ano de Lançamento: </td>");
-                                                            out.println("<td style='color:black'>");
-                                                                out.println("<input type='date' class='input' name='anoLancamento' id='anoLancamento' placeholder=''  value='" + lista.get(i).getDataPublicacao()+ "'>");
-                                                            out.println("</td>");
-                                                        out.println("</tr>");
-                                                        out.println("<tr>");
-                                                            out.println("<td class='formLivro'>Valor do Livro: </td>");
-                                                            out.println("<td style='color:black'>");
-                                                                out.println("<input type='text'  class='input' name='valor' id='idValor' placeholder='' value='" + lista.get(i).getPreco()+ "'>");
-                                                            out.println("</td>");
-                                                        out.println("</tr>");
-                                                        out.println("<tr>");
-                                                            out.println("<td class='formLivro'>Descrição: </td>");
-                                                            out.println("<td style='color:black'>");
-                                                                out.println("<textarea class='form-control input' id='descricao' name='descricaoProduto' value='' placeholder='' rows='3' >" + lista.get(i).getDescricao()+ "</textarea>");
-                                                            out.println("</td>");
-                                                        out.println("</tr>");
-
-                                                    out.println("</table>");
-                                                    out.println("<div class='dropdown' id='dropdown1'>");
-                                                        out.println("<div class='dropdown'>");
-                                                            out.println("<label class='formLivro'>Gênero</label>");
-                                                            out.println("<select class='btn  dropdown-toggle' id='idGenero' name='menuGenero' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false' value=''>");
-                                                                out.println("<option>" + lista.get(i).getGenero()+ "</option>");
-                                                                out.println("<option>Drama</option>");
-                                                                out.println("<option>Ação</option>");
-                                                                out.println("<option>Aventura</option>");
-                                                                out.println("<option>Comédia</option>");
-                                                                out.println("<option>Fantasia</option>");
-                                                            out.println("</select>");
-
-                                                        out.println("</div>");
-                                                    out.println("</div>");
-                                                    out.println("<div class='dropdown' id='dropdown2'>");
-                                                        out.println("<div class='dropdown'>");
-                                                            out.println("<label class='formLivro'>Idioma</label>");
-                                                            out.println("<select class='btn  dropdown-toggle' id='idIdioma' name='menuIdioma' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false' value=''>");
-                                                                out.println("<option>" + lista.get(i).getIdioma()+ "</option>");
-                                                                out.println("<option>Português</option>");
-                                                                out.println("<option>Inglês</option>");
-                                                            out.println("</select>");
-
-                                                        out.println("</div>");
-                                                    out.println("</div>");
-                                                    
-                                                     out.println("<div class='input-group mb-3'>");
-                                                        out.println("<div class='input-group-prepend'>");
-                                                            out.println("<span class='input-group-text' id='inputGroupFileAddon01'>Alterar Foto</span>");
-                                                        out.println("</div>");
-                                                        out.println("<div class='custom-file'>");
-                                                            out.println("<input type='file' class='custom-file-input' id='inputFoto' name='inputFoto' aria-describedby='inputGroupFileAddon01'>");
-                                                            out.println("<label class='custom-file-label' for='inputGroupFile01'></label>");
-                                                        out.println("</div>");
-                                                    out.println("</div>");
-                                                    out.println("<br>");
-                                                    out.println("<button type='submit' class='btn btn-primary' name='editar_catalogo' id='edcatalogo'>Editar Catálogo</button>");
-                                                out.println("</form>");
-                                            out.println("</center>");
-                                        out.println("</div>");
-                                    out.println("</div>");
-                                out.println("</div>");
-                            out.println("</div>");
 
                             // <!-- Botão para acionar modal BOTAO EXCLUIR -->
                             out.println("<button type='button' class='btn btn-primary' data-toggle='modal' data-target='#modalExemplo' name='excluir' id='idExcluir'>");
@@ -559,86 +443,9 @@
 
             </div>
             
-             <!-- Footer -->
-        <footer class="bg6 p-t-45 p-b-43 p-l-45 p-r-45" id="footer">
-            <div class="flex-w p-b-90">
-                <div class="w-size6 p-t-30 p-l-15 p-r-15 respon3">
-                    <h4	 id="corAmarelo">
-                        Problemas
-                    </h4>
-                    <div>
-                        <p class="s-text7 w-size27" id="corBranca">
-                            Caso Tenha Qualquer Problema na Compra ou Venda do Seu livro Entre em Contato Para que seja Resolvido.
-                            Agradecemos sua Visita. Volte Sempre !
-                        </p>
-                    </div>
-                </div>
-                <div class="w-size7 p-t-30 p-l-15 p-r-15 respon4">
-                    <h4  class="s-text12 p-b-30" id="corAmarelo">
-                        Categorias
-                    </h4>
-                    <ul>
-                        <li class="p-b-9">
-                            <a href="#" id="corBranca">
-                                Ficção
-                            </a>
-                        </li>
-                        <li class="p-b-9">
-                            <a href="#" id="corBranca">
-                                Terror
-                            </a>
-                        </li>
-                        <li class="p-b-9">
-                            <a href="#" id="corBranca">
-                                Romance
-                            </a>
-                        </li>
-                        <li class="p-b-9">
-                            <a href="#" id="corBranca">
-                                Academicos
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="w-size7 p-t-30 p-l-15 p-r-15 respon4">
-                    <h4 class="s-text12 p-b-30"  id="corAmarelo">Livros</h4>
-                    <ul>
-                        <li class="p-b-9"><a href="#" id="corBranca">Busca</a></li>
-                        <li class="p-b-9"><a href="#" id="corBranca">Sobre Nós</a></li>
-                        <li class="p-b-9"><a href="#" id="corBranca">Email</a></li>
-                        <li class="p-b-9"><a href="#" id="corBranca">Local</a></li>
-                    </ul>
-                </div>
-                <div class="w-size7 p-t-30 p-l-15 p-r-15 respon4">
-                    <h4 class="s-text12 p-b-30"  id="corAmarelo">Ajuda</h4>
-                    <ul>
-                        <li class="p-b-9">
-                            <a href="#" class="s-text7" id="corBranca">Dicas</a>
-                        </li>
-                        <li class="p-b-9">
-                            <a href="#" class="s-text7" id="corBranca">Como Vender</a>
-                        </li>
-                        <li class="p-b-9">
-                            <a href="#" class="s-text7" id="corBranca">Como Comprar</a>
-                        </li>
-                        <li class="p-b-9">
-                            <a href="#" class="s-text7" id="corBranca">FAQs</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="t-center p-l-15 p-r-15">
-                <a href="#"><img class="h-size2" src="res/images/icons/paypal.png" alt="IMG-PAYPAL"></a>
-                <a href="#"><img class="h-size2" src="res/images/icons/visa.png" alt="IMG-VISA"></a>
-                <a href="#"><img class="h-size2" src="res/images/icons/mastercard.png" alt="IMG-MASTERCARD"></a>
-                <a href="#"><img class="h-size2" src="res/images/icons/express.png" alt="IMG-EXPRESS"></a>
-                <a href="#"><img class="h-size2" src="res/images/icons/discover.png" alt="IMG-DISCOVER"></a>
-                <div class="t-center s-text8 p-t-20">
-                    Copyright © 2018 Todos Direitos Reservados <i class="fa fa-heart-o" aria-hidden="true"></i> by DropBooks
-                </div>
-            </div>
-        </footer>
-
+        <!-- Footer -->
+        <div id="footer"></div>
+             
         <!-- Back to top -->
         <div class="btn-back-to-top bg0-hov" id="myBtn">
             <span class="symbol-btn-back-to-top">

@@ -21,7 +21,15 @@
     <script src="res/js/src/sorttable.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    
+    <!-- IMPORTA O MENU SUPERIOR E O FOOTER -->
+      <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+      <script>
+         $(function(){
+            $("#header").load("MenuNavBar.jsp");
+            $("#footer").load("Footer.jsp");
+         });
+      </script>
+      <!-- IMPORTA O MENU SUPERIOR E O FOOTER -->
     <!-- Custom styles for this template -->
         <link href="res/css/modern-business.css" rel="stylesheet">
     
@@ -58,60 +66,7 @@
         
     </head>
     <body>
-        
-        <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary fixed-top">
-            <div class="container">
-                <a class="navbar-brand" href="index.jsp">DropBooks</a>
-                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.jsp">Home</a>
-                        </li> 
-                        <li class="nav-item">
-                            <a class="nav-link" href="Contato.jsp">Contato</a>
-                        </li>
-                         <li class="nav-item">
-                            <%
-                                //VARIAVEIS QUE VÃO PREENCHER OS CAMPOS VAZIOS COM OS DADOS DO USUARIO(SE ESTIVER LOGADO)
-                                String _email = "";
-                                String _nome = "";
-                                //IDENTIFICA SE O USUARIO ESTA LOGADO E TRAZ SEUS DADOS PARA A PAGINA, SE NAO ESTIVER LOGADO, MOSTRA O LINK PARA QUE O IMUNDO POSSA SE LOGAR
-                                if (session.getAttribute("email") != null) {
-
-                                    String email = request.getSession().getAttribute("email").toString();
-
-                                    Usuario user = new UsuarioDAO().getUsuario(email);
-                                    _email += user.getEmail();
-                                    _nome += user.getNomeRazao();
-                                    
-                                    out.print("</li>");
-                                    out.print("<li class=nav-item>");
-                                    out.print("<li class='nav-item dropdown'> "
-                                            + "<a class='nav-link dropdown-toggle' href='#' id='navbarDropdownPortfolio' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>"+ user.getNomeRazao() +"</a>"
-                                            + "<div class='dropdown-menu dropdown-menu-right' aria-labelledby='navbarDropdownPortfolio'>"
-                                            + "<a class='dropdown-item' href='alterarCadastro.jsp'>Alterar Dados</a>"
-                                            + "<a class='dropdown-item' href='catalogoLivro.jsp'>Meu Catalogo</a>"
-                                            + "<a class='dropdown-item' href='cadastroProduto.jsp'>Cadastra Catalogo</a>"
-                                            + "<a class='dropdown-item' href=Senha.jsp>Alterar Senha</a>"
-                                            + "<a class='dropdown-item' name=Sair href=SairServlet>Sair</a>"
-                                            + "</div>"
-                                            + "</li>");
-                                    
-                                    
-                                    
-                                } else {
-                                    out.print("<a class=nav-link href=login.jsp>Login/Cadastrar</a>");
-                                }        
-                            %>
-                        </li> 
-   
-                    </ul>
-                </div>
-            </div>
-        </nav>
+        <div id="header"></div>   
         
         
         
@@ -178,7 +133,7 @@
 					<th scope="col" class='idioma'> idioma</th>
 					<th scope="col" class='genero'> genero</th>
 					<th scope="col" class='preco'> preço</th>
-					<th scope="col" class='idUsuario'> id_usuario</th>
+					<th scope="col" class='Vendedor'> Vendedor</th>
 		</tr>
             </thead>
 			<tbody id="tblProduto">
@@ -203,15 +158,20 @@
 						"<td class='idioma'>"+produtos.get(i).getIdioma()+"</td>"+
 						"<td class='genero'>"+produtos.get(i).getGenero()+"</td>"+
 						"<td class='preco'>"+produtos.get(i).getPreco()+"</td>"+
-						"<td class='idUsuario'>"+produtos.get(i).getId_usuario()+"</td>"+
+						"<td class='Vendedor'>"+produtos.get(i).getId_usuario()+"</td>"+
                                                 
                                                 "</tr>");
 				   }
 				%>
 			
 		</tbody>
-        <table>
+        </table>
             
+        
+                                
+        <!-- footer -->
+        <div id="footer"></div>
+                                
             <script src="res/vendor/jquery/jquery.min.js"></script>
     <script src="res/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 	</body>

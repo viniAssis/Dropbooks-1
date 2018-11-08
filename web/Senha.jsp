@@ -25,6 +25,16 @@
         <link href="res/css/modern-business.css" rel="stylesheet">
 
         <script src="res/jquery-3.3.1.js"></script>
+        
+        <!-- IMPORTA O MENU SUPERIOR E O FOOTER -->
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        <script>
+           $(function(){
+              $("#header").load("MenuNavBar.jsp");
+              $("#footer").load("Footer.jsp");
+           });
+        </script>
+        <!-- IMPORTA O MENU SUPERIOR E O FOOTER -->
 
         <!-- <link href="res/css/the-big-picture.css" rel="stylesheet">
         -->
@@ -95,55 +105,14 @@
     <body>
 
         <!-- Navigation -->
-        <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary fixed-top" >
-            <div class="container">
-                <a class="navbar-brand" href="index.jsp">DropBooks</a>
-                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse"  id="navbarResponsive">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.jsp">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="Contato.jsp">Contato</a>
-                        </li>
-                        <li class="nav-item">
-                            <%
-
-                                if (session.getAttribute("email") != null) {
-
-                                    String email = request.getSession().getAttribute("email").toString();
-
-                                    Usuario user = new UsuarioDAO().getUsuario(email);
-
-                                    out.print("</li>");
-                                    out.print("<li class=nav-item>");
-                                    out.print("<li class='nav-item dropdown'> "
-                                            + "<a class='nav-link dropdown-toggle' href='#' id='navbarDropdownPortfolio' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>" + user.getNomeRazao() + "</a>"
-                                            + "<div class='dropdown-menu dropdown-menu-right' aria-labelledby='navbarDropdownPortfolio'>"
-                                            + "<a class='dropdown-item' href='alterarCadastro.jsp'>Alterar Dados</a>"
-                                            + "<a class='dropdown-item' href='catalogoLivro.jsp'>Meu Catalogo</a>"
-                                            + "<a class='dropdown-item' href='cadastroProduto.jsp'>Cadastra Catalogo</a>"
-                                            + "<a class='dropdown-item' href=Senha.jsp>Alterar Senha</a>"
-                                            + "<a class='dropdown-item' name=Sair href=SairServlet>Sair</a>"
-                                            + "</div>"
-                                            + "</li>");
-
-                                } else {
-                                    out.print("<a class=nav-link href=login.jsp>Login/Cadastrar</a>");
-                                }
-                            %>   
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+        <div id="header"></div>
+        
         <section>
             <div class="container">
                 <div class="conteudo">
 
+                    <center> <h1>Alterar Senha</h1></center>
+                    
                     <form>
                         <div class="form-row">
                             <input type="text" class="form-control border border-dark"  placeholder="Email" id="email" maxlength="45" required="">
@@ -170,13 +139,8 @@
 
             </div></section>
         <!-- Footer -->
-        <footer class="py-5 bg-primary">
-            <div class="container">
-                <p class="m-0 text-center text-white">Copyright &copy; DropBooks</p>
-            </div>
-            <!-- /.container -->
-        </footer>
-
+        <div id="footer"></div>
+        
         <!-- Bootstrap core JavaScript -->
         
         <script src="res/vendor/jquery/jquery.min.js"></script>
