@@ -46,7 +46,8 @@ public class FinalizarPedidoServlet extends HttpServlet {
                         }
                         
                         cookie.setMaxAge(0);
-                        cookie.setValue(null);
+                        cookie.setValue("");
+                        response.addCookie(cookie);
                     }
                 }
             }
@@ -66,8 +67,6 @@ public class FinalizarPedidoServlet extends HttpServlet {
                 }
                 
                 PedidoDAO.gerarPedido(usuario, cart);
-                
-                
             }
         }
     }
