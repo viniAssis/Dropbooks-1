@@ -248,6 +248,100 @@
             </div>
         </div>
         <!-- /.row -->
+        
+        <!-- Portfolio Section -->
+        <div class="row">
+            <div class="col-lg-6 col-sm-6">
+                <h2>Produtos mais recentes por gênero</h2>
+            </div>
+            <div class="col-lg-6 col-sm-6">
+                <select id="selectGenero" onchange="atualizarGenero()">
+                    <option value="">Selecione um gênero</option>
+                    <option value="Ação">Ação</option>
+                    <%
+                        ArrayList<Produto> listaRecGen = ProdutoDAO.getProdutosRecentes();
+                        ArrayList<String> generos = ProdutoDAO.getGeneros();
+                        for (int i = 0; i < generos.size(); i++) {
+                            out.print("<option value=" + generos.get(i) + ">" + generos.get(i) + "</option>");
+                        }
+                    %>
+                </select>
+            </div>
+        </div>
+        <div class="row" id="recentesPorGenero">
+            <div class="col-lg-4 col-sm-6 portfolio-item">
+                <div class="card h-100">
+                    <a href="./pagProduto.jsp?id=<%=listaRecGen.get(0).getId()%>"><img class ="card-img-top" src="./imagens?id_prod=<%=listaRecGen.get(0).getId()%>&img=1" alt=""></a>
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <a href="./pagProduto.jsp?id=<%=listaRecGen.get(0).getId()%>"><% out.print(listaRecGen.get(0).getTitulo()); %></a>
+                        </h4>
+                        <p class="card-text"><% out.print(Utilitarios.trimDesc(listaRecGen.get(0).getDescricao()));%></p>
+                        <a href="./pagProduto.jsp?id=<%=listaRecGen.get(0).getId()%>" class="btn btn-primary">Leia Mais</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6 portfolio-item">
+                <div class="card h-100">
+                    <a href="./pagProduto.jsp?id=<%=listaRecGen.get(1).getId()%>"><img class ="card-img-top" src="./imagens?id_prod=<%=listaRecGen.get(1).getId()%>&img=1" alt=""></a>
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <a href="./pagProduto.jsp?id=<%=listaRecGen.get(1).getId()%>"><% out.print(listaRecGen.get(1).getTitulo()); %></a>
+                        </h4>
+                        <p class="card-text"><% out.print(Utilitarios.trimDesc(listaRecGen.get(1).getDescricao()));%></p>
+                        <a href="./pagProduto.jsp?id=<%=listaRecGen.get(1).getId()%>" class="btn btn-primary">Leia Mais</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6 portfolio-item">
+                <div class="card h-100">
+                    <a href="./pagProduto.jsp?id=<%=listaRecGen.get(2).getId()%>"><img class ="card-img-top" src="./imagens?id_prod=<%=listaRecGen.get(2).getId()%>&img=1" alt=""></a>
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <a href="./pagProduto.jsp?id=<%=listaRecGen.get(2).getId()%>"><% out.print(listaRecGen.get(2).getTitulo()); %></a>
+                        </h4>
+                        <p class="card-text"><% out.print(Utilitarios.trimDesc(listaRecGen.get(2).getDescricao()));%></p>
+                        <a href="./pagProduto.jsp?id=<%=listaRecGen.get(2).getId()%>" class="btn btn-primary">Leia Mais</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6 portfolio-item">
+                <div class="card h-100">
+                    <a href="./pagProduto.jsp?id=<%=listaRecGen.get(3).getId()%>"><img class ="card-img-top" src="./imagens?id_prod=<%=listaRecGen.get(3).getId()%>&img=1" alt=""></a>
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <a href="./pagProduto.jsp?id=<%=listaRecGen.get(3).getId()%>"><% out.print(listaRecGen.get(3).getTitulo()); %></a>
+                        </h4>
+                        <p class="card-text"><% out.print(Utilitarios.trimDesc(listaRecGen.get(3).getDescricao()));%></p>
+                        <a href="./pagProduto.jsp?id=<%=listaRecGen.get(3).getId()%>" class="btn btn-primary">Leia Mais</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6 portfolio-item">
+                <div class="card h-100">
+                    <a href="./pagProduto.jsp?id=<%=listaRecGen.get(4).getId()%>"><img class ="card-img-top" src="./imagens?id_prod=<%=listaRecGen.get(4).getId()%>&img=1" alt=""></a>
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <a href="./pagProduto.jsp?id=<%=listaRecGen.get(4).getId()%>"><% out.print(listaRecGen.get(4).getTitulo()); %></a>
+                        </h4>
+                        <p class="card-text"><% out.print(Utilitarios.trimDesc(listaRecGen.get(4).getDescricao()));%></p>
+                        <a href="./pagProduto.jsp?id=<%=listaRecGen.get(4).getId()%>" class="btn btn-primary">Leia Mais</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6 portfolio-item">
+                <div class="card h-100">
+                    <a href="./pagProduto.jsp?id=<%=listaRecGen.get(5).getId()%>"><img class ="card-img-top" src="./imagens?id_prod=<%=listaRecGen.get(5).getId()%>&img=1" alt=""></a>
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <a href="./pagProduto.jsp?id=<%=listaRecGen.get(5).getId()%>"><% out.print(listaRecGen.get(5).getTitulo()); %></a>
+                        </h4>
+                        <p class="card-text"><% out.print(Utilitarios.trimDesc(listaRecGen.get(5).getDescricao()));%></p>
+                        <a href="./pagProduto.jsp?id=<%=listaRecGen.get(5).getId()%>" class="btn btn-primary">Leia Mais</a>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- Features Section -->
         <div class="row">
@@ -300,6 +394,7 @@
     <!-- Bootstrap core JavaScript -->
     <script src="res/vendor/jquery/jquery.min.js"></script>
     <script src="res/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="res/js/recentesPorGenero.js"></script>
 
 
 </body>
