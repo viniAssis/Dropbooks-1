@@ -2,7 +2,10 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.ServletException;
@@ -12,7 +15,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.ItemCart;
+import model.Pedido;
 import model.Usuario;
+import modelDAO.ItemDAO;
 import modelDAO.PedidoDAO;
 import modelDAO.ProdutoDAO;
 import modelDAO.UsuarioDAO;
@@ -23,6 +28,7 @@ public class FinalizarPedidoServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        
         try (PrintWriter out = response.getWriter()) {
             HashMap<Integer, Integer> lista =  new HashMap<>();
             Cookie[] cookies = request.getCookies();
@@ -30,6 +36,12 @@ public class FinalizarPedidoServlet extends HttpServlet {
             Usuario usuario = UsuarioDAO.getUsuario(email);
 
             ArrayList<ItemCart> cart = new ArrayList<>();
+            
+            Date dataPedido = new Date();
+            Calendar calendar = Calendar.getInstance();
+            calendar.add(Calendar.DATE, 0);
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            String today = format.format(calendar.getTime());
 
             if (cookies != null) {
                 for (Cookie cookie : cookies) {
@@ -66,7 +78,24 @@ public class FinalizarPedidoServlet extends HttpServlet {
                     }
                 }
                 
-                PedidoDAO.gerarPedido(usuario, cart);
+                Pedido pedido = new Pedido();
+                pedido.setUsuario(usuario);
+                pedido.setItens(null);
+                pedido.setForma_pagamento("Cartão");
+                pedido.setStatus_pagamento("Pendente");
+                pedido.setCep(usuario.getCep());
+                pedido.setLogradouro(usuario.getLogradouro());
+                pedido.setNumero(usuario.getNumero());
+                pedido.setComplemento(usuario.getComplemento());                
+                pedido.setEstado(usuario.getEstado());
+                pedido.setCidade(usuario.getCidade());
+                pedido.setBairro(usuario.getBairro());
+                pedido.setData_pedido(today);
+                pedido.setSubtotal(rs.getFloat("subtotal"));
+                pedido.setFrete(rs.getFloat("frete"));
+                pedido.setTotal(rs.getFloat("total"));
+                
+                PedidoDAO.setPedido(pedido);
             }
         }
     }

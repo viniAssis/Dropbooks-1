@@ -141,6 +141,7 @@
                             
                         </div>
                     </div>
+                    <br />
                     <div class="col-lg-4 mb-6">
                         <strong>Endereço de entrega:</strong>
                         <br />
@@ -217,12 +218,10 @@
                     </div>
                     <hr class="mb-4">
                     <div class="input-group">
-
                         <div class="input-group-append">
-                            <button type="submit" name="finalizarPedido" id="finalizarPedido" class="btn action-button  btn-block" onclick="alterarfs()">Finalizar Compra</button>
+                            <button type="submit" name="finalizarPedido" id="finalizarPedido" class="btn action-button btn-block">Finalizar Compra</button>
                         </div>
                     </div>
-
                 </form>
             </div>
         </div>
