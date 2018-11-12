@@ -1,8 +1,10 @@
 package controller;
 
-import model.Cart;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.ServletException;
@@ -12,85 +14,93 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.ItemCart;
+import model.Pedido;
+import model.Usuario;
+import modelDAO.PedidoDAO;
 import modelDAO.ProdutoDAO;
+import modelDAO.UsuarioDAO;
 
-/**
- *
- * @author Caio
- */
-@WebServlet(name = "ComprarServlet", urlPatterns = {"/ComprarServlet"})
-public class ComprarServlet extends HttpServlet {
+@WebServlet(name = "FinalizarPedidoServlet", urlPatterns = {"/FinalizarPedidoServlet"})
+public class FinalizarPedidoServlet extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        
         try (PrintWriter out = response.getWriter()) {
-            String resp = "";
-            int codLivro = Integer.parseInt(request.getParameter("livro"));
-            int codProduto = ProdutoDAO.getProduto(codLivro).getId();
-            int codVendedor = ProdutoDAO.getProduto(codLivro).getId_usuario();
-            
-            HashMap<Integer, Integer> lista = new HashMap<>();
+            HashMap<Integer, Integer> lista =  new HashMap<>();
             Cookie[] cookies = request.getCookies();
-            Cookie actualCookie = new Cookie("ShoppingCart", lista.toString());
+            String email = request.getSession().getAttribute("email").toString();
+            Usuario usuario = UsuarioDAO.getUsuario(email);
+
+            ArrayList<ItemCart> cart = new ArrayList<>();
             
+            float valorTotal = Float.parseFloat(request.getParameter("total"));
+            float valorFrete = Float.parseFloat(request.getParameter("frete"));
+            String pagamento = request.getParameter("pagamento");
+            
+            java.util.Date data = new java.util.Date();  
+            java.sql.Date dataSql = new java.sql.Date(data.getTime());
+            
+            Calendar calendar = Calendar.getInstance();
+            calendar.add(Calendar.DATE, 0);
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            String diaHoje = format.format(calendar.getTime());
+
             if (cookies != null) {
                 for (Cookie cookie : cookies) {
                     if ("ShoppingCart".equals(cookie.getName())) {
                         String value = cookie.getValue();
                         value = value.substring(1, value.length()-1);
                         String[] keyValuePairs = value.split(",");
-                        actualCookie = cookie;
-                        actualCookie.setMaxAge(60 * 60 * 24 * 7);
-                        
+
                         if (value.length() > 0){
                             for(String pair : keyValuePairs) {
                                 String[] entry = pair.split("=");
                                 lista.put(Integer.parseInt(entry[0].trim()), Integer.parseInt(entry[1].trim()));
                             }
                         }
+                        
+                        cookie.setMaxAge(0);
+                        cookie.setValue("");
+                        response.addCookie(cookie);
                     }
                 }
             }
 
-            if (codProduto > 0) {
-                boolean produtoValido = true;
-
+            if (lista.size() > 0) {
                 for(Map.Entry<Integer, Integer> entry : lista.entrySet()) {
-                    
                     if (lista.get(entry.getKey()) != null) {
-                        int vendedorListado = ProdutoDAO.getProduto(entry.getKey()).getId_usuario();
-                        int novoVendedor = ProdutoDAO.getProduto(codProduto).getId_usuario();
-                        if (vendedorListado != novoVendedor) {
-                            produtoValido = false;
+                        ItemCart item = new ItemCart();
+                        int qtd = lista.get(entry.getKey());
+                    
+                        if (ProdutoDAO.getProduto(entry.getKey()) != null) {
+                            item.setProduto(ProdutoDAO.getProduto(entry.getKey()));
+                            item.setQuantidade(qtd);
+                            cart.add(item);
                         }
                     }
                 }
-                
-                if (produtoValido) {
-                    lista = new Cart().AddItemCart(codProduto, lista);
-                    resp = "ok";
-                } else {
-                    resp = "invalido";
-                }
-            } else {
-                resp = "erro";
-            }
 
-            actualCookie.setValue(lista.toString());
-            actualCookie.setMaxAge(60 * 60 * 24 * 365);
-            response.addCookie(actualCookie);
-            
-            out.print(resp);
+                Pedido pedido = new Pedido();
+                pedido.setUsuario(usuario);
+                pedido.setItens(null);
+                pedido.setForma_pagamento(pagamento);
+                pedido.setStatus_pagamento("Pendente");
+                pedido.setCep(usuario.getCep());
+                pedido.setLogradouro(usuario.getLogradouro());
+                pedido.setNumero(usuario.getNumero());
+                pedido.setComplemento(usuario.getComplemento());                
+                pedido.setEstado(usuario.getEstado());
+                pedido.setCidade(usuario.getCidade());
+                pedido.setBairro(usuario.getBairro());
+                pedido.setData_pedido(dataSql);
+                pedido.setSubtotal(valorTotal);
+                pedido.setFrete(valorFrete);
+                pedido.setTotal(valorTotal + valorFrete);
+                
+                out.print(PedidoDAO.setPedido(pedido));
+            }
         }
     }
 
