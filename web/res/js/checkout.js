@@ -7,7 +7,6 @@ var valorTotal = 0.0;
 
 var calcWsCorreios = function(cepOrigem, cepDestino, valor) {
     $.ajax({
-        async: false,
         method: "POST",
         url: "http://ws.correios.com.br/calculador/CalcPrecoPrazo.asmx/CalcPrecoPrazo",
         data: {
@@ -31,8 +30,17 @@ var calcWsCorreios = function(cepOrigem, cepDestino, valor) {
             var valor = Number.parseFloat($(data).find('Valor').text()).toFixed(2);
             var prazo = $(data).find('PrazoEntrega').text();
             if (valor > 0) {
-                valorFrete = valor;
-            }
+                var sum = Number.parseFloat(valorTotal) + Number.parseFloat(valor);
+                var html = "";
+                
+                html += '<li>';
+                html += '<h6 class="my-0">Frete</h6>';
+                html += '<span class="text-muted" id="idValor" name="idValor">R$ ' + valor + '</span>';
+                html += '</li>';
+                
+                $("#valorFrete").html(html);
+                $("#valorTotal").text("R$ " + sum.toFixed(2));
+            }        
         }
     });
 };
@@ -74,18 +82,12 @@ var listarCarrinho = function (json) {
         
         calcWsCorreios(jsonVendedor.cep, cepDestino, valorTotal);
         
-        var sum = Number.parseFloat(valorTotal) + Number.parseFloat(valorFrete);
-        
-        if (valorFrete) {
-            htmlOrder += '<li>';
-            htmlOrder += '<h6 class="my-0">Frete</h6>';
-            htmlOrder += '<span class="text-muted" id="idValor" name="idValor">R$ ' + valorFrete + '</span>';
-            htmlOrder += '</li>';
-        }
+        htmlOrder += '<div id="valorFrete"></div>';
+
         htmlOrder += '<br />';
         htmlOrder += '<li class="d-flex justify-content-between">';
         htmlOrder += '<span>Valor Total</span>';
-        htmlOrder += '<strong>R$ ' + sum.toFixed(2) + '</strong>';
+        htmlOrder += '<strong id="valorTotal">R$ ' + valorTotal + '</strong>';
         htmlOrder += '</li>';
         htmlOrder += '</ul>';
     } else {

@@ -95,9 +95,9 @@
                         <div id="resultadoFrete"></div>
 
                     </div>
-                        <form class="compra" method="get" action="ComprarServlet"> 
+                        <form class="compra">
                             <input type="hidden" class="btn btn-info " value="Comprar" id="btnComprar">
-                            <button type="submit" class="btn btn-secondary" name="livro" value=<%=prod.getId()%>>Adicionar Carrinho</button>
+                            <button type="button" class="btn btn-secondary" name="livro" id="addToCart" value="<%=prod.getId()%>">Adicionar Carrinho</button>
                         </form>
 
 
@@ -149,6 +149,7 @@
             <!-- Bootstrap core JavaScript -->
             <script src="res/vendor/jquery/jquery.min.js"></script>
             <script src="res/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+            <script src="res/js/pagProduto.js"></script>
             <script src="res/js/calculoFrete.js"></script>
     </body>
 

@@ -1,4 +1,5 @@
 var valorFrete = 0;
+var valorTotal = 0.0;
 var idVendedor = 0;
 var cepDestino = "";
 var jsonCart = "";
@@ -26,7 +27,6 @@ function loadShoppingCart(cepComprador) {
 var listarCarrinho = function (json) {
     var html = "";
     var htmlOrder = "";
-    var valorTotal = 0.0;
 
     console.log(json);
     if (json.length > 0 && json != "") {
@@ -66,21 +66,11 @@ var listarCarrinho = function (json) {
         
         calcWsCorreios(jsonVendedor.cep, cepDestino, valorTotal);
         
-        var sum = Number.parseFloat(valorTotal) + Number.parseFloat(valorFrete);
-        
-        if (valorFrete) {
-            htmlOrder += '<li class="list-group-item d-flex justify-content-between lh-condensed">';
-            htmlOrder += '<div>';
-            htmlOrder += '<h6 class="my-0" id="idTitulo"  name="idTitulo">Frete</h6>';
-            htmlOrder += '<small class="text-muted" id="idAutor"  name="idAutor"></small>';
-            htmlOrder += '</div>';
-            htmlOrder += '<span class="text-muted" id="idValor" name="idValor">R$ ' + valorFrete + '</span>';
-            htmlOrder += '</li>';
-        }
+        htmlOrder += '<div id="valorFrete"></div>';
         
         htmlOrder += '<li class="list-group-item d-flex justify-content-between">';
         htmlOrder += '<span>Valor Total</span>';
-        htmlOrder += '<strong id="valorTotal" name="valorTotal">R$ ' + sum.toFixed(2) + '</strong>';
+        htmlOrder += '<strong id="valorTotal" name="valorTotal">R$ ' + valorTotal + '</strong>';
         htmlOrder += '</li>';
         htmlOrder += '<li class="nav-item d-flex">';
         htmlOrder += '<a class="nav-link" href="" >Continuar comprando</a>';
@@ -137,7 +127,6 @@ function getUserJson(id) {
 
 var calcWsCorreios = function(cepOrigem, cepDestino, valor) {
     $.ajax({
-        async: false,
         method: "POST",
         url: "http://ws.correios.com.br/calculador/CalcPrecoPrazo.asmx/CalcPrecoPrazo",
         data: {
@@ -162,7 +151,19 @@ var calcWsCorreios = function(cepOrigem, cepDestino, valor) {
             var prazo = $(data).find('PrazoEntrega').text();
             
             if (valor > 0) {
-                valorFrete = valor;
+                var sum = Number.parseFloat(valorTotal) + Number.parseFloat(valor);
+                var html = "";
+                html += '<li class="list-group-item d-flex justify-content-between lh-condensed">';
+                html += '<div>';
+                html += '<h6 class="my-0" id="idTitulo"  name="idTitulo">Frete</h6>';
+                html += '<small class="text-muted" id="idAutor"  name="idAutor"></small>';
+                html += '</div>';
+                html += '<span class="text-muted" id="idValor" name="idValor">R$ ' + valor + '</span>';
+                html += '</li>';
+                
+                $("#valorFrete").html(html);
+                $("#valorTotal").text("R$ " + sum.toFixed(2));
+                
             }
         }
     });
