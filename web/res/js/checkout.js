@@ -1,7 +1,13 @@
-var frete = 0;
+var valorFrete = 0;
+var idVendedor = 0;
+var cepDestino = "";
+var jsonCart = "";
+var jsonVendedor = "";
+var valorTotal = 0.0;
 
-var calcWsCorreios = function(cepOrigem, valor) {
+var calcWsCorreios = function(cepOrigem, cepDestino, valor) {
     $.ajax({
+        async: false,
         method: "POST",
         url: "http://ws.correios.com.br/calculador/CalcPrecoPrazo.asmx/CalcPrecoPrazo",
         data: {
@@ -9,7 +15,7 @@ var calcWsCorreios = function(cepOrigem, valor) {
             sDsSenha: "",
             nCdServico: '41106',
             sCepOrigem: cepOrigem,
-            sCepDestino: $("#cepDestino").val(),
+            sCepDestino: cepDestino,
             nVlPeso: '1',
             nCdFormato: '1', 
             nVlComprimento: '20',
@@ -25,22 +31,23 @@ var calcWsCorreios = function(cepOrigem, valor) {
             var valor = Number.parseFloat($(data).find('Valor').text()).toFixed(2);
             var prazo = $(data).find('PrazoEntrega').text();
             if (valor > 0) {
-                frete = valor;
+                valorFrete = valor;
             }
         }
     });
 };
 
-function loadShoppingCart() {
+function loadShoppingCart(cepComprador) {
     var xhttp = new XMLHttpRequest();
-    var jsonCart = "";
+    cepDestino = cepComprador;
+    
     xhttp.onreadystatechange = function() {
         if (this.readyState === 4 && this.status === 200) {
-            console.log("J: " + this.responseText);
             if (this.responseText != "") {
                 jsonCart = JSON.parse(this.responseText);
+                idVendedor = jsonCart[0].produto.id_usuario;
+                getUserJson(idVendedor);
             }
-            listarCarrinho(jsonCart);
        }
     };
     xhttp.open("GET", "GetShoppingCartServlet", true);
@@ -50,7 +57,6 @@ function loadShoppingCart() {
 
 var listarCarrinho = function (json) {
     var htmlOrder = "";
-    var valorTotal = 0.0;
 
     if (json.length > 0 && json != "") {
 
@@ -65,15 +71,21 @@ var listarCarrinho = function (json) {
             console.log(Number.parseFloat(json[i].quantidade).toFixed(2));
             valorTotal += Number.parseFloat(json[i].quantidade) * Number.parseFloat(json[i].produto.preco);
         }
-
-        htmlOrder += '<li>';
-        htmlOrder += '<h6 class="my-0">Frete</h6>';
-        htmlOrder += '<span class="text-muted" id="idValor" name="idValor">R$ ' + frete + '</span>';
-        htmlOrder += '</li>';
+        
+        calcWsCorreios(jsonVendedor.cep, cepDestino, valorTotal);
+        
+        var sum = Number.parseFloat(valorTotal) + Number.parseFloat(valorFrete);
+        
+        if (valorFrete) {
+            htmlOrder += '<li>';
+            htmlOrder += '<h6 class="my-0">Frete</h6>';
+            htmlOrder += '<span class="text-muted" id="idValor" name="idValor">R$ ' + valorFrete + '</span>';
+            htmlOrder += '</li>';
+        }
         htmlOrder += '<br />';
         htmlOrder += '<li class="d-flex justify-content-between">';
         htmlOrder += '<span>Valor Total</span>';
-        htmlOrder += '<strong>R$ ' + valorTotal.toFixed(2) + '</strong>';
+        htmlOrder += '<strong>R$ ' + sum.toFixed(2) + '</strong>';
         htmlOrder += '</li>';
         htmlOrder += '</ul>';
     } else {
@@ -81,3 +93,49 @@ var listarCarrinho = function (json) {
     }
     document.getElementById("order").innerHTML = htmlOrder;
 };
+
+function getUserJson(id) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState === 4 && this.status === 200) {
+            console.log("JSON: " + this.responseText);
+            if (this.responseText != "") {
+                jsonVendedor = JSON.parse(this.responseText);
+            }
+            listarCarrinho(jsonCart);
+       }
+    };
+    xhttp.open("GET", "GetUserJSONServlet?id=" + id, true);
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send();
+}
+
+function finalizarPedido() {
+    var els = document.getElementsByName("formaPagamento");
+    var pagamento = "";
+    for (var i = 0; i < els.length; i++){
+        if ( els[i].checked ) {
+            pagamento = els[i].value;
+        }
+    }
+    
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState === 4 && this.status === 200) {
+            console.log("JSON: " + this.responseText);
+            if (this.responseText == "ok") {
+                document.location.href = "./status.jsp";
+            } else {
+                alert("Ocorreu algum erro ao gerar pedido. Tente novamente.");
+            }
+       }
+    };
+    xhttp.open("GET", "FinalizarPedidoServlet?total=" + valorTotal + "&frete=" + valorFrete + "&pagamento=" + pagamento, true);
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send();
+}
+
+var btnFinalizar = document.getElementById("finalizarPedido");
+btnFinalizar.addEventListener("click", function(){
+    finalizarPedido();
+});

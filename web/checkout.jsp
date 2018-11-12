@@ -83,7 +83,7 @@
             }
         %>
     </head>
-    <body class="bg-light" onload="loadShoppingCart()">
+    <body class="bg-light" onload="loadShoppingCart(<%=user.getCep()%>)">
 
         <nav class="navbar fixed-top navbar-expand-lg navbar-dark  fixed-top" id="nav">
             <div class="container">
@@ -171,15 +171,15 @@
                 <form>
                     <div class="d-block my-3">
                         <div class="custom-control custom-radio">
-                            <input id="credito" name="opcaoPgto" type="radio" class="custom-control-input" checked required>
+                            <input id="credito" name="formaPagamento" value="Crédito" type="radio" class="custom-control-input" checked required>
                             <label class="custom-control-label" for="credito">Cartão de crédito</label>
                         </div>
                         <div class="custom-control custom-radio">
-                            <input id="debito" name="opcaoPgto" type="radio" class="custom-control-input" required>
+                            <input id="debito" name="formaPagamento" value="Débito" type="radio" class="custom-control-input" required>
                             <label class="custom-control-label" for="debito">Cartão de débito</label>
                         </div>
                         <div class="custom-control custom-radio">
-                            <input id="paypal" name="opcaoPgto" type="radio" class="custom-control-input" required>
+                            <input id="paypal" name="formaPagamento" value= "Paypal" type="radio" class="custom-control-input" required>
                             <label class="custom-control-label" for="paypal">PayPal</label>
                         </div>
                     </div>
@@ -219,7 +219,7 @@
                     <hr class="mb-4">
                     <div class="input-group">
                         <div class="input-group-append">
-                            <button type="submit" name="finalizarPedido" id="finalizarPedido" class="btn action-button btn-block">Finalizar Compra</button>
+                            <button type="button" name="finalizarPedido" id="finalizarPedido" class="btn action-button btn-block">Finalizar Compra</button>
                         </div>
                     </div>
                 </form>
