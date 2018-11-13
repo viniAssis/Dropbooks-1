@@ -77,10 +77,10 @@ var listarCarrinho = function (json) {
         htmlOrder += '</li>';
         htmlOrder += '</ul>';
         htmlOrder += '<form action="checkout.jsp">';
-        htmlOrder += '<input type="submit" class="action-button btn-block" value="Finalizar Pedido"/>';
+        htmlOrder += '<input type="submit" id="finalizarPedido" class="action-button btn-block" value="Finalizar Pedido" onclick= "location.href=checkout.jsp";/>';
         htmlOrder += '</form>';
     } else {
-        html = "<h4>Carrinho vazio</h4>"
+        html = "<h4>Carrinho vazio</h4>";
     }
 
     document.getElementById("list-cart").innerHTML = html;

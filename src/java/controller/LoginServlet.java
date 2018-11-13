@@ -35,10 +35,9 @@ public class LoginServlet extends HttpServlet {
            
             String email = request.getParameter("email");
             String senha = request.getParameter("senha");
-            Usuario objUsuario = new Usuario();
+
             
-            objUsuario.setEmail(email);
-            objUsuario.setSenha(senha);
+
             List<Usuario>listausuario=new ArrayList<>();
             
             //Passando os valores para o getUsuario no loginDAO
@@ -56,10 +55,11 @@ public class LoginServlet extends HttpServlet {
              } 
       
             
-        } catch (Exception e) {
+        } 
+        catch (Exception e) {
            
             out.print("esse erro nunca existiu aqui");
         }
     
     }
-    }
+}
