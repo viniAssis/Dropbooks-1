@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <script>
+        const wsUri = "http://177.80.174.77:8080/Dropbooks/ws/analytics"
+        var ano = "2018"
+        window.onload = function () {
+            carregarDados();
+        }
+
+        function carregarDados() {
+            $.ajax({
+                type: "GET",
+                dataType: "json",
+                crossDomain: true,
+                url: wsUri + "/" + ano,
+                success: function (data) {
+                    var chart = new CanvasJS.Chart("chartContainer1", {
+                        title: {
+                            text: "Faturamento: " + ano
+                        },
+                        subtitles: [{
+                            text: "Dados de teste"
+                        }],
+                        animationEnabled: true,
+                        data: [{
+                            type: "pie",
+                            startAngle: 270,
+                            toolTipContent: "<b>#percent%</b>",
+                            showInLegend: "true",
+                            legendText: "{label}",
+                            indexLabelFontSize: 16,
+                            indexLabel: "{label} - R${y}",
+                            click: function (e) {
+                                $.ajax({
+                                    type: "GET",
+                                    dataType: "json",
+                                    crossDomain: true,
+                                    url: wsUri + "/" + ano + "/" + e.dataPoint.x,
+                                    success: function (data) {
+                                        chart.options.title.text = "Faturamento: "+ e.dataPoint.label;
+                                        chart.options.data[0].dataPoints = [];                                        
+                                        $.each(data, function(i, line){                                            
+                                            chart.options.data[0].dataPoints.push({label: line.x, y: line.y});
+                                        });
+                                        chart.render();
+                                    }
+                                });
+                            },
+                            dataPoints: []
+                        }]
+                    });
+                    $.each(data, function (i, line) {
+                        chart.options.data[0].dataPoints.push({ x: line.x, y: line.y, label: line.z });
+                    });
+                    chart.render();
+                }
+            });
+        }
+    </script>
+</head>
+
+<body>
+    <div id="chartContainer1" style="height: 100%; width: 100%;"></div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+</body>
+
+</html>

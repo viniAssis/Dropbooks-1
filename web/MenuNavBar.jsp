@@ -112,6 +112,8 @@
                                                 if(user.getNivel_usuario().equals("1")){
                                                     out.print("<a class='dropdown-item' href='cadastroFuncionario.jsp' id='link' >Cadastrar Funcionários</a>");
                                                     out.print("<a class='dropdown-item' href='listaUsuarioFuncionario.jsp' >Lista de Funcionários</a>");
+                                                    out.print("<a class='dropdown-item' href='analytics.html' >Analytics</a>");
+                                                    out.print("<a class='dropdown-item' href='alterarCarrossel.jsp' >Anúncios</a>");
                                                
                                                 }
                                     out.print("<a class='dropdown-item' href='carrinho.jsp' >Carrinho</a>"

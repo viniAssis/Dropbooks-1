@@ -260,5 +260,11 @@
                         <!-- /.container -->
                         <!-- Footer -->
                         <div id="footer"></div>
+       <!-- Container Selection1 -->
+    <div id="dropDownSelect1"></div>
+    <!-- Bootstrap core JavaScript -->
+    <script src="res/vendor/jquery/jquery.min.js"></script>
+    <script src="res/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="res/js/recentesPorGenero.js"></script>
     </body>
 </html>
