@@ -20,35 +20,62 @@
         <script type="text/javascript" src="res/jquery-3.3.1.js"></script>
         <script type="text/javascript">
             $(document).ready(function () {
-                $('#enviar').click(function () {
+                             
+                
+                document.getElementById("enviar").onclick = function () {
+                    
+                    var valid = true;
+                    
+                    
+                    
 
-                    alert("");
-                    var email = $("#email").val();
-                    var senha = $("#senha").val();
-                    $.ajax({
-                        type: 'POST',
-                        url: "ServletLogin",
-                        data: {
-                            email: email,
-                            senha: senha
-                        },
-                        success: function (results) {
-                            if (results === "1") {
-                                $("#email").css("color", "red");
-                            } else if (results === "2") {
-                                $("#senha").css("color", "red");
+
+                        
+                        var email = $("#email").val();
+                        var senha = $("#senha").val();
+                        $.ajax({
+                            type: 'POST',
+                            url: "VerificaLoginServlet",
+                            data: {
+                                email: email,
+                                senha: senha
+                            },
+                            success: function (results) {
+                                if (results === "invalido") {
+                                    
+                                    valid = false;
+                                    $("#loginFalha").css("display","inherit");
+                                    $("#loginSucesso").css("display","none");
+                                    
+                                } else if (results === "valido") {
+                                    valid = true;
+                                    
+                                     $("#loginFalha").css("display","none");
+                                    $("#loginSucesso").css("display","inherit");
+                                    document.getElementById("LoginForm").submit();
+                                }
+                                
                             }
-                            els e{
-                                $("#email").css("color", "green");
-                                $("#senha").css("color", "green");
-                            }
-                        }
-                    });
-                });
+                        });
+                        
+                        
+
+                    
+                    
+                };
             });
         </script>
 
         <style>
+            
+            #loginFalha{
+             display:none;
+                 border-radius: 10px;
+            }
+            #loginSucesso{
+                display:none;   
+                    border-radius: 10px;
+            }
 
             #caixa2{
                 margin-top: 7%;
@@ -159,19 +186,25 @@
             <div class="row">
                 <div class="formLogin col-md-8" id="container">
                     <p class="h3 text-center">Identifique-se</p>
-                    <form action="Login" method="post">
+                    <form id="LoginForm" action="Login" method="post">
                         <div class="form-group">
                             <label for="labelLogin">Email</label>
-                            <input type="text" class="form-control  border border-dark"  name="email" aria-describedby="email"
+                            <input id="email" type="text" class="form-control  border border-dark"  name="email" aria-describedby="email"
                                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"  required="required"
                                    placeholder="email@dominio.com"/>
                         </div>
                         <div class="form-group">
                             <label for="labelSenha">Senha</label>
-                            <input type="password" class="form-control  border border-dark"  name="senha" aria-describedby="senha" placeholder="*******">
+                            <input id="senha" type="password" class="form-control  border border-dark"  name="senha" aria-describedby="senha" placeholder="*******">
                             <small class="text-left novaSenha "><a href="Senha.html">Esqueceu sua senha?</a></small>
                         </div>
-                        <button type="submit" value="login" class="btn border-0 btn-block" id="enviar">Enviar</button>
+                        <div id="loginFalha" class="form-group p-3 mb-2 border border-danger text-danger" style="text-align: center">
+                            Login ou senha incorretos
+                        </div>
+                        <div id="loginSucesso" class="form-group p-3 mb-2 border border-success text-success" style="text-align: center">
+                            Sucesso
+                        </div>
+                        <button type="button" value="login" class="btn border-0 btn-block" id="enviar">Enviar</button>
                     </form><hr>
 
                     <!--Adicionar link chamando um novo registro-->

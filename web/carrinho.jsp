@@ -1,3 +1,5 @@
+<%@page import="com.google.gson.Gson"%>
+<%@page import="com.google.gson.GsonBuilder"%>
 <%@page import="modelDAO.ProdutoDAO"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="model.Produto"%>
@@ -108,9 +110,23 @@
                 color: white;
             }
         </style>
+        
+        <%
+            String email = "";
+            Usuario user = null;
+            boolean logado = false;
+
+            if (request.getSession().getAttribute("email") != null) {
+                email = request.getSession().getAttribute("email").toString();
+                user = new UsuarioDAO().getUsuario(email);
+                logado = true;
+            } else {
+                response.sendRedirect("login.jsp");
+            }
+        %>
     </head>
 
-    <body class="bg-light" onload="loadShoppingCart()">
+    <body class="bg-light" onload="loadShoppingCart(<%= user.getCep() %>)">
         <!-- Navigation -->
         <div id="header"></div>
         

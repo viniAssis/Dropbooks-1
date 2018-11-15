@@ -4,12 +4,14 @@ import model.Cart;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.ItemCart;
 import modelDAO.ProdutoDAO;
 
 /**
@@ -32,8 +34,10 @@ public class ComprarServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+            String resp = "";
             int codLivro = Integer.parseInt(request.getParameter("livro"));
             int codProduto = ProdutoDAO.getProduto(codLivro).getId();
+            int codVendedor = ProdutoDAO.getProduto(codLivro).getId_usuario();
             
             HashMap<Integer, Integer> lista = new HashMap<>();
             Cookie[] cookies = request.getCookies();
@@ -50,7 +54,6 @@ public class ComprarServlet extends HttpServlet {
                         
                         if (value.length() > 0){
                             for(String pair : keyValuePairs) {
-                                out.print(pair);
                                 String[] entry = pair.split("=");
                                 lista.put(Integer.parseInt(entry[0].trim()), Integer.parseInt(entry[1].trim()));
                             }
@@ -60,16 +63,34 @@ public class ComprarServlet extends HttpServlet {
             }
 
             if (codProduto > 0) {
-                lista = new Cart().AddItemCart(codProduto, lista);
+                boolean produtoValido = true;
+
+                for(Map.Entry<Integer, Integer> entry : lista.entrySet()) {
+                    
+                    if (lista.get(entry.getKey()) != null) {
+                        int vendedorListado = ProdutoDAO.getProduto(entry.getKey()).getId_usuario();
+                        int novoVendedor = ProdutoDAO.getProduto(codProduto).getId_usuario();
+                        if (vendedorListado != novoVendedor) {
+                            produtoValido = false;
+                        }
+                    }
+                }
+                
+                if (produtoValido) {
+                    lista = new Cart().AddItemCart(codProduto, lista);
+                    resp = "ok";
+                } else {
+                    resp = "invalido";
+                }
+            } else {
+                resp = "erro";
             }
 
             actualCookie.setValue(lista.toString());
             actualCookie.setMaxAge(60 * 60 * 24 * 365);
             response.addCookie(actualCookie);
             
-            out.print("Lista: " + actualCookie);
-
-            response.sendRedirect(request.getContextPath() + "/carrinho.jsp");
+            out.print(resp);
         }
     }
 
