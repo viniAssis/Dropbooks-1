@@ -99,10 +99,24 @@
             <div class="box">
 
                 <div class="custom-file">
+
                     <div class="row">
+                        <div class="col-9">
+                            <label id="texto">Título</label>
+                            <input type="text" class="form-control  border border-dark" id="titulo"  maxlength="50" name="titulo">
+                        </div>
+                        <div class="col-9">
+                            <label id="texto">Descrição</label>
+                            <input type="text" class="form-control  border border-dark" id="descricao"  maxlength="50" name="descricao">
+                        </div>
+                        <div class="col-9">
+                            <label id="texto">URL (Ex. http://www.google.com.br)</label>
+                            <input type="text" class="form-control  border border-dark" id="url"  maxlength="50" name="url">
+                        </div>
                         <div class="col-9">
                             <input type="file" class="form-control-file"  id="imagem" name="imagem" accept="image/*">
                         </div>
+
                         <div class="col-2">
                             <button type="submit" class="btn btn-link a" id="visualizar" name="visualizar">Enviar</button>
                         </div>

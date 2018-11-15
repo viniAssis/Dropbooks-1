@@ -69,22 +69,22 @@
                 <!-- Slide One - Set the background image for this slide in the line below -->
                 <div class="carousel-item active" style="background-image: url('./banner?id_banner=<%=carrossel.get(0).getId()%>&img=1')">
                     <div class="carousel-caption d-none d-md-block">
-                        <!-- <h3>Direito</h3> -->
-                        <!-- <p>Livros Sobre Direito</p> -->
+                       <h3><%=carrossel.get(0).getTitulo()%></h3>
+                       <p><a href="<%=carrossel.get(0).getUrl()%>" target="_blanck"><%=carrossel.get(2).getDescricao()%></a></p>
                     </div>
                 </div>
                 <!-- Slide Two - Set the background image for this slide in the line below -->
                 <div class="carousel-item" style="background-image: url('./banner?id_banner=<%=carrossel.get(1).getId()%>&img=1')">
                     <div class="carousel-caption d-none d-md-block">
-                        <!-- <h3>Economia</h3> -->
-                        <!-- <p>Administração e Contabilidade</p> -->
+                       <h3><%=carrossel.get(1).getTitulo()%></h3>
+                       <p><a href="<%=carrossel.get(1).getUrl()%>" target="_blanck"><%=carrossel.get(2).getDescricao()%></a></p>
                     </div>
                 </div>
                 <!-- Slide Three - Set the background image for this slide in the line below -->
                 <div class="carousel-item" style="background-image: url('./banner?id_banner=<%=carrossel.get(2).getId()%>&img=1')">
                     <div class="carousel-caption d-none d-md-block">
-                        <!-- <h3>Dicas De Leitura</h3> -->
-                        <!-- <p>Esta Perdido ? Nossa Equipe Pode te Ajudar</p> -->
+                       <h3><%=carrossel.get(2).getTitulo()%></h3>
+                       <p><a href="<%=carrossel.get(2).getUrl()%>" target="_blanck"><%=carrossel.get(2).getDescricao()%></a></p>
                     </div>
                 </div>
             </div>

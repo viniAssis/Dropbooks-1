@@ -53,16 +53,16 @@ public class BannerDAO {
             //String sql = "INSERT INTO banner(posicao, titulo, descricao, "
             //           + "data_cadastro, data_validade, ativo, url, imagem) "
             //           + "VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
-                        String sql = "INSERT INTO banner(posicao, data_cadastro, ativo, imagem) VALUES(?, ?, ?, ?)";
+                        String sql = "INSERT INTO banner(posicao, titulo, descricao, data_cadastro, ativo, url, imagem) VALUES(?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, banner.getPosicao());
-            //ps.setString(1, banner.getTitulo());
-            //ps.setString(3, banner.getDescricao());
-            ps.setDate(2, banner.getData_cadastro());
+            ps.setString(2, banner.getTitulo());
+            ps.setString(3, banner.getDescricao());
+            ps.setDate(4, banner.getData_cadastro());
             //ps.setDate(5, banner.getData_validade());
-            ps.setInt(3, banner.getAtivo());
-            //ps.setString(7, banner.getUrl());
-            ps.setBlob(4, banner.getImagem());
+            ps.setInt(5, banner.getAtivo());
+            ps.setString(6, banner.getUrl());
+            ps.setBlob(7, banner.getImagem());
             
             ps.execute();
             
@@ -90,13 +90,13 @@ public class BannerDAO {
                 Banner carrossel = new Banner();
                 
                 carrossel.setId(rs.getInt("id"));
-                //carrossel.setPosicao(rs.getInt("posicao"));
-                //carrossel.setTitulo(rs.getString("titulo"));
-                //carrossel.setDescricao(rs.getString("descricao"));
+                carrossel.setPosicao(rs.getInt("posicao"));
+                carrossel.setTitulo(rs.getString("titulo"));
+                carrossel.setDescricao(rs.getString("descricao"));
                 carrossel.setData_cadastro(rs.getDate("data_cadastro"));
-                //carrossel.setData_validade(rs.getDate("data_validade"));
+                carrossel.setData_validade(rs.getDate("data_validade"));
                 carrossel.setAtivo(rs.getInt("ativo"));
-                //carrossel.setUrl(rs.getString("url"));
+                carrossel.setUrl(rs.getString("url"));
                 if(rs.getBlob("imagem") != null){
                     carrossel.setImagem(rs.getBlob("imagem").getBinaryStream());
                 }
