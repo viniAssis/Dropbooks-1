@@ -8,6 +8,7 @@
 <%@page import="model.Banner"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -36,6 +37,7 @@
                 $("#footer").load("Footer.jsp");
             });
         </script>
+
         <style>
 
             h2{
@@ -94,7 +96,7 @@
 
         <h2>Alterar Carrossel</h2>
 
-        <form method="post" id= "box" action="CadastroBannerServlet" enctype="multipart/form-data">
+        <form method="post" id="box" action="CadastroBannerServlet" enctype="multipart/form-data">
 
             <div class="box">
 
@@ -111,15 +113,19 @@
                         </div>
                         <div class="col-9">
                             <label id="texto">URL (Ex. http://www.google.com.br)</label>
-                            <input type="text" class="form-control  border border-dark" id="url"  maxlength="50" name="url">
+                            <input class="form-control  border border-dark" id="link"  maxlength="50" name="link">
                         </div>
                         <div class="col-9">
-                            <input type="file" class="form-control-file"  id="imagem" name="imagem" accept="image/*">
+                            <input type="file" class="form-control-file"  id="imagem" name="imagem" accept="image/*" required>
                         </div>
+
+
 
                         <div class="col-2">
                             <button type="submit" class="btn btn-link a" id="visualizar" name="visualizar">Enviar</button>
                         </div>
+
+
                     </div>
                     <!-- Mensagem de resposta -->
                     <%
