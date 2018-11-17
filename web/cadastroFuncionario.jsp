@@ -194,7 +194,7 @@
                         <label>Sexo:</label>
                         <div class="form-check form-check-inline " id="espaco">
                             <input class="form-check-input" type="radio"  name="sexo" id="feminino" value="f" required>
-                            <label class="form-check-label">Femino</label>
+                            <label class="form-check-label">Feminino</label>
                         </div>
                         <div class="form-check form-check-inline" id="espaco">
                             <input class="form-check-input" type="radio" name="sexo" id="masculino" value="m" required>
@@ -274,7 +274,7 @@
                     </div>
 
                      <div class="col-md-3 mb-3">
-                        <label>Agência:</label>
+                        <label>Ag�ncia</label>
                         <input type="text" class="form-control border border-dark" name="agencia" id="agencia"  maxlength="4" required>
                     </div>
 
@@ -292,7 +292,7 @@
 
                 <div id="end_submit">
                     <input type="checkbox" name="rec_novidades" id="rec_novidades" value="ATIVO" checked="checked" required/>
-                        Você Concorda com os termos de uso Ler <a href="#">Termos de Uso</a>
+                        Concordo com o <a href="termoUso.jsp" target="_blanck">Termo de Uso</a>
                     <p>
                         <input type="submit" name="cadastrar" id="cadastrar" value="Cadastrar" class="btn btn-primary" />
                         <input type="reset" name="limpar" id="limpar" value="Limpar" class="btn btn-primary"/>

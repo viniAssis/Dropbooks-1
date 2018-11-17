@@ -157,7 +157,7 @@
                             <a class="nav-link" href="pesquisa.jsp">Livros</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="Contato.jsp">Contato</a>
+                            <a class="nav-link" href="contato.jsp">Contato</a>
                         </li>
                     </ul>
                 </div>
@@ -210,7 +210,7 @@
                     <!--Adicionar link chamando um novo registro-->
                     <div class="goRegistro">
                         <label for="labelNovoReg">Primeira vez no Dropbooks?</label><br>
-                        <a href="cadastro.html">
+                        <a href="cadastroUsuario.jsp">
                             <button type="submit" class="btn btn-block" id="cadastrar">
                                 Cadastre-se</button></a>
                     </div>

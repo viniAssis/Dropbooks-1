@@ -48,23 +48,12 @@ public class CadastroServlet extends HttpServlet {
         
         Usuario user = new Usuario();      
                     
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet CadastroServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-
-            // TODO Remover ID quando o banco ficar autoincremento
-
-            //user.setId(Integer.parseInt(request.getParameter("id")));
-            //user.setId(1);
             if(request.getParameter("cpf").isEmpty()){
                 user.setCpf_cnpj(request.getParameter("cnpj"));
-            } else {
+            } else if(request.getParameter("cnpj").isEmpty()) {
                 user.setCpf_cnpj(request.getParameter("cpf"));
+            } else {
+                user.setCpf_cnpj("");
             }
                     
             user.setTipoPessoa(Integer.parseInt(request.getParameter("tipoPessoa")));
@@ -81,7 +70,8 @@ public class CadastroServlet extends HttpServlet {
             user.setCidade(request.getParameter("cidade"));
             user.setBairro(request.getParameter("bairro"));
             user.setSenha(request.getParameter("senha"));
-            user.setNivel_usuario(request.getParameter("perfil"));
+            user.setNivel_usuario("3");
+            user.setAtivo("1");
             user.setBanco(request.getParameter("banco"));
             user.setAgencia(Integer.parseInt(request.getParameter("agencia")));
             user.setConta(Integer.parseInt(request.getParameter("conta")));
@@ -89,45 +79,10 @@ public class CadastroServlet extends HttpServlet {
             
             Usuario usuario = CadastroDAO.cadastrar(user);
             
-            
-            
-            out.println("<h1>Meu parametro foi " + user.getBairro() + " </h1>");
-            out.println("<h1>Meu parametro foi " + user.getCep() + " </h1>");
-            out.println("<h1>Meu parametro foi " + user.getCidade() + " </h1>");
-            out.println("<h1>Meu parametro foi " + user.getComplemento() + " </h1>");
-            out.println("<h1>Meu parametro foi " + user.getCpf_cnpj() + " </h1>");
-            out.println("<h1>Meu parametro foi " + user.getEmail() + " </h1>");
-            out.println("<h1>Meu parametro foi " + user.getEstado() + " </h1>");
-            out.println("<h1>Meu parametro foi " + user.getLogradouro() + " </h1>");
-            out.println("<h1>Meu parametro foi " + user.getNomeRazao() + " </h1>");
-            out.println("<h1>Meu parametro foi " + user.getNumero() + " </h1>");
-            out.println("<h1>Meu parametro foi " + user.getSenha() + " </h1>");
-            out.println("<h1>Meu parametro foi " + user.getSexo() + " </h1>");
-            out.println("<h1>Meu parametro foi " + user.getTelefone() + " </h1>");
-            out.println("<h1>Meu parametro foi " + user.getDataNascimento() + " </h1>");
-            //out.println("<h1>Meu parametro foi " + user.getId() + " </h1>");
-            out.println("<h1>Meu parametro foi " + usuario.getEmail() + " </h1>");
-            // out.println("<h1>Meu parametro foi " + usuario.getId() + " </h1>");
-            out.println("<h1>Meu parametro foi " + usuario.getCpf_cnpj() + " </h1>");
-            out.println("<h1>Meu parametro foi " + usuario.getNivel_usuario()+ " </h1>");
-            out.println("<h1>Meu parametro foi " + usuario.getBanco()+ " </h1>");
-            out.println("<h1>Meu parametro foi " + usuario.getAgencia()+ " </h1>");
-            out.println("<h1>Meu parametro foi " + usuario.getConta()+ " </h1>");
-            out.println("<h1>Meu parametro foi " + usuario.getDigito()+ " </h1>");
-            
-            
-           
-            
-            // Redireciona para outra página
-            if(user.getNivel_usuario().equals("3")){
-                response.sendRedirect("login.jsp");
-            }else{
-                //response.sendRedirect("index.jsp");
-            }
-            
-            out.println("</body>");
-            out.println("</html>");
-        }
+
+            response.sendRedirect("cadastroUsuario.jsp");
+
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

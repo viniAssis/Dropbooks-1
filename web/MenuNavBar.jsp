@@ -90,7 +90,7 @@
                             <a class="nav-link" href="index.jsp">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="Contato.jsp">Contato</a>
+                            <a class="nav-link" href="contato.jsp">Contato</a>
                         </li>
                         <li class="nav-item">
                             <%
