@@ -2,17 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/vinim/Documents/NetBeansProjects/Dropbooks-1-master/src/java/modelDAO/LoginDAO.java</file>
-            <file>file:/C:/Users/vinim/Documents/NetBeansProjects/Dropbooks-1-master/web/login.jsp</file>
-            <file>file:/C:/Users/vinim/Documents/NetBeansProjects/Dropbooks-1-master/web/status.jsp</file>
-            <file>file:/C:/Users/vinim/Documents/NetBeansProjects/Dropbooks-1-master/src/java/controller/VerificaLoginServlet.java</file>
-            <file>file:/C:/Users/vinim/Documents/NetBeansProjects/Dropbooks-1-master/web/MenuNavBar.jsp</file>
-            <file>file:/C:/Users/vinim/Documents/NetBeansProjects/Dropbooks-1-master/web/carrinho.jsp</file>
-            <file>file:/C:/Users/vinim/Documents/NetBeansProjects/Dropbooks-1-master/web/index.jsp</file>
-            <file>file:/C:/Users/vinim/Documents/NetBeansProjects/Dropbooks-1-master/src/java/modelDAO/PedidoDAO.java</file>
-            <file>file:/C:/Users/vinim/Documents/NetBeansProjects/Dropbooks-1-master/src/java/controller/SairServlet.java</file>
-            <file>file:/C:/Users/vinim/Documents/NetBeansProjects/Dropbooks-1-master/web/analytics.html</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
