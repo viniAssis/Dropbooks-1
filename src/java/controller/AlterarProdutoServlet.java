@@ -40,7 +40,7 @@ public class AlterarProdutoServlet extends HttpServlet {
          
          //Usuario user = new UsuarioDAO().getUsuario(_email);
          
-         int id = Integer.parseInt(request.getParameter("id"));
+         int id = Integer.parseInt(request.getParameter("idProduto"));
          
          Produto prod = new ProdutoDAO().getProduto(id);
          

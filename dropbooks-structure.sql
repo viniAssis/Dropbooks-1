@@ -105,7 +105,7 @@ CREATE TABLE `pedidos` (
   `id_usuario` int(11) NOT NULL,
   `forma_pagamento` varchar(45) NOT NULL,
   `status_pagamento` varchar(10) NOT NULL,
-  `cep` varchar(8) NOT NULL,
+  `cep` varchar(10) NOT NULL,
   `logradouro` varchar(80) NOT NULL,
   `numero` varchar(10) NOT NULL,
   `complemento` varchar(45) NOT NULL,
