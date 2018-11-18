@@ -10,7 +10,7 @@
 <%@page import="model.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
     <head>
 
@@ -35,18 +35,29 @@
 
         <!-- Custom styles for this template -->
         <link href="res/css/portfolio-item.css" rel="stylesheet">
-
         <%
             Produto prod = new ProdutoDAO().getProduto(Integer.parseInt(request.getParameter("id")));
             Usuario userProd = new UsuarioDAO().getUserById(prod.getId_usuario());
             if (session.getAttribute("email") != null) {
 
                 String email = request.getSession().getAttribute("email").toString();
-
                 Usuario user = new UsuarioDAO().getUsuario(email);
+                
+                if(user.getId() != prod.getId_usuario()){
+                    response.sendRedirect("paginaNaoEncontrada.jsp");
+                }
+                
+            }else{
+                    response.sendRedirect("paginaNaoEncontrada.jsp");
+               
             }
-
-        %>
+            response.setContentType("text/html;charset=UTF-8");
+        %> 
+       
+        <script>
+            document.getElementById("<%= prod.getIdioma() %>").selected = true;
+        </script>
+        
     </head>
 
     <body>
@@ -69,31 +80,44 @@
                 </div>
 
                 <div class="col-md-4">
-                    <h3 class="my-3">Descrição</h3>
-                    <p><label><%=prod.getDescricao()%> </label></p>
-                    <h3 class="my-3">Detalhes</h3>         
+                    <h3 class="my-3">Informações do produto</h3>     
                     
-                        <form class="compra" method="get" action="ComprarServlet"> 
+                        <form id="form1" action="AlterarProdutoServlet"> 
                             <ul>
-                                <li>Autor: <input class="form-control" id="nameAutor" name="nameAutor" type="text" /></li>
+                                <input style="display:none" type="text"  name="idProduto" id="idProduto"  maxlength="1" value="<%= prod.getId() %>"  required>
                                 
-                                <li>Editora: <%=prod.getEditora()%></li>
-                                <input type="text" name="" id="" value="">
-                                <li>Data de registro no sistema: <%=prod.getDataRegistro()%></li>
-                                <input type="text" name="" id="" value="">
-                                <li>Data de publicação: <%=prod.getDataPublicacao()%></li>
-                                <input type="text" name="" id="" value="">
-                                <li>Genero: <%=prod.getGenero()%></li>
-                                <input type="text" name="" id="" value="">
-                                <li>Idioma: <%=prod.getIdioma()%></li>
-                                <input type="text" name="" id="" value="">
-                                <li>Preco: R$<%=prod.getPreco()%></li>
-                                <input type="text" name="" id="" value="">
-                                <li>Quantidade de livros: <%=prod.getQuantidade()%></li>
-                                <input type="text" name="" id="" value="">
+                                <li>Título: <input type="text" class="form-control border border-dark" id="nameTitulo" name="nameTitulo" type="text" value="<%= prod.getTitulo() %>" required/></li>
+                                
+                                <li>Autor: <input type="text" class="form-control border border-dark" id="nameAutor" name="nameAutor" type="text" value="<%= prod.getAutor() %>" required/></li>
+                                
+                                <li>Editora: <input type="text" class="form-control border border-dark" name="nameEditora" id="nameEditora" value="<%= prod.getEditora() %>" required></li>
+
+
+                                <li>Data de publicação: <input type="date" class="form-control border border-dark" name="nameData" id="nameData" class="cxs1" value="<%= prod.getDataPublicacao() %>" required></li>
+
+
+                                <li>Genero: <input type="text" class="form-control border border-dark" name="menuGenero" id="menuGenero" value="<%= prod.getGenero()%>" required></li>
+
+
+                                <li>Idioma:</li>
+                                <select id="nameIdioma" name="menuIdioma" id="menuIdioma" class="form-control border border-dark" text="<%= prod.getIdioma() %>" required>
+                                    <option value="<%= prod.getIdioma() %>" selected><%= prod.getIdioma() %></option>
+                                    <option value="Portugues">Portugues</option>
+                                    <option value="Ingles">Ingles</option>
+                                    <option value="Espanhol">Espanhol</option>
+                                </select>
+
+                                <li>Preço: </li>
+                                <input type="number" class="form-control border border-dark" name="namePreco" id="namePreco" value="<%= prod.getPreco()%>" step="0.010" required>
+                                
+                                <li>Quantidade de livros: </li>
+                                <input type="number" class="form-control border border-dark" name="nameQuantidade" id="nameQuantidade" value="<%= prod.getQuantidade()%>" required>
+                                
+                                <li>Descrição do livro: </li>
+                                <textarea class="form-control  border border-dark" id="nameDescricao" name="nameDescricao" rows="3" required><%= prod.getDescricao() %></textarea>
+                                
                             </ul>
-                            <input type="hidden" class="btn btn-info " value="Comprar" id="btnComprar">
-                            <button type="submit" class="btn btn-secondary" name="livro" value=<%=prod.getId()%>>Alterar Informações do Produto</button>
+                                <button type="submit" class="btn btn-primary"  >Alterar Informações</button>
                         </form>
 
 
