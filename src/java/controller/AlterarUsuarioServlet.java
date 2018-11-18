@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Mensagem;
 import model.Usuario;
 import modelDAO.UsuarioDAO;
 
@@ -40,10 +41,14 @@ public class AlterarUsuarioServlet extends HttpServlet {
          user.setCep(request.getParameter("hCEP"));
          user.setDataNascimento(Usuario.toSqlDate(request.getParameter("hData")));
          
-         UsuarioDAO.alterarUsuario(user);
+         String resp = UsuarioDAO.alterarUsuario(user);
          
-         response.sendRedirect("index.jsp");
-         
+            if (Mensagem.OK.equals(resp)) {
+                // Exibe a mensagem na tela, abaixo do botão
+                response.sendRedirect("alterarCarrossel.jsp?msg=" + Mensagem.USUARIO_ALTERADO);
+            } else {
+                response.sendRedirect("alterarCarrossel.jsp?msg=" + Mensagem.ERRO_CONEXAO);
+            }
 
     }
 

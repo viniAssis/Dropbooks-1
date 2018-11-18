@@ -26,17 +26,16 @@ public class CadastroBannerServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            
+
             Banner banner = new Banner();
-            
+
             //String email = request.getSession().getAttribute("email").toString();
             //Usuario user = new UsuarioDAO().getUsuario(email);
-            
             Calendar cal = Calendar.getInstance();
             cal.add(Calendar.DATE, 0);
             SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
             String hoje = format1.format(cal.getTime());
-            
+
             //banner.setPosicao(Integer.parseInt(request.getParameter("posicao")));
             banner.setPosicao(3);
             banner.setTitulo(request.getParameter("titulo"));
@@ -45,20 +44,19 @@ public class CadastroBannerServlet extends HttpServlet {
             //banner.setData_validade(banner.toSqlDate(request.getParameter("data_validade")));
             banner.setAtivo(1);
             banner.setUrl(request.getParameter("url"));
-            if(request.getPart("imagem").getSize() != 0){
+            if (request.getPart("imagem").getSize() != 0) {
                 banner.setImagem(request.getPart("imagem").getInputStream());
             }
-            
+
             String resp = BannerDAO.setBanner(banner);
-            
-                    if(Mensagem.OK.equals(resp)){
-            // Exibe a mensagem na tela, abaixo do botão
+
+            if (Mensagem.OK.equals(resp)) {
+                // Exibe a mensagem na tela, abaixo do botão
                 response.sendRedirect("alterarCarrossel.jsp?msg=" + Mensagem.BANNER_ENVIADO);
-            }
-            else{
+            } else {
                 response.sendRedirect("alterarCarrossel.jsp?msg=" + Mensagem.ERRO_CONEXAO);
             }
-            //response.sendRedirect("alterarCarrossel.jsp");
+ 
         }
     }
 

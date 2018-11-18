@@ -4,7 +4,7 @@
 
 <!DOCTYPE html>
 <html lang="pt-br">
-    
+
     <head>
         <!-- Meta tags Obrigatórias -->
         <meta charset="utf-8">
@@ -16,7 +16,7 @@
         <!-- Custom styles for this template -->
         <link href="res/css/modern-business.css" rel="stylesheet">
 
-          <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" type="text/css" href="res/fonts/font-awesome-4.7.0/css/font-awesome.min.css"/>
         <link rel="stylesheet" type="text/css" href="res/css/util.css"/>
         <link rel="stylesheet" type="text/css" href="res/css/main.css"/>
@@ -55,32 +55,32 @@
                 font-size: 20px;
                 color: black;
             }
-            
-   #nav{
-                                background: #090446;
-                            }
 
-                            .navbar .navbar-nav li a{
-                                color: #FEB95F !important;
-                                font-weight: 400;
+            #nav{
+                background: #090446;
+            }
 
-
-
-                            }
-                            .navbar .navbar-nav li a:hover{
-                                color: #FEB95F !important;
-                                font-weight: 400;
-
-                                transform: scale(1);
+            .navbar .navbar-nav li a{
+                color: #FEB95F !important;
+                font-weight: 400;
 
 
-                            }
-                            .navbar-brand{
-                                color: #FEB95F !important;
-                                font-size: 24px;
-                                font-weight: 700;
 
-                            }
+            }
+            .navbar .navbar-nav li a:hover{
+                color: #FEB95F !important;
+                font-weight: 400;
+
+                transform: scale(1);
+
+
+            }
+            .navbar-brand{
+                color: #FEB95F !important;
+                font-size: 24px;
+                font-weight: 700;
+
+            }
 
 
             #footer{
@@ -94,38 +94,37 @@
             #corBranca{
                 color: white;
             }
-            
+
             #btnAlterar{
-               color:#FEB95F ;
-                    background: #090446;
+                color:#FEB95F ;
+                background: #090446;
             }
         </style>
 
         <%
-           
-               //Usuario user = new Usuario();
 
-                String email = request.getSession().getAttribute("email").toString();
-		   
-                Usuario user = new UsuarioDAO().getUsuario(email);
+            //Usuario user = new Usuario();
+            String email = request.getSession().getAttribute("email").toString();
 
-                String masc = null;
-                String fem = null;
+            Usuario user = new UsuarioDAO().getUsuario(email);
 
-                if(user.getSexo().equals("M") || user.getSexo().equals("m")){
+            String masc = null;
+            String fem = null;
+
+            if (user.getSexo().equals("M") || user.getSexo().equals("m")) {
                 masc = "checked";
-                }else{
+            } else {
                 fem = "checked";
-                }
+            }
         %>
 
 
 
 
     </head>
-    
+
     <body>
-        
+
         <nav class="navbar fixed-top navbar-expand-lg navbar-dark  fixed-top" id="nav">
             <div class="container">
                 <a class="navbar-brand" href="index.jsp">DropBooks</a>
@@ -137,7 +136,7 @@
                             <a class="nav-link" href="index.jsp">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="Contato.jsp">Contato</a>
+                            <a class="nav-link" href="contato.jsp">Contato</a>
                         </li>
 
                         <li class="nav-item">
@@ -192,7 +191,7 @@
                     <label class="form-check-label" id="texto">Feminino</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="sexoPessoa" id="sxMas"  value="F" <% out.print(fem); %> required>
+                    <input class="form-check-input" type="radio" name="sexoPessoa" id="sxMas"  value="F" <% out.print(fem);%> required>
                     <label class="form-check-label" id="texto">Masculino</label>
                 </div>
             </div>
@@ -216,7 +215,7 @@
                     <input type="text" class="form-control  border border-dark" id="endereco"  maxlength="50" name="endereco"  value="<%= user.getLogradouro()%>" required>
                 </div>
                 <div class="form-group col-md-4">
-                    <label id="texto">Numero</label>
+                    <label id="texto">Número</label>
                     <input type="text" class="form-control  border border-dark" id="inputNumero" maxlength="5" name="hNumero" value="<%= user.getNumero()%>" required>
                 </div>
             </div>
@@ -246,10 +245,17 @@
             </div>
 
             <button type="submit" class="btn border-0" id="btnAlterar" >Alterar</button>
+            <!-- Mensagem de resposta -->
+            <%
+                if (request.getParameter("msg") != null) {
+                    out.println(request.getParameter("msg"));
+                } else {
 
+                }
+            %>
         </form>	
-     
- <!-- Footer -->
+
+        <!-- Footer -->
         <footer class="bg6 p-t-45 p-b-43 p-l-45 p-r-45" id="footer">
             <div class="flex-w p-b-90">
                 <div class="w-size6 p-t-30 p-l-15 p-r-15 respon3">
@@ -336,12 +342,12 @@
             </span>
         </div>
 
-        
+
         <!-- Bootstrap core JavaScript -->
         <script src="res/vendor/jquery/jquery.min.js"></script>
         <script src="res/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.8/jquery.mask.js"></script>
-       
-        </body>
-        </html>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.8/jquery.mask.js"></script>
+
+    </body>
+</html>

@@ -77,7 +77,6 @@ public class CadastroServlet extends HttpServlet {
 
         Usuario usuario = CadastroDAO.cadastrar(user);
 
-
         if (usuario != null) {
             // Exibe a mensagem na tela, abaixo do botão
             response.sendRedirect("login.jsp?msg=" + Mensagem.USUARIO_CADATRADO);
