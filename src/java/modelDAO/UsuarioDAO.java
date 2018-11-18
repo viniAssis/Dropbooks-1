@@ -292,11 +292,11 @@ public class UsuarioDAO {
         return resp;
     }
 
-    public static String excluirUsuario(int id) {
+    public String excluirUsuario(int id) {
         String resp = "";
         try {
             Connection con = Conecta.getConexao();
-            String sql = "DELETE FROM produto, usuario USING produto INNER JOIN usuario USING(id) WHERE produto.id_usuario=?";
+            String sql = "DELETE FROM produto, usuario USING produto INNER JOIN usuario USING(id) WHERE produto.id_produto=?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
 

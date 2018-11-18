@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Mensagem;
 import modelDAO.UsuarioDAO;
 
 /**
@@ -37,10 +38,14 @@ public class ExcluirUsuarioServlet extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         
                   
-        new UsuarioDAO().excluirUsuario(id);
+        String resp = new UsuarioDAO().excluirUsuario(id);
         
-        // Recarregar a página
-        response.sendRedirect("./listaUsuarioFuncionario.jsp");
+            if (Mensagem.OK.equals(resp)) {
+                // Exibe a mensagem na tela, abaixo do botão
+                response.sendRedirect("listaUsuarioFuncionario.jsp?msg=" + Mensagem.USUARIO_EXCLUIDO);
+            } else {
+                response.sendRedirect("listaUsuarioFuncionario.jsp?msg=" + Mensagem.ERRO_CONEXAO);
+            }
         }
     }
 

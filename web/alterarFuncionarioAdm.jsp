@@ -180,7 +180,7 @@
             </div>
 
             <div class="col-md-4 mb-8">
-                <label>CPF</label>
+                <label>CPF / CNPJ</label>
                 <input type="text"class="form-control border border-dark" name="cpf_cnpj" id="cpf" maxlength="18" value="<%= user.getCpf_cnpj()%>" required>
             </div>
         </div>
@@ -244,7 +244,7 @@
             </div>
 
             <div class="col-md-2 mb-8">
-                <label>Numero:</label>
+                <label>Número:</label>
                 <input type="text" class="form-control border border-dark" id="numero" name="numero"  maxlength="5" value="<%= user.getNumero()%>">
             </div>
 
@@ -298,7 +298,7 @@
             </div>
 
             <div class="col-md-3 mb-3">
-                <label>Digito:</label>
+                <label>Dígito:</label>
                 <input type="text" class="form-control border border-dark" name="digito" id="digito" maxlength="2" value="<%= user.getDigito()%>">
             </div>
         </div>
