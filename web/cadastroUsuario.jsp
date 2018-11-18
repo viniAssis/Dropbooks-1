@@ -1,9 +1,17 @@
+<%-- 
+    Document   : cadastroUsuario
+    Created on : 17/11/2018, 04:38:26
+    Author     : Cristiano
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 
     <head>
 
-        <meta charset="utf-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="">
         <meta name="author" content="">
@@ -26,7 +34,7 @@
         <link rel="stylesheet" type="text/css" href="res/fonts/font-awesome-4.7.0/css/font-awesome.min.css"/>
         <link rel="stylesheet" type="text/css" href="res/css/util.css"/>
         <link rel="stylesheet" type="text/css" href="res/css/main.css"/>
-        
+
         <style>
             h2{
                 margin-top: 10%;
@@ -93,23 +101,23 @@
             input{
                 margin-bottom: 3%;
             }
-                            #nav{
-                                background: #090446;
-                            }
-                            .navbar .navbar-nav li a{
-                                color: #FEB95F !important;
-                                font-weight: 400;
-                            }
-                            .navbar .navbar-nav li a:hover{
-                                color: #FEB95F !important;
-                                font-weight: 400;
-                                transform: scale(1);
-                            }
-                            .navbar-brand{
-                                color: #FEB95F !important;
-                                font-size: 24px;
-                                font-weight: 700;
-                            }
+            #nav{
+                background: #090446;
+            }
+            .navbar .navbar-nav li a{
+                color: #FEB95F !important;
+                font-weight: 400;
+            }
+            .navbar .navbar-nav li a:hover{
+                color: #FEB95F !important;
+                font-weight: 400;
+                transform: scale(1);
+            }
+            .navbar-brand{
+                color: #FEB95F !important;
+                font-size: 24px;
+                font-weight: 700;
+            }
             #footer{
                 background: #090446;
             }
@@ -141,7 +149,7 @@
                             <a class="nav-link" href="pesquisa.jsp">Livros</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="Contato.jsp">Contato</a>
+                            <a class="nav-link" href="contato.jsp">Contato</a>
                         </li>
                     </ul>
                 </div>
@@ -150,15 +158,16 @@
 
         <h2>Cadastro de Usuário</h2>
 
-        <form method="post" id="form" name="form" action="CadastroServlet" onsubmit="teste()">
+        <form method="post" id="form" name="form" action="CadastroServlet">
 
             <div class="container">
+                <!--
                 <input style="display:none" type="text"  name="perfil" id="perfil"  maxlength="1" value="3"  required>
                 <input style="display:none" type="text"  name="banco" id="banco"  maxlength="4" value="nulo"  required>
                 <input style="display:none" type="number"  name="agencia" id="agencia"  maxlength="1" value="0"  required>
                 <input style="display:none" type="number"  name="conta" id="conta"  maxlength="1" value="0"  required>
                 <input style="display:none" type="number"  name="digito" id="digito"  maxlength="1" value="0"  required>
-                
+-->
                 <!--Email -->
                 <div class="form-row">
                     <div class="col-md-6 mb-8">
@@ -176,11 +185,11 @@
                 <div class="form-row">
                     <div class="col-md-6 mb-8">
                         <label>Senha:</label>
-                        <input type="password" class="form-control border border-dark" name="senha" maxlength="20" id="senha" required>
+                        <input type="password" class="form-control border border-dark" name="senha" maxlength="19" id="senha" required>
                     </div>
                     <div class="col-md-6 mb-8">
                         <label>Repita a Senha:</label>
-                        <input type="password" class="form-control border border-dark" name="repsenha" maxlength="20" id="repsenha" required>
+                        <input type="password" class="form-control border border-dark" name="repsenha" maxlength="19" id="repsenha" required>
                     </div>
                 </div>
 
@@ -203,11 +212,11 @@
                 <div class="form-group">
                     <label>Tipo:</label>
                     <div class="form-check form-check-inline " id="espaco">
-                        <input class="form-check-input" type="radio"  NAME="tipoPessoa" id="idFisico" VALUE="1" required>
+                        <input class="form-check-input" type="radio" name="tipoPessoa" id="idFisico" VALUE="1" required>
                         <label class="form-check-label">Fisico</label>
                     </div>
                     <div class="form-check form-check-inline" id="espaco">
-                        <input class="form-check-input" type="radio"  NAME="tipoPessoa" id="idJuridico" VALUE="2" required>
+                        <input class="form-check-input" type="radio" name="tipoPessoa" id="idJuridico" VALUE="2" required>
                         <label class="form-check-label">Juridico</label>
                     </div>
                 </div>
@@ -229,7 +238,7 @@
                         <label>Sexo:</label>
                         <div class="form-check form-check-inline " id="espaco">
                             <input class="form-check-input" type="radio"  name="sexo" id="feminino" value="f" required>
-                            <label class="form-check-label">Femino</label>
+                            <label class="form-check-label">Feminino</label>
                         </div>
                         <div class="form-check form-check-inline" id="espaco">
                             <input class="form-check-input" type="radio" name="sexo" id="masculino" value="m" required>
@@ -248,7 +257,7 @@
 
                         <div class="col-md-6 mb-8">
                             <label for="validationCustom02">Razão Social:</label>
-                            <input type="text" class="form-control border border-dark" name="nomeRazao" id="nomeRazao" onkeypress="return event.charCode >= 97 && event.charCode <= 122">
+                            <input type="text" class="form-control border border-dark" name="nomeRazao" id="nomeRazao" maxlength="40">
                         </div>
                     </div>
                 </div>
@@ -269,7 +278,7 @@
 
                     <div class="col-md-4 mb-3">
                         <label>Numero:</label>
-                        <input type="text" class="form-control border border-dark" id="numero"  maxlength="5" name="numero" required>
+                        <input type="text" class="form-control border border-dark" id="numero"  maxlength="4" name="numero" required>
                     </div>
                 </div>
 
@@ -277,7 +286,7 @@
                 <div class="form-row">
                     <div class="col-md-4 mb-3">
                         <label>Complemento:</label>
-                        <input type="text" class="form-control border border-dark" name="complemento" id="complemento"  maxlength="20" required>
+                        <input type="text" class="form-control border border-dark" name="complemento" id="complemento"  maxlength="19" required>
                     </div>
                     <div class="col-md-4 mb-3">
                         <label>Bairro:</label>
@@ -295,15 +304,38 @@
                 <div class="form-row">
                     <div class="col-md-4 mb-3">
                         <label>Estado:</label>
-                        <input type="text" class="form-control border border-dark" name="estado" id="estado"  maxlength="20"required>
+                        <input type="text" class="form-control border border-dark" name="estado" id="estado"  maxlength="20" required>
+                    </div>
+                </div>
+                
+                 <!--Banco, agencia e conta -->
+                 <div class="form-row">
+                    <div class="col-md-3 mb-3">
+                        <label>Banco:</label>
+                        <input type="text" class="form-control border border-dark" name="banco" id="banco" maxlength="10" required>
+                    </div>
+
+                     <div class="col-md-3 mb-3">
+                        <label>Agência</label>
+                        <input type="text" class="form-control border border-dark" name="agencia" id="agencia"  maxlength="5" required>
+                    </div>
+
+                      <div class="col-md-3 mb-3">
+                        <label>Conta:</label>
+                        <input type="text" class="form-control border border-dark" name="conta" id="conta"  maxlength="5" required>
+                    </div>
+
+                     <div class="col-md-3 mb-3">
+                        <label>Digito:</label>
+                        <input type="text" class="form-control border border-dark" name="digito" id="dig"  maxlength="2" required>
                     </div>
                 </div>
 
             </div>
 
             <div id="end_submit">
-                <input type="checkbox" name="rec_novidades" id="rec_novidades" value="ATIVO" checked="checked" required/>
-                Você Concorda com os termos de uso Ler <a href="#">Termos de Uso</a>
+                <input type="checkbox" name="rec_novidades" id="rec_novidades" value="ATIVO" required/>
+                Concordo com o <a href="termoUso.jsp" target="_blanck">Termo de Uso</a>
                 <p>
                     <input type="submit" name="cadastrar" id="cadastrar" value="Cadastrar" class="btn btn-primary" />
                     <input type="reset" name="limpar" id="limpar" value="Limpar" class="btn btn-primary"/>
