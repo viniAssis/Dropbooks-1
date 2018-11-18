@@ -18,6 +18,27 @@ USE `dropbooks`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `banner`
+--
+
+DROP TABLE IF EXISTS `banner`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `banner` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `posicao` int(11) DEFAULT NULL,
+  `titulo` varchar(45) DEFAULT NULL,
+  `descricao` varchar(150) DEFAULT NULL,
+  `data_cadastro` date DEFAULT NULL,
+  `data_validade` date DEFAULT NULL,
+  `ativo` int(11) DEFAULT NULL,
+  `url` varchar(255) DEFAULT NULL,
+  `imagem` mediumblob,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `funcionario`
 --
 
@@ -50,6 +71,55 @@ CREATE TABLE `funcionario` (
   UNIQUE KEY `email` (`email`),
   UNIQUE KEY `cpf` (`cpf`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `itens`
+--
+
+DROP TABLE IF EXISTS `itens`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `itens` (
+  `id_item` int(11) NOT NULL AUTO_INCREMENT,
+  `id_pedido` int(11) NOT NULL,
+  `id_produto` int(10) unsigned NOT NULL,
+  `status_entrega` varchar(45) NOT NULL,
+  PRIMARY KEY (`id_item`),
+  KEY `fk_itens_pedidos_idx` (`id_pedido`),
+  KEY `fk_itens_produto_idx` (`id_produto`),
+  CONSTRAINT `fk_itens_pedidos` FOREIGN KEY (`id_pedido`) REFERENCES `pedidos` (`id_pedido`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_itens_produto` FOREIGN KEY (`id_produto`) REFERENCES `produto` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `pedidos`
+--
+
+DROP TABLE IF EXISTS `pedidos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `pedidos` (
+  `id_pedido` int(11) NOT NULL AUTO_INCREMENT,
+  `id_usuario` int(11) NOT NULL,
+  `forma_pagamento` varchar(45) NOT NULL,
+  `status_pagamento` varchar(10) NOT NULL,
+  `cep` varchar(8) NOT NULL,
+  `logradouro` varchar(80) NOT NULL,
+  `numero` varchar(10) NOT NULL,
+  `complemento` varchar(45) NOT NULL,
+  `estado` varchar(45) NOT NULL,
+  `cidade` varchar(75) NOT NULL,
+  `bairro` varchar(75) NOT NULL,
+  `data_pedido` datetime NOT NULL,
+  `subtotal` float NOT NULL,
+  `frete` float NOT NULL,
+  `total` float NOT NULL,
+  PRIMARY KEY (`id_pedido`),
+  KEY `fk_pedidos_usuario_idx` (`id_usuario`),
+  CONSTRAINT `fk_pedidos_usuario` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -105,18 +175,38 @@ CREATE TABLE `usuario` (
   `nomeRazao` varchar(45) DEFAULT NULL,
   `cep` varchar(8) NOT NULL,
   `logradouro` varchar(80) NOT NULL,
-  `numero` varchar(5) NOT NULL,
-  `complemento` varchar(20) NOT NULL,
+  `numero` varchar(6) NOT NULL,
+  `complemento` varchar(21) NOT NULL,
   `estado` varchar(45) NOT NULL,
   `cidade` varchar(75) NOT NULL,
   `bairro` varchar(75) NOT NULL,
-  `senha` varchar(20) NOT NULL,
+  `senha` varchar(21) NOT NULL,
   `Nivel_Usuario` char(1) NOT NULL,
   `Ativo` char(1) NOT NULL,
+  `banco` varchar(45) DEFAULT NULL,
+  `agencia` int(6) DEFAULT NULL,
+  `conta` int(7) DEFAULT NULL,
+  `digito` int(3) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `cpf_cnpj_UNIQUE` (`cpf_cnpj`),
   UNIQUE KEY `email_UNIQUE` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `vendas`
+--
+
+DROP TABLE IF EXISTS `vendas`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `vendas` (
+  `id_venda` int(11) NOT NULL AUTO_INCREMENT,
+  `id_pedido` int(11) NOT NULL,
+  `data_venda` date NOT NULL,
+  `valor` float NOT NULL,
+  PRIMARY KEY (`id_venda`)
+) ENGINE=InnoDB AUTO_INCREMENT=838 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -136,4 +226,4 @@ CREATE TABLE `usuario` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-10-25 12:04:54
+-- Dump completed on 2018-11-17 23:22:43

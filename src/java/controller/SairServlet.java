@@ -5,6 +5,7 @@
  */
 package controller;
 
+import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -32,6 +33,9 @@ public class SairServlet extends HttpServlet {
         // Invalida sessão e redireciona para login
         request.getSession().invalidate();
         response.sendRedirect("index.jsp");
+        
+        String resp = new Gson().toJson("objeto");
+        
     }
  
     protected void doPost(HttpServletRequest request,
