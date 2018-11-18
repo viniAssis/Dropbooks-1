@@ -38,12 +38,13 @@ public class CadastroBannerServlet extends HttpServlet {
             String hoje = format1.format(cal.getTime());
             
             //banner.setPosicao(Integer.parseInt(request.getParameter("posicao")));
-            //banner.setTitulo(request.getParameter("titulo"));
-            //banner.setDescricao(request.getParameter("descricao"));
+            banner.setPosicao(3);
+            banner.setTitulo(request.getParameter("titulo"));
+            banner.setDescricao(request.getParameter("descricao"));
             banner.setData_cadastro(banner.toSqlDate(hoje));
             //banner.setData_validade(banner.toSqlDate(request.getParameter("data_validade")));
             banner.setAtivo(1);
-            //banner.setUrl(request.getParameter("url"));
+            banner.setUrl(request.getParameter("url"));
             if(request.getPart("imagem").getSize() != 0){
                 banner.setImagem(request.getPart("imagem").getInputStream());
             }
