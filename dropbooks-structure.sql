@@ -74,6 +74,44 @@ CREATE TABLE `funcionario` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `usuario`
+--
+
+DROP TABLE IF EXISTS `usuario`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `usuario` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `cpf_cnpj` varchar(30) NOT NULL,
+  `tipoPessoa` tinyint(1) NOT NULL,
+  `dataNascimento` date DEFAULT NULL,
+  `sexo` char(1) DEFAULT NULL,
+  `email` varchar(45) NOT NULL,
+  `telefone` varchar(45) NOT NULL,
+  `id_conta` int(11) DEFAULT NULL,
+  `id_endereco` int(11) DEFAULT NULL,
+  `nomeRazao` varchar(45) DEFAULT NULL,
+  `cep` varchar(8) NOT NULL,
+  `logradouro` varchar(80) NOT NULL,
+  `numero` varchar(6) NOT NULL,
+  `complemento` varchar(21) NOT NULL,
+  `estado` varchar(45) NOT NULL,
+  `cidade` varchar(75) NOT NULL,
+  `bairro` varchar(75) NOT NULL,
+  `senha` varchar(21) NOT NULL,
+  `Nivel_Usuario` char(1) NOT NULL,
+  `Ativo` char(1) NOT NULL,
+  `banco` varchar(45) DEFAULT NULL,
+  `agencia` int(6) DEFAULT NULL,
+  `conta` int(7) DEFAULT NULL,
+  `digito` int(3) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `cpf_cnpj_UNIQUE` (`cpf_cnpj`),
+  UNIQUE KEY `email_UNIQUE` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `itens`
 --
 
@@ -155,43 +193,7 @@ CREATE TABLE `produto` (
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Table structure for table `usuario`
---
 
-DROP TABLE IF EXISTS `usuario`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `usuario` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `cpf_cnpj` varchar(30) NOT NULL,
-  `tipoPessoa` tinyint(1) NOT NULL,
-  `dataNascimento` date DEFAULT NULL,
-  `sexo` char(1) DEFAULT NULL,
-  `email` varchar(45) NOT NULL,
-  `telefone` varchar(45) NOT NULL,
-  `id_conta` int(11) DEFAULT NULL,
-  `id_endereco` int(11) DEFAULT NULL,
-  `nomeRazao` varchar(45) DEFAULT NULL,
-  `cep` varchar(8) NOT NULL,
-  `logradouro` varchar(80) NOT NULL,
-  `numero` varchar(6) NOT NULL,
-  `complemento` varchar(21) NOT NULL,
-  `estado` varchar(45) NOT NULL,
-  `cidade` varchar(75) NOT NULL,
-  `bairro` varchar(75) NOT NULL,
-  `senha` varchar(21) NOT NULL,
-  `Nivel_Usuario` char(1) NOT NULL,
-  `Ativo` char(1) NOT NULL,
-  `banco` varchar(45) DEFAULT NULL,
-  `agencia` int(6) DEFAULT NULL,
-  `conta` int(7) DEFAULT NULL,
-  `digito` int(3) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `cpf_cnpj_UNIQUE` (`cpf_cnpj`),
-  UNIQUE KEY `email_UNIQUE` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Table structure for table `vendas`

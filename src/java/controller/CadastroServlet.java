@@ -16,9 +16,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Mensagem;
 import model.Usuario;
 import modelDAO.CadastroDAO;
-
 
 /**
  *
@@ -26,8 +26,6 @@ import modelDAO.CadastroDAO;
  */
 @WebServlet(name = "CadastroServlet", urlPatterns = {"/CadastroServlet"})
 public class CadastroServlet extends HttpServlet {
-
-
 
     public CadastroServlet() {
 
@@ -45,44 +43,47 @@ public class CadastroServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ParseException {
         response.setContentType("text/html;charset=UTF-8");
-        
-        Usuario user = new Usuario();      
-                    
-            if(request.getParameter("cpf").isEmpty()){
-                user.setCpf_cnpj(request.getParameter("cnpj"));
-            } else if(request.getParameter("cnpj").isEmpty()) {
-                user.setCpf_cnpj(request.getParameter("cpf"));
-            } else {
-                user.setCpf_cnpj("");
-            }
-                    
-            user.setTipoPessoa(Integer.parseInt(request.getParameter("tipoPessoa")));
-            user.setDataNascimento(Usuario.toSqlDate(request.getParameter("data")));
-            user.setSexo(request.getParameter("sexo"));
-            user.setEmail(request.getParameter("email"));
-            user.setTelefone(request.getParameter("telefone"));
-            user.setNomeRazao(request.getParameter("nomeRazao"));
-            user.setCep(request.getParameter("cep"));
-            user.setLogradouro(request.getParameter("logradouro"));
-            user.setNumero(request.getParameter("numero"));
-            user.setComplemento(request.getParameter("complemento"));
-            user.setEstado(request.getParameter("estado"));
-            user.setCidade(request.getParameter("cidade"));
-            user.setBairro(request.getParameter("bairro"));
-            user.setSenha(request.getParameter("senha"));
-            user.setNivel_usuario("3");
-            user.setAtivo("1");
-            user.setBanco(request.getParameter("banco"));
-            user.setAgencia(Integer.parseInt(request.getParameter("agencia")));
-            user.setConta(Integer.parseInt(request.getParameter("conta")));
-            user.setDigito(Integer.parseInt(request.getParameter("digito")));
-            
-            Usuario usuario = CadastroDAO.cadastrar(user);
-            
 
-            response.sendRedirect("cadastroUsuario.jsp");
+        Usuario user = new Usuario();
 
-        
+        if (request.getParameter("cpf").isEmpty()) {
+            user.setCpf_cnpj(request.getParameter("cnpj"));
+        } else if (request.getParameter("cnpj").isEmpty()) {
+            user.setCpf_cnpj(request.getParameter("cpf"));
+        } else {
+            user.setCpf_cnpj("");
+        }
+
+        user.setTipoPessoa(Integer.parseInt(request.getParameter("tipoPessoa")));
+        user.setDataNascimento(Usuario.toSqlDate(request.getParameter("data")));
+        user.setSexo(request.getParameter("sexo"));
+        user.setEmail(request.getParameter("email"));
+        user.setTelefone(request.getParameter("telefone"));
+        user.setNomeRazao(request.getParameter("nomeRazao"));
+        user.setCep(request.getParameter("cep"));
+        user.setLogradouro(request.getParameter("logradouro"));
+        user.setNumero(request.getParameter("numero"));
+        user.setComplemento(request.getParameter("complemento"));
+        user.setEstado(request.getParameter("estado"));
+        user.setCidade(request.getParameter("cidade"));
+        user.setBairro(request.getParameter("bairro"));
+        user.setSenha(request.getParameter("senha"));
+        user.setNivel_usuario("3");
+        user.setAtivo("1");
+        user.setBanco(request.getParameter("banco"));
+        user.setAgencia(Integer.parseInt(request.getParameter("agencia")));
+        user.setConta(Integer.parseInt(request.getParameter("conta")));
+        user.setDigito(Integer.parseInt(request.getParameter("digito")));
+
+        Usuario usuario = CadastroDAO.cadastrar(user);
+
+
+        if (usuario != null) {
+            // Exibe a mensagem na tela, abaixo do botão
+            response.sendRedirect("login.jsp?msg=" + Mensagem.USUARIO_CADATRADO);
+        } else {
+            response.sendRedirect("login.jsp?msg=" + Mensagem.ERRO_CONEXAO);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

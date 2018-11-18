@@ -22,9 +22,6 @@ window.onload = function () {
 	document.getElementById("cnpj").onkeypress = function () {
         return Onlynumbers(event);
     };
-
-
-	
 	document.getElementById("telefone").onkeypress = function () {
         return Onlynumbers(event);
     };
@@ -34,6 +31,18 @@ window.onload = function () {
     };
 	
 	document.getElementById("numero").onkeypress = function () {
+        return Onlynumbers(event);
+    };
+    
+    	document.getElementById("agencia").onkeypress = function () {
+        return Onlynumbers(event);
+    };
+    
+    	document.getElementById("conta").onkeypress = function () {
+        return Onlynumbers(event);
+    };
+    
+    	document.getElementById("dig").onkeypress = function () {
         return Onlynumbers(event);
     };
 
