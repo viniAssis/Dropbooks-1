@@ -19,7 +19,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
         <!-- IMPORTA O MENU SUPERIOR E O FOOTER -->
-        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+         <script src="//code.jquery.com/jquery-1.10.2.js"></script>
         <script>
            $(function(){
               $("#header").load("MenuNavBar.jsp");
@@ -29,7 +29,86 @@
         <!-- IMPORTA O MENU SUPERIOR E O FOOTER -->
 
         <title> Item</title>
-
+        
+        <style>
+            .box-imagem > input{
+                display:none;
+            }
+            .box-imagem{
+                cursor: pointer;
+            }
+            
+            /**/
+             .foto-hover2 {
+                position: absolute;
+                width: 90%;
+                height: 100%;
+                background: url(res/img/pencil-white.svg) center center / 50px no-repeat rgba(0, 0, 0, .5);
+                opacity: 0;
+                top: 0;
+                
+             }
+             .foto-hover2:hover{
+                 opacity: 1;
+             }
+            
+            /**/
+             .foto-hover3 {
+                position: absolute;
+                width: 90%;
+                height: 100%;
+                background: url(res/img/pencil-white.svg) center center / 50px no-repeat rgba(0, 0, 0, .5);
+                opacity: 0;
+                top: 0;
+                
+             }
+             .foto-hover3:hover{
+                 opacity: 1;
+             }
+            
+            /**/
+             .foto-hover4 {
+                position: absolute;
+                width: 90%;
+                height: 100%;
+                background: url(res/img/pencil-white.svg) center center / 50px no-repeat rgba(0, 0, 0, .5);
+                opacity: 0;
+                top: 0;
+                
+             }
+             .foto-hover4:hover{
+                 opacity: 1;
+             }
+            
+            /**/
+             .foto-hover5 {
+                position: absolute;
+                width: 90%;
+                height: 100%;
+                background: url(res/img/pencil-white.svg) center center / 50px no-repeat rgba(0, 0, 0, .5);
+                opacity: 0;
+                top: 0;
+                
+             }
+             .foto-hover5:hover{
+                 opacity: 1;
+             }
+             /**/
+             .foto-hover-principal {
+                position: absolute;
+                width: 96%;
+                height: 100%;
+                background: url(res/img/pencil-white.svg) center center / 50px no-repeat rgba(0, 0, 0, .5);
+                opacity: 0;
+                top: 0;
+                
+             }
+             .foto-hover-principal:hover{
+                 opacity: 1;
+             }
+            
+        </style>
+        
         <!-- Bootstrap core CSS -->
         <link href="res/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -55,7 +134,64 @@
         %> 
        
         <script>
-            document.getElementById("<%= prod.getIdioma() %>").selected = true;
+            //document.getElementById("<= prod.getIdioma() %>").selected = true;
+            
+            /*function previewFile(){
+       var preview = document.querySelector('#img-1'); //selects the query named img
+       var file    = document.querySelector('#imagem_1').files[0]; //sames as here
+       var reader  = new FileReader();
+
+       reader.onloadend = function () {
+           preview.src = reader.result;
+       }
+
+       if (file) {
+           reader.readAsDataURL(file); //reads the data as a URL
+       } else {
+           preview.src = "";
+       }
+  }
+  
+	function teste(){
+		document.getElementById("imagem_1").click();
+	
+	}*/
+        
+        $(window).load(function() {
+            //$(".imagens:eq(1)").children(2);
+            $(".box-imagem").click( function(){
+                
+                
+                //var file    = this.children[1].files[0]; //sames as here
+                //var file    = this.children[1]; //sames as here
+                var file    = this.querySelector("input"); //sames as here
+                var preview = this.querySelector("img"); //selects the query named img
+                
+                file.click();
+                
+                file.onchange = function(){
+                
+                    var reader  = new FileReader();
+
+                     reader.onloadend = function () {
+                        preview.src = reader.result;
+                     }
+
+                    if (file.files[0]) {
+                        reader.readAsDataURL(file.files[0]); //reads the data as a URL
+                    } else {
+                        preview.src = "";
+                    }
+                }
+            });
+            
+        });
+        
+        
+        
+        
+            
+            
         </script>
         
     </head>
@@ -75,8 +211,10 @@
             <!-- Portfolio Item Row -->
             <div class="row">
 
-                <div class="col-md-8">
+                <div class="col-md-8 box-imagem">
+                    <div class="foto-hover-principal"></div>
                     <img class="img-fluid" src="./imagens?id_prod=<%=prod.getId()%>&img=1" alt="">
+                    <input type="file" class="form-control  border border-dark" id="imagem_1" name="imagem_1" accept="image/*" required  >
                 </div>
 
                 <div class="col-md-4">
@@ -101,8 +239,8 @@
 
                                 <li>Idioma:</li>
                                 <select id="nameIdioma" name="menuIdioma" id="menuIdioma" class="form-control border border-dark" text="<%= prod.getIdioma() %>" required>
-                                    <option value="<%= prod.getIdioma() %>" selected><%= prod.getIdioma() %></option>
-                                    <option value="Portugues">Portugues</option>
+                                    <option value="<%= prod.getIdioma() %>" id="<%= prod.getIdioma() %>" selected><%= prod.getIdioma() %></option>
+                                    <option value="Portugues" >Portugues</option>
                                     <option value="Ingles">Ingles</option>
                                     <option value="Espanhol">Espanhol</option>
                                 </select>
@@ -130,28 +268,32 @@
 
                 <div class="row">
 
-                    <div class="col-md-3 col-sm-6 mb-4">
-                        <a href="#">
-                            <img class="img-fluid" src="./imagens?id_prod=<%=prod.getId()%>&img=2" alt="">
-                        </a>
+                    <div class="col-md-3 col-sm-6 mb-4 box-imagem" >
+                            <div class="foto-hover2"></div>
+                            <img id="img-1" class="img-fluid" src="./imagens?id_prod=<%=prod.getId()%>&img=2" alt="">
+                            <input type="file" class="form-control  border border-dark" id="imagem_2" name="imagem_2" accept="image/*" required  >
+                        
                     </div>
+                    
+                            
 
-                    <div class="col-md-3 col-sm-6 mb-4">
-                        <a href="#">
+                    <div class="col-md-3 col-sm-6 mb-4 box-imagem">
+                            <div class="foto-hover3"></div>
                             <img class="img-fluid" src="./imagens?id_prod=<%=prod.getId()%>&img=3" alt="">
-                        </a>
+                            <input type="file" class="form-control  border border-dark" id="imagem_3" name="imagem_3" accept="image/*" required  >
                     </div>
 
-                    <div class="col-md-3 col-sm-6 mb-4">
-                        <a href="#">
+                    <div class="col-md-3 col-sm-6 mb-4 box-imagem">
+                            <div class="foto-hover4"></div>
                             <img class="img-fluid" src="./imagens?id_prod=<%=prod.getId()%>&img=4" alt="">
-                        </a>
+                            <input type="file" class="form-control  border border-dark" id="imagem_4" name="imagem_4" accept="image/*" required  >
                     </div>
 
-                    <div class="col-md-3 col-sm-6 mb-4">
-                        <a href="#">
+                    <div class="col-md-3 col-sm-6 mb-4 box-imagem">
+                            <div class="foto-hover5"></div>
                             <img class="img-fluid" src="./imagens?id_prod=<%=prod.getId()%>&img=5" alt="">
-                        </a>
+                            <input type="file" class="form-control  border border-dark" id="imagem_5" name="imagem_4" accept="image/*" required  >
+                        
                     </div>
 
 

@@ -45,15 +45,15 @@ public class AlterarProdutoServlet extends HttpServlet {
          Produto prod = new ProdutoDAO().getProduto(id);
          
 
-         prod.setTitulo(request.getParameter("namelivro")); 
+         prod.setTitulo(request.getParameter("nameTitulo")); 
          prod.setAutor(request.getParameter("nameAutor"));
          prod.setEditora(request.getParameter("nameEditora"));
-         prod.setPreco(Float.parseFloat(request.getParameter("valor")));
-         prod.setDescricao(request.getParameter("descricaoProduto")); 
+         prod.setPreco(Float.parseFloat(request.getParameter("namePreco")));
+         prod.setDescricao(request.getParameter("nameDescricao")); 
          prod.setGenero(request.getParameter("menuGenero"));
          prod.setIdioma(request.getParameter("menuIdioma"));
          //prod.setBairro(request.getParameter("inputFoto")); 
-         prod.setDataPublicacao(Usuario.toSqlDate(request.getParameter("anoLancamento")));
+         prod.setDataPublicacao(Usuario.toSqlDate(request.getParameter("nameData")));
          
          ProdutoDAO.alterarProduto(prod);
          
