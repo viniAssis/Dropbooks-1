@@ -45,7 +45,7 @@ window.onload = function () {
         return Onlynumbers(event);
     };
 
-         document.getElementById("digito").onkeypress = function () {
+         document.getElementById("dig").onkeypress = function () {
         return Onlynumbers(event);
     };
 
