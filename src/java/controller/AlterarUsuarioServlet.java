@@ -27,8 +27,7 @@ public class AlterarUsuarioServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
          response.setContentType("text/html;charset=UTF-8");
-         //String _email = request.getSession().getAttribute("email").toString();
-         String _email = "teste9@teste.com.br";
+         String _email = request.getSession().getAttribute("email").toString();
          Usuario user = new UsuarioDAO().getUsuario(_email);
          
         /*
@@ -40,6 +39,7 @@ public class AlterarUsuarioServlet extends HttpServlet {
             user.setCpf("");
         }
         */
+         
         user.setCpf_cnpj(request.getParameter("cpf"));
         user.setTipoPessoa(user.getTipoPessoa());
         user.setDataNascimento(Usuario.toSqlDate(request.getParameter("dataNascimento")));

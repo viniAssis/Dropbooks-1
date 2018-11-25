@@ -123,13 +123,13 @@
         
     <!--  Session -->
     <%
-    //String email = request.getSession().getAttribute("email").toString();
+    String email = request.getSession().getAttribute("email").toString();
 
-    //Usuario user = new UsuarioDAO().getUsuario(email);
+    Usuario user = new UsuarioDAO().getUsuario(email);
     
-    //if(!user.getNivel_usuario().equals("1")){
-    //    response.sendRedirect("paginaNaoEncontrada.jsp");
-    //}
+    if(!user.getNivel_usuario().equals("1")){
+        response.sendRedirect("paginaNaoEncontrada.jsp");
+    }
         
     %>
     
@@ -141,7 +141,6 @@
         
         <h2>Cadastro de Funcionário</h2>
 
-        <!-- Removido  onsubmit="teste()" -->
         <form method="post" id="form" name="form" action="CadastroFuncionarioServlet">
             <div class="container">
 
