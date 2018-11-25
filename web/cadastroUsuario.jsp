@@ -328,7 +328,7 @@
 
             <div id="end_submit">
                 <input type="checkbox" name="rec_novidades" id="rec_novidades" value="ATIVO" required/>
-                Concordo com o <a href="termoUso.jsp" target="_blanck">Termo de Uso</a>
+                Concordo com o <a href="Termos.html" target="_blanck">Termo de Uso</a>
                 <p>
                     <input type="submit" name="cadastrar" id="cadastrar" value="Cadastrar" class="btn btn-primary" />
                     <input type="reset" name="limpar" id="limpar" value="Limpar" class="btn btn-primary"/>
