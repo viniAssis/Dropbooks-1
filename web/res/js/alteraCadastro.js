@@ -3,31 +3,33 @@ window.onload = function () {
 
 
     $(document).ready(function () {
-        $('#inputTelefone').mask('(99)99999-9999'); 
-        $('#inputCEP').mask('99999-999')
+        
+        $('#cpf').mask('999.999.999-99');       
+        $('#telefone').mask('(99)99999-9999'); 
+        $('#cep').mask('99999-999')
 
     });
-    document.getElementById("inputNome").onkeypress = function () {
+    document.getElementById("nome").onkeypress = function () {
         return Onlychars(event);
     };
 
-    document.getElementById("inputTelefone").onkeypress = function () {
+    document.getElementById("telefone").onkeypress = function () {
         return Onlynumbers(event);
     };
     
-    document.getElementById("inputCEP").onkeypress = function () {
+    document.getElementById("cep").onkeypress = function () {
         return Onlynumbers(event);
     };
 
-    document.getElementById("endereco").onkeypress = function () {
+    document.getElementById("logradouro").onkeypress = function () {
         return Onlychars(event);
     };
 
-    document.getElementById("inputNumero").onkeypress = function () {
+    document.getElementById("numero").onkeypress = function () {
         return Onlynumbers(event);
     };
     
-     document.getElementById("inputCity").onkeypress = function () {
+     document.getElementById("cidade").onkeypress = function () {
         return Onlychars(event);
     };
 
@@ -35,7 +37,7 @@ window.onload = function () {
         return Onlychars(event);
     };
    
-    document.getElementById("inputBairro").onkeypress = function () {
+    document.getElementById("bairro").onkeypress = function () {
         return Onlychars(event);
     };
 

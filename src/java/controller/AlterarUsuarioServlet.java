@@ -18,6 +18,8 @@ import modelDAO.UsuarioDAO;
 /**
  *
  * @author Caique
+ * 
+ * Corrigido por Cristiano
  */
 @WebServlet(name = "AlterarUsuarioServlet", urlPatterns = {"/AlterarUsuarioServlet"})
 public class AlterarUsuarioServlet extends HttpServlet {
@@ -25,29 +27,48 @@ public class AlterarUsuarioServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
          response.setContentType("text/html;charset=UTF-8");
-         String _email = request.getSession().getAttribute("email").toString();
-         
+         //String _email = request.getSession().getAttribute("email").toString();
+         String _email = "teste9@teste.com.br";
          Usuario user = new UsuarioDAO().getUsuario(_email);
          
-         user.setNomeRazao(request.getParameter("hNome")); 
-         user.setEmail(request.getParameter("hEmail"));
-         user.setSexo(request.getParameter("sexoPessoa"));
-         user.setEstado(request.getParameter("hEstado"));
-         user.setTelefone(request.getParameter("hTelefone")); 
-         user.setNumero(request.getParameter("hNumero")); 
-         user.setCidade(request.getParameter("hCidade"));
-         user.setComplemento(request.getParameter("hComplemento"));
-         user.setBairro(request.getParameter("hBairro")); 
-         user.setCep(request.getParameter("hCEP"));
-         user.setDataNascimento(Usuario.toSqlDate(request.getParameter("hData")));
+        /*
+        if (request.getParameter("cpf").isEmpty()) {
+            user.setCpf(request.getParameter("cnpj"));
+        } else if (request.getParameter("cnpj").isEmpty()) {
+            user.setCpf(request.getParameter("cpf"));
+        } else {
+            user.setCpf("");
+        }
+        */
+        user.setCpf_cnpj(request.getParameter("cpf"));
+        user.setTipoPessoa(user.getTipoPessoa());
+        user.setDataNascimento(Usuario.toSqlDate(request.getParameter("dataNascimento")));
+        user.setSexo(request.getParameter("sexo"));
+        user.setEmail(request.getParameter("email"));
+        user.setTelefone(request.getParameter("telefone"));
+        user.setNomeRazao(request.getParameter("nomeRazao"));
+        user.setCep(request.getParameter("cep"));
+        user.setLogradouro(request.getParameter("logradouro"));
+        user.setNumero(request.getParameter("numero"));
+        user.setComplemento(request.getParameter("complemento"));
+        user.setEstado(request.getParameter("estado"));
+        user.setCidade(request.getParameter("cidade"));
+        user.setBairro(request.getParameter("bairro"));
+        user.setSenha(user.getSenha());
+        user.setNivel_usuario(user.getNivel_usuario());
+        user.setAtivo(user.getAtivo());
+        user.setBanco(request.getParameter("banco"));
+        user.setAgencia(Integer.parseInt(request.getParameter("agencia")));
+        user.setConta(Integer.parseInt(request.getParameter("conta")));
+        user.setDigito(Integer.parseInt(request.getParameter("digito")));
          
          String resp = UsuarioDAO.alterarUsuario(user);
          
             if (Mensagem.OK.equals(resp)) {
                 // Exibe a mensagem na tela, abaixo do botão
-                response.sendRedirect("alterarCarrossel.jsp?msg=" + Mensagem.USUARIO_ALTERADO);
+                response.sendRedirect("alterarCadastro.jsp?msg=" + Mensagem.USUARIO_ALTERADO);
             } else {
-                response.sendRedirect("alterarCarrossel.jsp?msg=" + Mensagem.ERRO_CONEXAO);
+                response.sendRedirect("alterarCadastro.jsp?msg=" + Mensagem.ERRO_CONEXAO);
             }
 
     }

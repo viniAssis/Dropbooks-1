@@ -122,7 +122,7 @@ public class UsuarioDAO {
             ps.close();
             con.close();
 
-            resp = "ok";
+            resp = "OK";
         } catch (Exception e) {
             resp = e.toString();
         }
@@ -135,22 +135,33 @@ public class UsuarioDAO {
 
         try {
             Connection con = Conecta.getConexao();
-            String sql = "UPDATE usuario SET dataNascimento=?, sexo=?, NomeRazao=?, telefone=?, cep=?, logradouro=?, numero=?, complemento=?, estado=?, cidade=?, bairro=?, senha=? WHERE id=?";
+            String sql = "UPDATE usuario SET cpf_cnpj=?, dataNascimento=?, sexo=?, email=?, telefone=?, nomeRazao=?, cep=?, logradouro=?, numero=?, complemento=?, estado=?, cidade=?, bairro=?, senha=?, banco=?, agencia=?, conta=?, digito=? WHERE id=?";
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setString(1, usuario.getDataNascimento().toString());
-            ps.setString(2, usuario.getSexo());
-            ps.setString(3, usuario.getNomeRazao());
-            ps.setString(4, usuario.getTelefone());
-            ps.setString(5, usuario.getCep());
-            ps.setString(6, usuario.getLogradouro());
-            ps.setString(7, usuario.getNumero());
-            ps.setString(8, usuario.getComplemento());
-            ps.setString(9, usuario.getEstado());
-            ps.setString(10, usuario.getCidade());
-            ps.setString(11, usuario.getBairro());
-            ps.setString(12, usuario.getSenha());
+            ps.setString(1, usuario.getCpf_cnpj());
+            //ps.setInt(2, usuario.getTipoPessoa());
+            ps.setString(2, usuario.getDataNascimento().toString());
+            ps.setString(3, usuario.getSexo());
+            ps.setString(4, usuario.getEmail());
+            ps.setString(5, usuario.getTelefone());
+            //ps.setInt(2, usuario.getId_conta());
+            //ps.setInt(2, usuario.getId_endereco());
+            ps.setString(6, usuario.getNomeRazao());
+            ps.setString(7, usuario.getCep());
+            ps.setString(8, usuario.getLogradouro());
+            ps.setString(9, usuario.getNumero());
+            ps.setString(10, usuario.getComplemento());
+            ps.setString(11, usuario.getEstado());
+            ps.setString(12, usuario.getCidade());
+            ps.setString(13, usuario.getBairro());
+            ps.setString(14, usuario.getSenha());
+            //ps.setString(15, usuario.getNivel_usuario());
+            //ps.setString(16, usuario.getAtivo());
+            ps.setString(15, usuario.getBanco());
+            ps.setInt(16, usuario.getAgencia());
+            ps.setInt(17, usuario.getConta());
+            ps.setInt(18, usuario.getDigito());
 
-            ps.setString(13, Integer.toString(usuario.getId()));
+            ps.setString(19, Integer.toString(usuario.getId()));
 
             ps.execute();
 
