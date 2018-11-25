@@ -123,13 +123,13 @@
         
     <!--  Session -->
     <%
-    //String email = request.getSession().getAttribute("email").toString();
+    String email = request.getSession().getAttribute("email").toString();
 
-    //Usuario user = new UsuarioDAO().getUsuario(email);
+    Usuario user = new UsuarioDAO().getUsuario(email);
     
-    //if(!user.getNivel_usuario().equals("1")){
-    //    response.sendRedirect("paginaNaoEncontrada.jsp");
-    //}
+    if(!user.getNivel_usuario().equals("1")){
+        response.sendRedirect("paginaNaoEncontrada.jsp");
+    }
         
     %>
     
