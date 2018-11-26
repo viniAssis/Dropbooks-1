@@ -39,7 +39,7 @@
             } 
         </style>
         <%
-            String msg="";
+            String msg = "";
             if (msg == null) {
                 msg = "teste";
             }
@@ -160,9 +160,13 @@
             </form>    
 
             <!-- Mensagem de resposta -->
-            <%=request.getParameter("msg")%>
+            <%
+                if (request.getParameter("msg") != null) {
+                    out.println(request.getParameter("msg"));
+                } else {
 
-
+                }
+            %>
         </div>
 
         <!-- Conteúdo fim -->

@@ -3,11 +3,11 @@ package model;
 import java.sql.Date;
 
 public class Funcionario extends Utilitarios{
-
-    private Date dataNascimento;
-    private int id, perfil, numero, agencia, conta, digito;
-    private String cpf, telefone, celular, cep, email, senha, nome, sexo, logradouro, complemento, bairro, estado, cidade, banco;
     
+    private Date dataNascimento;
+    private int id, tipoPessoa, agencia, conta, digito;
+    private String cpf, telefone, celular, cep, email, senha, nome, sexo, logradouro, numero, complemento, bairro, estado, cidade, banco, nivel_usuario, ativo;
+
     /**
      * @return the dataNascimento
      */
@@ -37,31 +37,17 @@ public class Funcionario extends Utilitarios{
     }
 
     /**
-     * @return the perfil
+     * @return the tipoPessoa
      */
-    public int getPerfil() {
-        return perfil;
+    public int getTipoPessoa() {
+        return tipoPessoa;
     }
 
     /**
-     * @param perfil the perfil to set
+     * @param tipoPessoa the tipoPessoa to set
      */
-    public void setPerfil(int perfil) {
-        this.perfil = perfil;
-    }
-
-    /**
-     * @return the numero
-     */
-    public int getNumero() {
-        return numero;
-    }
-
-    /**
-     * @param numero the numero to set
-     */
-    public void setNumero(int numero) {
-        this.numero = numero;
+    public void setTipoPessoa(int tipoPessoa) {
+        this.tipoPessoa = tipoPessoa;
     }
 
     /**
@@ -233,6 +219,20 @@ public class Funcionario extends Utilitarios{
     }
 
     /**
+     * @return the numero
+     */
+    public String getNumero() {
+        return numero;
+    }
+
+    /**
+     * @param numero the numero to set
+     */
+    public void setNumero(String numero) {
+        this.numero = numero;
+    }
+
+    /**
      * @return the complemento
      */
     public String getComplemento() {
@@ -302,9 +302,33 @@ public class Funcionario extends Utilitarios{
         this.banco = banco;
     }
 
-    // TODO Alterar cpf, telefone, celular, cep Obs.: Método teste(); em JavaScript está deixando passar outros dados
-    
-    
-    
-  
+    /**
+     * @return the nivel_usuario
+     */
+    public String getNivel_usuario() {
+        return nivel_usuario;
+    }
+
+    /**
+     * @param nivel_usuario the nivel_usuario to set
+     */
+    public void setNivel_usuario(String nivel_usuario) {
+        this.nivel_usuario = nivel_usuario;
+    }
+
+    /**
+     * @return the ativo
+     */
+    public String getAtivo() {
+        return ativo;
+    }
+
+    /**
+     * @param ativo the ativo to set
+     */
+    public void setAtivo(String ativo) {
+        this.ativo = ativo;
+    }
+   
+   
   }

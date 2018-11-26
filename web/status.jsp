@@ -1,5 +1,8 @@
+<%@page import="modelDAO.ProdutoDAO"%>
+<%@page import="model.Produto"%>
 <%@page import="model.Item"%>
 <%@page import="modelDAO.PedidoDAO"%>
+<%@page import="modelDAO.ItemDAO"%>
 <%@page import="model.Pedido"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.text.DateFormat"%>
@@ -16,17 +19,28 @@
         <script src="res/jquery-3.3.1.js"></script>  
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
         <link rel="stylesheet" href="res/css/bootstrap.css">
-        
+
+        <script src="res/jquery-3.3.1.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.8/jquery.mask.js"></script>
+
+        <!-- Bootstrap core CSS -->
+        <link href="res/css/bootstrap.min.css" rel="stylesheet">
+        <script src="res/js/bootstrap.min.js"></script>
+
+        <!-- Custom styles for this template -->
+        <link href="res/css/modern-business.css" rel="stylesheet">
+
         <!-- IMPORTA O MENU SUPERIOR E O FOOTER -->
-        <script src="res/jquery-1.10.2.js"></script>
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
         <script>
-           $(function(){
-              $("#header").load("MenuNavBar.jsp");
-              $("#footer").load("Footer.jsp");
-           });
+            $(function () {
+                $("#header").load("MenuNavBar.jsp");
+                $("#footer").load("Footer.jsp");
+            });
         </script>
         <!-- IMPORTA O MENU SUPERIOR E O FOOTER -->
-        
+
         <style>
 
             .primeiro{display: none;}
@@ -116,13 +130,15 @@
             Date data = new Date();
             DateFormat dataAtual = new SimpleDateFormat("dd/MM/yyyy");
             String mostrarData = dataAtual.format(data);
-        
+
             // Todos os pedidos pelo ID do usuário
-            Pedido ultimoPedido = PedidoDAO.getUltimoPedido(user.getId());
+            Item itemStatus = new ItemDAO().getItemUsuario(Integer.parseInt(request.getParameter("id")));
+
             
+
             String status = "";
-            status = ultimoPedido.getStatus_pagamento();
-            
+            status = itemStatus.getPedido().getStatus_pagamento();
+
             String primeiro, segundo, terceiro, quarto;
 
             primeiro = "";
@@ -130,22 +146,22 @@
             terceiro = "";
             quarto = "";
 
-            if (status.equals("1")) {
+            if (status.equals("Pendente")) {
                 primeiro = "display: ;";
                 segundo = "display: none;";
                 terceiro = "display: none;";
                 quarto = "display: none;";
-            } else if (status.equals("2")) {
+            } else if (status.equals("Aprovado")) {
                 primeiro = "display: none;";
                 segundo = "display: ;";
                 terceiro = "display: none;";
                 quarto = "display: none;";
-            } else if (status.equals("3")) {
+            } else if (status.equals("Enviado")) {
                 primeiro = "display: none;";
                 segundo = "display: none;";
                 terceiro = "display: ;";
                 quarto = "display: none;";
-            } else if (status.equals("4")) {
+            } else if (status.equals("Recebido")) {
                 primeiro = "display: none;";
                 segundo = "display: none;";
                 terceiro = "display: none;";
@@ -159,9 +175,9 @@
 
         %>
     </head>
-    
+
     <body>
-        
+
         <!-- Navigation -->
         <div id="header"></div>  
 
@@ -171,11 +187,11 @@
 
                 <span class="pedido">Pedido
 
-                    <span id="numeroPedido" name="numeroPedido">00<%=ultimoPedido.getId_pedido()%></span>
+                    <span id="numeroPedido" name="numeroPedido">00<%= itemStatus.getPedido().getId_pedido() %></span>
                 </span>
 
                 <span class="data">Data atualizada:
-                    <span id="dataStatus" name="dataStatus"><%= mostrarData %></span>
+                    <span id="dataStatus" name="dataStatus"><%= mostrarData%></span>
                 </span>
 
             </div>
@@ -184,7 +200,7 @@
 
             <span class="titulo3">
                 Previsão de entrega:
-                <span class="text-info" id="prazo" name="prazo"><%=ultimoPedido.getData_pedido()%></span>
+                <span class="text-info" id="prazo" name="prazo"><%=itemStatus.getPedido().getData_pedido()%></span>
             </span>
 
             <div class="progress" style="height: 30px; <%=primeiro%>">
@@ -203,27 +219,22 @@
                 <div class="progress-bar bg-success cor" role="progressbar" style="width: 100%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">Entregue</div>
             </div>
 
-            <%
-                ArrayList<Item> lista = ultimoPedido.getItens();
-                for (int i = 0; i < lista.size(); i++) {
-                    out.println("<div>");
-                    out.println("<img src='./imagens?id_prod='" + lista.get(i).getProduto().getId() + "'&img=1' class='img-fluid img' alt='Imagem responsiva'>");
-                    // Elemento com `diplay: block;`
-                    out.println("<div class='row titulo'>");
-                    out.println("<p class='font-weight-normal nome' id='nomeLivro' name='nomeLivro'>Nome do Livro:" + lista.get(i).getProduto().getTitulo() + "</p>");
-                    out.println("</div>");
 
-                    //<!-- Elemento com `diplay: inline;` -->
-                    out.println("<span class='font-weight-normal d-inline-block quantidade'>");
-                    out.println("<span><span id='quantidade' name='quantidade'>Quantidade: " + lista.get(i).getProduto().getQuantidade() + "</span>");
-                    out.println("</span>");
+            <div>
+                <img src='./imagens?id_prod=<%= itemStatus.getProduto().getId()%>&img=1' class='img-fluid img' alt='Imagem responsiva'>
+                <!-- Elemento com `diplay: block;`-->
+                <div class='row titulo'>
+                    <p class='font-weight-normal nome' id='nomeLivro' name='nomeLivro'>Nome do Livro: <%= itemStatus.getProduto().getTitulo()%></p>
+                </div>
 
-                    out.println("<span class='font-weight-normal d-inline-block quantidade'>");
-                    out.println("<span>R$ <span id='valor' name='valor'>Valor: " + lista.get(i).getProduto().getPreco() + "</span>");
-                    out.println("</span>");
-                    out.println("</div>");
-                }
-            %>
+                <!-- Elemento com `diplay: inline;` -->
+
+                <span class='font-weight-normal d-inline-block quantidade'>
+                    <span>R$ <span id='valor' name='valor'>Valor: <%= itemStatus.getPedido().getTotal()%></span>
+                    </span>
+            </div>
+
+
 
             <hr class="barra">
 
@@ -232,13 +243,13 @@
                     <div class="card  mb-3 box" style="max-width: 18rem;">
                         <div class="card-header titulo2">Endereço de Entrega:  </div>
                         <div class="card-body text-primary">
-                            <p class="card-text" id="nome" name="nome"> <%=ultimoPedido.getUsuario().getNomeRazao()%>  </p>
-                            <p class="card-text" id="endereco" name="endereco"> <%=ultimoPedido.getLogradouro()%>
-                                <span id="numero" name="numero"></span> <%=ultimoPedido.getNumero()%>
+                            <p class="card-text" id="nome" name="nome"> <%=itemStatus.getPedido().getUsuario().getNomeRazao()%>  </p>
+                            <p class="card-text" id="endereco" name="endereco"> <%=itemStatus.getPedido().getLogradouro()%>
+                                <span id="numero" name="numero"></span> <%=itemStatus.getPedido().getNumero()%>
                             </p>
-                            <p class="card-text" id="bairro" name="bairro"><%=ultimoPedido.getBairro()%></p>
-                            <p class="card-text" id="cidade" name="cidade"><%=ultimoPedido.getCidade()%></p>
-                            <p class="card-text"id="cep" name="cep"><%=ultimoPedido.getCep()%></p>
+                            <p class="card-text" id="bairro" name="bairro"><%=itemStatus.getPedido().getBairro()%></p>
+                            <p class="card-text" id="cidade" name="cidade"><%=itemStatus.getPedido().getCidade()%></p>
+                            <p class="card-text"id="cep" name="cep"><%=itemStatus.getPedido().getCep()%></p>
                         </div>
                     </div>
                 </div>
@@ -246,25 +257,25 @@
                     <div class="card  mb-3 box" style="max-width: 18rem;">
                         <div class="card-header titulo2">Total Pago</div>
                         <div class="card-body text-primary">
-                            <p class="card-text">Subtotal <span class="direita" id="valor" name="valor"><%=ultimoPedido.getSubtotal()%></span> </p>
-                            <p class="card-text">Frete <span class="direita" id="valorFrente" name="valorFrente"><%=ultimoPedido.getFrete()%></span> </p>
+                            <p class="card-text">Subtotal <span class="direita" id="valor" name="valor"><%=itemStatus.getPedido().getSubtotal()%></span> </p>
+                            <p class="card-text">Frete <span class="direita" id="valorFrente" name="valorFrente"><%=itemStatus.getPedido().getFrete()%></span> </p>
                             <hr class="barra2">
-                            <p class="card-text">Valor Total <span class="direita" id="valorTotal" name="valorTotal"><%=ultimoPedido.getTotal()%></span> </p>
+                            <p class="card-text">Valor Total <span class="direita" id="valorTotal" name="valorTotal"><%=itemStatus.getPedido().getTotal()%></span> </p>
                         </div>
                     </div>
                 </div>
             </div>
 
         </div>
-                        
-                        <!-- /.container -->
-                        <!-- Footer -->
-                        <div id="footer"></div>
-       <!-- Container Selection1 -->
-    <div id="dropDownSelect1"></div>
-    <!-- Bootstrap core JavaScript -->
-    <script src="res/vendor/jquery/jquery.min.js"></script>
-    <script src="res/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="res/js/recentesPorGenero.js"></script>
+
+        <!-- /.container -->
+        <!-- Footer -->
+        <div id="footer"></div>
+        <script src="res/vendor/jquery/jquery.min.js"></script>
+        <script src="res/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="res/jquery-3.3.1.js"></script>
+        <script src="res/vendor/bootstrap/js/bootstrap.js"></script>
     </body>
+
+
 </html>

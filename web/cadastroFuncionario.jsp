@@ -6,7 +6,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        <title>Cadastro de Funcionario</title>
+        <title>Cadastro de Funcionário</title>
 
         <script src="res/js/cadastroFuncionario.js"></script>
         <script src="res/jquery-3.3.1.js"></script>
@@ -14,7 +14,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.8/jquery.mask.js"></script
             
         <!-- IMPORTA O MENU SUPERIOR E O FOOTER -->
-        <script src="res/jquery-1.10.2.js"></script>
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
         <script>
            $(function(){
               $("#header").load("MenuNavBar.jsp");
@@ -139,9 +139,8 @@
         <!-- Navigation -->
         <div id="header"></div>
         
-        <h2>Cadastro de Funcionario</h2>
+        <h2>Cadastro de Funcionário</h2>
 
-        <!-- Removido  onsubmit="teste()" -->
         <form method="post" id="form" name="form" action="CadastroFuncionarioServlet">
             <div class="container">
 
@@ -165,7 +164,7 @@
                     
                     <div class="form-group col-md-3">
                         <label for="inputState">Perfil</label>
-                        <select id="perfil" name="perfil" class="form-control border border-dark" required>
+                        <select id="Nivel_Usuario" name="Nivel_Usuario" class="form-control border border-dark" required>
                             <option selected></option>
                             <option value="0">Administrador</option>
                             <option value="1">Finaceiro</option>
@@ -179,12 +178,12 @@
                 <div class="form-row">
                     <div class="col-md-8 mb-8">
                         <label>Nome Completo:</label>
-                        <input type="text" class="form-control border border-dark" name="nome" maxlength="60" id="nomeRazao">
+                        <input type="text" class="form-control border border-dark" name="nome" maxlength="44" id="nome">
                     </div>
 
                     <div class="col-md-4 mb-8">
-                        <label>CPF:</label>
-                        <input type="text" class="form-control border border-dark" name="cpf" id="cpf" required>
+                        <label>CPF/CNPJ:</label>
+                        <input type="text" class="form-control border border-dark" name="cpf" id="cpf" maxlength="29" required>
                     </div>
                 </div>
 
@@ -203,7 +202,7 @@
                     </div>
                     <div class="col-md-6 mb-8">
                         <label>Data de Nascimento:</label>
-                        <input type="date" class="form-control border border-dark" name="dataNascimento" id="data" class="cxs1" required>
+                        <input type="date" class="form-control border border-dark" name="dataNascimento" id="dataNascimento" class="cxs1" maxlength="10" required>
                     </div>
                 </div>
 
@@ -211,12 +210,12 @@
                 <div class="form-row">
                     <div class="col-md-6 mb-8">
                         <label>Telefone:</label>
-                        <input type="tel" class="form-control border border-dark" name="telefone"  id="telefone" required>
+                        <input type="text" class="form-control border border-dark" name="telefone"  id="telefone" maxlength="15" required>
                     </div>
 
                     <div class="col-md-6 mb-8">
-                        <label>Celular:</label>
-                    <input type="tel" class="form-control border border-dark" name="celular"  id="celular" required>
+                    <!--    <label>Celular:</label>
+                    <input type="text" class="form-control border border-dark" name="celular"  id="celular" maxlength="14" required>-->
                     </div>
                 </div>
 
@@ -224,17 +223,17 @@
                 <div class="form-row">
                     <div class="col-md-4 mb-8">
                         <label>CEP:</label>
-                        <input type="text" class="form-control border border-dark" name="cep" id="cep" required>
+                        <input type="text" class="form-control border border-dark" name="cep" id="cep" maxlength="9" required>
                     </div>
 
                       <div class="col-md-2 mb-8">
-                        <label>Numero:</label>
+                        <label>Número:</label>
                         <input type="text" class="form-control border border-dark" id="numero"  maxlength="5" name="numero" required>
                     </div>
 
                     <div class="col-md-6 mb-8">
-                        <label>EndereÃ§o:</label>
-                        <input type="text" class="form-control border border-dark" name="logradouro" maxlength="50" id="end" required>
+                        <label>Endereço:</label>
+                        <input type="text" class="form-control border border-dark" name="logradouro" maxlength="44" id="logradouro" required>
                     </div>
                 </div>
 
@@ -270,29 +269,29 @@
                  <div class="form-row">
                     <div class="col-md-3 mb-3">
                         <label>Banco:</label>
-                        <input type="text" class="form-control border border-dark" name="banco" id="banco" maxlength="3" required>
+                        <input type="text" class="form-control border border-dark" name="banco" id="banco" maxlength="9" required>
                     </div>
 
                      <div class="col-md-3 mb-3">
                         <label>Agência</label>
-                        <input type="text" class="form-control border border-dark" name="agencia" id="agencia"  maxlength="4" required>
+                        <input type="text" class="form-control border border-dark" name="agencia" id="agencia"  maxlength="5" required>
                     </div>
 
                       <div class="col-md-3 mb-3">
                         <label>Conta:</label>
-                        <input type="text" class="form-control border border-dark" name="conta" id="conta"  maxlength="10" required>
+                        <input type="text" class="form-control border border-dark" name="conta" id="conta"  maxlength="6" required>
                     </div>
 
                      <div class="col-md-3 mb-3">
-                        <label>Digito:</label>
-                        <input type="text" class="form-control border border-dark" name="digito" id="dig"  maxlength="2" required>
+                        <label>Dígito:</label>
+                        <input type="text" class="form-control border border-dark" name="digito" id="digito"  maxlength="2" required>
                     </div>
                 </div>
 
 
                 <div id="end_submit">
-                    <input type="checkbox" name="rec_novidades" id="rec_novidades" value="ATIVO" checked="checked" required/>
-                        Concordo com o <a href="termoUso.jsp" target="_blanck">Termo de Uso</a>
+                    <input type="checkbox" name="rec_novidades" id="rec_novidades" value="ATIVO" required/>
+                        Concordo com o <a href="Termos.html" target="_blanck">Termo de Uso</a>
                     <p>
                         <input type="submit" name="cadastrar" id="cadastrar" value="Cadastrar" class="btn btn-primary" />
                         <input type="reset" name="limpar" id="limpar" value="Limpar" class="btn btn-primary"/>

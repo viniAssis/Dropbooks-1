@@ -40,12 +40,11 @@ public class EnviaEmailServlet extends HttpServlet {
         String resp = Email.enviaEmail(nome, email, assunto, mensagem);
 
         if(Mensagem.OK.equals(resp)){
-            // Exibe a mensagem na tela, abaixo do botão
-                response.sendRedirect("contato.jsp?msg=" + Mensagem.EMAIL_ENVIADO);
-            }
-            else{
-                response.sendRedirect("contato.jsp?msg=" + Mensagem.ERRO_CONEXAO);
-            }
+        // Exibe a mensagem na tela, abaixo do botão
+            response.sendRedirect("contato.jsp?msg=" + Mensagem.EMAIL_ENVIADO);
+        } else {
+            response.sendRedirect("contato.jsp?msg=" + Mensagem.ERRO_CONEXAO);
+        }
     }
 
 }

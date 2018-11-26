@@ -5,22 +5,27 @@
  */
 package controller;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Mensagem;
-import modelDAO.UsuarioDAO;
+import static model.Utilitarios.toSqlDate;
+import model.Vendas;
+import modelDAO.VendasDAO;
 
 /**
  *
- * @author Elaine
+ * @author Caique
  */
-@WebServlet(name = "ExcluirUsuarioServlet", urlPatterns = {"/ExcluirUsuarioServlet"})
-public class ExcluirUsuarioServlet extends HttpServlet {
+@WebServlet(name = "RelatorioVendasServlet", urlPatterns = {"/RelatorioVendasServlet"})
+public class RelatorioVendasServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,17 +40,47 @@ public class ExcluirUsuarioServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-        int id = Integer.parseInt(request.getParameter("id"));
-        
-                  
-        String resp = new UsuarioDAO().excluirUsuario(id);
-        
-            if (Mensagem.OK.equals(resp)) {
-                // Exibe a mensagem na tela, abaixo do botão
-                response.sendRedirect("listaUsuarioFuncionario.jsp?msg=" + Mensagem.USUARIO_EXCLUIDO);
-            } else {
-                response.sendRedirect("listaUsuarioFuncionario.jsp?msg=" + Mensagem.ERRO_CONEXAO);
+            
+            Date dataInicial, dataFinal; 
+            float valorMinimo, valorMaximo;
+            int idPedido;
+            ArrayList<Vendas> lista = null;
+            
+            valorMinimo = Float.parseFloat(request.getParameter("valorMinimo"));
+            valorMaximo = Float.parseFloat(request.getParameter("valorMaximo"));
+            
+            dataInicial = toSqlDate(request.getParameter("dataInicial"));
+            dataFinal = toSqlDate(request.getParameter("dataFinal"));
+            
+            idPedido = Integer.parseInt(request.getParameter("idPedido"));
+            
+            if(dataInicial != null && dataFinal != null && valorMinimo == 0 && valorMaximo == 0){
+                //SE A DATA INICIAL FOR ANTES DA DATA FINAL ELE VAI RETORNAR VERDADEIRO
+                if(dataInicial.before(dataFinal) == true){
+                    lista = VendasDAO.getVendasFinanceiroPorData(dataInicial, dataFinal);
+                }else{
+                    lista = VendasDAO.getVendasFinanceiroPorData(dataFinal, dataInicial);
+                }
+            }else if(dataInicial == null && dataFinal == null && valorMinimo >= 0 && valorMaximo > 0){
+                if(valorMinimo <= valorMaximo){
+                    lista = VendasDAO.getVendasFinanceiroPorValores(valorMinimo, valorMaximo);
+                }else{
+                    lista = VendasDAO.getVendasFinanceiroPorValores(valorMaximo, valorMinimo);
+                }
+            }else if(idPedido > 0){
+                    lista = VendasDAO.getVendasFinanceiroPorID(idPedido);
+            }else{
+                lista = VendasDAO.getVendasFinanceiro();
             }
+            
+            
+            
+            
+            GsonBuilder gBuilder = new GsonBuilder();
+            Gson gson = gBuilder.create();
+            String jsonLista = gson.toJson(lista);
+
+            out.print(jsonLista);
         }
     }
 
@@ -61,6 +96,7 @@ public class ExcluirUsuarioServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+       
         processRequest(request, response);
     }
 
@@ -75,7 +111,8 @@ public class ExcluirUsuarioServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        processRequest(request, response);        
+               
     }
 
     /**

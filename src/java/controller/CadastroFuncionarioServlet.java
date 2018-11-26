@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Funcionario;
+import model.Mensagem;
 import modelDAO.FuncionarioDAO;
 
 /**
@@ -36,17 +37,7 @@ public class CadastroFuncionarioServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet CadastroFuncionarioServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet CadastroFuncionarioServlet at " + request.getContextPath() + "</h1>");
-            
+
             // Data de nascimento
             Calendar cal = Calendar.getInstance();
             cal.add(Calendar.DATE, 0);
@@ -56,22 +47,24 @@ public class CadastroFuncionarioServlet extends HttpServlet {
             // Novo Objeto de funcionario
             Funcionario user = new Funcionario();
             
+            user.setTipoPessoa(1);
+            //user.setTipoPessoa(Integer.parseInt(request.getParameter("tipoPessoa")));
             user.setEmail(request.getParameter("email"));
             user.setSenha(request.getParameter("senha"));
-            user.setPerfil(Integer.parseInt(request.getParameter("perfil")));
             user.setNome(request.getParameter("nome"));
             user.setCpf(request.getParameter("cpf"));
             user.setSexo(request.getParameter("sexo"));
             user.setDataNascimento(Funcionario.toSqlDate(request.getParameter("dataNascimento")));
             user.setTelefone(request.getParameter("telefone"));
-            user.setCelular(request.getParameter("celular"));
             user.setCep(request.getParameter("cep"));
-            user.setNumero(Integer.parseInt(request.getParameter("numero")));
+            user.setNumero(request.getParameter("numero"));
             user.setLogradouro(request.getParameter("logradouro"));
             user.setComplemento(request.getParameter("complemento"));
             user.setBairro(request.getParameter("bairro"));
             user.setEstado(request.getParameter("estado"));
             user.setCidade(request.getParameter("cidade"));
+            user.setNivel_usuario(request.getParameter("Nivel_Usuario"));
+            user.setAtivo("1");
             user.setBanco(request.getParameter("banco"));
             user.setAgencia(Integer.parseInt(request.getParameter("agencia")));
             user.setConta(Integer.parseInt(request.getParameter("conta")));
@@ -79,15 +72,12 @@ public class CadastroFuncionarioServlet extends HttpServlet {
             
             String resp = FuncionarioDAO.setFuncionario(user);
             
-            //out.println("Resposta" + resp);
-            
-            // Redireciona para outra página
-            response.sendRedirect("index.jsp");
-            
-            
-            out.println("</body>");
-            out.println("</html>");
-        }
+            if (Mensagem.OK.equals(resp)) {
+                // Exibe a mensagem na tela, abaixo do botão
+                response.sendRedirect("login.jsp?msg=" + Mensagem.USUARIO_CADATRADO);
+            } else {
+                response.sendRedirect("login.jsp?msg=" + Mensagem.ERRO_CONEXAO);
+            }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
