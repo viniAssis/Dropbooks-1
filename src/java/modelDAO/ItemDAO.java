@@ -30,6 +30,36 @@ public class ItemDAO {
         return resp;
     }
     
+    /* CAIQUE */
+    public static Item getItemUsuario(int id_Pedido) {
+        Item item = new Item();
+        try {
+            Connection con = Conecta.getConexao();
+            String sql = "SELECT * FROM itens WHERE id_pedido=?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id_Pedido);
+            ResultSet rs = ps.executeQuery();
+            
+            if(rs.next()){
+                item.setId_item(rs.getInt("id_item"));
+                item.setPedido(PedidoDAO.getPedido(id_Pedido));
+                item.setProduto(ProdutoDAO.getProduto(rs.getInt("id_produto")));
+                item.setStatus_entrega(rs.getString("status_entrega"));
+            }else{
+                item = null;
+            }
+            
+            ps.execute();            
+            ps.close();
+            con.close();            
+    
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return item;
+    }
+    /* CAIQUE */
+    
     public static ArrayList<Item> getItensDoVendedor(int id_usuario) {
         
         ArrayList <Item> itens = new ArrayList();
@@ -64,6 +94,7 @@ public class ItemDAO {
         }
         return itens;
     }
+   
     public static ArrayList<Item> getItensDoPedido(int id_pedido) {
         
         ArrayList<Item> itens = new ArrayList();
@@ -116,4 +147,5 @@ public class ItemDAO {
         }
         return resp;
     }
+        
 }

@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import model.Item;
 import model.Pedido;
 
 public class PedidoDAO {
@@ -57,7 +58,7 @@ public class PedidoDAO {
         
         try {
             Connection con = Conecta.getConexao();
-            String sql = "SELECT * FROM pedidos WHERE id=?";
+            String sql = "SELECT * FROM pedidos WHERE id_pedido=?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id_pedido);
             ResultSet rs = ps.executeQuery();
@@ -128,6 +129,7 @@ public class PedidoDAO {
         return resp;
     }
     
+    /* CAIQUE */
     public static ArrayList<Pedido> getPedidosDoCliente(int id_usuario) {
         
         ArrayList <Pedido> pedidos = new ArrayList();
@@ -140,9 +142,10 @@ public class PedidoDAO {
             ResultSet rs = ps.executeQuery();
             
             while(rs.next()){
+                
                 Pedido pedido = new Pedido();
                 pedido.setId_pedido(rs.getInt("id_pedido"));
-                pedido.setUsuario(UsuarioDAO.getUserById(rs.getInt("id_pedido")));
+                pedido.setUsuario(UsuarioDAO.getUserById(rs.getInt("id_usuario")));
                 pedido.setForma_pagamento(rs.getString("forma_pagamento"));
                 pedido.setStatus_pagamento(rs.getString("status_pagamento"));
                 pedido.setCep(rs.getString("cep"));
@@ -156,6 +159,7 @@ public class PedidoDAO {
                 pedido.setSubtotal(rs.getFloat("subtotal"));
                 pedido.setFrete(rs.getFloat("frete"));
                 pedido.setTotal(rs.getFloat("total"));
+                pedido.setItens(new ItemDAO().getItensDoPedido(rs.getInt("id_pedido")));
                 pedidos.add(pedido);
             }
             
@@ -169,6 +173,7 @@ public class PedidoDAO {
 
         return pedidos;
     }
+    /* CAIQUE */
     
     public static String atualizarPagamento(Pedido pedido) {
         String resp = "";
