@@ -161,6 +161,13 @@
         <form method="post" id="form" name="form" action="CadastroServlet">
 
             <div class="container">
+                <!--
+                <input style="display:none" type="text"  name="perfil" id="perfil"  maxlength="1" value="3"  required>
+                <input style="display:none" type="text"  name="banco" id="banco"  maxlength="4" value="nulo"  required>
+                <input style="display:none" type="number"  name="agencia" id="agencia"  maxlength="1" value="0"  required>
+                <input style="display:none" type="number"  name="conta" id="conta"  maxlength="1" value="0"  required>
+                <input style="display:none" type="number"  name="digito" id="digito"  maxlength="1" value="0"  required>
+-->
                 <!--Email -->
                 <div class="form-row">
                     <div class="col-md-6 mb-8">
@@ -206,11 +213,11 @@
                     <label>Tipo:</label>
                     <div class="form-check form-check-inline " id="espaco">
                         <input class="form-check-input" type="radio" name="tipoPessoa" id="idFisico" VALUE="1" required>
-                        <label class="form-check-label">Físico</label>
+                        <label class="form-check-label">Fisico</label>
                     </div>
                     <div class="form-check form-check-inline" id="espaco">
                         <input class="form-check-input" type="radio" name="tipoPessoa" id="idJuridico" VALUE="2" required>
-                        <label class="form-check-label">Jurídico</label>
+                        <label class="form-check-label">Juridico</label>
                     </div>
                 </div>
 
@@ -270,7 +277,7 @@
                     </div>
 
                     <div class="col-md-4 mb-3">
-                        <label>Número:</label>
+                        <label>Numero:</label>
                         <input type="text" class="form-control border border-dark" id="numero"  maxlength="4" name="numero" required>
                     </div>
                 </div>
@@ -310,17 +317,17 @@
 
                      <div class="col-md-3 mb-3">
                         <label>Agência</label>
-                        <input type="number" class="form-control border border-dark" name="agencia" id="agencia"  maxlength="5" required>
+                        <input type="text" class="form-control border border-dark" name="agencia" id="agencia"  maxlength="5" required>
                     </div>
 
                       <div class="col-md-3 mb-3">
                         <label>Conta:</label>
-                        <input type="number" class="form-control border border-dark" name="conta" id="conta"  maxlength="5" required>
+                        <input type="text" class="form-control border border-dark" name="conta" id="conta"  maxlength="5" required>
                     </div>
 
                      <div class="col-md-3 mb-3">
-                        <label>Dígito:</label>
-                        <input type="number" class="form-control border border-dark" name="digito" id="dig"  maxlength="2" required>
+                        <label>Digito:</label>
+                        <input type="text" class="form-control border border-dark" name="digito" id="dig"  maxlength="2" required>
                     </div>
                 </div>
 
@@ -328,7 +335,7 @@
 
             <div id="end_submit">
                 <input type="checkbox" name="rec_novidades" id="rec_novidades" value="ATIVO" required/>
-                Concordo com o <a href="Termos.html" target="_blanck">Termo de Uso</a>
+                Concordo com o <a href="termoUso.jsp" target="_blanck">Termo de Uso</a>
                 <p>
                     <input type="submit" name="cadastrar" id="cadastrar" value="Cadastrar" class="btn btn-primary" />
                     <input type="reset" name="limpar" id="limpar" value="Limpar" class="btn btn-primary"/>

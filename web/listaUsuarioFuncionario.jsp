@@ -26,10 +26,10 @@
         <!-- IMPORTA O MENU SUPERIOR E O FOOTER -->
         <script src="//code.jquery.com/jquery-1.10.2.js"></script>
         <script>
-            $(function () {
-                $("#header").load("MenuNavBar.jsp");
-                $("#footer").load("Footer.jsp");
-            });
+           $(function(){
+              $("#header").load("MenuNavBar.jsp");
+              $("#footer").load("Footer.jsp");
+           });
         </script>
         <!-- IMPORTA O MENU SUPERIOR E O FOOTER -->
 
@@ -44,7 +44,7 @@
             }
 
         %>
-
+        
         <style>
 
             #nav{background: #090446;}
@@ -116,68 +116,60 @@
 
     </head>
     <body>
-        <div id="header"></div> 
-        <!-- Mensagem de resposta -->
-        <%                        
-            if (request.getParameter("msg") != null) {
-                out.println(request.getParameter("msg"));
-            } else {
+      <div id="header"></div> 
 
-            }
-        %>
-        <br><br>
     <center><h1>Pesquisa de Usuários</h1></center>      
 
-    <form action="PesquisarUsuariosServlet" method="GET">
-        <input type="hidden" name="acao" value="${param.acao}" />
+        <form action="PesquisarUsuariosServlet" method="GET">
+            <input type="hidden" name="acao" value="${param.acao}" />
 
 
-        <div id="dados">
-            <input type="submit" id="pesquisa" value="Pesquisar" class="btn btn-primary" />
-            <input type="text" class="form-control col-md-6 mb-4 border border-dark"  id="cod" name="pesquisa" value="${param.pesquisa}" placeholder="Nome">
-        </div>
+            <div id="dados">
+                <input type="submit" id="pesquisa" value="Pesquisar" class="btn btn-primary" />
+                <input type="text" class="form-control col-md-6 mb-4 border border-dark"  id="cod" name="pesquisa" value="${param.pesquisa}" placeholder="Nome">
+            </div>
 
 
-    </form>
+        </form>
 
-    <table class="table table-striped table table-hover sortable" id="tabela">
+        <table class="table table-striped table table-hover sortable" id="tabela">
 
-        <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Nome</th>
-            <th scope="col">Email</th>
-            <th scope="col">Nível</th>
-            <th scope="col">Status</th>
-            <th scope="col"></th>
-        </tr>
-
-
-        <c:forEach items="${lista}" var="usuario">
             <tr>
-                <td>${usuario.id}</td>
-                <td>${usuario.nomeRazao}</td>
-                <td>${usuario.email}</td>
-                <td>${usuario.nivel_usuario}</td>
-                <td>${usuario.ativo}</td>
-                <td><a href="alterarFuncionarioAdm.jsp?id=${usuario.id}">Editar</a></td>
-            </tr>
-        </c:forEach>
-
-        <c:if test="${empty lista}">
-            <tr>
-                <td colspan="2">Nenhum usuário localizado</td>
+                <th scope="col">ID</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Email</th>
+                <th scope="col">Nível</th>
+                <th scope="col">Status</th>
+                <th scope="col"></th>
             </tr>
 
-        </c:if>
-    </table>
+
+            <c:forEach items="${lista}" var="usuario">
+                <tr>
+                    <td>${usuario.id}</td>
+                    <td>${usuario.nomeRazao}</td>
+                    <td>${usuario.email}</td>
+                    <td>${usuario.nivel_usuario}</td>
+                    <td>${usuario.ativo}</td>
+                    <td><a href="alterarFuncionarioAdm.jsp?id=${usuario.id}">Editar</a></td>
+                </tr>
+            </c:forEach>
+
+            <c:if test="${empty lista}">
+                <tr>
+                    <td colspan="2">Nenhum usuário localizado</td>
+                </tr>
+
+            </c:if>
+        </table>
 
 
-    <!-- Footer -->
-    <div id="footer"></div>
-
-    <script src="res/vendor/jquery/jquery.min.js"></script>
-    <script src="res/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.8/jquery.mask.js"></script>
-</body>
+        <!-- Footer -->
+        <div id="footer"></div>
+        
+        <script src="res/vendor/jquery/jquery.min.js"></script>
+        <script src="res/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.8/jquery.mask.js"></script>
+    </body>
 </html>

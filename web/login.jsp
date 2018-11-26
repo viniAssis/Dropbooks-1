@@ -5,10 +5,14 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Login</title>
+
+
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" type="text/css" href="res/fonts/font-awesome-4.7.0/css/font-awesome.min.css"/>
         <link rel="stylesheet" type="text/css" href="res/css/util.css"/>
         <link rel="stylesheet" type="text/css" href="res/css/main.css"/>
+
+
         <link href="res/css/bootstrap.min.css" rel="stylesheet">
         <link href="res/css/style.css" rel="stylesheet">
         <script src="res/js/jquery.js"></script>
@@ -16,50 +20,61 @@
         <script type="text/javascript" src="res/jquery-3.3.1.js"></script>
         <script type="text/javascript">
             $(document).ready(function () {
-
-
+                             
+                
                 document.getElementById("enviar").onclick = function () {
-
+                    
                     var valid = true;
-                    var email = $("#email").val();
-                    var senha = $("#senha").val();
-                    $.ajax({
-                        type: 'POST',
-                        url: "VerificaLoginServlet",
-                        data: {
-                            email: email,
-                            senha: senha
-                        },
-                        success: function (results) {
-                            if (results === "invalido") {
+                    
+                    
+                    
 
-                                valid = false;
-                                $("#loginFalha").css("display", "inherit");
-                                $("#loginSucesso").css("display", "none");
 
-                            } else if (results === "valido") {
-                                valid = true;
-
-                                $("#loginFalha").css("display", "none");
-                                $("#loginSucesso").css("display", "inherit");
-                                document.getElementById("LoginForm").submit();
+                        
+                        var email = $("#email").val();
+                        var senha = $("#senha").val();
+                        $.ajax({
+                            type: 'POST',
+                            url: "VerificaLoginServlet",
+                            data: {
+                                email: email,
+                                senha: senha
+                            },
+                            success: function (results) {
+                                if (results === "invalido") {
+                                    
+                                    valid = false;
+                                    $("#loginFalha").css("display","inherit");
+                                    $("#loginSucesso").css("display","none");
+                                    
+                                } else if (results === "valido") {
+                                    valid = true;
+                                    
+                                     $("#loginFalha").css("display","none");
+                                    $("#loginSucesso").css("display","inherit");
+                                    document.getElementById("LoginForm").submit();
+                                }
+                                
                             }
+                        });
+                        
+                        
 
-                        }
-                    });
+                    
+                    
                 };
             });
         </script>
 
         <style>
-
+            
             #loginFalha{
-                display:none;
-                border-radius: 10px;
+             display:none;
+                 border-radius: 10px;
             }
             #loginSucesso{
                 display:none;   
-                border-radius: 10px;
+                    border-radius: 10px;
             }
 
             #caixa2{
@@ -149,7 +164,7 @@
             </div>
         </nav>
 
-        <form id="caixa2" method='post' action="PesquisarLivrosServlet">
+      <form id="caixa2" method='post' action="PesquisarLivrosServlet">
             <div class="form-row align-items-center">
                 <div class="col-auto my-1">
                     <select class="custom-select mr-sm-2 border border-dark" id="tipoPesquisa" name="opcaoPesquisa">
@@ -165,18 +180,11 @@
                 <button type="submit" class="btn border-0" id="botao1" name="botao1">Pesquisa</button>
             </div>
         </form>
+
+
         <div class="container col-lg-6" >
             <div class="row">
                 <div class="formLogin col-md-8" id="container">
-                    <!-- Mensagem de resposta -->
-                    <%
-                        if (request.getParameter("msg") != null) {
-                            out.println(request.getParameter("msg"));
-                        } else {
-
-                        }
-                    %>
-                    <br><br>
                     <p class="h3 text-center">Identifique-se</p>
                     <form id="LoginForm" action="Login" method="post">
                         <div class="form-group">
@@ -188,7 +196,7 @@
                         <div class="form-group">
                             <label for="labelSenha">Senha</label>
                             <input id="senha" type="password" class="form-control  border border-dark"  name="senha" aria-describedby="senha" placeholder="*******">
-                            <small class="text-left novaSenha "><a href="Senha.html">Esqueceu sua senha?</a></small>
+                            <small class="text-left novaSenha "><a href="Senha.jsp">Esqueceu sua senha?</a></small>
                         </div>
                         <div id="loginFalha" class="form-group p-3 mb-2 border border-danger text-danger" style="text-align: center">
                             Login ou senha incorretos
