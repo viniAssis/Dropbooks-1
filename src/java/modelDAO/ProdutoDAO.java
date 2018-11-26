@@ -411,7 +411,7 @@ public class ProdutoDAO {
 
      try {
          Connection con = Conecta.getConexao();
-         String sql = "UPDATE produto SET quantidade=?, titulo=?, autor=?, editora=?, dataPublicacao=?, descricao=?, preco=? WHERE id=?";
+         String sql = "UPDATE produto SET quantidade=?, titulo=?, autor=?, editora=?, dataPublicacao=?, descricao=?, preco=?, imagem_1=?, imagem_2=?, imagem_3=?, imagem_4=?, imagem_5=? WHERE id=? ";
          PreparedStatement ps = con.prepareStatement(sql);
          ps.setInt(1, produto.getQuantidade());
          ps.setString(2, produto.getTitulo());
@@ -422,8 +422,13 @@ public class ProdutoDAO {
          ps.setFloat(7, produto.getPreco());
          //ps.setString(7, produto.getIdioma());
          //ps.setString(8, produto.getGenero());
+         ps.setBlob(8, produto.getImagem_1());
+         ps.setBlob(9, produto.getImagem_2());
+         ps.setBlob(10, produto.getImagem_3());
+         ps.setBlob(11, produto.getImagem_4());
+         ps.setBlob(12, produto.getImagem_5());
 
-         ps.setString(8, Integer.toString(produto.getId()));
+         ps.setString(13, Integer.toString(produto.getId()));
 
          ps.execute();
 

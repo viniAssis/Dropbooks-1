@@ -18,7 +18,7 @@
         <link rel="stylesheet" href="res/css/bootstrap.css">
         
         <!-- IMPORTA O MENU SUPERIOR E O FOOTER -->
-        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="res/jquery-1.10.2.js"></script>
         <script>
            $(function(){
               $("#header").load("MenuNavBar.jsp");

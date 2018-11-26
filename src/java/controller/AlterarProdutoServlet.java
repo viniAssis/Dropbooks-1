@@ -8,6 +8,7 @@ package controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -22,6 +23,7 @@ import modelDAO.UsuarioDAO;
  * @author Cristiano
  */
 @WebServlet(name = "AlterarProdutoServlet", urlPatterns = {"/AlterarProdutoServlet"})
+@MultipartConfig(maxFileSize = 16177215)
 public class AlterarProdutoServlet extends HttpServlet {
     
     /**
@@ -54,6 +56,22 @@ public class AlterarProdutoServlet extends HttpServlet {
          prod.setIdioma(request.getParameter("menuIdioma"));
          //prod.setBairro(request.getParameter("inputFoto")); 
          prod.setDataPublicacao(Usuario.toSqlDate(request.getParameter("nameData")));
+            
+         if(request.getPart("imagem_1").getSize() != 0){
+                prod.setImagem_1(request.getPart("imagem_1").getInputStream());
+            }
+            if (request.getPart("imagem_2").getSize() != 0){
+                prod.setImagem_2(request.getPart("imagem_2").getInputStream());
+            }
+            if (request.getPart("imagem_3").getSize() != 0){
+                prod.setImagem_3(request.getPart("imagem_3").getInputStream());
+            }
+            if (request.getPart("imagem_4").getSize() != 0){
+                prod.setImagem_4(request.getPart("imagem_4").getInputStream());
+            }
+            if (request.getPart("imagem_5").getSize() != 0){
+                prod.setImagem_5(request.getPart("imagem_5").getInputStream());
+            }
          
          ProdutoDAO.alterarProduto(prod);
          

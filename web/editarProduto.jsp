@@ -19,7 +19,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
         <!-- IMPORTA O MENU SUPERIOR E O FOOTER -->
-         <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+         <script src="res/jquery-1.10.2.js"></script>
         <script>
            $(function(){
               $("#header").load("MenuNavBar.jsp");
@@ -209,18 +209,18 @@
             </h1>
 
             <!-- Portfolio Item Row -->
-            <div class="row">
+            <form class="row" method="post" action="AlterarProdutoServlet" enctype="multipart/form-data">
 
                 <div class="col-md-8 box-imagem">
                     <div class="foto-hover-principal"></div>
                     <img class="img-fluid" src="./imagens?id_prod=<%=prod.getId()%>&img=1" alt="">
-                    <input type="file" class="form-control  border border-dark" id="imagem_1" name="imagem_1" accept="image/*" required  >
+                    <input type="file" class="form-control  border border-dark" id="imagem_1" name="imagem_1" accept="image/*"   >
                 </div>
 
                 <div class="col-md-4">
                     <h3 class="my-3">Informações do produto</h3>     
                     
-                        <form id="form1" action="AlterarProdutoServlet"> 
+                        <div id="form1" > 
                             <ul>
                                 <input style="display:none" type="text"  name="idProduto" id="idProduto"  maxlength="1" value="<%= prod.getId() %>"  required>
                                 
@@ -256,7 +256,7 @@
                                 
                             </ul>
                                 <button type="submit" class="btn btn-primary"  >Alterar Informações</button>
-                        </form>
+                        </div>
 
 
 
@@ -271,7 +271,7 @@
                     <div class="col-md-3 col-sm-6 mb-4 box-imagem" >
                             <div class="foto-hover2"></div>
                             <img id="img-1" class="img-fluid" src="./imagens?id_prod=<%=prod.getId()%>&img=2" alt="">
-                            <input type="file" class="form-control  border border-dark" id="imagem_2" name="imagem_2" accept="image/*" required  >
+                            <input type="file" class="form-control  border border-dark" id="imagem_2" name="imagem_2" accept="image/*"   >
                         
                     </div>
                     
@@ -280,19 +280,19 @@
                     <div class="col-md-3 col-sm-6 mb-4 box-imagem">
                             <div class="foto-hover3"></div>
                             <img class="img-fluid" src="./imagens?id_prod=<%=prod.getId()%>&img=3" alt="">
-                            <input type="file" class="form-control  border border-dark" id="imagem_3" name="imagem_3" accept="image/*" required  >
+                            <input type="file" class="form-control  border border-dark" id="imagem_3" name="imagem_3" accept="image/*"   >
                     </div>
 
                     <div class="col-md-3 col-sm-6 mb-4 box-imagem">
                             <div class="foto-hover4"></div>
                             <img class="img-fluid" src="./imagens?id_prod=<%=prod.getId()%>&img=4" alt="">
-                            <input type="file" class="form-control  border border-dark" id="imagem_4" name="imagem_4" accept="image/*" required  >
+                            <input type="file" class="form-control  border border-dark" id="imagem_4" name="imagem_4" accept="image/*"   >
                     </div>
 
                     <div class="col-md-3 col-sm-6 mb-4 box-imagem">
                             <div class="foto-hover5"></div>
                             <img class="img-fluid" src="./imagens?id_prod=<%=prod.getId()%>&img=5" alt="">
-                            <input type="file" class="form-control  border border-dark" id="imagem_5" name="imagem_4" accept="image/*" required  >
+                            <input type="file" class="form-control  border border-dark" id="imagem_5" name="imagem_5" accept="image/*"   >
                         
                     </div>
 
@@ -301,7 +301,7 @@
 
                 <!-- /.row -->
 
-            </div>
+            </form>
             <!-- /.container -->
         </div>
 

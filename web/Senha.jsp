@@ -27,7 +27,7 @@
         <script src="res/jquery-3.3.1.js"></script>
         
         <!-- IMPORTA O MENU SUPERIOR E O FOOTER -->
-        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="res/jquery-1.10.2.js"></script>
         <script>
            $(function(){
               $("#header").load("MenuNavBar.jsp");
