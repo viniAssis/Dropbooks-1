@@ -19,7 +19,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
         <!-- IMPORTA O MENU SUPERIOR E O FOOTER -->
-         <script src="res/jquery-1.10.2.js"></script>
+         <script src="//code.jquery.com/jquery-1.10.2.js"></script>
         <script>
            $(function(){
               $("#header").load("MenuNavBar.jsp");
@@ -106,6 +106,15 @@
              .foto-hover-principal:hover{
                  opacity: 1;
              }
+             
+             .info, #foto, #nomeP{
+                   color: #090446;
+             }
+             
+             #alterar{
+                background: #090446;
+                color:#FEB95F;
+            } 
             
         </style>
         
@@ -204,23 +213,23 @@
         <div class="container">
 
             <!-- Portfolio Item Heading -->
-            <h1 class="my-4"><%=prod.getTitulo()%>
+            <h1 class="my-4" id="nomeP"><%=prod.getTitulo()%>
 
             </h1>
 
             <!-- Portfolio Item Row -->
-            <form class="row" method="post" action="AlterarProdutoServlet" enctype="multipart/form-data">
+            <div class="row">
 
                 <div class="col-md-8 box-imagem">
                     <div class="foto-hover-principal"></div>
                     <img class="img-fluid" src="./imagens?id_prod=<%=prod.getId()%>&img=1" alt="">
-                    <input type="file" class="form-control  border border-dark" id="imagem_1" name="imagem_1" accept="image/*"   >
+                    <input type="file" class="form-control  border border-dark" id="imagem_1" name="imagem_1" accept="image/*" required  >
                 </div>
 
                 <div class="col-md-4">
-                    <h3 class="my-3">Informações do produto</h3>     
+                    <h3 class="my-3 info">Informações do produto</h3>     
                     
-                        <div id="form1" > 
+                        <form id="form1" action="AlterarProdutoServlet"> 
                             <ul>
                                 <input style="display:none" type="text"  name="idProduto" id="idProduto"  maxlength="1" value="<%= prod.getId() %>"  required>
                                 
@@ -255,8 +264,8 @@
                                 <textarea class="form-control  border border-dark" id="nameDescricao" name="nameDescricao" rows="3" required><%= prod.getDescricao() %></textarea>
                                 
                             </ul>
-                                <button type="submit" class="btn btn-primary"  >Alterar Informações</button>
-                        </div>
+                                <button type="submit" class="btn btn-primary border border-dark"  id="alterar">Alterar Informações</button>
+                        </form>
 
 
 
@@ -264,14 +273,14 @@
                 <!-- /.row -->
 
                 <!-- Related Projects Row -->
-                <h3 class="my-4">Fotos Produtos</h3>
+                <h3 class="my-4" id="foto">Fotos Produtos</h3>
 
                 <div class="row">
 
                     <div class="col-md-3 col-sm-6 mb-4 box-imagem" >
                             <div class="foto-hover2"></div>
                             <img id="img-1" class="img-fluid" src="./imagens?id_prod=<%=prod.getId()%>&img=2" alt="">
-                            <input type="file" class="form-control  border border-dark" id="imagem_2" name="imagem_2" accept="image/*"   >
+                            <input type="file" class="form-control  border border-dark" id="imagem_2" name="imagem_2" accept="image/*" required  >
                         
                     </div>
                     
@@ -280,19 +289,19 @@
                     <div class="col-md-3 col-sm-6 mb-4 box-imagem">
                             <div class="foto-hover3"></div>
                             <img class="img-fluid" src="./imagens?id_prod=<%=prod.getId()%>&img=3" alt="">
-                            <input type="file" class="form-control  border border-dark" id="imagem_3" name="imagem_3" accept="image/*"   >
+                            <input type="file" class="form-control  border border-dark" id="imagem_3" name="imagem_3" accept="image/*" required  >
                     </div>
 
                     <div class="col-md-3 col-sm-6 mb-4 box-imagem">
                             <div class="foto-hover4"></div>
                             <img class="img-fluid" src="./imagens?id_prod=<%=prod.getId()%>&img=4" alt="">
-                            <input type="file" class="form-control  border border-dark" id="imagem_4" name="imagem_4" accept="image/*"   >
+                            <input type="file" class="form-control  border border-dark" id="imagem_4" name="imagem_4" accept="image/*" required  >
                     </div>
 
                     <div class="col-md-3 col-sm-6 mb-4 box-imagem">
                             <div class="foto-hover5"></div>
                             <img class="img-fluid" src="./imagens?id_prod=<%=prod.getId()%>&img=5" alt="">
-                            <input type="file" class="form-control  border border-dark" id="imagem_5" name="imagem_5" accept="image/*"   >
+                            <input type="file" class="form-control  border border-dark" id="imagem_5" name="imagem_4" accept="image/*" required  >
                         
                     </div>
 
@@ -301,7 +310,7 @@
 
                 <!-- /.row -->
 
-            </form>
+            </div>
             <!-- /.container -->
         </div>
 

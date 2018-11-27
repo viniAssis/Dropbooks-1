@@ -53,7 +53,7 @@
                     <h4 class="s-text12 p-b-30"  id="corAmarelo">Livros</h4>
                     <ul>
                         <li class="p-b-9"><a href="#" id="corBranca">Busca</a></li>
-                        <li class="p-b-9"><a href="about.html" id="corBranca">Sobre Nós</a></li>
+                        <li class="p-b-9"><a href="#" id="corBranca">Sobre Nós</a></li>
                         <li class="p-b-9"><a href="#" id="corBranca">Email</a></li>
                         <li class="p-b-9"><a href="#" id="corBranca">Local</a></li>
                     </ul>
@@ -63,12 +63,6 @@
                     <ul>
                         <li class="p-b-9">
                             <a href="#" class="s-text7" id="corBranca">Dicas</a>
-                        </li>
-                        <li class="p-b-9">
-                            <a href="Termos.html" class="s-text7" id="corBranca">Termos</a>
-                        </li>
-                        <li class="p-b-9">
-                            <a href="sgepv.html" class="s-text7" id="corBranca">Segurança e Privacidade</a>
                         </li>
                         <li class="p-b-9">
                             <a href="#" class="s-text7" id="corBranca">Como Vender</a>

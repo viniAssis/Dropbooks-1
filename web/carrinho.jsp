@@ -26,7 +26,7 @@
         <link rel="stylesheet" type="text/css" href="res/css/util.css"/>
         <link rel="stylesheet" type="text/css" href="res/css/main.css"/>
         <!-- IMPORTA O MENU SUPERIOR E O FOOTER -->
-        <script src="res/jquery-1.10.2.js"></script>
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
         <script>
            $(function(){
               $("#header").load("MenuNavBar.jsp");
@@ -136,7 +136,7 @@
                 <div id="order" class="col-md-4 order-md-2 mb-4">
                 </div>
                 <div class="col-md-8 order-md-1">
-                    <h4 class="mb-3">Meu Carrinho</h4>
+                    <h4 id="titulo">Meu Carrinho</h4>
                     <div id="list-cart">
                         <!-- Dados do carrinho inseridos com Javascript -->
                     </div>

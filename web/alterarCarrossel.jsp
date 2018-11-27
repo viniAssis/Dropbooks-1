@@ -30,7 +30,7 @@
         <link href="res/css/modern-business.css" rel="stylesheet">
 
         <!-- IMPORTA O MENU SUPERIOR E O FOOTER -->
-        <script src="res/jquery-1.10.2.js"></script>
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
         <script>
             $(function () {
                 $("#header").load("MenuNavBar.jsp");
