@@ -8,24 +8,17 @@
 <%@page import="model.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="pt-br">
     <head>
-
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="">
         <meta name="author" content="">
-
-        <title>DropBooks</title>
-
+        <title>Alterar Senha</title>
         <link href="res/css/bootstrap.min.css" rel="stylesheet">
-
-        <!-- Custom styles for this template -->
         <link href="res/css/modern-business.css" rel="stylesheet">
-
         <script src="res/jquery-3.3.1.js"></script>
-        
+                <script src="res/js/senha.js"></script>
         <!-- IMPORTA O MENU SUPERIOR E O FOOTER -->
         <script src="res/jquery-1.10.2.js"></script>
         <script>
@@ -34,10 +27,6 @@
               $("#footer").load("Footer.jsp");
            });
         </script>
-        <!-- IMPORTA O MENU SUPERIOR E O FOOTER -->
-
-        <!-- <link href="res/css/the-big-picture.css" rel="stylesheet">
-        -->
         <script type="text/javascript">
 
             $(document).ready(function () {
@@ -76,7 +65,6 @@
                 });
             });
         </script>
-
         <style>
             
             
@@ -97,13 +85,26 @@
                 margin-top: 2%;
                 margin-left: 35%
             }
+            
+            .form-control{
+                margin-bottom: 4%;
+            }
+            
+             #enviar{
+                background: #090446;
+                color:#FEB95F;
+            } 
+            
+           #nome{
+                padding-bottom: 5%;
+                color: #090446;
+            }
 
 
         </style>
     </head>
 
     <body>
-
         <!-- Navigation -->
         <div id="header"></div>
         
@@ -111,7 +112,7 @@
             <div class="container">
                 <div class="conteudo">
 
-                    <center> <h1>Alterar Senha</h1></center>
+                    <center> <h1 id="nome">Alterar Senha</h1></center>
                     
                     <form>
                         <div class="form-row">
@@ -121,7 +122,7 @@
                             <div id="validaCpf" style="display: none;">CPF Incorreto</div>
                             <input type="Password" class="form-control border border-dark" placeholder="Senha Nova" maxlength="20" id="senha" required="">
 
-                            <button type="button" class="btn btn-primary" id="enviar">Alterar Senha</button>
+                            <button type="button" class="btn btn-primary border border-dark" id="enviar">Alterar Senha</button>
                             <div id="validaOk" style="display: none;">Senha alterada com sucesso</div>
 
                         </div>

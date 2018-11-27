@@ -64,12 +64,12 @@
                         <li class="p-b-9">
                             <a href="#" class="s-text7" id="corBranca">Dicas</a>
                         </li>
-                        <li class="p-b-9">
-                            <a href="Termos.html" class="s-text7" id="corBranca">Termos</a>
-                        </li>
-                        <li class="p-b-9">
+						                        <li class="p-b-9">	
+                            <a href="Termos.html" class="s-text7" id="corBranca">Termos</a>	
+                        </li>	
+                        <li class="p-b-9">	
                             <a href="sgepv.html" class="s-text7" id="corBranca">Segurança e Privacidade</a>
-                        </li>
+						
                         <li class="p-b-9">
                             <a href="#" class="s-text7" id="corBranca">Como Vender</a>
                         </li>

@@ -136,7 +136,7 @@
                 <div id="order" class="col-md-4 order-md-2 mb-4">
                 </div>
                 <div class="col-md-8 order-md-1">
-                    <h4 class="mb-3">Meu Carrinho</h4>
+                    <h4 id="titulo">Meu Carrinho</h4>
                     <div id="list-cart">
                         <!-- Dados do carrinho inseridos com Javascript -->
                     </div>
