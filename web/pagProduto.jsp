@@ -21,10 +21,10 @@
         <!-- IMPORTA O MENU SUPERIOR E O FOOTER -->
         <script src="res/jquery-1.10.2.js"></script>
         <script>
-           $(function(){
-              $("#header").load("MenuNavBar.jsp");
-              $("#footer").load("Footer.jsp");
-           });
+            $(function () {
+                $("#header").load("MenuNavBar.jsp");
+                $("#footer").load("Footer.jsp");
+            });
         </script>
         <!-- IMPORTA O MENU SUPERIOR E O FOOTER -->
 
@@ -47,6 +47,15 @@
             }
 
         %>
+        <style>
+            #label{
+                 color: #090446;
+            }
+            #calculaCEP, #addToCart{
+                background: #090446;
+                color:#FEB95F;
+            } 
+        </style>
     </head>
 
     <body>
@@ -57,7 +66,7 @@
         <div class="container">
 
             <!-- Portfolio Item Heading -->
-            <h1 class="my-4"><%=prod.getTitulo()%>
+            <h1 class="my-4" id="label"><%=prod.getTitulo()%>
 
             </h1>
 
@@ -69,9 +78,9 @@
                 </div>
 
                 <div class="col-md-4">
-                    <h3 class="my-3">Descrição</h3>
+                    <h3 class="my-3" id="label">Descrição</h3>
                     <p><label><%=prod.getDescricao()%> </label></p>
-                    <h3 class="my-3">Detalhes</h3>
+                    <h3 class="my-3" id="label">Detalhes</h3>
 
                     <ul>
                         <li>Autor: <%=prod.getAutor()%></li>
@@ -85,20 +94,20 @@
 
                     </ul>
                     <div class="my-3 cep">
-                        <p>Calcular Frete</p>
+                        <p id="label">Calcular Frete</p>
                         <div class="col-xs-2  button2">
-                            <input class="form-control" id="cepDestino" type="text" placeholder="_____-___" />
+                            <input class="form-control  border border-dark" id="cepDestino" type="text" placeholder="_____-___" maxlength="8"/>
                         </div>
 
-                        <button class="button button1" name="CalculaCEP" id="calculaCEP" value="Calcular" onclick="calcWsCorreios(<%=userProd.getCep()%>, <%=prod.getPreco()%>)">OK</button>
+                        <button class="button button1  border border-dark" name="CalculaCEP" id="calculaCEP" value="Calcular" onclick="calcWsCorreios(<%=userProd.getCep()%>, <%=prod.getPreco()%>)">OK</button>
                         <br />
                         <div id="resultadoFrete"></div>
 
                     </div>
-                        <form class="compra">
-                            <input type="hidden" class="btn btn-info " value="Comprar" id="btnComprar">
-                            <button type="button" class="btn btn-secondary" name="livro" id="addToCart" value="<%=prod.getId()%>">Adicionar Carrinho</button>
-                        </form>
+                    <form class="compra">
+                        <input type="hidden" class="btn btn-info  border border-dark" value="Comprar" id="btnComprar">
+                        <button type="button" class="btn btn-secondary border border-dark" name="livro" id="addToCart" value="<%=prod.getId()%>">Adicionar Carrinho</button>
+                    </form>
 
 
 
@@ -143,14 +152,14 @@
             <!-- /.container -->
         </div>
 
-            <!-- Footer -->
-            <div id="footer"></div>
-            
-            <!-- Bootstrap core JavaScript -->
-            <script src="res/vendor/jquery/jquery.min.js"></script>
-            <script src="res/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-            <script src="res/js/pagProduto.js"></script>
-            <script src="res/js/calculoFrete.js"></script>
+        <!-- Footer -->
+        <div id="footer"></div>
+
+        <!-- Bootstrap core JavaScript -->
+        <script src="res/vendor/jquery/jquery.min.js"></script>
+        <script src="res/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="res/js/pagProduto.js"></script>
+        <script src="res/js/calculoFrete.js"></script>
     </body>
 
 </html>
