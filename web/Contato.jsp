@@ -4,15 +4,20 @@
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
-        <!-- Meta tags Obrigatórias -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">    
-
+         <title>Contato</title>
         <script src="res/jquery-3.3.1.js"></script>
         <link href="res/css/bootstrap.min.css" rel="stylesheet">
         <link href="res/css/modern-business.css" rel="stylesheet">     
         <script src="res/js/contato.js"></script>
-
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        <script>
+            $(function () {
+                $("#header").load("MenuNavBar.jsp");
+                $("#footer").load("Footer.jsp");
+            });
+        </script>
         <style>
             #container{
                 margin-top: 2%;
@@ -27,75 +32,30 @@
                 clear: both;
             }
             .titulo{
-                color: black;
+                color: #090446;
                 padding: 3%;	
-                margin-left: 20%;
+                margin-left: 15%;
             }
             #botao2{
                 margin-top: 3%;
                 margin-left: 5%;
                 margin-bottom: 3%;
                 width: 60%;
+            }
+            #botao2, #botao1{
+                background: #090446;
+                color:#FEB95F;
             } 
         </style>
         <%
-            String msg="";
+            String msg = "";
             if (msg == null) {
                 msg = "teste";
             }
         %>
     </head>
     <body>
-        <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary fixed-top">
-            <div class="container">
-                <a class="navbar-brand" href="index.jsp">DropBooks</a>
-                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.jsp">Home</a>
-                        </li> 
-                        <li class="nav-item">
-                            <a class="nav-link" href="Contato.jsp">Contato</a>
-                        </li>
-                        <li class="nav-item">
-                            <%
-                                //VARIAVEIS QUE VÃO PREENCHER OS CAMPOS VAZIOS COM OS DADOS DO USUARIO(SE ESTIVER LOGADO)
-                                String _email = "";
-                                String _nome = "";
-                                //IDENTIFICA SE O USUARIO ESTA LOGADO E TRAZ SEUS DADOS PARA A PAGINA, SE NAO ESTIVER LOGADO, MOSTRA O LINK PARA QUE O IMUNDO POSSA SE LOGAR
-                                if (session.getAttribute("email") != null) {
-                                    String email = request.getSession().getAttribute("email").toString();
-                                    Usuario user = new UsuarioDAO().getUsuario(email);
-                                    _email += user.getEmail();
-                                    _nome += user.getNomeRazao();
-
-                                    out.print("</li>");
-                                    out.print("<li class=nav-item>");
-                                    out.print("<li class='nav-item dropdown'> "
-                                            + "<a class='nav-link dropdown-toggle' href='#' id='navbarDropdownPortfolio' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>" + user.getNomeRazao() + "</a>"
-                                            + "<div class='dropdown-menu dropdown-menu-right' aria-labelledby='navbarDropdownPortfolio'>"
-                                            + "<a class='dropdown-item' href='carrinho.jsp'>Carrinho</a>"
-                                            + "<a class='dropdown-item' href='alterarCadastro.jsp'>Alterar Dados</a>"
-                                            + "<a class='dropdown-item' href='catalogoLivro.jsp'>Meu Catalogo</a>"
-                                            + "<a class='dropdown-item' href='cadastroProduto.jsp'>Cadastra Catalogo</a>"
-                                            + "<a class='dropdown-item' href=Senha.jsp>Alterar Senha</a>"
-                                            + "<a class='dropdown-item' name=Sair href=SairServlet>Sair</a>"
-                                            + "</div>"
-                                            + "</li>");
-
-                                } else {
-                                    out.print("<a class=nav-link href=login.jsp>Login/Cadastrar</a>");
-                                }
-                            %>
-                        </li> 
-
-                    </ul>
-                </div>
-            </div>
-        </nav>
+        <div id="header"></div>
 
         <form id="caixa2" method='post' action="PesquisarLivrosServlet">
             <div class="form-row align-items-center">
@@ -110,13 +70,13 @@
                 <div class="col-auto col-md-6">
                     <input class="form-control mr-sm-2 border border-dark" type="search" placeholder="Pesquisar" aria-label="Pesquisar" name="palavraChave">
                 </div>
-                <button type="submit" class="btn btn-primary" id="botao1" name="botao1">Pesquisa</button>
+                <button type="submit" class="btn btn-primary border border-dark" id="botao1" name="botao1">Pesquisa</button>
             </div>
         </form>
 
         <!-- Conteúdo início -->
         <div  class="container" id="container">
-            <h3 class="titulo">Contate-nos</h3>
+            <h1 class="titulo">Contate-nos</h1>
 
             <form id="form1" method="post" action="EnviaEmailServlet">
 
@@ -156,7 +116,7 @@
                     * Campos obrigatórios
                 </div>
 
-                <button type="submit" class="btn btn-primary" id="botao2">Enviar</button>
+                <button type="submit" class="btn btn-primary border border-dark" id="botao2">Enviar</button>
             </form>    
 
             <!-- Mensagem de resposta -->
@@ -165,16 +125,7 @@
 
         </div>
 
-        <!-- Conteúdo fim -->
-
-        <!-- Footer -->
-        <footer class="py-5 bg-primary">
-            <div class="container">
-                <p class="m-0 text-center text-white">Copyright &copy; DropBooks</p>
-            </div>
-            <!-- /.container -->
-        </footer>   
-
+        <div id="footer"></div>
         <!-- Bootstrap core JavaScript -->
         <script src="res/vendor/jquery/jquery.min.js"></script>
         <script src="res/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
