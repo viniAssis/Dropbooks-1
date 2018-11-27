@@ -22,8 +22,17 @@
 
         <script src="res/jquery-3.3.1.js"></script>
 
-        <script src="res/js/alteraCadastro.js"></script>
+       
+              <!-- IMPORTA O MENU SUPERIOR E O FOOTER -->
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        <script>
+            $(function () {
+                $("#header").load("MenuNavBar.jsp");
+                $("#footer").load("Footer.jsp");
+            });
+        </script>
 
+        <!-- IMPORTA O MENU SUPERIOR E O FOOTER -->
         <style>
             #form1{
                 width: 60%;
@@ -33,8 +42,12 @@
             }
 
             #nome{
-                margin-top: 5%;
+                 margin-top: 5%;
                 text-align: center;
+                color: #090446 !important;
+                border-bottom: 3px solid #FEB95F;
+                width: 40%;
+                margin-left: 32%;
             }
 
             #caixa2{
@@ -100,10 +113,10 @@
             }
         </style>
 
-        <%
-            String email = "teste9@teste.com.br";
+       <%
+
             //Usuario user = new Usuario();
-            //String email = request.getSession().getAttribute("email").toString();
+            String email = request.getSession().getAttribute("email").toString();
 
             Usuario user = new UsuarioDAO().getUsuario(email);
 
@@ -124,35 +137,7 @@
 
     <body>
 
-        <nav class="navbar fixed-top navbar-expand-lg navbar-dark  fixed-top" id="nav">
-            <div class="container">
-                <a class="navbar-brand" href="index.jsp">DropBooks</a>
-                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.jsp">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="contato.jsp">Contato</a>
-                        </li>
-
-                        <li class="nav-item">
-                        <li class="nav-item dropdown"> 
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= user.getNomeRazao()%></a>
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
-                                <a class="dropdown-item" href="alterarCadastro.jsp">Alterar Dados</a>
-                                <a class="dropdown-item" href="catalogoLivro.jsp">Meu Catalogo</a>
-                                <a class="dropdown-item" href="cadastroProduto.jsp">Cadastra Catalogo</a>
-                                <a class="dropdown-item" href="Senha.jsp">Alterar Senha</a>
-                                <a class="dropdown-item" name=Sair href=SairServlet>Sair</a>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+        <div id="header"></div>
 
         <h3 id="nome">Olá, <%= user.getNomeRazao()%> </h3>
 
@@ -165,24 +150,28 @@
                     <input type="email" readonly class="form-control border border-dark" id="email" name="email" value="<%= user.getEmail()%>" maxlength="44" required>
                 </div>
             </div>
+                
+            <!-- Nome/Razão Social -->
+            <div class="form-group row">               
+                <label class="col-sm-3 col-form-label" id="texto">Nome/Razão Social:</label>
+                    <div class="col-md-6 mb-8">             
+                        <input type="text" class="form-control  border border-dark" id="nomeRazao" maxlength="44" name="nomeRazao" value="<%= user.getNomeRazao()%>" required>
+                    </div>
+            </div>
 
             <!-- Nome/Razão Social -->
-            <div class="form-group row">
-                <label class="col-sm-3 col-form-label" id="texto">Nome/Razão Social:</label>
-                <div class="col-sm-9">
-                    <input type="text" class="form-control  border border-dark" id="nomeRazao" maxlength="44" name="nomeRazao" value="<%= user.getNomeRazao()%>" required>
-                </div>
-                <div class="col-md-6 mb-8">
-                    <label class="col-sm-3 col-form-label" id="texto">CPF/CNPJ:</label>
-                    <input type="text" class="form-control border border-dark" name="cpf" id="cpf" maxlength="29" value="<%= user.getCpf_cnpj()%>" required>
+            <div class="form-group row">               
+                 <label class="col-sm-3 col-form-label" id="texto">CPF/CNPJ:</label>
+                <div class="col-md-6 mb-8">                  
+                    <input type="text" class="form-control border border-dark" name="cpf" id="cpf" maxlength="14" value="<%= user.getCpf_cnpj()%>" required>
                 </div>
             </div>
         
 
         <!-- Data de Nascimento -->
         <div class="form-group row">
-            <label class="col-sm-3 col-form-label" id="texto">Data de Nascimento:</label>
-            <div class="col-sm-3">
+            <label class="col-sm-4 col-form-label" id="texto">Data de Nascimento:</label>
+            <div class="col-sm-5">
                 <input type="date" class="form-control  border border-dark" id="dataNascimento" name="dataNascimento" value="<%= user.getDataNascimento()%>" maxlength="10" required>
             </div>
         </div>
@@ -192,18 +181,18 @@
             <label id="texto" class="col-sm-3 col-form-label">Sexo:</label>
             <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" name="sexo" id="sexo"  value="F" <% out.print(fem); %> required>
-                <label class="form-check-label" id="texto">Feminino</label>
+                <label class="form-check-label col-sm-5" id="texto">Feminino</label>
             </div>
             <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" name="sexo" id="sexo"  value="M" <% out.print(masc);%> required>
-                <label class="form-check-label" id="texto">Masculino</label>
+                <label class="form-check-label col-sm-5" id="texto">Masculino</label>
             </div>
         </div>
 
         <!-- Telefone  -->
         <div class="form-group row">
-            <label id="texto" class="col-sm-3 col-form-label">Telefone:</label>
-            <div class="col-4">
+            <label id="texto" class="col-sm-4 col-form-label">Telefone:</label>
+            <div class="col-5">
                 <input type="text" class="form-control  border border-dark" id="telefone" value="<%= user.getTelefone()%>" maxlength="15" name="telefone" required>
             </div>
         </div>
@@ -212,7 +201,7 @@
         <div class="form-row">
             <div class="form-group col-md-4">
                 <label id="texto">CEP</label>
-                <input type="text" class="form-control  border border-dark" id="cep" name="cep" maxlength="9" value="<%= user.getCep()%>" required>
+                <input type="text" class="form-control  border border-dark" id="cep" name="cep" maxlength="8" value="<%= user.getCep()%>" required>
             </div>
             <div class="form-group col-md-4">
                 <label id="texto">Endereço</label>
@@ -376,6 +365,6 @@
     <script src="res/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.8/jquery.mask.js"></script>
-
+             <script src="res/js/alterar.js"></script>
 </body>
 </html>
